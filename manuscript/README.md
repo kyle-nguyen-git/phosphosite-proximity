@@ -13,11 +13,15 @@ and bound by hash in `NUMBERS.md` Section 17.
 Both authors have read and approved it, and the declarations are final. It has not been submitted to a
 preprint server, and no independent methods review has been completed.
 
-## `preprint_draft_v1.md` / `.pdf` — superseded, retained for verification only
+## `preprint_draft_v1.md` / `.pdf` — SUPERSEDED, DO NOT CITE
 
 An earlier single-author draft with a different framing. It states that the primary interval "excludes
 discrimination materially above 0.632". **That claim is retired.** `NUMBERS.md` Section 13 lists it
 under Not allowed, and the current manuscript makes no such claim.
+
+No warning is printed inside that file itself, deliberately: the verification pipeline binds to its
+SHA-256 and its page count, so adding a line to it breaks the check that proves the frozen analysis
+outputs have not moved. The warning lives here instead.
 
 It is still in the repository because the verification pipeline binds to its SHA-256 and page count, and
 because `manuscript/rendered/` holds a page-image manifest tied to that exact PDF. Removing it would
