@@ -22,8 +22,6 @@ Measured on that composite, distance ranked sites with an area under the ROC cur
 
 ## 1. Introduction
 
-### 1.1 Where the distance shortcut comes from
-
 A phosphosite is a serine, threonine or tyrosine that the cell can tag with a phosphate group to change how a protein behaves. Most phosphosites that have been observed have no assigned function. Methods that pick out the ones worth studying therefore score each site by combining several kinds of evidence: how conserved the position is across species, the surrounding sequence, the protein domain it sits in, how exposed it is on the surface, whether it lies where two proteins touch, and how close it sits to a residue already annotated as an active site or a binding site [1–4]. That last item, proximity, is one ingredient inside a composite score. In a literature sweep completed on 11 August 2026, we located no method, database, or paper that ranks or scores sites by distance to the nearest annotated active or binding residue on its own.
 
 The 5 Å figure that travels with this idea traces to Strumillo et al. [2]. They mapped conserved phosphorylation hotspots onto experimentally determined structures from the Protein Data Bank and tested closeness to catalytic residues with Fisher's exact test. In enzyme domains, 3.3% of hotspot residues lie within 5 Å of a catalytic residue against 0.97% of other residues, which they report as hotspot positions being "5 times more likely to be within 5 Å distance" of a catalytic residue (p = 1.5 × 10⁻⁸). A 15 Å criterion appears in the same analysis. That figure is an enrichment ratio: one group of residues compared against the other residues of the same proteins. No individual site is classified by its distance, and the area under the ROC curve that the paper reports belongs to a conservation p-value.
@@ -34,15 +32,11 @@ Beltrao et al. [8] is the yeast precedent for prioritizing modification sites by
 
 StructureMap [4] is the closest methodological relative. It also works from AlphaFold monomer coordinates, binning distances at 1 Å up to 35 Å in 5 Å steps, with co-localization bins starting at 0 Å and no minimum separation along the sequence. Its headline structural variable is side-chain exposure, computed within a 12 Å radius and a 70° angle, and it reports no discrimination statistic for distance taken on its own. The 59-feature functional score of Ochoa et al. [3] names "1D structural properties, phosphorylation structural hotspots, structural stability and interfaces and protein topology annotations", but the list of what each feature contributes sits in a supplement we could not obtain. Neither study therefore supplies a single-feature value to set beside the estimate reported here.
 
-### 1.2 What has already been measured on this screen
-
 Figure 2d of Viéitez et al. [1] reports areas under the ROC curve for sorting sites into loss-of-function or gain-of-function against unchanged, using categories of evidence that include "position on protein structure". The area under the ROC curve, written AUC below, is the chance that a randomly chosen site with a growth change is ranked ahead of a randomly chosen site without one, where 0.5 is what an uninformative measurement gives. The values behind those categories are distributed in their Supplementary Data 6.
 
 What that figure measures and what this paper measures are three different things. The outcome here is a single yes-or-no label: did the source report a growth change at this site in at least one condition, in either direction. It is not a loss-versus-gain call against unchanged. The predictor here is one continuous number declared in advance: the shortest distance between any non-hydrogen atom of the replaced residue and any non-hydrogen atom of the nearest residue that UniProt annotates as an active site (`ACT_SITE`) or a binding site (`BINDING`), with records that span several residues expanded to every residue they span. This is the minimum heavy-atom distance, called the distance below. And the cohort here is rebuilt from the condition-by-condition screening data to 163 replaced sites in 48 proteins; Supplementary Data 6 supplies annotations only and takes no part in deciding which sites are eligible or in the outcome. We did not retrieve the numeric values plotted in Figure 2d and make no comparison against them.
 
 To our knowledge, based on searches of Europe PMC, publisher full texts, and tool documentation as of 11 August 2026, no earlier study tests distance from a phosphosite to the nearest annotated active or binding residue against a phenotype measured in a mutant screen. The closest published work measures a different relation between residues. Huang et al. [11] found structural distance to be the single most discriminating feature for cross-talk between two modifications on the same protein, at an AUC of 0.815.
-
-### 1.3 What this paper does
 
 This paper asks four things about one measurement. First, what the cohort of sites and the set of annotated target residues are actually made of. Second, whether distance separates the sites the screen reported a growth change at from the rest. That is tested against a permutation null, meaning the outcome labels shuffled at random many times to show what the measurement returns when there is nothing to find; against other predictors computed on exactly the same sites; and under stricter and direction-specific definitions of what counts as an affected site. Third, what distance stands in for, both at very short range and when sites in different proteins are compared. Fourth, what a study of this size, with this outcome and this annotation, can settle at all.
 
@@ -214,7 +208,7 @@ What is measured here is narrower than how position in space regulates a protein
 
 ### 3.2 What this design can resolve
 
-The interval on the primary estimate is wider than the spread of single-feature point estimates it would have to separate (§1.3), so no feature is ranked anywhere in this paper.
+The interval on the primary estimate is wider than the spread of single-feature point estimates it would have to separate, as set out in the Introduction, so no feature is ranked anywhere in this paper.
 
 There is no positive control for the outcome. Nothing here is shown to separate affected from unaffected sites that is already known to track function, so a result near chance is as consistent with a weak outcome measure as with a weak feature. The one established comparator computed, SIFT, reaches 0.606 on the 152 sites carrying a score; no search for a positive control was run.
 
