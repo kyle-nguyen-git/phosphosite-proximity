@@ -1,3 +1,9 @@
+> **SUPERSEDED — DO NOT CITE.** This is an early single-author draft, kept in the repository only
+> because the verification scripts bind to its SHA-256 and page count. It states that the primary
+> interval "excludes discrimination materially above 0.632". **That claim is retired**; `NUMBERS.md`
+> Section 13 lists it as not allowed, and the current manuscript makes no such claim. Read
+> `preprint_current.md` instead.
+
 # Exploratory calibration of AlphaFold-derived distance to UniProt ACT_SITE and BINDING coordinates against yeast phosphomutant growth-screen phenotypes
 
 **Kyle Nguyen**^1^

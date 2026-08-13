@@ -12,8 +12,10 @@ DB version 6 model of the protein on its own. A site counts as affected when the
 growth change in at least one condition, in either direction. The analysis asks what that distance
 measurement is made of and how well it separates affected from unaffected sites.
 
-**Status.** Exploratory and not peer reviewed. The primary cohort designation was made after the outcome
-data had been inspected, and most analyses here are post hoc; `NUMBERS.md` Section 13 records which
+**Status.** Exploratory, not peer reviewed, and not yet posted to a preprint server. An independent
+methods review is underway; see `METHODS_REVIEW.md`. Nothing here has been through peer review, and
+the AI-assistance disclosure in the manuscript describes how the work was produced. The primary cohort
+designation was made after the outcome data had been inspected, and most analyses here are post hoc; `NUMBERS.md` Section 13 records which
 claims the evidence does and does not support. No manuscript is posted yet, and this repository has no
 archived DOI.
 
