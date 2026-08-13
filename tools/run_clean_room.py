@@ -27,8 +27,8 @@ ARTIFACTS = [
     "manuscript/figure2.png",
     "manuscript/figure1.pdf",
     "manuscript/figure2.pdf",
-    "phase0_5/results/phase0_5_supplement.xlsx",
-    "phase0_5/results/phase0_5_two_arm_robustness_summary.png",
+    "robustness/results/robustness_supplement.xlsx",
+    "robustness/results/robustness_two_arm_robustness_summary.png",
 ]
 
 
@@ -127,7 +127,7 @@ def main() -> None:
             for relative in ARTIFACTS
         }
         scientific = json.loads(
-            (candidate / "phase0_5" / "results" / "verification_report.json").read_text()
+            (candidate / "robustness" / "results" / "verification_report.json").read_text()
         )
         technical = json.loads(
             (candidate / "release" / "release_readiness_report.json").read_text()

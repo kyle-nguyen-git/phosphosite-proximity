@@ -18,7 +18,7 @@
   "failed": [],
   "freeze_hash_checks": {
     "results/analysis_final.csv": true,
-    "phase0_5/results/phase0_5_statistics.json": true,
+    "robustness/results/robustness_statistics.json": true,
     "results/statistics.json": true
   },
   "scientific_verifier": {
@@ -30,7 +30,7 @@
     "alphafold_accessions": 50
   },
   "workbook": {
-    "path": "phase0_5/results/phase0_5_supplement.xlsx",
+    "path": "robustness/results/robustness_supplement.xlsx",
     "sha256": "91d90fa1a7bc04aa1d18fc1019323ff2ae5874c3fe376e7f72ae7e556e846b42",
     "sheet_names_exact": true,
     "table_count": 22,

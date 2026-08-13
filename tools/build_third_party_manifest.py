@@ -72,7 +72,7 @@ def main() -> None:
         )
     )
 
-    metadata_paths = sorted((ROOT / "phase0_5" / "data" / "pae").glob("*_metadata.json"))
+    metadata_paths = sorted((ROOT / "robustness" / "data" / "pae").glob("*_metadata.json"))
     if not metadata_paths:
         raise SystemExit("no AlphaFold metadata cache found")
     for metadata_path in metadata_paths:

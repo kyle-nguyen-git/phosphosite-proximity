@@ -5,8 +5,8 @@ __pycache__/
 venv/
 data/PMC7612524_supplementary.zip
 data/EMS132528-supplement-*
-phase0_5/results/*.inspect.ndjson
-phase0_5/verification/workbook_full_qa/
+robustness/results/*.inspect.ndjson
+robustness/verification/workbook_full_qa/
 tools/node_modules
 release/build/
 release/dist/

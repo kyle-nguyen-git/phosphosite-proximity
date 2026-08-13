@@ -25,9 +25,9 @@ COL2 = 183                         # journal double-column width, mm
 
 _SRC = os.path.dirname(os.path.abspath(__file__))          # .../manuscript/panels/src
 PANELS = os.path.dirname(_SRC)                              # .../manuscript/panels
-HERE = os.path.dirname(os.path.dirname(PANELS))             # .../phase0_calibration
+HERE = os.path.dirname(os.path.dirname(PANELS))             # .../phosphosite-proximity
 RES = os.path.join(HERE, "results")
-P5 = os.path.join(HERE, "phase0_5", "results")
+P5 = os.path.join(HERE, "robustness", "results")
 NUMBERS = os.path.join(HERE, "NUMBERS.md")
 OUT = os.path.join(PANELS, "out")
 os.makedirs(OUT, exist_ok=True)

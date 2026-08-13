@@ -46,7 +46,7 @@ def is_release_source(path: Path, root: Path) -> bool:
         return False
     if relative.parts[:2] in {("release", "build"), ("release", "dist")}:
         return False
-    if relative.parts[:2] == ("phase0_5", "verification"):
+    if relative.parts[:2] == ("robustness", "verification"):
         return False
     if relative_text in EXCLUDED_EXACT_PATHS:
         return False
@@ -73,7 +73,7 @@ def source_tree_fingerprint(root: Path, files: list[Path] | None = None) -> str:
         relative = path.relative_to(root).as_posix()
         if (
             relative.startswith("results/")
-            or relative.startswith("phase0_5/results/")
+            or relative.startswith("robustness/results/")
             or relative.startswith("manuscript/rendered/")
             or relative in {
                 "manuscript/preprint_draft_v1.pdf",
@@ -85,8 +85,8 @@ def source_tree_fingerprint(root: Path, files: list[Path] | None = None) -> str:
             continue
         if relative in {
             "release/clean_room_report.json",
-            "phase0_5/results/release_manifest.csv",
-            "phase0_5/results/verification_report.json",
+            "robustness/results/release_manifest.csv",
+            "robustness/results/verification_report.json",
             "release/release_readiness_report.json",
             "PACKAGE_METADATA.json",
             "PACKAGE_MANIFEST.csv",

@@ -69,11 +69,11 @@ def rounded_box(ax, xy, width, height, text, face, edge, fontsize=8.3):
 
 def main() -> None:
     disposition = pd.read_csv(ROOT / "results" / "cohort_disposition.csv")
-    d = pd.read_csv(ROOT / "phase0_5" / "results" / "phase0_5_primary_analysis.csv")
+    d = pd.read_csv(ROOT / "robustness" / "results" / "robustness_primary_analysis.csv")
     inclusive = pd.read_csv(
-        ROOT / "phase0_5" / "results" / "phase0_5_inclusive_sensitivity_analysis.csv"
+        ROOT / "robustness" / "results" / "robustness_inclusive_sensitivity_analysis.csv"
     )
-    stats = json.loads((ROOT / "phase0_5" / "results" / "phase0_5_statistics.json").read_text())
+    stats = json.loads((ROOT / "robustness" / "results" / "robustness_statistics.json").read_text())
     primary = stats["primary_auc"]["protein_cluster_bootstrap"]
     sensitivity = stats["inclusive_sensitivity_auc"]["protein_cluster_bootstrap"]
 

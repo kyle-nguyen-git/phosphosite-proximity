@@ -208,7 +208,7 @@ def main() -> None:
         title="Exploratory calibration of AlphaFold-derived distance",
         author="Kyle Nguyen",
         subject="Exploratory secondary analysis preprint draft",
-        creator="Reproducible Phase 0.5 manuscript pipeline",
+        creator="Reproducible the robustness analysis manuscript pipeline",
         keywords="yeast, phosphomutant, AlphaFold, UniProt, calibration, exploratory analysis",
     )
     available_width = A4[0] - doc.leftMargin - doc.rightMargin

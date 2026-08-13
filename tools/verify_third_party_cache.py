@@ -67,7 +67,7 @@ def main() -> None:
         },
         *{
             str(path.relative_to(ROOT))
-            for path in (ROOT / "phase0_5" / "data" / "pae").glob("*")
+            for path in (ROOT / "robustness" / "data" / "pae").glob("*")
             if path.is_file()
         },
     }
@@ -81,7 +81,7 @@ def main() -> None:
     proteome.columns = ["acc", "entry", "oln", "gene", "pname", "seq", "length"]
     sequences = dict(zip(proteome.acc.astype(str), proteome.seq.astype(str)))
     parser_checks: dict[str, dict[str, bool | int]] = {}
-    metadata_paths = sorted((ROOT / "phase0_5" / "data" / "pae").glob("*_metadata.json"))
+    metadata_paths = sorted((ROOT / "robustness" / "data" / "pae").glob("*_metadata.json"))
     for metadata_path in metadata_paths:
         metadata = json.loads(metadata_path.read_text())
         acc = metadata["uniprotAccession"]

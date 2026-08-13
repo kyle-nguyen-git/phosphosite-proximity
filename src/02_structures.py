@@ -22,7 +22,7 @@ from Bio.PDB.Polypeptide import protein_letters_3to1
 warnings.filterwarnings("ignore")
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AFDIR = os.path.join(HERE, "data", "af")
-PAE_META_DIR = os.path.join(HERE, "phase0_5", "data", "pae")
+PAE_META_DIR = os.path.join(HERE, "robustness", "data", "pae")
 THIRD_PARTY_MANIFEST = os.path.join(
     HERE, "release_metadata", "third_party_data_manifest.csv"
 )

@@ -11,7 +11,7 @@ The frozen numerical outputs and their hashes are unchanged.
 
 Extended again on **2026-08-12** with Section 17 (figure provenance, 2026-08-03) and Section 18
 (round-2 authorized analyses). Section 18 values are `[POST-HOC]`, not `[REPO]`: they come from scripts
-under `phase0_5/results/round2/` that verify the three frozen hashes below before computing, import the
+under `robustness/results/round2/` that verify the three frozen hashes below before computing, import the
 frozen estimators without reimplementation, and write nothing into the frozen tree. The frozen numerical
 outputs and their hashes are unchanged by either extension.
 
@@ -19,7 +19,7 @@ Frozen source hashes (SHA-256):
 
 - `results/statistics.json` — `57d02d5b4eae6a7d5f18b78b20ffebe491cc4e5f6e23e49710aba71d448a0401`
 - `results/analysis_final.csv` — `e666827da317fd963074e91613748ba449fb7005c207bdf0b389bd8451ac4dd4`
-- `phase0_5/results/phase0_5_statistics.json` — `3ea01c7b0a8b8f80304e574753d24c07ee7d542975e4f4603443b07bf050d02b`
+- `robustness/results/robustness_statistics.json` — `3ea01c7b0a8b8f80304e574753d24c07ee7d542975e4f4603443b07bf050d02b`
 
 The pre-repair audit baseline was independently hash-verified before the rerun: `73398b41…566e`, `a42f8d18…bceb`, and `e82b7e11…8434`, respectively. `[REPO]` means the value is emitted by the current seeded repository pipeline. Manuscripts, tables, figures, and release checks must take numerical claims from this file and reconcile them to the frozen outputs above.
 
@@ -56,11 +56,11 @@ The named switch is now implemented as `exclude_annotation_coincident` and `incl
 - `results/cohort_arm_cutoffs.csv`
 - `results/cohort_arm_logistic.csv`
 - `results/cohort_arm_descriptives.csv`
-- `phase0_5/results/confidence_strata.csv`
-- `phase0_5/results/cohort_arm_primary_estimates.csv`
-- `phase0_5/results/cohort_arm_cutoffs.csv`
-- `phase0_5/results/regression_models.csv`
-- `phase0_5/results/cohort_arm_descriptives.csv`
+- `robustness/results/confidence_strata.csv`
+- `robustness/results/cohort_arm_primary_estimates.csv`
+- `robustness/results/cohort_arm_cutoffs.csv`
+- `robustness/results/regression_models.csv`
+- `robustness/results/cohort_arm_descriptives.csv`
 
 The primary analysis files contain 163 substitutions and no annotation-coincident rows. The inclusive files contain 166 substitutions and all three 0 Å rows.
 
@@ -293,7 +293,7 @@ Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
   The count rose from 66 on **2026-08-03** with three checks binding the panel-composed figures: their
   hashes against Section 17, the presence of the figure-provenance declaration, and agreement between the
   Figure 1B ROC-envelope contract and `manuscript/panels/src/p1b_roc.py`. Internal review records under
-  `phase0_5/reviews/` still quote 66/66 and are dated artifacts, not current state.
+  `robustness/reviews/` still quote 66/66 and are dated artifacts, not current state.
 - The rebuilt review PDF contains **11 pages**. Its SHA-256 is `ba484a32af7322843d0378fd2078b0a0689849d9edf8ec29459e25bf3e729574`.
 - `manuscript/rendered/render_manifest.json` binds **11 rendered pages** and the contact sheet to that PDF hash, with no extra rendered pages.
 - The corrected supplementary workbook contains **22 sheets**, including separate primary and inclusive data, estimates, cutoffs, descriptives, confidence strata, models, fit diagnostics, feature-evidence and replicate audits, PAE tables, and SIFT results.
@@ -310,7 +310,7 @@ Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
 - Continuous clustered-OLS sensitivity fields are serialized after rounding to **12 decimal places**.
   This is below manuscript reporting precision and removes BLAS-dependent last-bit drift without changing
   any reported value.
-- Base Phase 0.5 random seed: **20260728**. Canonical arm intervals use **200,000**
+- Base the robustness analysis random seed: **20260728**. Canonical arm intervals use **200,000**
   protein-cluster draws and seed **20260729**; substitution-level dependence intervals also use
   **200,000** draws.
 - Post-result AUC sensitivity intervals use **20,000** draws. Continuous-outcome Spearman intervals use
@@ -328,7 +328,7 @@ Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
   screen-positive strains with per-strain called-condition counts **12 and 3**. P43565 position 1764 has
   **2/3** screen-positive strains with counts **16, 0, and 8**. Thus **one of two** replicated
   substitutions is discordant under the binary endpoint. The file
-  `phase0_5/results/replicate_aggregation_audit.csv` exposes the strain-level audit; no post-result
+  `robustness/results/replicate_aggregation_audit.csv` exposes the strain-level audit; no post-result
   replicate-unanimity outcome is promoted as a replacement endpoint.
 
 ## 16. Source and Method Metadata for the Manuscript `[REPO]`
@@ -365,7 +365,7 @@ Added **2026-08-03**. Two figure lineages exist and they are not interchangeable
 | Figure set | Files | Builder | Used by |
 |---|---|---|---|
 | Panel-composed (current, reader-facing) | `manuscript/figure1.{png,pdf}`, `manuscript/figure2.{png,pdf}` | `manuscript/panels/src/p*.py` → `manuscript/panels/compose.py`, driven by `manuscript/panels/build_all.sh` | the editable manuscript Markdown and the current Word build |
-| Legacy (frozen review PDF) | `manuscript/figure1_cohort_estimand_primary.{png,pdf}`, `phase0_5/results/phase0_5_robustness_summary.{png,pdf}` | `manuscript/src/build_figure1.py`, `phase0_5/src/03_phase0_5_figure.py` | `manuscript/preprint_draft_v1.{md,pdf}`, whose SHA-256 is frozen in Section 14 |
+| Legacy (frozen review PDF) | `manuscript/figure1_cohort_estimand_primary.{png,pdf}`, `robustness/results/robustness_robustness_summary.{png,pdf}` | `manuscript/src/build_figure1.py`, `robustness/src/03_robustness_figure.py` | `manuscript/preprint_draft_v1.{md,pdf}`, whose SHA-256 is frozen in Section 14 |
 
 The legacy Figure 1 compresses the cascade into five boxes, merging the whole-genome-sequencing
 and scar-correlation stages into one "427 records after source QC" step. Section 4 declares six
@@ -374,7 +374,7 @@ Do not describe the two as the same figure.
 
 Panel inputs, all committed pipeline outputs: `results/cohort_disposition.csv`,
 `results/analysis_final.csv`, `results/analysis_inclusive_sensitivity.csv`,
-`phase0_5/results/phase0_5_analysis.csv`, `confidence_strata.csv`, `cohort_sensitivity.csv`,
+`robustness/results/robustness_analysis.csv`, `confidence_strata.csv`, `cohort_sensitivity.csv`,
 `residue_class_sensitivity.csv`, `feature_definition_sensitivity.csv`, and
 `sift_comparator_sensitivity.csv`. The cohort counts a panel asserts against are parsed from
 Sections 1 and 4 of this file at build time; no count is typed into panel source.
@@ -410,7 +410,7 @@ Added **2026-08-12**. These values are **not** `[REPO]`: they are produced by sc
 `rr43_stricter_endpoints/`, `rr44_direction_specific/`, `notes/rr30_rr58/`, `rr16_permutation_null/`,
 `rr14/`, `rr29_sequence_adjacency/`, `audit_rr13_rr59/`, and `rr28/`, each of which verifies the three
 frozen hashes in the header of this file, imports `auc_from_ranks`, `bootstrap_auc`, and
-`paired_auc_difference` from `phase0_5/src/02_phase0_5_analysis.py` without reimplementation, and
+`paired_auc_difference` from `robustness/src/02_robustness_analysis.py` without reimplementation, and
 writes nothing into the frozen tree. Every value here is post hoc and none was preregistered.
 
 **Declared convention for this section.** All intervals are 95% protein-cluster percentile intervals
@@ -669,7 +669,7 @@ identical 157-row cohort, so the result is robust within that window, but the th
 
 ### 18.7 Bootstrap draw retention (RR-13)
 
-217 stored interval records across `results/` and `phase0_5/results/`: 167 from a resampling
+217 stored interval records across `results/` and `robustness/results/`: 167 from a resampling
 estimator, 50 analytic logistic (Wald / cluster-robust) intervals involving no draws.
 
 **Both canonical 200,000-draw arm intervals retained all 200,000 draws — zero discarded.**
@@ -682,7 +682,7 @@ estimator, 50 analytic logistic (Wald / cluster-robust) intervals involving no d
 | Inclusive, naive site | site | 0.5441347271 | 0.4553844563–0.6327034884 | 200,000 | 200,000 | 0 |
 
 **Table S-RR13a. Six sensitivity intervals retained fewer than their nominal 20,000.** These are six
-distinct quantities, each stored twice (once in `phase0_5_statistics.json`, once in the matching CSV).
+distinct quantities, each stored twice (once in `robustness_statistics.json`, once in the matching CSV).
 
 | Quantity | n sites / proteins / positive | AUC | 95% interval | Nominal | Retained | Shortfall | Discarded | Endpoint at 1 |
 |---|---|---:|---:|---:|---:|---:|---:|---|
@@ -710,22 +710,22 @@ Not allowed: printing 0.604 [0.267, 1.000] or 0.604 [0.272, 1.000]. Not allowed:
 tyrosine-only cohort AUC and the residue-class-Y AUC as two results; they are one quantity computed
 twice.
 
-**Provenance rule for the `draws` field.** `phase0_5/src/02_phase0_5_analysis.py::bootstrap_auc` and
+**Provenance rule for the `draws` field.** `robustness/src/02_robustness_analysis.py::bootstrap_auc` and
 `paired_auc_difference` return `"draws": len(draws)`, the count *after* discarding single-class
-resamples, so every `draws` value under `phase0_5/results/` is a measured retained count.
+resamples, so every `draws` value under `robustness/results/` is a measured retained count.
 `src/03_analysis.py::boot_auc` returns only `(point, lo, hi)`, and `results/statistics.json` then
 writes `"draws"` and `"naive_site_draws"` as the literal constant `N_PRIMARY_BOOT`; those 200,000
 entries, and the same literals in `results/cohort_arm_primary_estimates.csv`, are **nominal, not
 measured**. They are correct — the phase-0.5 recomputation of the identical quantity at the same seed
 offset gives the same estimate and endpoints to full precision with a true retained count of
-200,000 — but cite `phase0_5_statistics.json`, not `results/statistics.json`, for any retention claim.
+200,000 — but cite `robustness_statistics.json`, not `results/statistics.json`, for any retention claim.
 
 Three undocumented-retention gaps, none of which changes a number: 16 records in
 `results/statistics.json` (`auc_other_predictors` for pLDDT, RSA and `n_annot_residues`, plus
 `sift_comparator`, across four duplicated cohort blocks) store an interval with no draw count at all,
 nominal 20,000 by the `boot_auc` default and retention unrecoverable without a rerun;
-`phase0_5/results/sift_comparator_sensitivity.csv` has no `draws` column, though the same nine
-intervals in `phase0_5_statistics.json` carry 20,000 with zero shortfall; and 11
+`robustness/results/sift_comparator_sensitivity.csv` has no `draws` column, though the same nine
+intervals in `robustness_statistics.json` carry 20,000 with zero shortfall; and 11
 `cluster_boot_spearman` records (`continuous_outcomes`, `confidence_correlations`) at a nominal 4,000
 draws store no retained count and silently drop non-finite ρ. If the supplement quotes those
 correlation intervals, their retention is undocumented.
@@ -734,7 +734,7 @@ correlation intervals, their retention is undocumented.
 
 10 repeated stratified group 5-fold splits, n = 163, 79 positive. The pooled column was independently
 re-derived from the stored out-of-fold predictions in
-`phase0_5_analysis_with_oof_predictions.csv` using the frozen `auc_from_ranks`; all five agree to
+`robustness_analysis_with_oof_predictions.csv` using the frozen `auc_from_ranks`; all five agree to
 every printed digit.
 
 | Model | Features | Split-averaged AUC | 2.5–97.5 pct over 10 repeats | Pooled OOF AUC | Pooled − split | Brier |

@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RELEASE = ROOT / "release"
 BUILD = RELEASE / "build"
 DIST = RELEASE / "dist"
-CANDIDATE_NAME = "phase0-calibration-v0.5.0-rc1"
+CANDIDATE_NAME = "phosphosite-proximity-v0.5.0-rc1"
 REPORT = RELEASE / "package_build_report.json"
 
 

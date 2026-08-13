@@ -9,4 +9,4 @@ command -v pdftoppm >/dev/null || {
     exit 1
 }
 export PYTHON_BIN
-exec "$ROOT_DIR/phase0_5/run_all.sh"
+exec "$ROOT_DIR/robustness/run_all.sh"

@@ -16,7 +16,7 @@ W, H = 87, 60
 
 
 def build():
-    d = pd.read_csv(f"{P5}/phase0_5_analysis.csv")
+    d = pd.read_csv(f"{P5}/robustness_analysis.csv")
     # Fail loudly rather than silently plotting all 166 inclusive-arm rows under a
     # legend and caption that both say "primary cohort".
     d = d[d.cohort_primary_exclude_annotation_coincident.astype(bool)]

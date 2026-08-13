@@ -18,7 +18,7 @@ from release_policy import is_source_workbook, sha256, source_tree_fingerprint
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULTS = ROOT / "phase0_5" / "results"
+RESULTS = ROOT / "robustness" / "results"
 REPORT = ROOT / "release" / "release_readiness_report.json"
 EXPECTED_SHEETS = [
     "Summary", "Arm Estimates", "Arm Cutoffs", "Arm Descriptives",
@@ -40,8 +40,8 @@ CSV_SHEETS = {
     "Predictor Benchmark": "predictor_benchmark.csv",
     "Feature Definitions": "feature_definition_sensitivity.csv",
     "Feature Evidence": "feature_evidence_audit.csv",
-    "Primary Analysis Data": "phase0_5_primary_analysis.csv",
-    "Inclusive Analysis Data": "phase0_5_inclusive_sensitivity_analysis.csv",
+    "Primary Analysis Data": "robustness_primary_analysis.csv",
+    "Inclusive Analysis Data": "robustness_inclusive_sensitivity_analysis.csv",
     "Replicate Audit": "replicate_aggregation_audit.csv",
     "PAE Manifest": "alphafold_pae_manifest.csv",
     "Mismatch Audit": "residue_mismatch_audit.csv",
@@ -69,7 +69,7 @@ def cff_field(text: str, name: str) -> str | None:
 
 
 def verify_workbook() -> dict[str, object]:
-    path = RESULTS / "phase0_5_supplement.xlsx"
+    path = RESULTS / "robustness_supplement.xlsx"
     workbook = load_workbook(path, data_only=False, read_only=False)
     formula_cells: list[str] = []
     error_cells: list[str] = []
@@ -191,7 +191,7 @@ def main() -> None:
     required_frozen = {
         "results/statistics.json",
         "results/analysis_final.csv",
-        "phase0_5/results/phase0_5_statistics.json",
+        "robustness/results/robustness_statistics.json",
     }
     freeze_checks = {
         relative: relative in frozen and sha256(ROOT / relative) == frozen[relative]
@@ -208,7 +208,7 @@ def main() -> None:
         (ROOT / "manuscript" / "rendered" / "render_manifest.json").read_text()
     )
     root_cff = (ROOT / "CITATION.cff").read_text()
-    phase_cff = (ROOT / "phase0_5" / "CITATION.cff").read_text()
+    phase_cff = (ROOT / "robustness" / "CITATION.cff").read_text()
     review_files = [
         "statistical_methods_review.md",
         "biological_structural_review.md",
@@ -219,8 +219,8 @@ def main() -> None:
     required_docs = [
         "README.md", "NUMBERS.md", "SOURCE_RETRIEVAL.md", "THIRD_PARTY_NOTICES.md",
         "LICENSES.md", "sources.lock.json", "requirements-lock.txt", "reproduce.sh",
-        "release/AUTHOR_SIGNOFF.md", "release/EXTERNAL_METHODS_REVIEW.md",
-        "release/RELEASE_CHECKLIST.md", "release/DEPOSITION_CHECKLIST.md",
+        # Author signoff, external-review, release and deposition forms are project
+        # process documents and are not distributed with the public code release.
     ]
     checks = {
         "frozen_hashes_match_numbers": all(freeze_checks.values()),
@@ -247,7 +247,7 @@ def main() -> None:
         ),
         "requirements_indirection_is_consistent": (
             (ROOT / "requirements.txt").read_text().strip() == "-r requirements-lock.txt"
-            and (ROOT / "phase0_5" / "requirements-lock.txt").read_text().strip()
+            and (ROOT / "robustness" / "requirements-lock.txt").read_text().strip()
             == "-r ../requirements-lock.txt"
         ),
         "required_release_documents_exist": all((ROOT / path).is_file() for path in required_docs),
@@ -263,7 +263,7 @@ def main() -> None:
             and "date-released:" not in phase_cff
         ),
         "all_internal_review_reports_and_response_log_exist": all(
-            (ROOT / "phase0_5" / "reviews" / name).is_file() for name in review_files
+            (ROOT / "robustness" / "reviews" / name).is_file() for name in review_files
         ),
     }
     archive_report = None

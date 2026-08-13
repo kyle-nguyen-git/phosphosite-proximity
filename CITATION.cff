@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "This is a release candidate. After public archiving, cite the immutable archive and the Viéitez et al. source study."
-title: "Phase 0.5: structural-distance calibration against yeast phosphomutant growth-screen phenotypes"
+title: "phosphosite-proximity: code and derived data for proximity features in a yeast phosphosite-mutant screen"
 type: software
 authors:
   - family-names: Nguyen

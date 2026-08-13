@@ -1,4 +1,6 @@
-# Proximity features in a yeast phosphosite-mutant screen
+# phosphosite-proximity
+
+Proximity features in a yeast phosphosite-mutant screen.
 
 Code and derived data for a two-author exploratory secondary analysis of a public yeast
 phosphosite-mutant growth screen (Viéitez et al. 2022).
@@ -51,12 +53,12 @@ The reproduction runner:
 
 1. retrieves only the four required Viéitez source workbooks from Europe PMC and verifies their hashes;
 2. verifies every redistributed UniProt and AlphaFold cache against a file-level manifest;
-3. rebuilds the parent Phase 0 and Phase 0.5 analyses from one named two-arm pipeline;
+3. rebuilds the parent Phase 0 and the robustness analysis analyses from one named two-arm pipeline;
 4. rebuilds the supplement, both figure lineages, manuscript PDF, and rendered-page manifest; and
 5. runs the fail-closed scientific and release verifiers.
 
 Two figure lineages exist and `NUMBERS.md` Section 17 is authoritative on which is which.
-`manuscript/src/build_figure1.py` and `phase0_5/src/03_phase0_5_figure.py` build the figures embedded in
+`manuscript/src/build_figure1.py` and `robustness/src/03_robustness_figure.py` build the figures embedded in
 the frozen review PDF. `manuscript/panels/build_all.sh` builds six panels under `manuscript/panels/src/`
 and composes them into `manuscript/figure1.{png,pdf}` and `manuscript/figure2.{png,pdf}`, which are the
 figures the editable two-author manuscript embeds. Panel builds are byte-reproducible: PDF creation
@@ -76,7 +78,7 @@ After `reproduce.sh` passes on a quiescent tree:
 .venv/bin/python tools/build_release.py
 .venv/bin/python tools/run_clean_room.py
 .venv/bin/python tools/verify_release_package.py \
-  --archive release/dist/phase0-calibration-v0.5.0-rc1.tar.gz
+  --archive release/dist/phosphosite-proximity-v0.5.0-rc1.tar.gz
 ```
 
 The package builder emits a deterministic archive plus `release/package_build_report.json`. The
@@ -95,8 +97,8 @@ do not drift during a clean-room rerun. See `THIRD_PARTY_NOTICES.md` and
 
 - `manuscript/preprint_draft_v1.md` and `.pdf` — review manuscript; still marked not for posting until
   human author and external-review gates are signed.
-- `phase0_5/results/phase0_5_supplement.xlsx` — reproducibly generated supplementary workbook.
-- `phase0_5/results/verification_report.json` — scientific reconciliation report.
+- `robustness/results/robustness_supplement.xlsx` — reproducibly generated supplementary workbook.
+- `robustness/results/verification_report.json` — scientific reconciliation report.
 - `release/clean_room_report.json` and `release/release_readiness_report.json` — companion technical
   evidence for the exact local archive.
 - `release/RELEASE_CHECKLIST.md` — technical, author, external-review, and deposition gates.
@@ -106,7 +108,7 @@ do not drift during a clean-room rerun. See `THIRD_PARTY_NOTICES.md` and
 ## Status
 
 This is a local release candidate, not a public preprint, peer-reviewed article, repository release, or
-DOI-bearing record. AI-assisted adversarial reports in `phase0_5/reviews/` are internal review aids and
+DOI-bearing record. AI-assisted adversarial reports in `robustness/reviews/` are internal review aids and
 do not satisfy the independent-review gate.
 
 ## Licenses

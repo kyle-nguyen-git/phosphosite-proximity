@@ -39,4 +39,4 @@ The primary interval excludes discrimination materially above **0.632**, but it 
 
 The outcome is an any-condition growth phenotype after alanine substitution, not a direct assay of phosphorylation. The predictor is one distance in an AlphaFold DB v6 monomer model; ligands, complexes, interfaces, alternative conformations, and the phosphorylated state are absent. Only proteins carrying reviewed UniProt active-site or binding-site annotations can enter the analysis.
 
-Phase 0.5 contains the post-result confidence, within-protein, residue-class, feature-definition, continuous-outcome, SIFT, and grouped-prediction analyses.
+the robustness analysis contains the post-result confidence, within-protein, residue-class, feature-definition, continuous-outcome, SIFT, and grouped-prediction analyses.
