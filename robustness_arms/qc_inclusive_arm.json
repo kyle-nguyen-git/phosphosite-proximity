@@ -1,0 +1,53 @@
+{
+  "excluded_records": {
+    "total": 38,
+    "sequencing_flagged": 18,
+    "scar_flagged": 20,
+    "proteins": 17,
+    "screen_positive": 34
+  },
+  "restored": {
+    "records": 10,
+    "proteins": 6,
+    "screen_positive": 10,
+    "sequencing_flagged": 10,
+    "scar_flagged": 0,
+    "median_distance_A": 44.1352,
+    "not_restorable": {
+      "no_annotation": 28,
+      "no_model": 0,
+      "not_in_model": 0,
+      "aa_mismatch": 0
+    },
+    "distinct_sites": 10,
+    "already_in_primary_cohort": 1,
+    "new_sites_added": 9
+  },
+  "estimates": [
+    {
+      "label": "primary arm as published",
+      "n": 163,
+      "positive": 79,
+      "proteins": 48,
+      "auc": 0.526823,
+      "ci_low": 0.41617,
+      "ci_high": 0.631766,
+      "half_width": 0.107798,
+      "draws_nominal": 200000,
+      "draws_retained": 200000
+    },
+    {
+      "label": "QC-inclusive arm: source quality-control exclusions restored",
+      "n": 172,
+      "positive": 88,
+      "proteins": 48,
+      "auc": 0.501894,
+      "ci_low": 0.392384,
+      "ci_high": 0.608166,
+      "half_width": 0.107891,
+      "draws_nominal": 200000,
+      "draws_retained": 200000
+    }
+  ],
+  "difference_in_point_estimate": -0.024929
+}

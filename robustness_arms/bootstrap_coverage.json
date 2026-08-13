@@ -1,0 +1,61 @@
+{
+  "observed_structure": {
+    "prevalence": 0.48466257668711654,
+    "icc": 0.12712543875478208,
+    "kish": 29.037158469945354,
+    "n_sites": 163,
+    "n_proteins": 48
+  },
+  "sigma_u_from_icc": 0.381628,
+  "replicates": 1000,
+  "bootstrap_draws": 1000,
+  "seed": 20260728,
+  "estimator_validated_against_frozen": true,
+  "scenarios": [
+    {
+      "target_auc": 0.5,
+      "population_auc": 0.498421,
+      "replicates_used": 1000,
+      "percentile_coverage": 0.936,
+      "bca_coverage": 0.942,
+      "median_percentile_width": 0.176878,
+      "degenerate_replicates": 0
+    },
+    {
+      "target_auc": 0.55,
+      "population_auc": 0.548305,
+      "replicates_used": 1000,
+      "percentile_coverage": 0.941,
+      "bca_coverage": 0.945,
+      "median_percentile_width": 0.174501,
+      "degenerate_replicates": 0
+    },
+    {
+      "target_auc": 0.6,
+      "population_auc": 0.598229,
+      "replicates_used": 1000,
+      "percentile_coverage": 0.949,
+      "bca_coverage": 0.952,
+      "median_percentile_width": 0.171951,
+      "degenerate_replicates": 0
+    },
+    {
+      "target_auc": 0.65,
+      "population_auc": 0.648249,
+      "replicates_used": 1000,
+      "percentile_coverage": 0.941,
+      "bca_coverage": 0.943,
+      "median_percentile_width": 0.165569,
+      "degenerate_replicates": 0
+    },
+    {
+      "target_auc": 0.7,
+      "population_auc": 0.698238,
+      "replicates_used": 1000,
+      "percentile_coverage": 0.948,
+      "bca_coverage": 0.953,
+      "median_percentile_width": 0.157216,
+      "degenerate_replicates": 0
+    }
+  ]
+}
