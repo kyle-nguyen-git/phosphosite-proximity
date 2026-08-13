@@ -29,9 +29,10 @@ before loading any reported result. If you want to check a claim, start there.
 and are not in this repository. `SOURCE_RETRIEVAL.md` gives the Europe PMC record, the exact filenames,
 and their checksums, and the pipeline fetches and verifies them for you.
 
-**A note on `manuscript/`.** `manuscript/preprint_draft_v1.*` is a superseded internal draft, retained
-because the verification pipeline binds to its SHA-256 and page count. It is single-author and its
-framing has been replaced. Do not read it as the current manuscript.
+**The manuscript.** `manuscript/preprint_current.{md,pdf}` is the current draft — two authors, and it
+makes no exclusion claim. `manuscript/preprint_draft_v1.*` is a superseded single-author draft that
+states a claim since retired; it stays only because the verification pipeline binds to its hash and page
+count. `manuscript/README.md` explains the difference. Nothing is posted to a preprint server yet.
 
 `NUMBERS.md` is the sole numerical authority for manuscript and release claims. Its header freezes the
 three canonical analysis artifacts by SHA-256, and the verifier checks those hashes before loading any
