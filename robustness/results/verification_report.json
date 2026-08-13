@@ -86,8 +86,8 @@
     },
     "freeze_hash_checks": {
       "robustness/results/robustness_statistics.json": true,
-      "results/analysis_final.csv": true,
-      "results/statistics.json": true
+      "results/statistics.json": true,
+      "results/analysis_final.csv": true
     }
   },
   "cohort_contract": {

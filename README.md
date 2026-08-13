@@ -29,6 +29,10 @@ before loading any reported result. If you want to check a claim, start there.
 and are not in this repository. `SOURCE_RETRIEVAL.md` gives the Europe PMC record, the exact filenames,
 and their checksums, and the pipeline fetches and verifies them for you.
 
+**Methods review.** `METHODS_REVIEW.md` is the packet for the independent methods read: what to
+look at, nine questions to answer, and the record to fill in. It is open — no review has been
+completed.
+
 **The manuscript.** `manuscript/preprint_current.{md,pdf}` is the current draft — two authors, and it
 makes no exclusion claim. `manuscript/preprint_draft_v1.*` is a superseded single-author draft that
 states a claim since retired; it stays only because the verification pipeline binds to its hash and page
