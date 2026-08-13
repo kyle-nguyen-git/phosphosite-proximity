@@ -1,7 +1,7 @@
 {
   "metadata_status": "provisional_not_for_upload",
   "upload_type": "software",
-  "title": "the robustness analysis: structural-distance calibration against yeast phosphomutant growth-screen phenotypes",
+  "title": "Distance to the nearest annotated active or binding residue: a calibration and audit in yeast and human phosphosite-mutant screens \u2014 code and derived data",
   "creators": [
     {
       "name": "Nguyen, Kyle",
@@ -23,12 +23,21 @@
     "AlphaFold",
     "yeast",
     "structural bioinformatics",
-    "reproducibility"
+    "reproducibility",
+    "human",
+    "mutational phenotype",
+    "base editing"
   ],
   "related_identifiers": [
     {
       "identifier": "10.1038/s41587-021-01051-x",
       "relation": "isDerivedFrom",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1038/s41592-024-02256-z",
+      "relation": "references",
+      "scheme": "doi",
       "resource_type": "publication-article"
     }
   ]

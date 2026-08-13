@@ -127,20 +127,26 @@ do not drift during a clean-room rerun. See `THIRD_PARTY_NOTICES.md` and
 
 ## Main artifacts
 
-- `manuscript/preprint_draft_v1.md` and `.pdf` — review manuscript; still marked not for posting until
-  human author and external-review gates are signed.
+- `manuscript/preprint_current.{md,pdf,docx}` — **the current manuscript**, covering both cohorts.
+  Both authors have approved it. Not posted to a preprint server, and the independent methods read is
+  not complete.
+- `manuscript/preprint_draft_v1.{md,pdf}` — superseded single-author draft. **Do not cite it**: it
+  states a claim since retired. It stays only because the verification pipeline binds to its SHA-256
+  and page count. See `manuscript/README.md`.
+- `manuscript_build/` — the renderers, measured design spec and vendored fonts that rebuild
+  `preprint_current` from its Markdown.
+- `kennedy_replication/` — the human cohort: scripts, the derived 1,475-site table, and results.
+- `robustness_arms/` — the QC-inclusive arm and the bootstrap coverage simulation.
 - `robustness/results/robustness_supplement.xlsx` — reproducibly generated supplementary workbook.
 - `robustness/results/verification_report.json` — scientific reconciliation report.
 - `release/clean_room_report.json` and `release/release_readiness_report.json` — companion technical
   evidence for the exact local archive.
-- `release/RELEASE_CHECKLIST.md` — technical, author, external-review, and deposition gates.
-- `release/AUTHOR_SIGNOFF.md` — fields that only Kyle Nguyen can attest.
-- `release/EXTERNAL_METHODS_REVIEW.md` — packet for a genuinely independent human reader.
+- `METHODS_REVIEW.md` — the packet for the independent methods read.
 
 ## Status
 
 This is a local release candidate, not a public preprint, peer-reviewed article, repository release, or
-DOI-bearing record. AI-assisted adversarial reports in `robustness/reviews/` are internal review aids and
+DOI-bearing record. AI-assisted adversarial reports were internal review aids, were not published with this repository, and are
 do not satisfy the independent-review gate.
 
 ## Licenses

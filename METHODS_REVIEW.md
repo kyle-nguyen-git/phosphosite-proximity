@@ -3,7 +3,7 @@
 ## Status
 
 No independent human review is recorded in this file. The AI-assisted reports under
-`phase0_5/reviews/` are internal adversarial checks and do not satisfy this gate. The simulated
+the internal AI-assisted review reports, which are not published with this repository, are internal adversarial checks and do not satisfy this gate. The simulated
 five-seat panel in `../../peer_review_round1/` does not satisfy it either — five personas on one
 model family are not five referees.
 
@@ -45,6 +45,12 @@ Read:
 - `robustness/results/verification_report.json`;
 - `SOURCE_RETRIEVAL.md`, `THIRD_PARTY_NOTICES.md`, and the clean-room report.
 
+Added 2026-08-13, because the manuscript now reports a second cohort and two new arms:
+
+- `NUMBERS.md` Sections 20 and 21, which are the authority for everything below;
+- `kennedy_replication/README.md`, then `analyse.py` and `endpoint_characterisation.py`;
+- `robustness_arms/README.md`, then `qc_inclusive_arm.py` and `bootstrap_coverage.py`.
+
 ## Required questions
 
 1. Does the post-outcome decision to exclude annotation-coincident substitutions remain plainly disclosed,
@@ -64,6 +70,28 @@ Read:
    or priority claims that the analysis cannot support?
 9. Can the archive be reproduced in a fresh environment without any file outside the release plus the
    authoritative source retrieval?
+
+Added 2026-08-13 for the second cohort and the new arms. Answer these only if you have the competence
+for them; the split in the eligibility section still applies.
+
+10. The human screen's released per-site value is the smaller of MAGeCK's two one-sided gene-level
+    p-values, not a two-sided p-value, and Section 20.10 measures the resulting null rate at about
+    twice nominal. Is that stated plainly enough in Results 2.7, and are the two repaired endpoints —
+    a doubled two-sided test, and the top decile of log fold change — an adequate answer to it?
+11. Section 20.9 forbids reporting the replication's precision as 2.7 times the yeast cohort's, because
+    that figure rests on the defective label; the manuscript quotes roughly twice, from the repaired
+    endpoint. Does the text keep that distinction everywhere it mentions precision?
+12. The positive control is SIFT, whose interval excludes 0.5 in both cohorts. Section 20.8 bounds it
+    three ways: multiplicity across twelve features, a paired difference against distance that contains
+    zero, and a within-protein estimate that contains 0.5. Does the manuscript claim more than those
+    bounds allow?
+13. `robustness_arms/qc_inclusive_arm.py` restores the source quality-control exclusions and reports
+    that all twenty scar-flagged records fall in proteins with no eligible annotation. Does that
+    dispose of the outcome-conditioned-exclusion objection, or does a residual selection problem
+    remain?
+14. `robustness_arms/bootstrap_coverage.py` measures percentile coverage at 0.936 to 0.949 against a
+    nominal 0.95, with BCa at 0.942 to 0.953. Is reporting rather than adopting BCa the right call, and
+    is the null-scenario shortfall described honestly in Discussion 3.2?
 
 ## Reviewer record
 

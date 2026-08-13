@@ -33,10 +33,15 @@ Cluster-robust logistic regression on `log10(distance + 1)` gave OR **0.767 [0.2
 
 Only **10 of 163** primary substitutions were within 5 Å. Four of 10 (**40.0%**) were outcome-positive, compared with 75 of 153 (**49.0%**) beyond 5 Å. The inclusive arm contains 13 substitutions within 5 Å because it adds three outcome-positive exact overlaps. All cutoff groups are nested and descriptive; they do not test a universal threshold.
 
+> **Scope.** This file reports the yeast cohort only, which is what the pipeline in this directory
+> builds. The human replication is reported in `NUMBERS.md` Section 20 and
+> `kennedy_replication/`, and the two post-review robustness arms in Section 21 and
+> `robustness_arms/`. The manuscript covers both cohorts.
+
 ## Interpretation Boundary
 
-The primary interval excludes discrimination materially above **0.632**, but it does not establish equivalence to chance. The SIFT comparator point estimate lies within this interval. The study therefore does not support the statements that distance is uninformative or that it performs worse than SIFT.
+The primary interval runs to an upper endpoint of **0.632**, and that endpoint may be reported as an endpoint. It may not be framed as excluding performance above any value: that exclusion claim was **retired by author decision on 2026-08-12** and is barred by `NUMBERS.md` Section 13. The interval does not establish equivalence to chance either. The SIFT comparator point estimate lies within it. The study does not support the statement that distance is uninformative, nor that it performs worse than SIFT — the paired SIFT-minus-distance difference, 0.074422 [−0.036887, 0.191529], contains zero.
 
 The outcome is an any-condition growth phenotype after alanine substitution, not a direct assay of phosphorylation. The predictor is one distance in an AlphaFold DB v6 monomer model; ligands, complexes, interfaces, alternative conformations, and the phosphorylated state are absent. Only proteins carrying reviewed UniProt active-site or binding-site annotations can enter the analysis.
 
-the robustness analysis contains the post-result confidence, within-protein, residue-class, feature-definition, continuous-outcome, SIFT, and grouped-prediction analyses.
+The robustness analysis contains the post-result confidence, within-protein, residue-class, feature-definition, continuous-outcome, SIFT, and grouped-prediction analyses.

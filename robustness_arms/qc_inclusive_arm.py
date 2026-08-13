@@ -48,7 +48,7 @@ def interval(y, score, groups, label, draws=DRAWS):
 
 
 def main():
-    from Bio.PDB import MMCIFParser, ShrakeRupley
+    from Bio.PDB import MMCIFParser
 
     disp = pd.read_csv(os.path.join(CAL, "results", "cohort_disposition.csv"))
     feats = pd.read_csv(os.path.join(CAL, "results", "uniprot_features_core.csv"))
@@ -65,7 +65,7 @@ def main():
         "screen_positive": int((excluded.raw_n_q05.fillna(0) > 0).sum()),
     }}
 
-    parser, sr = MMCIFParser(QUIET=True), ShrakeRupley()
+    parser = MMCIFParser(QUIET=True)
     rows, skipped = [], {"no_annotation": 0, "no_model": 0, "not_in_model": 0, "aa_mismatch": 0}
     for acc, grp in excluded.groupby("acc"):
         targets_all = feat_by_acc.get(acc, [])
@@ -77,10 +77,6 @@ def main():
             skipped["no_model"] += len(grp)
             continue
         res = struct.residue_atoms(parser.get_structure(acc, path))
-        try:
-            sr.compute(parser.get_structure(acc, path)[0], level="R")
-        except Exception:
-            pass
         targets = [p for p in targets_all if p in res]
         for _, r in grp.iterrows():
             pos = int(r["pos"])
