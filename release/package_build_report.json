@@ -1,11 +1,11 @@
 {
   "status": "PASS",
   "candidate_name": "phosphosite-proximity-v0.5.0-rc1",
-  "source_tree_fingerprint_excluding_runtime_reports": "3d6e2b2ed72d508a60a66d22cb1fa4b2e4a730a8dc1d6d6a08fc43df2ec42464",
+  "source_tree_fingerprint_excluding_runtime_reports": "d678d26211ad2b5117400ee2c0cb70cd6837b8844d811bc86aa1be25e55914e7",
   "copied_source_files": 332,
   "candidate_files": 335,
   "archive": "release/dist/phosphosite-proximity-v0.5.0-rc1.tar.gz",
-  "archive_bytes": 35598272,
-  "archive_sha256": "d28dd839db98c67499e23e22c86c2ef6a1a24e3b7e840e9cf737661d91632ac2",
+  "archive_bytes": 35598241,
+  "archive_sha256": "556b979bea4fc2d5a15cc689ba436f572c0241b01465f6053853263cbe684c95",
   "source_workbooks_redistributed": false
 }

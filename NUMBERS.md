@@ -397,10 +397,25 @@ cumulative distance distributions is the two-sample Kolmogorov–Smirnov statist
 **0.137131 → 0.137** on the primary cohort (79 outcome-positive, 84 outcome-negative). It is a
 descriptive distance between distributions, not a test result; no KS p-value is reported.
 
-Panel builds are byte-reproducible for an unchanged environment and input tree: matplotlib PDF
-`CreationDate` is suppressed in `manuscript/panels/src/_style.py`, and `compose.py` saves with
-`no_new_id=1` so MuPDF writes no trailer `/ID`. PNG output carries no timestamp. `PyMuPDF==1.28.0`
-is pinned in `requirements-lock.txt`; the composed PNGs are rasterized at 600 dpi through it.
+Panel builds are byte-reproducible **within one environment**: matplotlib PDF `CreationDate` is
+suppressed in `manuscript/panels/src/_style.py`, and `compose.py` saves with `no_new_id=1` so MuPDF
+writes no trailer `/ID`. PNG output carries no timestamp. `PyMuPDF==1.28.0` is pinned in
+`requirements-lock.txt`; the composed PNGs are rasterized at 600 dpi through it.
+
+**They are not byte-reproducible across environments, and the dependency lock cannot make them so**
+(established 2026-08-13). `requirements-lock.txt` pins `matplotlib==3.8.4`, but matplotlib links a
+bundled FreeType whose version depends on how matplotlib was built. The figures declared here were
+produced against FreeType **2.12.1** (the Anaconda build); a virtual environment installing the PyPI
+wheel gets FreeType **2.6.1** and renders glyphs differently, giving `figure1.png` SHA-256
+`cfffacd6…` against the declared `8fffd9cc…`. Rebuilding twice in either environment reproduces that
+environment's own bytes exactly.
+
+Consequence for the release checks: `panel_figures_match_numbers` and the clean-room artifact
+comparison for the figures are **environment-specific**, and will fail for an independent reproducer
+using a pip-installed matplotlib even when the analysis is correct. Read a failure of those two checks
+as a rendering-environment difference until the underlying numbers are shown to differ. The scientific
+outputs — the three frozen analysis artifacts in the header — are unaffected, because they contain no
+rendered glyphs.
 
 Current panel-composed figure hashes (SHA-256), bound by the release verifier:
 

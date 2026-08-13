@@ -35,6 +35,14 @@ third-party data caches, the source-study supplements, the manuscript, or the fi
 and are not in this repository. `SOURCE_RETRIEVAL.md` gives the Europe PMC record, the exact filenames,
 and their checksums, and the pipeline fetches and verifies them for you.
 
+**Reproducibility, honestly.** `reproduce.sh` rebuilds the analysis from the source workbooks and
+the pinned environment, and the fail-closed verifier checks every reported number against
+`NUMBERS.md`. One limit is worth knowing before you run it: the *figure* hash checks are
+environment-specific. matplotlib bundles a FreeType whose version depends on how matplotlib was
+built, and the committed figures were rendered against FreeType 2.12.1. A pip-installed matplotlib
+brings 2.6.1 and renders glyphs differently, so `panel_figures_match_numbers` will fail for you even
+when the analysis is correct. The numerical outputs are unaffected — see `NUMBERS.md` Section 17.
+
 **Methods review.** `METHODS_REVIEW.md` is the packet for the independent methods read: what to
 look at, nine questions to answer, and the record to fill in. It is open — no review has been
 completed.
