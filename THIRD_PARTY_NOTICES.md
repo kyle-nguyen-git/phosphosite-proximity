@@ -17,6 +17,34 @@ MIT `LICENSE`.
 - Release decision: **not redistributed**. `tools/fetch_sources.py` retrieves the files from the
   authoritative Europe PMC supplementary endpoint and verifies the required workbook hashes.
 
+## Kennedy et al. supplementary tables
+
+- Source: Philip H. Kennedy, Amin Alborzian Deh Sheikh, Matthew Balakar, et al. *Post-translational
+  modification-centric base editor screens to assess phosphorylation site functionality in high
+  throughput*. *Nature Methods* 21, 1033–1043 (2024). DOI:
+  <https://doi.org/10.1038/s41592-024-02256-z>. Europe PMC: <https://europepmc.org/articles/PMC11804830>.
+- Release decision: **not redistributed**. `kennedy_replication/README.md` states which file is needed
+  and where it goes. The derived cohort `kennedy_replication/kennedy_analysis.csv` is an original
+  research table produced by this project from that source.
+
+## Ochoa et al. functional-score supplementary data
+
+- Source: David Ochoa, Andrew F. Jarnuczak, Cristina Viéitez, et al. *The functional landscape of the
+  human phosphoproteome*. *Nature Biotechnology* 38, 365–373 (2020). DOI:
+  <https://doi.org/10.1038/s41587-019-0344-3>.
+- Use: the 59-feature annotated phosphoproteome, twelve features of which were tested as candidate
+  positive controls in `kennedy_replication/positive_control.py`.
+- Release decision: **not redistributed**.
+
+## Charis SIL
+
+- Source: SIL International, Charis SIL 6.101, <https://software.sil.org/charis/>.
+- License: SIL Open Font License 1.1, reproduced verbatim at `manuscript_build/fonts/OFL.txt`.
+- Release decision: **redistributed** under `manuscript_build/fonts/`, which the OFL permits. The four
+  files are the upstream release, unmodified. They are vendored because the copies embedded in a PDF are
+  content-reduced and cannot typeset new text, so without them the manuscript cannot be rebuilt in its
+  own design. The OFL's reserved font name applies: a modified version may not be called "Charis SIL".
+
 ## UniProt database content
 
 - Source: UniProt Knowledgebase records and reviewed *Saccharomyces cerevisiae* proteome data retrieved

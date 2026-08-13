@@ -22,18 +22,18 @@ The script does three things:
 Outputs `endpoint_characterisation.json`. Nothing here may enter a manuscript, wiki page or email
 until it is registered in `NUMBERS.md`.
 """
-import importlib.util
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-spec = importlib.util.spec_from_file_location(
-    "p05", os.path.join(HERE, "..", "phase0_calibration", "phase0_5", "src", "02_phase0_5_analysis.py"))
-p05 = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(p05)
+sys.path.insert(0, HERE)
+import _paths  # noqa: E402  — resolves the vault and repository layouts
+
+p05 = _paths.analysis_module()
 DRAWS, SEED = 20000, 20260728
 XL = os.path.join(HERE, "cache", "kennedy_supplement.xlsx")
 SHEETS = [("SuppTable 3 MAGeCK gene_summary", "screen3"),

@@ -1,0 +1,175 @@
+{
+  "cohort": {
+    "sites": 1475,
+    "positives": 293,
+    "known_regulatory_in_cohort": 84
+  },
+  "known_regulatory_enrichment": {
+    "n_known": 84,
+    "hit_rate_known": 0.2262,
+    "n_other": 1391,
+    "hit_rate_other": 0.197,
+    "difference_points": 2.92
+  },
+  "known_regulatory_as_predictor": {
+    "label": "PhosphoSitePlus known-regulatory flag",
+    "n": 1475,
+    "positive": 293,
+    "proteins": 793,
+    "auc": 0.504927,
+    "ci_low": 0.488802,
+    "ci_high": 0.522425,
+    "excludes_half": false,
+    "draws_retained": 20000
+  },
+  "ochoa_match": {
+    "matched": 1172,
+    "of": 1475
+  },
+  "features": [
+    {
+      "label": "distance (reference)",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.505573,
+      "ci_low": 0.465509,
+      "ci_high": 0.545511,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "SIFT score for the alanine substitution (lower = more damaging)",
+      "n": 997,
+      "positive": 207,
+      "proteins": 572,
+      "auc": 0.564884,
+      "ci_low": 0.520492,
+      "ci_high": 0.608844,
+      "excludes_half": true,
+      "draws_retained": 20000
+    },
+    {
+      "label": "SIFT minimum score across substitutions",
+      "n": 997,
+      "positive": 207,
+      "proteins": 572,
+      "auc": 0.571553,
+      "ci_low": 0.528833,
+      "ci_high": 0.615294,
+      "excludes_half": true,
+      "draws_retained": 20000
+    },
+    {
+      "label": "predicted disorder (lower = more ordered)",
+      "n": 1172,
+      "positive": 240,
+      "proteins": 650,
+      "auc": 0.514729,
+      "ci_low": 0.46987,
+      "ci_high": 0.560236,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "phosphorylation hotspot flag",
+      "n": 110,
+      "positive": 30,
+      "proteins": 73,
+      "auc": 0.560417,
+      "ci_low": 0.424687,
+      "ci_high": 0.682461,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "protein-interface flag",
+      "n": 45,
+      "positive": 13,
+      "proteins": 38,
+      "auc": 0.5,
+      "ci_low": 0.5,
+      "ci_high": 0.5,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "hotspot p-value",
+      "n": 110,
+      "positive": 30,
+      "proteins": 73,
+      "auc": 0.470625,
+      "ci_low": 0.324085,
+      "ci_high": 0.646245,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "best kinase-motif match score",
+      "n": 1172,
+      "positive": 240,
+      "proteins": 650,
+      "auc": 0.533029,
+      "ci_low": 0.492646,
+      "ci_high": 0.572005,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "NetPhos maximum prediction",
+      "n": 1172,
+      "positive": 240,
+      "proteins": 650,
+      "auc": 0.495505,
+      "ci_low": 0.454276,
+      "ci_high": 0.536742,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "evolutionary-coupling prediction for the alanine mutant",
+      "n": 61,
+      "positive": 19,
+      "proteins": 50,
+      "auc": 0.464912,
+      "ci_low": 0.302196,
+      "ci_high": 0.627907,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "protein length",
+      "n": 1172,
+      "positive": 240,
+      "proteins": 650,
+      "auc": 0.482924,
+      "ci_low": 0.440315,
+      "ci_high": 0.526055,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "protein abundance",
+      "n": 1168,
+      "positive": 239,
+      "proteins": 647,
+      "auc": 0.501351,
+      "ci_low": 0.455455,
+      "ci_high": 0.547335,
+      "excludes_half": false,
+      "draws_retained": 20000
+    },
+    {
+      "label": "neighbouring PTMs within 21 residues",
+      "n": 1085,
+      "positive": 225,
+      "proteins": 616,
+      "auc": 0.461106,
+      "ci_low": 0.420969,
+      "ci_high": 0.502074,
+      "excludes_half": false,
+      "draws_retained": 20000
+    }
+  ],
+  "any_positive_control": true
+}

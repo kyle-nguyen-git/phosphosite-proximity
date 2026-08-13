@@ -18,26 +18,20 @@ module is imported rather than reimplemented so the two arms cannot drift.
 Outputs `qc_inclusive_arm.json` and `qc_inclusive_cohort.csv`. Nothing here may enter a manuscript,
 figure or email until it is registered in `NUMBERS.md`.
 """
-import importlib.util
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CAL = os.path.join(HERE, "..", "phase0_calibration")
+sys.path.insert(0, HERE)
+import _paths  # noqa: E402  — resolves the vault and repository layouts
 
-
-def load(name, path):
-    spec = importlib.util.spec_from_file_location(name, path)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
-
-
-p05 = load("p05", os.path.join(CAL, "phase0_5", "src", "02_phase0_5_analysis.py"))
-struct = load("structures", os.path.join(CAL, "src", "02_structures.py"))
+CAL = str(_paths.calibration_root())
+p05 = _paths.analysis_module()
+struct = _paths.structures_module()
 DRAWS, SEED = 200000, 20260728
 
 

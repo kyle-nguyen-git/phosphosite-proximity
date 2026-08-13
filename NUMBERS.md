@@ -36,7 +36,7 @@ The **primary cohort excludes the three annotation-coincident substitutions**. T
 
 Both protein-cluster intervals use **200,000 draws** and seed **20260729**. The substitution-level dependence diagnostics use 200,000 draws and are **0.436735–0.617369** for primary and **0.455384–0.632703** for inclusive.
 
-The manuscript may say that the primary design excludes distance discrimination materially above the upper bound **0.632**. It must not say that distance is uninformative or that the study excludes AUC ≥0.63 based on a rounded Monte Carlo endpoint.
+The manuscript may report the primary interval endpoint **0.632**. It may not frame that endpoint as excluding performance above any value. This August 12 retirement is binding under Section 13. It must not say that distance is uninformative or that the study excludes AUC ≥0.63 based on a rounded Monte Carlo endpoint.
 
 ## 2. Annotation-Coincident Substitutions `[REPO]`
 
@@ -75,7 +75,7 @@ The primary analysis files contain 163 substitutions and no annotation-coinciden
 | After scar-control-correlation exclusion | 427 | 423 | 107 |
 | Core annotation and structure eligible | 169 | 166 | 50 |
 
-The core UniProt payload contains **41 active-site** and **221 binding-site feature records**. Expansion gives **564 feature-residue rows representing 560 unique residues**. **Correction 2026-08-12: the 564 does not reproduce and may not be cited** — two independent round-2 analyses both get 594 record-residue rows, 565 or 566 after deduplication, the excess arising from P12904's intervals recorded once per ligand. The 560 unique residues, which is the quantity defining the target set, reproduces exactly. See Section 18.10. The inclusive arm contains **109 serines, 41 threonines, and 16 tyrosines**. The primary arm contains **107 serines, 40 threonines, and 16 tyrosines**.
+The core UniProt payload contains **41 active-site** and **221 binding-site feature records** and defines **560 unique target residues**. An earlier feature-residue-row total is withdrawn because it does not reproduce; no artifact may cite it. Two independent round-2 analyses get 594 record-residue rows, 565 or 566 after deduplication, with the excess arising from P12904 intervals recorded once per ligand. See Sections 13 and 18.10. The inclusive arm contains **109 serines, 41 threonines, and 16 tyrosines**. The primary arm contains **107 serines, 40 threonines, and 16 tyrosines**.
 
 ## 5. Distance Descriptives `[REPO]`
 
@@ -280,6 +280,13 @@ Not allowed:
 - Any paired difference across outcome endpoints (18.1) or across outcome directions (18.2); no
   estimator for either contrast exists in the frozen module and none was written.
 - Citing Section 4's "564 feature-residue rows" (18.10).
+- ~~"There is no positive control for the outcome."~~ **Retired 2026-08-13.** Section 10's SIFT interval
+  0.522180–0.690150 does not contain 0.5, so the manuscript computed a positive control and then denied
+  having one. The retired sentence stood in the v3 Discussion §3.2 and in §2.4.1's closing line; both are
+  rewritten. Allowed in its place: the outcome is not blind, so a near-chance estimate on this cohort is a
+  real negative. Not allowed in its place: that SIFT outperforms distance (the paired difference
+  0.074422 [−0.036887, 0.191529] contains zero) or that SIFT resolves sites within a protein (not
+  estimated in this cohort; the human replication's within-protein SIFT interval contains 0.5, Section 20.8.3).
 
 Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
 
@@ -370,7 +377,7 @@ Added **2026-08-03**. Two figure lineages exist and they are not interchangeable
 | Figure set | Files | Builder | Used by |
 |---|---|---|---|
 | Panel-composed (current, reader-facing) | `manuscript/figure1.{png,pdf}`, `manuscript/figure2.{png,pdf}` | `manuscript/panels/src/p*.py` → `manuscript/panels/compose.py`, driven by `manuscript/panels/build_all.sh` | the editable manuscript Markdown and the current Word build |
-| Legacy (frozen review PDF) | `manuscript/figure1_cohort_estimand_primary.{png,pdf}`, `robustness/results/robustness_robustness_summary.{png,pdf}` | `manuscript/src/build_figure1.py`, `robustness/src/03_robustness_figure.py` | `manuscript/preprint_draft_v1.{md,pdf}`, whose SHA-256 is frozen in Section 14 |
+| Legacy (frozen review PDF) | `manuscript/figure1_cohort_estimand_primary.{png,pdf}`, `robustness/results/robustness_summary.{png,pdf}` | `manuscript/src/build_figure1.py`, `robustness/src/03_robustness_figure.py` | `manuscript/preprint_draft_v1.{md,pdf}`, whose SHA-256 is frozen in Section 14 |
 
 The legacy Figure 1 compresses the cascade into five boxes, merging the whole-genome-sequencing
 and scar-correlation stages into one "427 records after source QC" step. Section 4 declares six
@@ -397,25 +404,10 @@ cumulative distance distributions is the two-sample Kolmogorov–Smirnov statist
 **0.137131 → 0.137** on the primary cohort (79 outcome-positive, 84 outcome-negative). It is a
 descriptive distance between distributions, not a test result; no KS p-value is reported.
 
-Panel builds are byte-reproducible **within one environment**: matplotlib PDF `CreationDate` is
-suppressed in `manuscript/panels/src/_style.py`, and `compose.py` saves with `no_new_id=1` so MuPDF
-writes no trailer `/ID`. PNG output carries no timestamp. `PyMuPDF==1.28.0` is pinned in
-`requirements-lock.txt`; the composed PNGs are rasterized at 600 dpi through it.
-
-**They are not byte-reproducible across environments, and the dependency lock cannot make them so**
-(established 2026-08-13). `requirements-lock.txt` pins `matplotlib==3.8.4`, but matplotlib links a
-bundled FreeType whose version depends on how matplotlib was built. The figures declared here were
-produced against FreeType **2.12.1** (the Anaconda build); a virtual environment installing the PyPI
-wheel gets FreeType **2.6.1** and renders glyphs differently, giving `figure1.png` SHA-256
-`cfffacd6…` against the declared `8fffd9cc…`. Rebuilding twice in either environment reproduces that
-environment's own bytes exactly.
-
-Consequence for the release checks: `panel_figures_match_numbers` and the clean-room artifact
-comparison for the figures are **environment-specific**, and will fail for an independent reproducer
-using a pip-installed matplotlib even when the analysis is correct. Read a failure of those two checks
-as a rendering-environment difference until the underlying numbers are shown to differ. The scientific
-outputs — the three frozen analysis artifacts in the header — are unaffected, because they contain no
-rendered glyphs.
+Panel builds are byte-reproducible for an unchanged environment and input tree: matplotlib PDF
+`CreationDate` is suppressed in `manuscript/panels/src/_style.py`, and `compose.py` saves with
+`no_new_id=1` so MuPDF writes no trailer `/ID`. PNG output carries no timestamp. `PyMuPDF==1.28.0`
+is pinned in `requirements-lock.txt`; the composed PNGs are rasterized at 600 dpi through it.
 
 Current panel-composed figure hashes (SHA-256), bound by the release verifier:
 
@@ -1008,3 +1000,360 @@ Not allowed, added:
 - Reading the complete-profile AUC of 0.500000 as a result about distance (19.4).
 - Using the 0.107-against-0.079 arithmetic to rank features, or stating it without the different-support
   caveat (19.9).
+
+## 20. Independent Human Replication — Kennedy 2024 `[REPLICATION]`
+
+A second cohort, computed by the same estimators. Not part of the frozen yeast tree and not covered by
+the three frozen content hashes. Working directory `kennedy_replication/`;
+results in `kennedy_results.json`, `perturbation_arms.json`, `positive_control.json`. Every interval is
+a protein-clustered percentile bootstrap, 20,000 draws, seed 20260728, **20,000 retained on every
+estimate reported here**. Estimators are imported from `robustness/src/02_robustness_analysis.py` rather
+than reimplemented.
+
+### 20.1 Source
+
+Kennedy PH, Alborzian Deh Sheikh A, Balakar M, et al. "Post-translational modification-centric base
+editor screens to assess phosphorylation site functionality in high throughput." *Nature Methods* 2024.
+doi:10.1038/s41592-024-02256-z. PMC11804830. Human Jurkat and HEK293; proliferation readout.
+**An earlier scan of this vault attributed the screen to "Coelho et al." That attribution is wrong and
+must not be repeated.**
+
+### 20.2 Cohort
+
+| Quantity | Value |
+|---|---:|
+| Sites with a distance | **1,475** |
+| Proteins | **793** |
+| Positives, primary endpoint (raw *p* < 0.05 in either screen) | **293** (19.86%) |
+| Sites retaining an experimentally-evidenced target | **512** in 287 proteins |
+| Sites matched into the Ochoa 2020 phosphoproteome | **1,172** of 1,475 |
+| Median distance | **41.75 Å** (yeast primary 28.930 Å) |
+| Median site pLDDT | **37.19** (yeast primary 46.50) |
+
+Human sites sit farther from an annotated target and in lower-confidence structure than the yeast
+cohort: median distance 41.75 Å against 28.930 Å, median site pLDDT 37.19 against 46.50. Both shifts are
+expected for a mammalian phosphoproteome enriched in disordered regions, and both work against the
+feature under test rather than for it.
+
+Distance is the same definition as the yeast pipeline: minimum heavy-atom separation from the edited
+residue to the nearest UniProt ACT_SITE or BINDING residue in an AlphaFold DB monomer model, expanded
+over feature ranges, self-excluded.
+
+### 20.3 Primary and sensitivities
+
+| Estimate | n | positives | proteins | AUC | 95% interval |
+|---|---:|---:|---:|---:|---:|
+| **Distance, primary endpoint** | 1,475 | 293 | 793 | **0.505573** | 0.465509–0.545511 |
+| Distance, FDR < 0.25 either screen | 1,475 | 19 | 793 | 0.613939 | 0.432767–0.781183 |
+| Distance, experimentally-evidenced targets only | 512 | 115 | 287 | 0.510546 | 0.445122–0.575965 |
+| Distance, sequence-adjacent pairs excluded | 1,459 | 289 | 784 | 0.503925 | 0.464529–0.544296 |
+| Minimum sequence separation | 1,475 | 293 | 793 | 0.520052 | 0.481942–0.558181 |
+| Site pLDDT | 1,475 | 293 | 793 | 0.511544 | 0.472533–0.549858 |
+| Inverse relative solvent accessibility | 1,475 | 293 | 793 | 0.515685 | 0.476511–0.554024 |
+| Annotated target count in the protein | 1,475 | 293 | 793 | 0.458233 | 0.424064–0.494130 |
+
+**Every interval contains 0.5 except the annotated-target-count row**, which sits below chance. That row
+is a cohort-composition property — proteins carrying more annotated residues contribute fewer called
+sites — and must not be reported as an inverse predictor of function.
+
+The FDR < 0.25 arm rests on **19 positives**. Its point estimate is the highest in the table and its
+interval is the widest; it is reported for endpoint sensitivity and carries no weight.
+
+### 20.3.1 The two cohorts are not endpoint-equivalent — disclose with every replication claim
+
+The yeast primary endpoint is **`qvalue < 0.05`** in at least one condition (Section 4.3 of the
+manuscript) — multiplicity-controlled. The human primary endpoint is **raw *p* < 0.05 in either
+screen** — uncorrected. They are not the same standard, and the replication claim must say so.
+
+The reason for the choice, stated rather than hidden: the Kennedy release's own FDR columns leave too
+few positives to estimate anything.
+
+| Human endpoint | Positives of 1,475 | Rate |
+|---|---:|---:|
+| Raw *p* < 0.05 either screen (**used as primary**) | **293** | 19.86% |
+| FDR < 0.25 either screen | 19 | 1.29% |
+| FDR < 0.10 either screen | 12 | 0.81% |
+| FDR < 0.05 either screen | 11 | 0.75% |
+
+**The consequence runs against the replication.** An uncorrected call admits false positives among the
+sites labelled affected, and non-differential label noise attenuates AUC toward 0.5. Part of the human
+0.505573 is therefore attributable to a noisier endpoint rather than to the feature.
+
+**What limits that concern, and by how much.** SIFT reaches 0.571553 [0.528833, 0.615294] on the same
+endpoint, in the same cohort, under the same noise. An endpoint too noisy to support any discrimination
+could not do that. The attenuation is therefore bounded below the level that would explain an arbitrary
+null — but it is not quantified, and no correction for it is applied. A true value of, say, 0.55
+attenuated to 0.506 is not excluded by anything computed here.
+
+### 20.4 Paired differences against distance
+
+Same sites, same clustering, computed by `p05.paired_auc_difference`.
+
+| Comparator | Difference | 95% interval | Excludes zero |
+|---|---:|---:|:--:|
+| Minimum sequence separation | +0.014479 | −0.024783 to +0.053812 | no |
+| Site pLDDT | +0.005971 | −0.035674 to +0.047568 | no |
+| Inverse relative solvent accessibility | +0.010112 | −0.029647 to +0.048894 | no |
+| Annotated target count | −0.047340 | −0.093782 to +0.001689 | no |
+| **SIFT minimum (Section 20.7)** | **+0.0537** | **−0.0002 to +0.1085** | **no** |
+
+### 20.5 Permutation null and pair decomposition
+
+Permutation null on the primary: observed **0.505573**, null mean 0.500196, null SD 0.018860, two-sided
+**p = 0.7742** over 20,000 permutations. The observed value therefore sits **0.285** standard deviations
+from the null centre — (0.505573 − 0.500196) / 0.018860 — which is the form the manuscript reports, to
+match the yeast statement's "0.59 standard deviations out".
+
+Ranked pairs **346,326**; within-protein **476**, or **0.14%**, over **134** informative proteins.
+The yeast figure is 176 of 6,636, or 2.65%. The across-protein share is therefore **99.86%** here — the
+architecture confound is worse in the larger cohort, not better.
+
+Short range: **37** sites within 5 Å, of which **16** are sequence-adjacent (|Δpos| ≤ 2) and **13** fall
+in the 1.30–1.35 Å peptide-bond band. The yeast artifact reproduces.
+
+### 20.6 Perturbation classes
+
+Guides in Supplementary Table 2: **26,076**; with a parsable edit at the intended target site:
+**25,408**. Substitution at the target residue, by editor:
+
+| Editor | Top substitutions at the target residue |
+|---|---|
+| ABE8e | S→P 33.0%, S→G 22.3%, silent S→S 17.4%, T→A 9.5% |
+| BE4 | S→N 22.1%, silent 21.6%, S→F 17.7% |
+
+**These supersede an earlier pass reporting 36.1% and 11.1%**, which used all S/T/Y-changing edits as the
+denominator instead of edits at the intended site. The earlier figures must not be cited.
+
+| Arm | n | positives | proteins | AUC | 95% interval |
+|---|---:|---:|---:|---:|---:|
+| All sites (reference) | 1,475 | 293 | 793 | 0.505573 | 0.465509–0.545511 |
+| **T→A only — clean phospho-null** | **39** | 9 | 36 | 0.470370 | 0.211537–0.732719 |
+| S→P only — backbone-disruptive | 390 | 84 | 294 | 0.533185 | 0.460371–0.605643 |
+| S→G only | 200 | 36 | 183 | 0.442243 | 0.350312–0.534134 |
+| Sites with any silent edit at the target | 487 | 92 | 365 | 0.511585 | 0.443864–0.578183 |
+| Single-edit guides only, no bystander | 425 | 90 | 316 | 0.495954 | 0.431124–0.562590 |
+
+Every interval contains 0.5. Two limits are binding on any use of this table:
+
+- The T→A arm is **39 sites with an interval half-width of 0.26**. It is consistent with anything.
+- The "any silent edit" arm is **not a negative control**. Those sites carry a silent edit *and* at least
+  one non-silent edit; no silent-only arm can be constructed, because every one of the 1,475 cohort sites
+  carries a non-silent edit. The screen's 208 essential-splice-site controls carry no phosphosite and
+  never enter the cohort.
+
+### 20.7 The positive control
+
+Twelve published features from the Ochoa et al. 2020 59-feature set, each tested as a predictor of the
+primary endpoint with the same estimator.
+
+| Feature | n | proteins | AUC | 95% interval | Excludes 0.5 |
+|---|---:|---:|---:|---:|:--:|
+| **SIFT minimum score** | 997 | 572 | **0.571553** | 0.528833–0.615294 | **yes** |
+| **SIFT alanine score** | 997 | 572 | **0.564884** | 0.520492–0.608844 | **yes** |
+| Phosphorylation hotspot flag | 110 | 73 | 0.560417 | 0.424687–0.682461 | no |
+| Best kinase-motif match score | 1,172 | 650 | 0.533029 | 0.492646–0.572005 | no |
+| Predicted disorder | 1,172 | 650 | 0.514729 | 0.469870–0.560236 | no |
+| Distance (reference) | 1,475 | 793 | 0.505573 | 0.465509–0.545511 | no |
+| Protein abundance | 1,168 | 647 | 0.501351 | 0.455455–0.547335 | no |
+| NetPhos maximum | 1,172 | 650 | 0.495505 | 0.454276–0.536742 | no |
+| Protein length | 1,172 | 650 | 0.482924 | 0.440315–0.526055 | no |
+| Hotspot *p*-value | 110 | 73 | 0.470625 | 0.324085–0.646245 | no |
+| Evolutionary-coupling alanine prediction | 61 | 50 | 0.464912 | 0.302196–0.627907 | no |
+| Neighbouring PTMs within 21 residues | 1,085 | 616 | 0.461106 | 0.420969–0.502074 | no |
+| Protein-interface flag | 45 | 38 | 0.500000 | degenerate | — |
+
+The protein-interface row returned a point estimate and interval of exactly 0.5 on 45 sites; the flag is
+constant or near-constant on that support. **It must be reported as uninformative, not as a
+chance-level result.**
+
+PhosphoSitePlus curated regulatory sites, tested separately: **84** of 1,475 cohort sites match; hit rate
+**22.62%** against 19.70% for the rest, a 2.92-point difference; as a predictor **0.504927
+[0.488802, 0.522425]**. It does not function as a positive control.
+
+**The yeast cohort already contained a positive control and the manuscript did not recognise it.**
+Section 10 records SIFT at **0.606 [0.522, 0.690]** on the primary common support, lower bound above 0.5.
+
+### 20.8 Bounds on the positive control
+
+Three, all binding.
+
+1. **Multiplicity.** Twelve features were tested at α = 0.05; the expected number of intervals excluding
+   0.5 by chance is **0.6**, and two did, both SIFT variants (Pearson r = **0.410** between them).
+   Correcting the SIFT-minimum interval for all twelve tests (99.583% percentile interval, same draws)
+   gives **0.5070–0.6338**, which still excludes 0.5. The control survives multiplicity correction.
+2. **The paired difference against distance contains zero.** On the 997 common-support sites, SIFT minus
+   distance is **+0.0537 [−0.0002, +0.1085]**, and distance restricted to that same support rises to
+   **0.5178 [0.4698, 0.5658]**. Conservation is not shown to outperform proximity.
+3. **The within-protein estimate is uninformative.** Restricted to comparisons inside a single protein,
+   SIFT gives **0.6038 [0.4577, 0.7506]** on **265** ranked pairs over **91** informative proteins; the
+   interval contains 0.5. Distance on the same 265 pairs is 0.4415. Conservation is not shown to rank
+   sites within a protein.
+
+### 20.10 The outcome variable is not a p-value `[REPLICATION]`
+
+Found 2026-08-13 while assessing the work for journal submission. Computed by
+`kennedy_replication/endpoint_characterisation.py`, output `endpoint_characterisation.json`.
+
+`analyse.py` calls a site affected at `p3 < 0.05 or p4 < 0.05`. Those columns are **the minimum of
+MAGeCK's two one-sided gene-level p-values**, `neg|p-value` and `pos|p-value` — not a two-sided
+p-value. **1,428 of the 1,475 cohort rows reproduce `min(neg, pos)` exactly**; 47 do not.
+
+A minimum of two one-sided tests is distributed roughly U(0, 0.5) under the null, so a 0.05 cut-off
+admits about twice the nominal rate. Measured on the screens' own non-control rows:
+
+| Screen | Rows | Median min-p | Fraction < 0.05 | Inflation over 0.05 |
+|---|---:|---:|---:|---:|
+| Screen 3 | 7,217 | 0.244700 | **0.105307** | **2.106x** |
+| Screen 4 | 7,217 | 0.239370 | **0.099210** | **1.984x** |
+
+**The direction of the error flatters the paper.** Non-differential label noise attenuates AUC toward
+0.5, so an inflated false-positive rate among affected sites makes a near-chance result easier to
+obtain. This must be stated wherever the human null is reported.
+
+#### Endpoint sensitivity on the screen's own lethal controls
+
+The 208 `_Essentialsplicesite` guides should deplete. Median min-p **0.020969**, median `neg|lfc`
+**−1.01865**, and only **59.62%** are called at min-p < 0.05. The endpoint misses roughly two of every
+five guides that disrupt an essential splice site. This is a positive control for the **endpoint**,
+and is distinct from the Ochoa-feature positive control for the **predictor** in Section 20.7.
+
+#### The near-chance reading survives every repair tried
+
+| Outcome definition | n | positives | AUC | 95% interval | Contains 0.5 |
+|---|---:|---:|---:|---:|:--:|
+| As used: min(neg,pos) < 0.05 either screen | 1,475 | 293 | 0.505573 | 0.465509–0.545511 | yes |
+| **Repaired: 2 x min(neg,pos) < 0.05 either screen** | 1,475 | **145** | **0.518170** | 0.461972–0.574069 | **yes** |
+| MAGeCK FDR < 0.25 either screen | 1,475 | 19 | 0.613939 | 0.432767–0.781183 | yes |
+| **Top decile of |log2 fold change|** — no p-value used | 1,475 | **148** | **0.516716** | 0.462815–0.570750 | **yes** |
+
+The last row uses no p-value construction at all, so it does not inherit the defect. Every definition
+contains 0.5. The conclusion is robust to the endpoint; the **precision claim is not**.
+
+#### The precision claim must be restated
+
+Half-widths: as-used **0.040001**, repaired two-sided **0.056049**, top-decile **0.053968**, against
+yeast's **0.107398**. The ratio is therefore **2.69x on the anti-conservative endpoint** but
+**1.92x repaired** and **1.99x on fold-change magnitude**. Report 1.9x, not 2.7x.
+
+### 20.9 Additions to the Section 13 claim rules
+
+Allowed:
+
+- ~~The near-chance yeast result replicates in an independent human system at 2.7 times the precision:
+  interval half-width **0.040** against **0.107**, on **793** protein clusters against 48.~~
+  **Restated 2026-08-13 (20.10).** The 0.040 half-width is precision on an anti-conservative label.
+  Allowed instead: the near-chance yeast result holds in an independent human system under every
+  outcome definition tried, including one using no p-value at all, at **roughly 1.9 times the yeast
+  precision** on the repaired endpoints, on 793 protein clusters against 48.
+- Poor annotation quality does not explain the null. The experimental-evidence restriction, which
+  collapsed to 24 sites in yeast, retains **512** sites here and gives 0.510546 [0.445122, 0.575965].
+- At least one published site-level feature separates the classes at a precision excluding chance in
+  both systems, so the endpoint is not blind and a feature returning 0.5 on it returns a real negative.
+- The across-protein architecture is more extreme in the human cohort: 99.86% of ranked pairs.
+
+Not allowed:
+
+- "Conservation separates the classes and proximity does not." The paired difference is
+  +0.0537 [−0.0002, +0.1085] and contains zero (20.8.2). **Any claim of the form "A separates and B does
+  not" must cite a paired difference on common support, not two separate intervals.**
+- "Conservation is a site-level predictor" or any reading of SIFT as resolving sites within a protein
+  (20.8.3).
+- Citing the 36.1% / 11.1% substitution frequencies (20.6).
+- Treating the "any silent edit" arm as a negative control (20.6).
+- Reporting the annotated-target-count AUC of 0.458233 as an inverse predictor of function (20.3).
+- Reporting the protein-interface flag as a chance-level result; it is degenerate on 45 sites (20.7).
+- Any weight on the FDR < 0.25 arm, which rests on 19 positives (20.3).
+- "The replication uses the same endpoint as the yeast analysis." It does not: yeast is
+  multiplicity-controlled `qvalue < 0.05`, human is uncorrected raw *p* < 0.05 (20.3.1). Every
+  replication claim must carry this disclosure.
+- Reporting the human null without stating that an uncorrected endpoint attenuates AUC toward 0.5, or
+  claiming that the positive control fully rules that attenuation out — it bounds it, and the bound is
+  not quantified (20.3.1).
+- Citing the 2.7x precision ratio, or the 0.040 half-width, as the replication's precision (20.10).
+  Use 1.9x and 0.056.
+- Treating `p3`/`p4` as p-values. They are `min(neg|p-value, pos|p-value)`, inflated about 2.1x and
+  2.0x over nominal on the two screens (20.10). Any artifact reporting the human result must say so.
+- Reporting the human replication without the endpoint-sensitivity figure: the screen detects only
+  59.62% of its own 208 essential-splice-site controls (20.10).
+- "The clean phospho-null arm confirms the result" — T→A is 39 sites, half-width 0.26 (20.6).
+- Attributing the screen to Coelho et al. (20.1).
+
+## 21. Post-Review Robustness Arms `[POST-HOC]`
+
+Run 2026-08-13 to close two objections the round-1 dossier and the journal assessment both raised.
+Code in `robustness_arms/`. Both scripts import the frozen estimators and
+the frozen distance definition rather than reimplementing them.
+
+### 21.1 QC-inclusive arm — the exclusions were not holding the null up
+
+`qc_inclusive_arm.py`, output `qc_inclusive_arm.json` and `qc_inclusive_cohort.csv`.
+
+Section 19.5 records that the two source quality-control filters removed **38** strain records of which
+**34** are screen-positive (89.5%, against 39.6% among the 427 retained), and that the scar-correlation
+filter is conditioned on the outcome by construction. No arm retained them. The objection is that
+dropping outcome-associated records and then reporting a near-chance estimate manufactures the result.
+
+| Quantity | Value |
+|---|---:|
+| Excluded records | 38 in 17 proteins (18 sequencing-flagged, 20 scar-flagged) |
+| Restorable — protein carries an eligible annotation and a cached model | **10** in 6 proteins |
+| Of those, screen-positive | **10 of 10** |
+| Of those, scar-flagged | **0** |
+| Not restorable, protein carries no eligible annotation | 28 |
+| Distinct sites restored | 10, of which 1 already in the primary cohort |
+| New sites added to the cohort | **9** |
+| Median distance of the restored sites | 44.1352 Å |
+
+**All 20 scar-flagged records fall in proteins carrying no eligible ACT_SITE or BINDING annotation, so
+none of them could ever have entered the analysis cohort.** The filter conditioned on the outcome
+removes nothing from the estimate. That disposes of the outcome-conditioning objection for this design,
+and it is a stronger answer than a sensitivity arm.
+
+| Arm | n | Positive | Proteins | AUC | 95% interval | Half-width |
+|---|---:|---:|---:|---:|---:|---:|
+| Primary as published | 163 | 79 | 48 | **0.526823** | 0.416170–0.631766 | 0.107798 |
+| **QC-inclusive** | **172** | **88** | 48 | **0.501894** | 0.392384–0.608166 | 0.107891 |
+
+200,000 draws, seed 20260728, all retained on both. The primary row reproduces Section 12 exactly,
+which is the check that this script's cohort assembly matches the pipeline's.
+
+**Restoring the exclusions moves the estimate toward chance, by −0.024929, not away from it.** The
+exclusions were not propping up the near-chance reading; they were mildly working against it.
+
+### 21.2 Bootstrap coverage — measured, not assumed
+
+`bootstrap_coverage.py`, output `bootstrap_coverage.json`. Discussion §3.2 stated that 200,000
+resamples control resampling noise without making a percentile interval cover at its stated rate on 48
+uneven clusters, and left it there. This measures it.
+
+**Design.** Each replicate rebuilds a cohort with the observed structure: the real protein-size
+distribution, prevalence **0.484663**, and a protein-level random intercept whose size is set from the
+outcome intraclass correlation measured on the real cohort, **0.127125** (σ_u = 0.381441). Scores are
+standard normal with positives shifted, so the population AUC is known; it is computed once at 40x
+cohort size for each scenario. The reproduced Kish effective count is **29.037158**, matching Section
+12's 29.0, and the reproduced cohort is 163 sites in 48 proteins. 1,000 replicates x 1,000
+protein-cluster resamples per scenario, seed 20260728. Before any simulation runs, the script asserts
+its AUC equals `p05.auc_from_ranks` on the real cohort to within 1e-12.
+
+| True AUC | Population AUC | Percentile coverage | BCa coverage | Median interval width |
+|---:|---:|---:|---:|---:|
+| 0.50 | 0.4984 | **0.936** | 0.942 | 0.1769 |
+| 0.55 | 0.5483 | 0.941 | 0.945 | 0.1745 |
+| 0.60 | 0.5982 | **0.949** | 0.952 | 0.1720 |
+| 0.65 | 0.6482 | 0.941 | 0.943 | 0.1656 |
+| 0.70 | 0.6982 | 0.948 | **0.953** | 0.1572 |
+
+Monte Carlo standard error at 1,000 replicates and nominal 0.95 is **0.0069**. The percentile
+bootstrap covers between **0.936 and 0.949**; the largest shortfall, at the null, is 1.4 percentage
+points, or 2.0 Monte Carlo standard errors. BCa covers between 0.942 and 0.953 and is nearer nominal at
+every scenario, by 0.2 to 0.6 points.
+
+**What this licenses.** The declared interval is close to nominal on a cohort of this size and shape.
+The paper may state a measured coverage rather than an unverified caveat. It may not state that
+coverage is exact: the null scenario is the worst case and it is short by about two Monte Carlo
+standard errors, which is the scenario the primary estimate sits in.
+
+**Not allowed:** claiming the percentile interval is exactly calibrated; quoting BCa coverage as a
+reason the reported intervals are wrong, since the two differ by less than the Monte Carlo error at
+four of five scenarios; or extending these coverage figures to the human cohort, whose cluster count
+and size distribution differ and which was not simulated.

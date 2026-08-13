@@ -1,0 +1,112 @@
+{
+  "outcome_distribution": {
+    "screen3": {
+      "rows": 7425,
+      "neg_p": {
+        "median": 0.52365,
+        "max": 1.0,
+        "frac_below_0.05": 0.061549
+      },
+      "pos_p": {
+        "median": 0.47052,
+        "max": 1.0,
+        "frac_below_0.05": 0.057508
+      },
+      "min_p": {
+        "median": 0.24072,
+        "max": 0.80872,
+        "frac_below_0.05": 0.119057
+      },
+      "non_control": {
+        "rows": 7217,
+        "median_min_p": 0.24469,
+        "frac_below_0.05": 0.105307,
+        "expected_under_uniform_two_sided": 0.05,
+        "inflation_factor": 2.106
+      },
+      "essential_splice_controls": {
+        "rows": 208,
+        "median_min_p": 0.020969,
+        "detected_at_0.05": 0.596154,
+        "median_neg_lfc": -1.01865
+      }
+    },
+    "screen4": {
+      "rows": 7217,
+      "neg_p": {
+        "median": 0.50701,
+        "max": 1.0,
+        "frac_below_0.05": 0.041291
+      },
+      "pos_p": {
+        "median": 0.48897,
+        "max": 1.0,
+        "frac_below_0.05": 0.057919
+      },
+      "min_p": {
+        "median": 0.23937,
+        "max": 0.82637,
+        "frac_below_0.05": 0.09921
+      },
+      "non_control": {
+        "rows": 7217,
+        "median_min_p": 0.23937,
+        "frac_below_0.05": 0.09921,
+        "expected_under_uniform_two_sided": 0.05,
+        "inflation_factor": 1.984
+      }
+    }
+  },
+  "p3_is_min_of_one_sided": {
+    "matched": 1428,
+    "mismatched": 47,
+    "unmatched_ids": 0,
+    "cohort_rows": 1475
+  },
+  "distance_under_repaired_outcomes": [
+    {
+      "label": "as used: min(neg,pos) < 0.05 either screen",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.505573,
+      "ci_low": 0.465509,
+      "ci_high": 0.545511,
+      "contains_half": true,
+      "draws_retained": 20000
+    },
+    {
+      "label": "repaired: 2 x min(neg,pos) < 0.05 either screen",
+      "n": 1475,
+      "positive": 145,
+      "proteins": 793,
+      "auc": 0.51817,
+      "ci_low": 0.461972,
+      "ci_high": 0.574069,
+      "contains_half": true,
+      "draws_retained": 20000
+    },
+    {
+      "label": "MAGeCK FDR < 0.25 either screen",
+      "n": 1475,
+      "positive": 19,
+      "proteins": 793,
+      "auc": 0.613939,
+      "ci_low": 0.432767,
+      "ci_high": 0.781183,
+      "contains_half": true,
+      "draws_retained": 20000
+    },
+    {
+      "label": "top decile of |log2 fold change|",
+      "n": 1475,
+      "positive": 148,
+      "proteins": 793,
+      "auc": 0.516716,
+      "ci_low": 0.462815,
+      "ci_high": 0.57075,
+      "contains_half": true,
+      "draws_retained": 20000
+    }
+  ]
+}

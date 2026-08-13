@@ -1,0 +1,68 @@
+[
+  {
+    "label": "all sites (reference)",
+    "n": 1475,
+    "positive": 293,
+    "proteins": 793,
+    "auc": 0.505573,
+    "ci_low": 0.465509,
+    "ci_high": 0.545511,
+    "draws_retained": 20000,
+    "draws_nominal": 20000
+  },
+  {
+    "label": "threonine to alanine only (clean phospho-null)",
+    "n": 39,
+    "positive": 9,
+    "proteins": 36,
+    "auc": 0.47037,
+    "ci_low": 0.211537,
+    "ci_high": 0.732719,
+    "draws_retained": 20000,
+    "draws_nominal": 20000
+  },
+  {
+    "label": "serine to proline only (backbone-disruptive)",
+    "n": 390,
+    "positive": 84,
+    "proteins": 294,
+    "auc": 0.533185,
+    "ci_low": 0.460371,
+    "ci_high": 0.605643,
+    "draws_retained": 20000,
+    "draws_nominal": 20000
+  },
+  {
+    "label": "serine to glycine only",
+    "n": 200,
+    "positive": 36,
+    "proteins": 183,
+    "auc": 0.442243,
+    "ci_low": 0.350312,
+    "ci_high": 0.534134,
+    "draws_retained": 20000,
+    "draws_nominal": 20000
+  },
+  {
+    "label": "any silent edit at the target site",
+    "n": 487,
+    "positive": 92,
+    "proteins": 365,
+    "auc": 0.511585,
+    "ci_low": 0.443864,
+    "ci_high": 0.578183,
+    "draws_retained": 20000,
+    "draws_nominal": 20000
+  },
+  {
+    "label": "single-edit guides only (no bystander)",
+    "n": 425,
+    "positive": 90,
+    "proteins": 316,
+    "auc": 0.495954,
+    "ci_low": 0.431124,
+    "ci_high": 0.56259,
+    "draws_retained": 20000,
+    "draws_nominal": 20000
+  }
+]

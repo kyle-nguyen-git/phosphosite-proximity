@@ -1,0 +1,150 @@
+{
+  "cohort": {
+    "sites": 1475,
+    "proteins": 793,
+    "positives_primary": 293,
+    "positive_rate": 0.1986
+  },
+  "estimates": [
+    {
+      "label": "distance, primary endpoint (p<0.05 either screen)",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.505573,
+      "ci_low": 0.465509,
+      "ci_high": 0.545511,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "distance, FDR<0.25 either screen",
+      "n": 1475,
+      "positive": 19,
+      "proteins": 793,
+      "auc": 0.613939,
+      "ci_low": 0.432767,
+      "ci_high": 0.781183,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "distance to experimentally-evidenced targets only",
+      "n": 512,
+      "positive": 115,
+      "proteins": 287,
+      "auc": 0.510546,
+      "ci_low": 0.445122,
+      "ci_high": 0.575965,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "minimum sequence separation to an eligible target",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.520052,
+      "ci_low": 0.481942,
+      "ci_high": 0.558181,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "site pLDDT",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.511544,
+      "ci_low": 0.472533,
+      "ci_high": 0.549858,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "inverse relative solvent accessibility",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.515685,
+      "ci_low": 0.476511,
+      "ci_high": 0.554024,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "annotated target count in the protein",
+      "n": 1475,
+      "positive": 293,
+      "proteins": 793,
+      "auc": 0.458233,
+      "ci_low": 0.424064,
+      "ci_high": 0.49413,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    },
+    {
+      "label": "distance, sequence-adjacent pairs excluded",
+      "n": 1459,
+      "positive": 289,
+      "proteins": 784,
+      "auc": 0.503925,
+      "ci_low": 0.464529,
+      "ci_high": 0.544296,
+      "draws_nominal": 20000,
+      "draws_retained": 20000,
+      "interval_withheld_boundary": false
+    }
+  ],
+  "notes": {
+    "paired difference vs distance: minimum sequence separation to an eligible target": {
+      "estimate": 0.014479,
+      "ci_low": -0.024783,
+      "ci_high": 0.053812,
+      "excludes_zero": false
+    },
+    "paired difference vs distance: site pLDDT": {
+      "estimate": 0.005971,
+      "ci_low": -0.035674,
+      "ci_high": 0.047568,
+      "excludes_zero": false
+    },
+    "paired difference vs distance: inverse relative solvent accessibility": {
+      "estimate": 0.010112,
+      "ci_low": -0.029647,
+      "ci_high": 0.048894,
+      "excludes_zero": false
+    },
+    "paired difference vs distance: annotated target count in the protein": {
+      "estimate": -0.04734,
+      "ci_low": -0.093782,
+      "ci_high": 0.001689,
+      "excludes_zero": false
+    },
+    "permutation null": {
+      "observed": 0.505573,
+      "null_mean": 0.500196,
+      "null_sd": 0.01886,
+      "two_sided_p": 0.7742,
+      "permutations": 20000
+    },
+    "pair decomposition": {
+      "ranked_pairs": 346326,
+      "within_protein": 476,
+      "within_protein_pct": 0.14,
+      "informative_proteins": 134
+    },
+    "short range": {
+      "sites_within_5A": 37,
+      "of_which_sequence_adjacent_dpos_le_2": 16,
+      "peptide_bond_band_1.30_1.35A": 13
+    }
+  }
+}

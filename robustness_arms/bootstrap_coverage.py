@@ -18,20 +18,20 @@ the bias-corrected and accelerated (BCa) variant, and a cluster jackknife on the
 Outputs `bootstrap_coverage.json`. Nothing here may enter a manuscript, figure or email until it is
 registered in `NUMBERS.md`.
 """
-import importlib.util
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 from scipy.stats import norm, rankdata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CAL = os.path.join(HERE, "..", "phase0_calibration")
-spec = importlib.util.spec_from_file_location(
-    "p05", os.path.join(CAL, "phase0_5", "src", "02_phase0_5_analysis.py"))
-p05 = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(p05)
+sys.path.insert(0, HERE)
+import _paths  # noqa: E402  — resolves the vault and repository layouts
+
+CAL = str(_paths.calibration_root())
+p05 = _paths.analysis_module()
 
 REPLICATES = 1000
 BOOT = 1000

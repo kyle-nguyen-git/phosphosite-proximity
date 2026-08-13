@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "This is a release candidate. After public archiving, cite the immutable archive and the Viéitez et al. source study."
-title: "phosphosite-proximity: code and derived data for proximity features in a yeast phosphosite-mutant screen"
+title: "phosphosite-proximity: code and derived data for distance-to-annotated-residue features in yeast and human phosphosite-mutant screens"
 type: software
 authors:
   - family-names: Nguyen
@@ -12,6 +12,8 @@ keywords:
   - phosphorylation
   - AlphaFold
   - yeast
+  - human
+  - mutational phenotype
   - structural bioinformatics
   - reproducibility
 references:
@@ -22,3 +24,10 @@ references:
         given-names: Cristina
     doi: "10.1038/s41587-021-01051-x"
     year: 2022
+  - type: article
+    title: "Post-translational modification-centric base editor screens to assess phosphorylation site functionality in high throughput"
+    authors:
+      - family-names: Kennedy
+        given-names: Philip H.
+    doi: "10.1038/s41592-024-02256-z"
+    year: 2024

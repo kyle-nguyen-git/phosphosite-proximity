@@ -1,16 +1,21 @@
 # phosphosite-proximity
 
-Proximity features in a yeast phosphosite-mutant screen.
+Distance from a phosphosite to the nearest annotated active or binding residue, calibrated and audited in a yeast screen and an independent human screen.
 
-Code and derived data for a two-author exploratory secondary analysis of a public yeast
-phosphosite-mutant growth screen (Viéitez et al. 2022).
+Code and derived data for a two-author exploratory secondary analysis of two published phosphosite
+mutational screens: a yeast growth screen (Viéitez et al. 2022) and an independent human base-editor
+proliferation screen (Kennedy et al. 2024).
 
-**What this measures.** For each serine, threonine or tyrosine site replaced by alanine in the source
-screen, we compute the shortest distance between non-hydrogen atoms of that residue and the nearest
-residue UniProt annotates as an active site (`ACT_SITE`) or a binding site (`BINDING`), in an AlphaFold
-DB version 6 model of the protein on its own. A site counts as affected when the source study reported a
-growth change in at least one condition, in either direction. The analysis asks what that distance
-measurement is made of and how well it separates affected from unaffected sites.
+**What this measures.** For each altered phosphosite, we compute the shortest distance between
+non-hydrogen atoms of that residue and the nearest residue UniProt annotates as an active site
+(`ACT_SITE`) or a binding site (`BINDING`), in an AlphaFold DB version 6 model of the protein on its
+own. The analysis asks what that distance measurement is made of and how well it separates affected
+from unaffected sites. It is computed twice by the same code: on 163 alanine substitutions in 48 yeast
+proteins, where a site counts as affected when the source reported a growth change in at least one
+condition in either direction, and on 1,475 base-edited sites in 793 human proteins with a
+proliferation readout. `kennedy_replication/` holds the second cohort and its own README; read that
+README before using any number from it, because the human screen's released per-site value is not a
+two-sided p-value.
 
 **Status.** Exploratory, not peer reviewed, and not yet posted to a preprint server. An independent
 methods review is underway; see `METHODS_REVIEW.md`. Nothing here has been through peer review, and
@@ -31,9 +36,12 @@ before loading any reported result. If you want to check a claim, start there.
 third-party data caches, the source-study supplements, the manuscript, or the figures — see
 `LICENSES.md` and `THIRD_PARTY_NOTICES.md`.
 
-**Source data are not redistributed.** The four Viéitez supplementary workbooks carry their own terms
-and are not in this repository. `SOURCE_RETRIEVAL.md` gives the Europe PMC record, the exact filenames,
-and their checksums, and the pipeline fetches and verifies them for you.
+**Source data are not redistributed.** The four Viéitez supplementary workbooks, the Kennedy 2024
+supplementary tables and the Ochoa 2020 supplementary data carry their own terms and are not in this
+repository, nor are the cached UniProt entries and AlphaFold models for the human cohort — about 730 MB
+in total. `SOURCE_RETRIEVAL.md` gives the records, filenames and checksums, and the pipelines fetch and
+verify what they can. The derived cohorts are shipped, so the analyses can be rerun without the
+originals in most cases.
 
 **Reproducibility, honestly.** `reproduce.sh` rebuilds the analysis from the source workbooks and
 the pinned environment, and the fail-closed verifier checks every reported number against
@@ -46,6 +54,11 @@ when the analysis is correct. The numerical outputs are unaffected — see `NUMB
 **Methods review.** `METHODS_REVIEW.md` is the packet for the independent methods read: what to
 look at, nine questions to answer, and the record to fill in. It is open — no review has been
 completed.
+
+**Post-review analyses.** `robustness_arms/` holds two arms added after the round-1 review, both on the
+yeast cohort and both runnable from this repository with no download: restoring the source
+quality-control exclusions, and measuring what the reported interval's coverage actually is. Each has a
+README, and `NUMBERS.md` Section 21 is their authority.
 
 **The manuscript.** `manuscript/preprint_current.{md,pdf}` is the current draft — two authors, and it
 makes no exclusion claim. `manuscript/preprint_draft_v1.*` is a superseded single-author draft that
