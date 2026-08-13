@@ -254,12 +254,17 @@ Allowed:
 
 - Primary: **163 substitutions, AUC 0.527 [0.417, 0.632]**.
 - Named inclusive sensitivity: **166 substitutions, AUC 0.544 [0.436, 0.649]**.
-- The primary interval excludes discrimination materially above **0.632**.
+- ~~The primary interval excludes discrimination materially above **0.632**.~~ **Retired by author
+  decision 2026-08-12.** The manuscript makes no exclusion claim. The interval endpoint is still
+  0.631539 and may be reported as an endpoint, but no artifact may frame it as excluding
+  performance above any value. See the Not allowed list below.
 - Chance-level and SIFT-like ranking remain compatible with the primary result.
 
 Not allowed:
 
 - Calling the inclusive arm primary.
+- Any statement that the interval excludes discrimination above a value, including the 0.632
+  endpoint (retired 2026-08-12; the claim appeared in the superseded `preprint_draft_v1`).
 - “This study excludes AUC ≥0.63” based on a low-draw rounded endpoint.
 - “Distance is uninformative.”
 - A range-restriction caveat for AUC.
