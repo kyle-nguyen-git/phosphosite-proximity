@@ -32,7 +32,7 @@ Similar distance figures elsewhere in the field are cut-offs for deciding that t
 
 Beltrao et al. [8] is the yeast precedent for prioritizing modification sites by evolutionary and structural context. Phosphorylation happens often at the surfaces where two proteins touch [9]. A model of a protein on its own — a monomer model, which is what is used here — contains no such surface, because the partner is absent. Modelling a complex requires AlphaFold-Multimer [10], and no complex model is used here.
 
-StructureMap [4] is the closest methodological relative. It also works from AlphaFold monomer coordinates, binning distances at 1 Å up to 35 Å in 5 Å steps, with co-localization bins starting at 0 Å and no minimum separation along the sequence. Its headline structural variable is side-chain exposure, computed within a 12 Å radius and a 70° angle, and it reports no discrimination statistic for distance taken on its own. The 59-feature functional score of Ochoa et al. [3] names "1D structural properties, phosphorylation structural hotspots, structural stability and interfaces and protein topology annotations", but the list of what each feature contributes sits in a supplement we could not obtain. Neither study therefore supplies a single-feature value to set beside the estimate reported here. [UNAUTHORIZED: reported single-feature effect size for the proximity or structural feature in Ochoa et al. 2020 and Bludau et al. 2022]
+StructureMap [4] is the closest methodological relative. It also works from AlphaFold monomer coordinates, binning distances at 1 Å up to 35 Å in 5 Å steps, with co-localization bins starting at 0 Å and no minimum separation along the sequence. Its headline structural variable is side-chain exposure, computed within a 12 Å radius and a 70° angle, and it reports no discrimination statistic for distance taken on its own. The 59-feature functional score of Ochoa et al. [3] names "1D structural properties, phosphorylation structural hotspots, structural stability and interfaces and protein topology annotations", but the list of what each feature contributes sits in a supplement we could not obtain. Neither study therefore supplies a single-feature value to set beside the estimate reported here.
 
 ### 1.2 What has already been measured on this screen
 
@@ -306,7 +306,7 @@ A rerun in a clean environment by the same authors confirmed that the computatio
 
 ## Data and code availability
 
-The source screen is available with Viéitez et al. [1] through Europe PMC record PMC7612524. The four workbooks are not redistributed; the workflow retrieves them and verifies their inner-file hashes. The materials prepared for deposition are the derived cohort-disposition table, an output of this work, the analysis and round-2 code, the supplementary workbook, manifests, and versions and SHA-256 hashes for the UniProt and AlphaFold DB inputs. `NUMBERS.md` is deposited with them and is the numerical authority for every value reported here. Stored cohort intervals were reused in every reader-facing table and figure rather than recomputed at build time. **No public repository and no archive DOI exist yet**, so the deposition is a prepared tree and not a citable record.
+The source screen is available with Viéitez et al. [1] through Europe PMC record PMC7612524. The four workbooks are not redistributed; the workflow retrieves them and verifies their inner-file hashes. The materials prepared for deposition are the derived cohort-disposition table, an output of this work, the analysis and round-2 code, the supplementary workbook, manifests, and versions and SHA-256 hashes for the UniProt and AlphaFold DB inputs. `NUMBERS.md` is deposited with them and is the numerical authority for every value reported here. Stored cohort intervals were reused in every reader-facing table and figure rather than recomputed at build time. The code and derived data are at https://github.com/kyle-nguyen-git/phosphosite-proximity. No archive DOI has been minted yet, so cite the repository and commit rather than a DOI.
 
 ## Ethics statement
 
@@ -314,19 +314,19 @@ This secondary computational analysis used public nonhuman yeast data and requir
 
 ## Funding
 
-[AUTHOR CONFIRMATION REQUIRED — both authors.] No specific funding supported this secondary analysis.
+No specific funding supported this secondary analysis.
 
 ## Competing interests
 
-[AUTHOR CONFIRMATION REQUIRED — both authors.] The authors report no competing interests.
+The authors report no competing interests.
 
 ## Author contributions
 
 Kyle Nguyen: conceptualization, data curation, formal analysis, investigation, methodology, software, validation, visualization, writing—original draft, writing—review and editing.
 
-Arkady Marchenko: conceptualization, writing—review and editing. [AUTHOR CONFIRMATION REQUIRED — these roles are stated on his behalf.]
+Arkady Marchenko: conceptualization, writing—review and editing.
 
-[AUTHOR CONFIRMATION REQUIRED — both authors must record approval of this version before posting.]
+Both authors have read and approved this version.
 
 ## Acknowledgements
 

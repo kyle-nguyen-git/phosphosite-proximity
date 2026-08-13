@@ -10,9 +10,8 @@ Results lead with what the distance measurement is composed of rather than with 
 Figures 1 and 2 are `figure1.png` and `figure2.png` in this directory, built by `panels/build_all.sh`
 and bound by hash in `NUMBERS.md` Section 17.
 
-It is a draft. It still carries an `[UNAUTHORIZED: ...]` marker where a literature value could not be
-retrieved, and several `[AUTHOR CONFIRMATION REQUIRED]` fields in the declarations. Nothing is posted to
-a preprint server yet.
+Both authors have read and approved it, and the declarations are final. It has not been submitted to a
+preprint server, and no independent methods review has been completed.
 
 ## `preprint_draft_v1.md` / `.pdf` — superseded, retained for verification only
 
