@@ -85,8 +85,8 @@
       "manuscript/figure2.pdf": "98ffbff1f88a5f2ea6c34a45a25660619d835ae3447cce52b4afdb356ed8f711"
     },
     "freeze_hash_checks": {
-      "results/statistics.json": true,
       "robustness/results/robustness_statistics.json": true,
+      "results/statistics.json": true,
       "results/analysis_final.csv": true
     }
   },
