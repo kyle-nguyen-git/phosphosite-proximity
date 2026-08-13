@@ -27,6 +27,10 @@ supervision, or resources, and implies no endorsement by UT Austin.
 header freezes the three canonical analysis artifacts by SHA-256. The verifier checks those hashes
 before loading any reported result. If you want to check a claim, start there.
 
+**Licensing.** `LICENSE` (MIT) covers the original analysis code only. It does not license the
+third-party data caches, the source-study supplements, the manuscript, or the figures — see
+`LICENSES.md` and `THIRD_PARTY_NOTICES.md`.
+
 **Source data are not redistributed.** The four Viéitez supplementary workbooks carry their own terms
 and are not in this repository. `SOURCE_RETRIEVAL.md` gives the Europe PMC record, the exact filenames,
 and their checksums, and the pipeline fetches and verifies them for you.
