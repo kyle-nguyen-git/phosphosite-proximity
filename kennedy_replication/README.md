@@ -1,7 +1,7 @@
 # Human replication — Kennedy 2024
 
 The second cohort in Results §2.7 of the manuscript. Human Jurkat and HEK293 cells, phosphosites altered
-by base editing, proliferation readout.
+by base editing. **Two screens with different readouts, not one proliferation endpoint:** Supplementary Table 3 compares sgRNA abundance before and after ABE8e introduction, a fitness readout; Supplementary Table 4 compares GFP-high against GFP-low bins, an NFAT reporter-activity readout. Every "either screen" figure is a union across two phenotypes. See `NUMBERS.md` Section 22.
 
 Kennedy PH, Alborzian Deh Sheikh A, Balakar M, et al. Post-translational modification-centric base
 editor screens to assess phosphorylation site functionality in high throughput. *Nature Methods*

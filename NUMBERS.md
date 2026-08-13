@@ -1014,7 +1014,11 @@ than reimplemented.
 
 Kennedy PH, Alborzian Deh Sheikh A, Balakar M, et al. "Post-translational modification-centric base
 editor screens to assess phosphorylation site functionality in high throughput." *Nature Methods* 2024.
-doi:10.1038/s41592-024-02256-z. PMC11804830. Human Jurkat and HEK293; proliferation readout.
+doi:10.1038/s41592-024-02256-z. PMC11804830. Human Jurkat and HEK293. **Two screens with different
+readouts, not one proliferation endpoint** (corrected 2026-08-13 19:05 CDT, see Section 22.1): Supplementary
+Table 3 is sgRNA abundance before against after ABE8e introduction, a fitness readout; Supplementary
+Table 4 is GFP-high against GFP-low bins, an NFAT reporter-activity readout. Everything in this
+section that says "either screen" is a union across those two phenotypes.
 **An earlier scan of this vault attributed the screen to "Coelho et al." That attribution is wrong and
 must not be repeated.**
 
@@ -1194,9 +1198,12 @@ Three, all binding.
 Found 2026-08-13 while assessing the work for journal submission. Computed by
 `kennedy_replication/endpoint_characterisation.py`, output `endpoint_characterisation.json`.
 
-`analyse.py` calls a site affected at `p3 < 0.05 or p4 < 0.05`. Those columns are **the minimum of
-MAGeCK's two one-sided gene-level p-values**, `neg|p-value` and `pos|p-value` — not a two-sided
-p-value. **1,428 of the 1,475 cohort rows reproduce `min(neg, pos)` exactly**; 47 do not.
+`analyse.py` calls a site affected at `p3 < 0.05 or p4 < 0.05`. Those columns **track** the minimum of
+MAGeCK's two one-sided gene-level p-values, `neg|p-value` and `pos|p-value`, on most rows but **not
+all**: `p3` reproduces it on **1,428 of 1,475** and `p4` on **1,372 of 1,475** (Section 22.2). A
+minimum of two one-sided tests is not a two-sided p-value. The construction of the remaining 47 and
+103 rows is not established, so every figure below describes the released columns, not a definition
+verified row by row.
 
 A minimum of two one-sided tests is distributed roughly U(0, 0.5) under the null, so a 0.05 cut-off
 admits about twice the nominal rate. Measured on the screens' own non-control rows:
@@ -1206,9 +1213,10 @@ admits about twice the nominal rate. Measured on the screens' own non-control ro
 | Screen 3 | 7,217 | 0.244700 | **0.105307** | **2.106x** |
 | Screen 4 | 7,217 | 0.239370 | **0.099210** | **1.984x** |
 
-**The direction of the error flatters the paper.** Non-differential label noise attenuates AUC toward
-0.5, so an inflated false-positive rate among affected sites makes a near-chance result easier to
-obtain. This must be stated wherever the human null is reported.
+**The direction of the error flatters the paper, under a stated condition.** Label noise attenuates AUC
+toward 0.5 **only if it is non-differential** — unrelated to distance. Errors that depend on distance
+can move an AUC either way. Nothing here establishes which holds, so the attenuation reading must
+carry that condition every time it is used. This must be stated wherever the human null is reported.
 
 #### Endpoint sensitivity on the screen's own lethal controls
 
@@ -1357,3 +1365,87 @@ standard errors, which is the scenario the primary estimate sits in.
 reason the reported intervals are wrong, since the two differ by less than the Monte Carlo error at
 four of five scenarios; or extending these coverage figures to the human cohort, whose cluster count
 and size distribution differ and which was not simulated.
+
+## 22. Current-Manuscript Human-Endpoint Audit `[AUDIT]`
+
+Added 2026-08-13 after the 24-page two-cohort manuscript was reviewed against the Kennedy source
+workbook and current code. This section corrects the description of Section 20 without changing the
+stored AUCs. The findings are source-definition and reproducibility failures that must be resolved
+before a new human estimate is treated as authoritative.
+
+### 22.1 The two screens measure different phenotypes
+
+The Kennedy workbook states:
+
+- Supplementary Table 3: differential sgRNA abundance **before versus after ABE8e introduction**, a
+  proliferation/survival or cell-fitness screen.
+- Supplementary Table 4: differential sgRNA abundance **between GFP-high and GFP-low bins**, an NFAT
+  reporter-activity screen.
+
+The manuscript's “either screen” label unions two distinct outcomes. It is not one proliferation
+endpoint. Any revised analysis must report the two screens separately before considering a declared
+union.
+
+### 22.2 The stored columns do not reproduce the claimed directional minimum
+
+Direct comparison of the 1,475 distance-bearing rows in `kennedy_analysis.csv` against the two MAGeCK
+gene-summary sheets gives:
+
+| Stored column | Equals `min(neg|p-value, pos|p-value)` | Does not equal it |
+|---|---:|---:|
+| `p3` | **1,428** | **47** |
+| `p4` | **1,372** | **103** |
+
+Reconstructing both directional minima from the source workbook changes the raw `<0.05` union from
+**293 to 301** positives and the `<0.025` union from **145 to 148**. The source column's actual
+construction must be established before either it or a reconstruction is used. The current AUCs are
+valid descriptions of the stored columns; they are not reproducible under the manuscript's stated
+column definition.
+
+### 22.3 The current “two-sided” repair does not correct the two-screen union
+
+`endpoint_characterisation.py` defines a repaired call as `p3 < 0.025 OR p4 < 0.025`. Even if each
+stored column were the minimum of two directional tests, this corrects direction within a screen and
+then unions two screens without correcting that second multiplicity layer. Under independent null
+screens, two per-screen 0.05 calls have a union probability of `1 - 0.95^2 = 0.0975`; the observed
+stored-column call rate is **145/1,475 = 0.0983**. This is not a 5% site-level endpoint.
+
+The paper must not call this a valid or corrected two-sided endpoint. A revision needs screen-specific
+endpoints or a declared correction across both direction and screen, followed by recomputation of the
+AUC, interval, controls, and precision statement.
+
+### 22.4 Verification and reconstruction scope
+
+The current human build cascade is **7,425** source phosphosite rows, **6,968** parseable S/T/Y sites,
+**6,950** reviewed-UniProt mappings, **6,148** canonical-residue matches, **1,595**
+annotation-eligible sites in **818** proteins, and **1,475** sites in **793** proteins with a distance.
+The first five stages are recorded in `second_dataset_scan/C_deep_mutational_scanning.md`; the final
+cohort and protein count are recorded in `kennedy_replication/kennedy_results.json`. These counts
+describe the present files and do not repair the missing upstream candidate-table generator.
+
+The **69/69** report binds the older 11-page
+`phase0_calibration/manuscript/preprint_draft_v1.pdf`, not the current 24-page
+`phosphosite_proximity_preprint.pdf`. Section 20 is outside the three frozen yeast hashes. The earlier
+clean-room report also targets the release archive that predates the Kennedy scripts.
+
+The human cohort is not end-to-end rebuildable from the current tree:
+
+- `kennedy_replication/build_cohort.py` starts from
+  `second_dataset_scan/kennedy2024_cohort_candidate.csv`, but no script creating that candidate table
+  is present;
+- UniProt and AlphaFold inputs are cached without a frozen source manifest for this cohort;
+- the builder retrieves canonical sequences but does not use them to validate the cached model rows;
+- only the estimator is imported from the yeast analysis module, so “same procedure and same code” is
+  not an accurate description of the cohort build.
+
+### 22.5 Additions to the claim rules
+
+Not allowed until the audit is resolved:
+
+- describing both Kennedy screens as proliferation;
+- stating that every `p3` and `p4` value is `min(neg|p-value, pos|p-value)`;
+- calling `p3 < 0.025 OR p4 < 0.025` a valid or corrected two-sided site-level test;
+- calling the human result a like-for-like replication without reporting screen-specific results and
+  harmonizing the annotation-coincident rule;
+- stating that the 69-check verifier or prior clean-room report covers the current humanized paper;
+- stating that the human cohort uses the same construction procedure and code as yeast.

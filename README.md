@@ -4,7 +4,7 @@ Distance from a phosphosite to the nearest annotated active or binding residue, 
 
 Code and derived data for a two-author exploratory secondary analysis of two published phosphosite
 mutational screens: a yeast growth screen (Viéitez et al. 2022) and an independent human base-editor
-proliferation screen (Kennedy et al. 2024).
+base-editor experiment (Kennedy et al. 2024), which comprises two screens with different readouts — a fitness readout and an NFAT reporter-activity readout.
 
 **What this measures.** For each altered phosphosite, we compute the shortest distance between
 non-hydrogen atoms of that residue and the nearest residue UniProt annotates as an active site
@@ -13,7 +13,7 @@ own. The analysis asks what that distance measurement is made of and how well it
 from unaffected sites. It is computed twice by the same code: on 163 alanine substitutions in 48 yeast
 proteins, where a site counts as affected when the source reported a growth change in at least one
 condition in either direction, and on 1,475 base-edited sites in 793 human proteins with a
-proliferation readout. `kennedy_replication/` holds the second cohort and its own README; read that
+two screens with different readouts. `kennedy_replication/` holds the second cohort and its own README; read that
 README before using any number from it, because the human screen's released per-site value is not a
 two-sided p-value.
 
