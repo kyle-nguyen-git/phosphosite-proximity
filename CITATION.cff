@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "This is a release candidate. After public archiving, cite the immutable archive and the Viéitez et al. source study."
+title: "Phase 0.5: structural-distance calibration against yeast phosphomutant growth-screen phenotypes"
+type: software
+authors:
+  - family-names: Nguyen
+    given-names: Kyle
+  - family-names: Marchenko
+    given-names: Arkady
+version: 0.5.0-rc.1
+keywords:
+  - phosphorylation
+  - AlphaFold
+  - yeast
+  - structural bioinformatics
+  - reproducibility
+references:
+  - type: article
+    title: "High-throughput functional characterization of protein phosphorylation sites in yeast"
+    authors:
+      - family-names: Vieitez
+        given-names: Cristina
+    doi: "10.1038/s41587-021-01051-x"
+    year: 2022

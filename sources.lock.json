@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "retrieval_date": "2026-07-29",
+  "source_article": {
+    "title": "High-throughput functional characterization of protein phosphorylation sites in yeast",
+    "authors_short": "Vieitez et al.",
+    "doi": "10.1038/s41587-021-01051-x",
+    "pmcid": "PMC7612524",
+    "article_url": "https://europepmc.org/articles/PMC7612524",
+    "terms_url": "https://www.springernature.com/gp/open-research/policies/accepted-manuscript-terms"
+  },
+  "supplementary_archive": {
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7612524/supplementaryFiles",
+    "observed_sha256": "d23378097d2183dac3067cd5e48908f51f16bd14c499922e610c2cd753908176",
+    "redistributed": false,
+    "required_files": [
+      {
+        "name": "EMS132528-supplement-Supplementary_Data_1.xlsx",
+        "sha256": "210d682a1fbcee85e8ba8dc1bf7681651c438a08fa6561a5a1778e72365455fe"
+      },
+      {
+        "name": "EMS132528-supplement-Supplementary_Data_3.xlsx",
+        "sha256": "6303ff58fa6d89e36cfbb43e1ce46c1b6206dc2a09ecede41b18ef2b029f3f70"
+      },
+      {
+        "name": "EMS132528-supplement-Supplementary_Data_6.xlsx",
+        "sha256": "43e8e7e2ef3351efce880b4c405b6bd089e4b6a006ddf837d4d8d7d731b4b551"
+      },
+      {
+        "name": "EMS132528-supplement-Supplementary_Data_8.xlsx",
+        "sha256": "b699de74199f41ea00c7e3ee4d4839de322086190674e5619f16ed5447d734d9"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+cohort,filter,cutoff_A,n_within,n_positive_within,rate_within,n_beyond,n_positive_beyond,rate_beyond,odds_ratio_descriptive
+primary_exclude_annotation_coincident,all substitutions,5,10,4,0.4,153,75,0.49019607843137253,0.6933333333333334
+primary_exclude_annotation_coincident,all substitutions,8,20,12,0.6,143,67,0.46853146853146854,1.7014925373134329
+primary_exclude_annotation_coincident,all substitutions,10,30,17,0.5666666666666667,133,62,0.46616541353383456,1.4975186104218363
+primary_exclude_annotation_coincident,all substitutions,15,43,24,0.5581395348837209,120,55,0.4583333333333333,1.492822966507177
+primary_exclude_annotation_coincident,|dpos| <= 2 excluded,5,4,2,0.5,153,75,0.49019607843137253,1.04
+primary_exclude_annotation_coincident,|dpos| <= 2 excluded,8,14,10,0.7142857142857143,143,67,0.46853146853146854,2.8358208955223883
+primary_exclude_annotation_coincident,|dpos| <= 2 excluded,10,24,15,0.625,133,62,0.46616541353383456,1.9086021505376345
+primary_exclude_annotation_coincident,|dpos| <= 2 excluded,15,37,22,0.5945945945945946,120,55,0.4583333333333333,1.7333333333333334
+inclusive_sensitivity,all substitutions,5,13,7,0.5384615384615384,153,75,0.49019607843137253,1.2133333333333334
+inclusive_sensitivity,all substitutions,8,23,15,0.6521739130434783,143,67,0.46853146853146854,2.126865671641791
+inclusive_sensitivity,all substitutions,10,33,20,0.6060606060606061,133,62,0.46616541353383456,1.7617866004962779
+inclusive_sensitivity,all substitutions,15,46,27,0.5869565217391305,120,55,0.4583333333333333,1.6794258373205742
+inclusive_sensitivity,|dpos| <= 2 excluded,5,4,2,0.5,153,75,0.49019607843137253,1.04
+inclusive_sensitivity,|dpos| <= 2 excluded,8,14,10,0.7142857142857143,143,67,0.46853146853146854,2.8358208955223883
+inclusive_sensitivity,|dpos| <= 2 excluded,10,24,15,0.625,133,62,0.46616541353383456,1.9086021505376345
+inclusive_sensitivity,|dpos| <= 2 excluded,15,37,22,0.5945945945945946,120,55,0.4583333333333333,1.7333333333333334

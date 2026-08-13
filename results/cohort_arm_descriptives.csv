@@ -1,0 +1,3 @@
+cohort,n_sites,n_proteins,n_positive,positive_rate,median_distance_positive,median_distance_negative,median_distance,median_plddt,median_rsa,serine_n,threonine_n,tyrosine_n,corr_logdistance_plddt
+exclude_annotation_coincident,163,48,79,0.48466257668711654,26.23292350769043,31.827170372009277,28.930192947387695,46.5,0.5705321159845074,107,40,16,-0.5407849478745596
+include_annotation_coincident,166,50,82,0.4939759036144578,25.756680488586426,31.827170372009277,28.520400047302246,49.44,0.5693254710186213,109,41,16,-0.5615604303158876

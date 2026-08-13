@@ -1,0 +1,98 @@
+{
+  "roadmap_item": "RR-16",
+  "estimand": "AUC(-min_dist_A -> screen-positive label), primary cohort exclude_annotation_coincident",
+  "n_sites": 163,
+  "n_proteins": 48,
+  "n_positive": 79,
+  "n_negative": 84,
+  "seed": 20260728,
+  "n_permutations": 20000,
+  "observed_auc_recomputed": 0.5268233875828813,
+  "observed_auc_frozen_statistics_json": 0.5268233875828813,
+  "observed_auc_as_quoted_in_task": 0.5268234,
+  "observed_auc_protein_cluster_ci": {
+    "estimate": 0.5268233875828813,
+    "ci_low": 0.4161064593848292,
+    "ci_high": 0.6305511618234994,
+    "retained_draws": 20000,
+    "nominal_draws": 20000,
+    "seed": 20260728,
+    "unit": "UniProt accession"
+  },
+  "permutation_a_unrestricted": {
+    "scheme": "unrestricted_across_163_substitutions",
+    "n_permutations": 20000,
+    "null_mean": 0.5001785940325497,
+    "null_sd": 0.04524083158115652,
+    "null_p2_5": 0.41063517179023507,
+    "null_p97_5": 0.5883062085593731,
+    "null_min": 0.32881253767329716,
+    "null_max": 0.6832429174201327,
+    "observed_auc": 0.5268233875828813,
+    "p_two_sided_about_0.5_addone": 0.5547722613869307,
+    "p_two_sided_about_0.5_raw": 0.55475,
+    "n_ge_about_0.5": 11095,
+    "p_two_sided_about_null_mean_addone": 0.5570221488925554,
+    "p_two_sided_about_null_mean_raw": 0.557,
+    "n_ge_about_null_mean": 11140,
+    "z_about_null_mean": 0.5889545487804321
+  },
+  "permutation_b_within_protein": {
+    "scheme": "within_protein_48_clusters",
+    "n_permutations": 20000,
+    "null_mean": 0.5119963381555154,
+    "null_sd": 0.030478444626320225,
+    "null_p2_5": 0.45313441832429174,
+    "null_p97_5": 0.5726341169379144,
+    "null_min": 0.39828209764918626,
+    "null_max": 0.6424050632911392,
+    "observed_auc": 0.5268233875828813,
+    "p_two_sided_about_0.5_addone": 0.4136793160341983,
+    "p_two_sided_about_0.5_raw": 0.41365,
+    "n_ge_about_0.5": 8273,
+    "p_two_sided_about_null_mean_addone": 0.6300184990750463,
+    "p_two_sided_about_null_mean_raw": 0.63,
+    "n_ge_about_null_mean": 12600,
+    "z_about_null_mean": 0.48647657743537637,
+    "n_protein_clusters": 48,
+    "n_clusters_with_both_labels": 23,
+    "n_clusters_single_label_fixed": 25,
+    "n_sites_in_variable_clusters": 112
+  },
+  "declared_post_hoc_families": {
+    "components": {
+      "confidence strata x cohorts": 22,
+      "PAE grids x cohorts": 216,
+      "feature definitions": 5,
+      "cohort/residue sensitivities": 7,
+      "continuous outcomes": 5
+    },
+    "total_estimates": 255
+  },
+  "family_scale_vs_null": {
+    "unrestricted": {
+      "expected_false_positives_at_p_lt_0.05": 12.75,
+      "expected_count_as_extreme_as_observed": 142.03500000000003,
+      "median_max_abs_deviation_over_k_independent_nulls": 0.13518362300034822,
+      "p95_max_abs_deviation_over_k_independent_nulls": 0.15832701411204905,
+      "implied_max_auc_median": 0.635362217032898,
+      "implied_max_auc_p95": 0.6585056081445988
+    },
+    "within_protein": {
+      "expected_false_positives_at_p_lt_0.05": 12.75,
+      "expected_count_as_extreme_as_observed": 160.65,
+      "median_max_abs_deviation_over_k_independent_nulls": 0.09152988245931282,
+      "p95_max_abs_deviation_over_k_independent_nulls": 0.11245806713840868,
+      "implied_max_auc_median": 0.6035262206148282,
+      "implied_max_auc_p95": 0.624454405293924
+    }
+  },
+  "r1_reported_unverified": {
+    "sd": 0.045,
+    "range": [
+      0.41,
+      0.588
+    ],
+    "p": 0.55
+  }
+}

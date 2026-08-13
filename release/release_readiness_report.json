@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "scope": "technical release readiness only; human gates remain separate",
+  "checks": {
+    "frozen_hashes_match_numbers": true,
+    "scientific_verifier_passes": true,
+    "third_party_cache_verifier_passes": true,
+    "workbook_sheet_names_exact": true,
+    "workbook_one_table_per_sheet": true,
+    "workbook_rows_match_csvs": true,
+    "workbook_has_no_formulas_or_error_tokens": true,
+    "pdf_and_render_manifest_agree": true,
+    "requirements_indirection_is_consistent": true,
+    "required_release_documents_exist": true,
+    "citation_metadata_shared_fields_agree_and_are_provisional": true,
+    "all_internal_review_reports_and_response_log_exist": true
+  },
+  "failed": [],
+  "freeze_hash_checks": {
+    "results/analysis_final.csv": true,
+    "phase0_5/results/phase0_5_statistics.json": true,
+    "results/statistics.json": true
+  },
+  "scientific_verifier": {
+    "status": "PASS",
+    "check_count": 66
+  },
+  "third_party_cache": {
+    "manifest_file_count": 152,
+    "alphafold_accessions": 50
+  },
+  "workbook": {
+    "path": "phase0_5/results/phase0_5_supplement.xlsx",
+    "sha256": "91d90fa1a7bc04aa1d18fc1019323ff2ae5874c3fe376e7f72ae7e556e846b42",
+    "sheet_names_exact": true,
+    "table_count": 22,
+    "one_table_per_sheet": true,
+    "csv_row_counts_match": true,
+    "csv_row_checks": {
+      "Arm Estimates": true,
+      "Arm Cutoffs": true,
+      "Arm Descriptives": true,
+      "Confidence Strata": true,
+      "Regression Models": true,
+      "Logistic Diagnostics": true,
+      "Continuous Outcomes": true,
+      "Predictor Benchmark": true,
+      "Feature Definitions": true,
+      "Feature Evidence": true,
+      "Primary Analysis Data": true,
+      "Inclusive Analysis Data": true,
+      "Replicate Audit": true,
+      "PAE Manifest": true,
+      "Mismatch Audit": true,
+      "Cohort Sensitivity": true,
+      "PAE at 10A": true,
+      "PAE Filter Grid": true,
+      "SIFT Comparator": true,
+      "Within Protein": true,
+      "Residue Classes": true
+    },
+    "formula_cells": [],
+    "error_cells": []
+  },
+  "pdf": {
+    "path": "manuscript/preprint_draft_v1.pdf",
+    "sha256": "ba484a32af7322843d0378fd2078b0a0689849d9edf8ec29459e25bf3e729574",
+    "pages": 11
+  },
+  "archive": null,
+  "human_gates": {
+    "author_signoff": "pending Kyle Nguyen signature",
+    "independent_human_methods_review": "pending eligible reviewer"
+  }
+}

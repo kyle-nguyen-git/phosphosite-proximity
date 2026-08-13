@@ -1,0 +1,13 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+data/PMC7612524_supplementary.zip
+data/EMS132528-supplement-*
+phase0_5/results/*.inspect.ndjson
+phase0_5/verification/workbook_full_qa/
+tools/node_modules
+release/build/
+release/dist/
+release/clean_room_workspace/

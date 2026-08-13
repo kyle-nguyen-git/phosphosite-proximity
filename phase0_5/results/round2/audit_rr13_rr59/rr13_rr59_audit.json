@@ -1,0 +1,258 @@
+{
+  "frozen_hashes_verified": true,
+  "seed_base": 20260728,
+  "n_primary_boot": 200000,
+  "n_sensitivity_boot": 20000,
+  "n_corr_boot": 4000,
+  "n_wild": 9999,
+  "rr13_total_interval_records": 217,
+  "rr13_records_with_shortfall": 12,
+  "rr13_records_touching_0_or_1": 4,
+  "rr13_resampling_records_without_stored_retained_count": 62,
+  "rr13_records_retaining_full_200000": 28,
+  "rr13_shortfall_detail": [
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/confidence_strata/exclude_annotation_coincident[4]",
+      "quantity": "exclude_annotation_coincident[4]",
+      "nominal_draws": 20000,
+      "retained_draws": 19999,
+      "shortfall": 1,
+      "ci_low": 0.37074235288521007,
+      "ci_high": 0.7464123376623376,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/confidence_strata/exclude_annotation_coincident[10]",
+      "quantity": "exclude_annotation_coincident[10]",
+      "nominal_draws": 20000,
+      "retained_draws": 19999,
+      "shortfall": 1,
+      "ci_low": 0.4807692307692308,
+      "ci_high": 0.8640098765432097,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/confidence_strata/include_annotation_coincident[5]",
+      "quantity": "include_annotation_coincident[5]",
+      "nominal_draws": 20000,
+      "retained_draws": 19997,
+      "shortfall": 3,
+      "ci_low": 0.5357142857142857,
+      "ci_high": 0.8421052631578947,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/confidence_strata/include_annotation_coincident[10]",
+      "quantity": "include_annotation_coincident[10]",
+      "nominal_draws": 20000,
+      "retained_draws": 19999,
+      "shortfall": 1,
+      "ci_low": 0.553030303030303,
+      "ci_high": 0.9027777777777778,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/cohort_sensitivity[5]",
+      "quantity": "cohort_sensitivity[5]",
+      "nominal_draws": 20000,
+      "retained_draws": 19335,
+      "shortfall": 665,
+      "ci_low": 0.2718831168831169,
+      "ci_high": 1.0,
+      "endpoint_touches_0_or_1": "high=1"
+    },
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/residue_class_sensitivity[2]",
+      "quantity": "residue_class_sensitivity[2]",
+      "nominal_draws": 20000,
+      "retained_draws": 19404,
+      "shortfall": 596,
+      "ci_low": 0.26666666666666666,
+      "ci_high": 1.0,
+      "endpoint_touches_0_or_1": "high=1"
+    },
+    {
+      "source_file": "phase0_5/results/cohort_sensitivity.csv",
+      "record_path": "row 5: primary_tyrosine_only | 16",
+      "quantity": "estimate",
+      "nominal_draws": 20000,
+      "retained_draws": 19335,
+      "shortfall": 665,
+      "ci_low": 0.2718831168831169,
+      "ci_high": 1.0,
+      "endpoint_touches_0_or_1": "high=1"
+    },
+    {
+      "source_file": "phase0_5/results/confidence_strata.csv",
+      "record_path": "row 4: exclude_annotation_coincident | site_plddt_ge_90",
+      "quantity": "estimate",
+      "nominal_draws": 20000,
+      "retained_draws": 19999,
+      "shortfall": 1,
+      "ci_low": 0.37074235288521007,
+      "ci_high": 0.7464123376623376,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/confidence_strata.csv",
+      "record_path": "row 10: exclude_annotation_coincident | very_high_confidence_joint",
+      "quantity": "estimate",
+      "nominal_draws": 20000,
+      "retained_draws": 19999,
+      "shortfall": 1,
+      "ci_low": 0.4807692307692308,
+      "ci_high": 0.8640098765432097,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/confidence_strata.csv",
+      "record_path": "row 16: include_annotation_coincident | site_and_target_plddt_ge_90",
+      "quantity": "estimate",
+      "nominal_draws": 20000,
+      "retained_draws": 19997,
+      "shortfall": 3,
+      "ci_low": 0.5357142857142857,
+      "ci_high": 0.8421052631578947,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/confidence_strata.csv",
+      "record_path": "row 21: include_annotation_coincident | very_high_confidence_joint",
+      "quantity": "estimate",
+      "nominal_draws": 20000,
+      "retained_draws": 19999,
+      "shortfall": 1,
+      "ci_low": 0.553030303030303,
+      "ci_high": 0.9027777777777778,
+      "endpoint_touches_0_or_1": ""
+    },
+    {
+      "source_file": "phase0_5/results/residue_class_sensitivity.csv",
+      "record_path": "row 2: Y | 16",
+      "quantity": "estimate",
+      "nominal_draws": 20000,
+      "retained_draws": 19404,
+      "shortfall": 596,
+      "ci_low": 0.26666666666666666,
+      "ci_high": 1.0,
+      "endpoint_touches_0_or_1": "high=1"
+    }
+  ],
+  "rr13_endpoint_detail": [
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/cohort_sensitivity[5]",
+      "point_estimate": 0.6041666666666666,
+      "n_sites": 16,
+      "ci_low": 0.2718831168831169,
+      "ci_high": 1.0,
+      "retained_draws": 19335
+    },
+    {
+      "source_file": "phase0_5/results/phase0_5_statistics.json",
+      "record_path": "/residue_class_sensitivity[2]",
+      "point_estimate": 0.6041666666666666,
+      "n_sites": 16,
+      "ci_low": 0.26666666666666666,
+      "ci_high": 1.0,
+      "retained_draws": 19404
+    },
+    {
+      "source_file": "phase0_5/results/cohort_sensitivity.csv",
+      "record_path": "row 5: primary_tyrosine_only | 16",
+      "point_estimate": "0.6041666666666666",
+      "n_sites": "16",
+      "ci_low": 0.2718831168831169,
+      "ci_high": 1.0,
+      "retained_draws": 19335
+    },
+    {
+      "source_file": "phase0_5/results/residue_class_sensitivity.csv",
+      "record_path": "row 2: Y | 16",
+      "point_estimate": "0.6041666666666666",
+      "n_sites": "16",
+      "ci_low": 0.26666666666666666,
+      "ci_high": 1.0,
+      "retained_draws": 19404
+    }
+  ],
+  "rr59": {
+    "n_rows_oof": 163,
+    "n_positive": 79,
+    "models": [
+      {
+        "model": "constant_prevalence",
+        "features": "none",
+        "n_features": 0,
+        "split_averaged_estimate": 0.5,
+        "split_low_2.5pct": 0.5,
+        "split_high_97.5pct": 0.5,
+        "pooled_oof_auc_stored": 0.5,
+        "pooled_oof_auc_recomputed_frozen_estimator": 0.5,
+        "pooled_minus_split_averaged": 0.0,
+        "brier": 0.2497647634461214
+      },
+      {
+        "model": "distance_only",
+        "features": "logd",
+        "n_features": 1,
+        "split_averaged_estimate": 0.483676694194521,
+        "split_low_2.5pct": 0.4127008752537201,
+        "split_high_97.5pct": 0.5267466119493138,
+        "pooled_oof_auc_stored": 0.3925557564798071,
+        "pooled_oof_auc_recomputed_frozen_estimator": 0.3925557564798071,
+        "pooled_minus_split_averaged": -0.09112093771471386,
+        "brier": 0.2583952943656099
+      },
+      {
+        "model": "structural",
+        "features": "logd;plddt;rsa;pae_pair_max;log_n_annot",
+        "n_features": 5,
+        "split_averaged_estimate": 0.5579874728059712,
+        "split_low_2.5pct": 0.5185344009650704,
+        "split_high_97.5pct": 0.6066437347484296,
+        "pooled_oof_auc_stored": 0.5230560578661845,
+        "pooled_oof_auc_recomputed_frozen_estimator": 0.5230560578661845,
+        "pooled_minus_split_averaged": -0.03493141493978669,
+        "brier": 0.2588919486095939
+      },
+      {
+        "model": "published_annotations",
+        "features": "supp_is_disopred;age_ordinal;has_uniprot_domain;sift_ala_score_inv;PWM_nkinTop01",
+        "n_features": 5,
+        "split_averaged_estimate": 0.5896358604696592,
+        "split_low_2.5pct": 0.5558254359273878,
+        "split_high_97.5pct": 0.6398948737175367,
+        "pooled_oof_auc_stored": 0.5732368896925859,
+        "pooled_oof_auc_recomputed_frozen_estimator": 0.5732368896925859,
+        "pooled_minus_split_averaged": -0.016398970777073307,
+        "brier": 0.2524937893532241
+      },
+      {
+        "model": "combined",
+        "features": "logd;plddt;rsa;pae_pair_max;log_n_annot;supp_is_disopred;age_ordinal;has_uniprot_domain;sift_ala_score_inv;PWM_nkinTop01",
+        "n_features": 10,
+        "split_averaged_estimate": 0.5869982933996968,
+        "split_low_2.5pct": 0.5321894180819378,
+        "split_high_97.5pct": 0.6241394351860644,
+        "pooled_oof_auc_stored": 0.5688667872212176,
+        "pooled_oof_auc_recomputed_frozen_estimator": 0.5688667872212176,
+        "pooled_minus_split_averaged": -0.01813150617847914,
+        "brier": 0.2592420170952721
+      }
+    ]
+  },
+  "notes": [
+    "phase0_5/src/02_phase0_5_analysis.py bootstrap_auc returns draws=len(draws), the retained count after discarding single-class resamples. Every 'draws' value in phase0_5/results/ is therefore a genuine retained count.",
+    "src/03_analysis.py boot_auc returns only (point, lo, hi); results/statistics.json and results/cohort_arm_primary_estimates.csv write 'draws': N_PRIMARY_BOOT and 'naive_site_draws': N_PRIMARY_BOOT as literal constants (src/03_analysis.py lines 124, 129). Those 200000 entries are nominal, not measured retention.",
+    "src/03_analysis.py auc_other_predictors and sift_comparator store no draw count at all; their nominal count is N_SENSITIVITY_BOOT = 20000 by the boot_auc default.",
+    "phase0_5/results/sift_comparator_sensitivity.csv omits a draws column, but the same intervals in phase0_5_statistics.json carry draws=20000.",
+    "results/cohort_arm_statistics.json is byte-identical to results/statistics.json (sha256 57d02d5b...); its records are duplicates, not independent estimates."
+  ]
+}

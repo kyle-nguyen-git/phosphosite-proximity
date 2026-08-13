@@ -1,0 +1,7 @@
+arm,endpoint,n,proteins,positives,negatives,positive_rate,auc,ci_low,ci_high,ci_reportable,ci_suppressed_reason,nominal_draws,retained_draws,bootstrap_seed,resampling_unit
+primary_exclude_annotation_coincident,direction_agnostic_published,163,48,79,84,0.48466257668711654,0.5268233875828813,0.4161064593848292,0.6305511618234994,True,,20000,20000,20260728,UniProt accession
+primary_exclude_annotation_coincident,defect_specific,163,48,66,97,0.4049079754601227,0.5046860356138707,0.3955739419938941,0.6041666666666666,True,,20000,20000,20260728,UniProt accession
+primary_exclude_annotation_coincident,enhancement_specific,163,48,60,103,0.36809815950920244,0.5428802588996764,0.4344321265390728,0.6477138460583826,True,,20000,20000,20260728,UniProt accession
+inclusive_sensitivity,direction_agnostic_published,166,50,82,84,0.4939759036144578,0.5441347270615563,0.43452129948364887,0.6476594658373781,True,,20000,20000,20260728,UniProt accession
+inclusive_sensitivity,defect_specific,166,50,69,97,0.41566265060240964,0.5262214253697893,0.4183077030468355,0.6273125575265667,True,,20000,20000,20260728,UniProt accession
+inclusive_sensitivity,enhancement_specific,166,50,60,106,0.3614457831325301,0.5275157232704403,0.41694256215595576,0.6326467107873702,True,,20000,20000,20260728,UniProt accession

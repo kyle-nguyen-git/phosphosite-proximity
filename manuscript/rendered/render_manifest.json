@@ -1,0 +1,79 @@
+{
+  "pdf": "preprint_draft_v1.pdf",
+  "pdf_sha256": "ba484a32af7322843d0378fd2078b0a0689849d9edf8ec29459e25bf3e729574",
+  "page_count": 11,
+  "render_dpi": 144,
+  "pages": [
+    {
+      "page": 1,
+      "file": "page-01.png",
+      "bytes": 444019,
+      "sha256": "b3b47b74f6685a4698fa2fd9883cb6746def822e690cd4789720b703c2064cb2"
+    },
+    {
+      "page": 2,
+      "file": "page-02.png",
+      "bytes": 443577,
+      "sha256": "a7e9d09979a33853f3a6064d7fcbcf205c110da778d65b8de7bb3aa3d0a8a748"
+    },
+    {
+      "page": 3,
+      "file": "page-03.png",
+      "bytes": 519773,
+      "sha256": "7e17118daf01ddef6588f468f3af4a7f49d6e52a409ca273b8e775807f1911f6"
+    },
+    {
+      "page": 4,
+      "file": "page-04.png",
+      "bytes": 504724,
+      "sha256": "48dd0b2e0fcc3f82018592d9e09e7f006166d6dd577c8a022c6ab53a70893545"
+    },
+    {
+      "page": 5,
+      "file": "page-05.png",
+      "bytes": 300012,
+      "sha256": "487fcd6dd62506a9178e94e612e3d29a4dff41ccd7222fd72610f181614559cc"
+    },
+    {
+      "page": 6,
+      "file": "page-06.png",
+      "bytes": 440163,
+      "sha256": "7871269e463db245288a8f1a9878b6162d5ed315a9008dd257a55113e4847b8d"
+    },
+    {
+      "page": 7,
+      "file": "page-07.png",
+      "bytes": 478548,
+      "sha256": "8774e5aaecff684520f2d8834584205cc3cd01133bc35723493eccfec5590d36"
+    },
+    {
+      "page": 8,
+      "file": "page-08.png",
+      "bytes": 289693,
+      "sha256": "aff8466223aa9c861216072e97a9915537589541ec847d64e8808404f91976ee"
+    },
+    {
+      "page": 9,
+      "file": "page-09.png",
+      "bytes": 100540,
+      "sha256": "0e21efcd03fcb8c6240cff00eda671f11a4d2036e1e44bc2a1c37c863dc26069"
+    },
+    {
+      "page": 10,
+      "file": "page-10.png",
+      "bytes": 269385,
+      "sha256": "b4eefd3b7d3f5a7a4e44f036b6b257a64be680c254ab14a4f30c235fd4f3168d"
+    },
+    {
+      "page": 11,
+      "file": "page-11.png",
+      "bytes": 228956,
+      "sha256": "1a8ab5252269e6aa22fed05977a036250664280f95f8331a22c757eba3bfd715"
+    }
+  ],
+  "contact_sheet": {
+    "file": "contact-sheet.png",
+    "bytes": 1351136,
+    "sha256": "b58e44271c5307ad3aea9a80a1dafc74c8ed9c4b368cd3f3f36d76db042f3aa2"
+  }
+}

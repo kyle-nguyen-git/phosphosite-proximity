@@ -1,0 +1,821 @@
+acc,feat_type,feat_pos,desc
+P00359,Active site,150,Nucleophile
+P00359,Binding site,11,
+P00359,Binding site,12,
+P00359,Binding site,33,
+P00359,Binding site,120,
+P00359,Binding site,149,
+P00359,Binding site,150,
+P00359,Binding site,151,
+P00359,Binding site,180,
+P00359,Binding site,209,
+P00359,Binding site,210,
+P00359,Binding site,232,
+P00359,Binding site,314,
+P00359,Binding site,318,
+P00359,Site,177,Activates thiol group during catalysis
+P02829,Binding site,33,
+P02829,Binding site,37,
+P02829,Binding site,79,
+P02829,Binding site,84,
+P02829,Binding site,92,
+P02829,Binding site,98,
+P02829,Binding site,99,
+P02829,Binding site,100,
+P02829,Binding site,119,
+P02829,Binding site,120,
+P02829,Binding site,121,
+P02829,Binding site,122,
+P02829,Binding site,123,
+P02829,Binding site,124,
+P02829,Binding site,171,
+P02829,Binding site,380,
+P06782,Active site,177,Proton acceptor
+P06782,Binding site,61,
+P06782,Binding site,62,
+P06782,Binding site,63,
+P06782,Binding site,64,
+P06782,Binding site,65,
+P06782,Binding site,66,
+P06782,Binding site,67,
+P06782,Binding site,68,
+P06782,Binding site,69,
+P06782,Binding site,84,
+P08018,Active site,485,Proton acceptor
+P08018,Binding site,366,
+P08018,Binding site,367,
+P08018,Binding site,368,
+P08018,Binding site,369,
+P08018,Binding site,370,
+P08018,Binding site,371,
+P08018,Binding site,372,
+P08018,Binding site,373,
+P08018,Binding site,374,
+P08018,Binding site,389,
+P16387,Binding site,112,
+P16387,Binding site,138,
+P16387,Binding site,139,
+P16387,Binding site,177,
+P16387,Binding site,185,
+P16387,Binding site,187,
+P16387,Binding site,216,
+P16387,Binding site,217,
+P16387,Binding site,218,
+P16387,Binding site,245,
+P16387,Binding site,247,
+P16387,Binding site,312,
+P20449,Binding site,138,
+P20449,Binding site,139,
+P20449,Binding site,140,
+P20449,Binding site,141,
+P20449,Binding site,142,
+P20449,Binding site,143,
+P20449,Binding site,144,
+P20449,Binding site,145,
+P22204,Active site,300,Proton acceptor
+P22204,Binding site,183,
+P22204,Binding site,184,
+P22204,Binding site,185,
+P22204,Binding site,186,
+P22204,Binding site,187,
+P22204,Binding site,188,
+P22204,Binding site,189,
+P22204,Binding site,190,
+P22204,Binding site,191,
+P22204,Binding site,206,
+P23561,Active site,579,Proton acceptor
+P23561,Binding site,421,
+P23561,Binding site,422,
+P23561,Binding site,423,
+P23561,Binding site,424,
+P23561,Binding site,425,
+P23561,Binding site,426,
+P23561,Binding site,427,
+P23561,Binding site,428,
+P23561,Binding site,429,
+P23561,Binding site,444,
+P25037,Active site,110,Nucleophile
+P25037,Active site,697,Proton acceptor
+P12683,Active site,714,Charge relay system
+P12683,Active site,848,Charge relay system
+P12683,Active site,924,Charge relay system
+P12683,Active site,1020,Proton donor
+P12683,Binding site,720,
+P12683,Binding site,721,
+P12683,Binding site,722,
+P12683,Binding site,723,
+P12683,Binding site,724,
+P12683,Binding site,725,
+P12683,Binding site,726,
+P12683,Binding site,781,
+P12683,Binding site,782,
+P12683,Binding site,783,
+P12683,Binding site,808,
+P12683,Binding site,809,
+P12683,Binding site,810,
+P12683,Binding site,811,
+P12683,Binding site,812,
+P12683,Binding site,813,
+P12683,Binding site,814,
+P12683,Binding site,815,
+P12683,Binding site,816,
+P12683,Binding site,877,
+P12683,Binding site,878,
+P12683,Binding site,879,
+P12683,Binding site,1019,
+P12683,Binding site,1020,
+P12683,Binding site,1024,
+P12683,Binding site,1025,
+P11792,Active site,538,Proton acceptor
+P11792,Binding site,418,
+P11792,Binding site,419,
+P11792,Binding site,420,
+P11792,Binding site,421,
+P11792,Binding site,422,
+P11792,Binding site,423,
+P11792,Binding site,424,
+P11792,Binding site,425,
+P11792,Binding site,426,
+P11792,Binding site,441,
+P12684,Active site,710,Charge relay system
+P12684,Active site,844,Charge relay system
+P12684,Active site,920,Charge relay system
+P12684,Active site,1016,Proton donor
+P12684,Binding site,716,
+P12684,Binding site,717,
+P12684,Binding site,718,
+P12684,Binding site,719,
+P12684,Binding site,720,
+P12684,Binding site,721,
+P12684,Binding site,722,
+P12684,Binding site,777,
+P12684,Binding site,778,
+P12684,Binding site,779,
+P12684,Binding site,804,
+P12684,Binding site,805,
+P12684,Binding site,806,
+P12684,Binding site,807,
+P12684,Binding site,808,
+P12684,Binding site,809,
+P12684,Binding site,810,
+P12684,Binding site,811,
+P12684,Binding site,812,
+P12684,Binding site,873,
+P12684,Binding site,874,
+P12684,Binding site,875,
+P12684,Binding site,1015,
+P12684,Binding site,1016,
+P12684,Binding site,1020,
+P12684,Binding site,1021,
+P12688,Active site,470,Proton acceptor
+P12688,Binding site,353,
+P12688,Binding site,354,
+P12688,Binding site,355,
+P12688,Binding site,356,
+P12688,Binding site,357,
+P12688,Binding site,358,
+P12688,Binding site,359,
+P12688,Binding site,360,
+P12688,Binding site,361,
+P12688,Binding site,376,
+P16140,Binding site,381,
+P00924,Active site,212,Proton donor
+P00924,Active site,346,Proton acceptor
+P00924,Binding site,160,
+P00924,Binding site,169,
+P00924,Binding site,247,
+P00924,Binding site,296,
+P00924,Binding site,321,
+P00924,Binding site,373,
+P00924,Binding site,374,
+P00924,Binding site,375,
+P00924,Binding site,376,
+P00924,Binding site,397,
+P11986,Binding site,74,
+P11986,Binding site,75,
+P11986,Binding site,76,
+P11986,Binding site,77,
+P11986,Binding site,148,
+P11986,Binding site,184,
+P11986,Binding site,185,
+P11986,Binding site,195,
+P11986,Binding site,196,
+P11986,Binding site,198,
+P11986,Binding site,244,
+P11986,Binding site,245,
+P11986,Binding site,246,
+P11986,Binding site,247,
+P11986,Binding site,295,
+P11986,Binding site,296,
+P11986,Binding site,320,
+P11986,Binding site,321,
+P11986,Binding site,323,
+P11986,Binding site,354,
+P11986,Binding site,355,
+P11986,Binding site,356,
+P11986,Binding site,369,
+P11986,Binding site,409,
+P11986,Binding site,410,
+P11986,Binding site,438,
+P11986,Binding site,439,
+P13185,Active site,269,Proton acceptor
+P13185,Binding site,126,
+P13185,Binding site,127,
+P13185,Binding site,128,
+P13185,Binding site,129,
+P13185,Binding site,130,
+P13185,Binding site,131,
+P13185,Binding site,132,
+P13185,Binding site,133,
+P13185,Binding site,134,
+P13185,Binding site,149,
+P20604,Active site,115,Proton donor
+P20604,Binding site,53,
+P20604,Binding site,55,
+P20604,Binding site,82,
+P20604,Binding site,114,
+P20604,Binding site,164,
+P20604,Binding site,238,
+P32324,Binding site,26,
+P32324,Binding site,27,
+P32324,Binding site,28,
+P32324,Binding site,29,
+P32324,Binding site,30,
+P32324,Binding site,31,
+P32324,Binding site,32,
+P32324,Binding site,33,
+P32324,Binding site,158,
+P32324,Binding site,159,
+P32324,Binding site,160,
+P32324,Binding site,161,
+P32324,Binding site,213,
+P32324,Binding site,214,
+P32324,Binding site,215,
+P32328,Active site,292,Proton acceptor
+P32328,Binding site,175,
+P32328,Binding site,176,
+P32328,Binding site,177,
+P32328,Binding site,178,
+P32328,Binding site,179,
+P32328,Binding site,180,
+P32328,Binding site,181,
+P32328,Binding site,182,
+P32328,Binding site,183,
+P32328,Binding site,198,
+P04050,Binding site,67,
+P04050,Binding site,70,
+P04050,Binding site,77,
+P04050,Binding site,80,
+P04050,Binding site,107,
+P04050,Binding site,110,
+P04050,Binding site,148,
+P04050,Binding site,167,
+P04050,Binding site,481,
+P04050,Binding site,483,
+P04050,Binding site,485,
+P06244,Active site,210,Proton acceptor
+P06244,Binding site,93,
+P06244,Binding site,94,
+P06244,Binding site,95,
+P06244,Binding site,96,
+P06244,Binding site,97,
+P06244,Binding site,98,
+P06244,Binding site,99,
+P06244,Binding site,100,
+P06244,Binding site,101,
+P06244,Binding site,116,
+P12904,Binding site,42,
+P12904,Binding site,146,
+P12904,Binding site,166,
+P12904,Binding site,167,
+P12904,Binding site,168,
+P12904,Binding site,169,
+P12904,Binding site,195,
+P12904,Binding site,200,
+P12904,Binding site,221,
+P12904,Binding site,222,
+P12904,Binding site,291,
+P12904,Binding site,292,
+P12904,Binding site,293,
+P12904,Binding site,309,
+P12904,Binding site,310,
+P12904,Binding site,311,
+P12904,Binding site,312,
+P21965,Active site,164,Proton acceptor
+P21965,Binding site,41,
+P21965,Binding site,42,
+P21965,Binding site,43,
+P21965,Binding site,44,
+P21965,Binding site,45,
+P21965,Binding site,46,
+P21965,Binding site,47,
+P21965,Binding site,48,
+P21965,Binding site,49,
+P21965,Binding site,68,
+P22082,DNA binding,1446,A.T hook 1
+P22082,DNA binding,1447,A.T hook 1
+P22082,DNA binding,1448,A.T hook 1
+P22082,DNA binding,1449,A.T hook 1
+P22082,DNA binding,1450,A.T hook 1
+P22082,DNA binding,1451,A.T hook 1
+P22082,DNA binding,1452,A.T hook 1
+P22082,DNA binding,1453,A.T hook 1
+P22082,DNA binding,1454,A.T hook 1
+P22082,DNA binding,1455,A.T hook 1
+P22082,DNA binding,1456,A.T hook 1
+P22082,DNA binding,1502,A.T hook 2
+P22082,DNA binding,1503,A.T hook 2
+P22082,DNA binding,1504,A.T hook 2
+P22082,DNA binding,1505,A.T hook 2
+P22082,DNA binding,1506,A.T hook 2
+P22082,DNA binding,1507,A.T hook 2
+P22082,DNA binding,1508,A.T hook 2
+P22082,DNA binding,1509,A.T hook 2
+P22082,DNA binding,1510,A.T hook 2
+P22082,DNA binding,1511,A.T hook 2
+P22082,DNA binding,1512,A.T hook 2
+P22082,DNA binding,1513,A.T hook 2
+P22082,DNA binding,1516,A.T hook 3
+P22082,DNA binding,1517,A.T hook 3
+P22082,DNA binding,1518,A.T hook 3
+P22082,DNA binding,1519,A.T hook 3
+P22082,DNA binding,1520,A.T hook 3
+P22082,DNA binding,1521,A.T hook 3
+P22082,DNA binding,1522,A.T hook 3
+P22082,DNA binding,1523,A.T hook 3
+P22082,DNA binding,1524,A.T hook 3
+P22082,DNA binding,1525,A.T hook 3
+P22082,DNA binding,1526,A.T hook 3
+P22082,Binding site,792,
+P22082,Binding site,793,
+P22082,Binding site,794,
+P22082,Binding site,795,
+P22082,Binding site,796,
+P22082,Binding site,797,
+P22082,Binding site,798,
+P22082,Binding site,799,
+P25293,DNA binding,330,H-T-H motif
+P25293,DNA binding,331,H-T-H motif
+P25293,DNA binding,332,H-T-H motif
+P25293,DNA binding,333,H-T-H motif
+P25293,DNA binding,334,H-T-H motif
+P25293,DNA binding,335,H-T-H motif
+P25293,DNA binding,336,H-T-H motif
+P25293,DNA binding,337,H-T-H motif
+P25293,DNA binding,338,H-T-H motif
+P25293,DNA binding,339,H-T-H motif
+P25293,DNA binding,340,H-T-H motif
+P25293,DNA binding,341,H-T-H motif
+P25293,DNA binding,342,H-T-H motif
+P25293,DNA binding,343,H-T-H motif
+P25293,DNA binding,344,H-T-H motif
+P25293,DNA binding,345,H-T-H motif
+P25293,DNA binding,346,H-T-H motif
+P25293,DNA binding,347,H-T-H motif
+P25293,DNA binding,348,H-T-H motif
+P25293,DNA binding,349,H-T-H motif
+P25293,DNA binding,350,H-T-H motif
+P25293,DNA binding,351,H-T-H motif
+P25293,DNA binding,352,H-T-H motif
+P25293,DNA binding,353,H-T-H motif
+P25293,DNA binding,354,H-T-H motif
+P25293,DNA binding,355,H-T-H motif
+P25293,DNA binding,356,H-T-H motif
+P25333,Active site,449,Proton acceptor
+P25333,Binding site,322,
+P25333,Binding site,323,
+P25333,Binding site,324,
+P25333,Binding site,325,
+P25333,Binding site,326,
+P25333,Binding site,327,
+P25333,Binding site,328,
+P25333,Binding site,329,
+P25333,Binding site,330,
+P25333,Binding site,353,
+P25358,Site,255,Determines the chain length of the elongated VLCFA
+P32490,Active site,349,Proton acceptor
+P32490,Binding site,227,
+P32490,Binding site,228,
+P32490,Binding site,229,
+P32490,Binding site,230,
+P32490,Binding site,231,
+P32490,Binding site,232,
+P32490,Binding site,233,
+P32490,Binding site,234,
+P32490,Binding site,235,
+P32490,Binding site,250,
+P32561,Active site,151,
+P32801,Active site,259,Proton acceptor
+P32801,Binding site,94,
+P32801,Binding site,95,
+P32801,Binding site,96,
+P32801,Binding site,97,
+P32801,Binding site,98,
+P32801,Binding site,99,
+P32801,Binding site,100,
+P32801,Binding site,101,
+P32801,Binding site,102,
+P32801,Binding site,117,
+P40319,Site,266,Determines the chain length of the elongated VLCFA
+P43565,Active site,918,Proton acceptor
+P43565,Binding site,800,
+P43565,Binding site,801,
+P43565,Binding site,802,
+P43565,Binding site,803,
+P43565,Binding site,804,
+P43565,Binding site,805,
+P43565,Binding site,806,
+P43565,Binding site,807,
+P43565,Binding site,808,
+P43565,Binding site,823,
+P32485,Active site,144,Proton acceptor
+P32485,Binding site,29,
+P32485,Binding site,30,
+P32485,Binding site,31,
+P32485,Binding site,32,
+P32485,Binding site,33,
+P32485,Binding site,34,
+P32485,Binding site,35,
+P32485,Binding site,36,
+P32485,Binding site,37,
+P32485,Binding site,52,
+P32485,Binding site,156,covalent
+P32485,Binding site,161,covalent
+P32485,Binding site,205,covalent
+P53599,Active site,1390,Proton acceptor
+P53599,Binding site,1272,
+P53599,Binding site,1273,
+P53599,Binding site,1274,
+P53599,Binding site,1275,
+P53599,Binding site,1276,
+P53599,Binding site,1277,
+P53599,Binding site,1278,
+P53599,Binding site,1279,
+P53599,Binding site,1280,
+P53599,Binding site,1295,
+P38953,Binding site,43,
+P38953,Binding site,44,
+P38953,Binding site,45,
+P38953,Binding site,46,
+P38953,Binding site,47,
+P38953,Binding site,48,
+P38953,Binding site,49,
+P38953,Binding site,50,
+P47116,Active site,388,Proton acceptor
+P47116,Binding site,261,
+P47116,Binding site,262,
+P47116,Binding site,263,
+P47116,Binding site,264,
+P47116,Binding site,265,
+P47116,Binding site,266,
+P47116,Binding site,267,
+P47116,Binding site,268,
+P47116,Binding site,269,
+P47116,Binding site,285,
+P50947,Binding site,283,
+P50947,Binding site,285,
+P50947,Binding site,296,
+P50947,Binding site,301,
+P50947,Binding site,307,
+P50947,Binding site,310,
+P50947,Binding site,323,
+P50947,Binding site,326,
+P50947,Site,282,Histone H3K4me3 binding
+P50947,Site,293,Histone H3K4me3 binding
+P50947,Site,297,Histone H3K4me3 binding
+P50947,Site,305,Histone H3K4me3 binding
+P37263,Binding site,6,
+P37263,Binding site,9,
+P37263,Binding site,21,
+P37263,Binding site,25,
+P37263,Binding site,32,
+P37263,Binding site,35,
+P37263,Binding site,48,
+P37263,Binding site,51,
+P50873,Active site,289,Proton acceptor
+P50873,Binding site,170,
+P50873,Binding site,171,
+P50873,Binding site,172,
+P50873,Binding site,173,
+P50873,Binding site,174,
+P50873,Binding site,175,
+P50873,Binding site,176,
+P50873,Binding site,177,
+P50873,Binding site,178,
+P50873,Binding site,193,
+Q05958,DNA binding,43,Zn(2)-C6 fungal-type
+Q05958,DNA binding,44,Zn(2)-C6 fungal-type
+Q05958,DNA binding,45,Zn(2)-C6 fungal-type
+Q05958,DNA binding,46,Zn(2)-C6 fungal-type
+Q05958,DNA binding,47,Zn(2)-C6 fungal-type
+Q05958,DNA binding,48,Zn(2)-C6 fungal-type
+Q05958,DNA binding,49,Zn(2)-C6 fungal-type
+Q05958,DNA binding,50,Zn(2)-C6 fungal-type
+Q05958,DNA binding,51,Zn(2)-C6 fungal-type
+Q05958,DNA binding,52,Zn(2)-C6 fungal-type
+Q05958,DNA binding,53,Zn(2)-C6 fungal-type
+Q05958,DNA binding,54,Zn(2)-C6 fungal-type
+Q05958,DNA binding,55,Zn(2)-C6 fungal-type
+Q05958,DNA binding,56,Zn(2)-C6 fungal-type
+Q05958,DNA binding,57,Zn(2)-C6 fungal-type
+Q05958,DNA binding,58,Zn(2)-C6 fungal-type
+Q05958,DNA binding,59,Zn(2)-C6 fungal-type
+Q05958,DNA binding,60,Zn(2)-C6 fungal-type
+Q05958,DNA binding,61,Zn(2)-C6 fungal-type
+Q05958,DNA binding,62,Zn(2)-C6 fungal-type
+Q05958,DNA binding,63,Zn(2)-C6 fungal-type
+Q05958,DNA binding,64,Zn(2)-C6 fungal-type
+Q05958,DNA binding,65,Zn(2)-C6 fungal-type
+Q05958,DNA binding,66,Zn(2)-C6 fungal-type
+Q05958,DNA binding,67,Zn(2)-C6 fungal-type
+Q05958,DNA binding,68,Zn(2)-C6 fungal-type
+Q05958,DNA binding,69,Zn(2)-C6 fungal-type
+Q05958,DNA binding,70,Zn(2)-C6 fungal-type
+Q05958,DNA binding,71,Zn(2)-C6 fungal-type
+Q05958,DNA binding,72,Zn(2)-C6 fungal-type
+Q05958,DNA binding,73,Zn(2)-C6 fungal-type
+Q12151,DNA binding,50,Zn(2)-C6 fungal-type
+Q12151,DNA binding,51,Zn(2)-C6 fungal-type
+Q12151,DNA binding,52,Zn(2)-C6 fungal-type
+Q12151,DNA binding,53,Zn(2)-C6 fungal-type
+Q12151,DNA binding,54,Zn(2)-C6 fungal-type
+Q12151,DNA binding,55,Zn(2)-C6 fungal-type
+Q12151,DNA binding,56,Zn(2)-C6 fungal-type
+Q12151,DNA binding,57,Zn(2)-C6 fungal-type
+Q12151,DNA binding,58,Zn(2)-C6 fungal-type
+Q12151,DNA binding,59,Zn(2)-C6 fungal-type
+Q12151,DNA binding,60,Zn(2)-C6 fungal-type
+Q12151,DNA binding,61,Zn(2)-C6 fungal-type
+Q12151,DNA binding,62,Zn(2)-C6 fungal-type
+Q12151,DNA binding,63,Zn(2)-C6 fungal-type
+Q12151,DNA binding,64,Zn(2)-C6 fungal-type
+Q12151,DNA binding,65,Zn(2)-C6 fungal-type
+Q12151,DNA binding,66,Zn(2)-C6 fungal-type
+Q12151,DNA binding,67,Zn(2)-C6 fungal-type
+Q12151,DNA binding,68,Zn(2)-C6 fungal-type
+Q12151,DNA binding,69,Zn(2)-C6 fungal-type
+Q12151,DNA binding,70,Zn(2)-C6 fungal-type
+Q12151,DNA binding,71,Zn(2)-C6 fungal-type
+Q12151,DNA binding,72,Zn(2)-C6 fungal-type
+Q12151,DNA binding,73,Zn(2)-C6 fungal-type
+Q12151,DNA binding,74,Zn(2)-C6 fungal-type
+Q12151,DNA binding,75,Zn(2)-C6 fungal-type
+Q12151,DNA binding,76,Zn(2)-C6 fungal-type
+Q12151,DNA binding,77,Zn(2)-C6 fungal-type
+Q12151,DNA binding,78,Zn(2)-C6 fungal-type
+Q12151,DNA binding,79,Zn(2)-C6 fungal-type
+Q12151,DNA binding,80,Zn(2)-C6 fungal-type
+Q08972,Binding site,604,
+Q08972,Binding site,605,
+Q08972,Binding site,606,
+Q08972,Binding site,607,
+Q08972,Binding site,608,
+Q08972,Binding site,609,
+Q08972,Binding site,610,
+Q08972,Binding site,611,
+Q08972,Binding site,846,
+Q08972,Binding site,847,
+Q08972,Binding site,848,
+Q08972,Binding site,849,
+Q08972,Binding site,850,
+Q08972,Binding site,851,
+Q08972,Binding site,852,
+Q08972,Binding site,853,
+Q00772,Active site,153,Proton acceptor
+Q00772,Binding site,29,
+Q00772,Binding site,30,
+Q00772,Binding site,31,
+Q00772,Binding site,32,
+Q00772,Binding site,33,
+Q00772,Binding site,34,
+Q00772,Binding site,35,
+Q00772,Binding site,36,
+Q00772,Binding site,37,
+Q00772,Binding site,54,
+Q03330,Active site,173,Proton donor/acceptor
+Q03330,Binding site,177,
+Q03330,Binding site,178,
+Q03330,Binding site,179,
+Q03330,Binding site,184,
+Q03330,Binding site,185,
+Q03330,Binding site,186,
+Q03330,Binding site,187,
+Q03330,Binding site,188,
+Q03330,Binding site,189,
+Q03330,Binding site,190,
+Q03330,Binding site,216,
+Q03330,Binding site,217,
+Q03330,Binding site,218,
+Q03330,Binding site,219,
+Q03330,Site,173,Important for catalytic activity
+Q03656,Active site,294,Proton acceptor
+Q03656,Binding site,164,
+Q03656,Binding site,165,
+Q03656,Binding site,166,
+Q03656,Binding site,167,
+Q03656,Binding site,168,
+Q03656,Binding site,169,
+Q03656,Binding site,170,
+Q03656,Binding site,171,
+Q03656,Binding site,172,
+Q03656,Binding site,187,
+Q06385,Binding site,88,
+Q06385,Binding site,97,
+Q06385,Binding site,178,
+Q06385,Binding site,181,
+Q12464,Binding site,75,
+Q12464,Binding site,76,
+Q12464,Binding site,77,
+Q12464,Binding site,78,
+Q12464,Binding site,79,
+Q12464,Binding site,80,
+Q12464,Binding site,81,
+Q12464,Binding site,82,
+Q03435,DNA binding,94,HMG box
+Q03435,DNA binding,95,HMG box
+Q03435,DNA binding,96,HMG box
+Q03435,DNA binding,97,HMG box
+Q03435,DNA binding,98,HMG box
+Q03435,DNA binding,99,HMG box
+Q03435,DNA binding,100,HMG box
+Q03435,DNA binding,101,HMG box
+Q03435,DNA binding,102,HMG box
+Q03435,DNA binding,103,HMG box
+Q03435,DNA binding,104,HMG box
+Q03435,DNA binding,105,HMG box
+Q03435,DNA binding,106,HMG box
+Q03435,DNA binding,107,HMG box
+Q03435,DNA binding,108,HMG box
+Q03435,DNA binding,109,HMG box
+Q03435,DNA binding,110,HMG box
+Q03435,DNA binding,111,HMG box
+Q03435,DNA binding,112,HMG box
+Q03435,DNA binding,113,HMG box
+Q03435,DNA binding,114,HMG box
+Q03435,DNA binding,115,HMG box
+Q03435,DNA binding,116,HMG box
+Q03435,DNA binding,117,HMG box
+Q03435,DNA binding,118,HMG box
+Q03435,DNA binding,119,HMG box
+Q03435,DNA binding,120,HMG box
+Q03435,DNA binding,121,HMG box
+Q03435,DNA binding,122,HMG box
+Q03435,DNA binding,123,HMG box
+Q03435,DNA binding,124,HMG box
+Q03435,DNA binding,125,HMG box
+Q03435,DNA binding,126,HMG box
+Q03435,DNA binding,127,HMG box
+Q03435,DNA binding,128,HMG box
+Q03435,DNA binding,129,HMG box
+Q03435,DNA binding,130,HMG box
+Q03435,DNA binding,131,HMG box
+Q03435,DNA binding,132,HMG box
+Q03435,DNA binding,133,HMG box
+Q03435,DNA binding,134,HMG box
+Q03435,DNA binding,135,HMG box
+Q03435,DNA binding,136,HMG box
+Q03435,DNA binding,137,HMG box
+Q03435,DNA binding,138,HMG box
+Q03435,DNA binding,139,HMG box
+Q03435,DNA binding,140,HMG box
+Q03435,DNA binding,141,HMG box
+Q03435,DNA binding,142,HMG box
+Q03435,DNA binding,143,HMG box
+Q03435,DNA binding,144,HMG box
+Q03435,DNA binding,145,HMG box
+Q03435,DNA binding,146,HMG box
+Q03435,DNA binding,147,HMG box
+Q03435,DNA binding,148,HMG box
+Q03435,DNA binding,149,HMG box
+Q03435,DNA binding,150,HMG box
+Q03435,DNA binding,151,HMG box
+Q03435,DNA binding,152,HMG box
+Q03435,DNA binding,153,HMG box
+Q03435,DNA binding,154,HMG box
+Q03435,DNA binding,155,HMG box
+Q03435,DNA binding,156,HMG box
+Q03435,DNA binding,157,HMG box
+Q03435,DNA binding,158,HMG box
+Q03497,Active site,739,Proton acceptor
+Q03497,Binding site,626,
+Q03497,Binding site,627,
+Q03497,Binding site,628,
+Q03497,Binding site,629,
+Q03497,Binding site,630,
+Q03497,Binding site,631,
+Q03497,Binding site,632,
+Q03497,Binding site,633,
+Q03497,Binding site,634,
+Q03497,Binding site,649,
+Q03533,Active site,180,Proton acceptor
+Q03533,Binding site,45,
+Q03533,Binding site,46,
+Q03533,Binding site,47,
+Q03533,Binding site,48,
+Q03533,Binding site,49,
+Q03533,Binding site,50,
+Q03533,Binding site,51,
+Q03533,Binding site,52,
+Q03533,Binding site,53,
+Q03533,Binding site,68,
+Q04439,Binding site,129,
+Q04439,Binding site,130,
+Q04439,Binding site,131,
+Q04439,Binding site,132,
+Q04439,Binding site,133,
+Q04439,Binding site,134,
+Q04439,Binding site,135,
+Q04439,Binding site,136,
+Q12386,Binding site,502,
+Q12386,Binding site,503,
+Q12386,Binding site,504,
+Q12386,Binding site,505,
+Q03262,Active site,158,Phosphoserine intermediate
+Q03262,Binding site,57,
+Q03262,Binding site,61,
+Q03262,Binding site,158,
+Q03262,Binding site,159,
+Q03262,Binding site,168,
+Q03262,Binding site,325,
+Q03262,Binding site,327,
+Q03262,Binding site,329,
+Q03262,Binding site,330,
+Q03262,Binding site,404,
+Q03262,Binding site,428,
+Q03262,Binding site,429,
+Q03262,Binding site,430,
+Q03262,Binding site,442,
+Q12271,Active site,746,Proton acceptor
+Q12271,Binding site,576,
+Q12271,Binding site,606,
+Q12222,Active site,173,Proton acceptor
+Q12222,Binding site,47,
+Q12222,Binding site,48,
+Q12222,Binding site,49,
+Q12222,Binding site,50,
+Q12222,Binding site,51,
+Q12222,Binding site,52,
+Q12222,Binding site,53,
+Q12222,Binding site,54,
+Q12222,Binding site,55,
+Q12222,Binding site,74,
+Q04116,DNA binding,173,Homeobox
+Q04116,DNA binding,174,Homeobox
+Q04116,DNA binding,175,Homeobox
+Q04116,DNA binding,176,Homeobox
+Q04116,DNA binding,177,Homeobox
+Q04116,DNA binding,178,Homeobox
+Q04116,DNA binding,179,Homeobox
+Q04116,DNA binding,180,Homeobox
+Q04116,DNA binding,181,Homeobox
+Q04116,DNA binding,182,Homeobox
+Q04116,DNA binding,183,Homeobox
+Q04116,DNA binding,184,Homeobox
+Q04116,DNA binding,185,Homeobox
+Q04116,DNA binding,186,Homeobox
+Q04116,DNA binding,187,Homeobox
+Q04116,DNA binding,188,Homeobox
+Q04116,DNA binding,189,Homeobox
+Q04116,DNA binding,190,Homeobox
+Q04116,DNA binding,191,Homeobox
+Q04116,DNA binding,192,Homeobox
+Q04116,DNA binding,193,Homeobox
+Q04116,DNA binding,194,Homeobox
+Q04116,DNA binding,195,Homeobox
+Q04116,DNA binding,196,Homeobox
+Q04116,DNA binding,197,Homeobox
+Q04116,DNA binding,198,Homeobox
+Q04116,DNA binding,199,Homeobox
+Q04116,DNA binding,200,Homeobox
+Q04116,DNA binding,201,Homeobox
+Q04116,DNA binding,202,Homeobox
+Q04116,DNA binding,203,Homeobox
+Q04116,DNA binding,204,Homeobox
+Q04116,DNA binding,205,Homeobox
+Q04116,DNA binding,206,Homeobox
+Q04116,DNA binding,207,Homeobox
+Q04116,DNA binding,208,Homeobox
+Q04116,DNA binding,209,Homeobox
+Q04116,DNA binding,210,Homeobox
+Q04116,DNA binding,211,Homeobox
+Q04116,DNA binding,212,Homeobox
+Q04116,DNA binding,213,Homeobox
+Q04116,DNA binding,214,Homeobox
+Q04116,DNA binding,215,Homeobox
+Q04116,DNA binding,216,Homeobox
+Q04116,DNA binding,217,Homeobox
+Q04116,DNA binding,218,Homeobox
+Q04116,DNA binding,219,Homeobox
+Q04116,DNA binding,220,Homeobox
+Q04116,DNA binding,221,Homeobox
+Q04116,DNA binding,222,Homeobox
+Q04116,DNA binding,223,Homeobox
+Q04116,DNA binding,224,Homeobox
+Q04116,DNA binding,225,Homeobox
+Q04116,DNA binding,226,Homeobox
+Q04116,DNA binding,227,Homeobox
+Q04116,DNA binding,228,Homeobox
+Q04116,DNA binding,229,Homeobox
+Q04116,DNA binding,230,Homeobox
+Q04116,DNA binding,231,Homeobox
+Q04116,DNA binding,232,Homeobox

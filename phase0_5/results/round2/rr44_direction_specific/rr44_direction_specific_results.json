@@ -1,0 +1,187 @@
+{
+  "roadmap_item": "RR-44",
+  "frozen_hashes_verified": {
+    "results/statistics.json": "57d02d5b4eae6a7d5f18b78b20ffebe491cc4e5f6e23e49710aba71d448a0401",
+    "results/analysis_final.csv": "e666827da317fd963074e91613748ba449fb7005c207bdf0b389bd8451ac4dd4",
+    "phase0_5/results/phase0_5_statistics.json": "3ea01c7b0a8b8f80304e574753d24c07ee7d542975e4f4603443b07bf050d02b"
+  },
+  "conventions": {
+    "nominal_protein_cluster_draws": 20000,
+    "base_seed": 20260728,
+    "resampling_unit": "UniProt accession; every substitution of a sampled protein retained",
+    "discarded_draws_rule": "bootstrap_auc discards resamples drawing a single outcome class",
+    "scoring_orientation": "score = -dist_core_A; shorter distance scored toward screen-positive",
+    "called_condition": "qvalue < 0.05",
+    "replicate_aggregation": "per-strain count of called conditions, then arithmetic mean over the replicate strains of a substitution; label = mean > 0 (phase0_5/src/01_build_phase0_5_dataset.py aggregate_raw_scores; src/01_build_sites.py phenotypes/has_pheno)"
+  },
+  "source_join": {
+    "strain_condition_rows": 17214,
+    "strains": 169,
+    "substitutions": 166,
+    "conditions": 102,
+    "called_rows_total": 658,
+    "called_rows_defect": 467,
+    "called_rows_enhance": 191,
+    "called_rows_score_exactly_zero": 0
+  },
+  "reconstruction_check": {
+    "direction_agnostic_label_mismatches": 0,
+    "max_abs_delta_vs_raw_q05_mean_per_strain": 0.0
+  },
+  "estimates": [
+    {
+      "endpoint": "direction_agnostic_published",
+      "n": 163,
+      "auc": 0.5268233875828813,
+      "nominal_draws": 20000,
+      "retained_draws": 20000,
+      "ci_low": 0.4161064593848292,
+      "ci_high": 0.6305511618234994,
+      "ci_reportable": true,
+      "ci_suppressed_reason": "",
+      "arm": "primary_exclude_annotation_coincident",
+      "proteins": 48,
+      "positives": 79,
+      "negatives": 84,
+      "positive_rate": 0.48466257668711654,
+      "bootstrap_seed": 20260728,
+      "resampling_unit": "UniProt accession"
+    },
+    {
+      "endpoint": "defect_specific",
+      "n": 163,
+      "auc": 0.5046860356138707,
+      "nominal_draws": 20000,
+      "retained_draws": 20000,
+      "ci_low": 0.3955739419938941,
+      "ci_high": 0.6041666666666666,
+      "ci_reportable": true,
+      "ci_suppressed_reason": "",
+      "arm": "primary_exclude_annotation_coincident",
+      "proteins": 48,
+      "positives": 66,
+      "negatives": 97,
+      "positive_rate": 0.4049079754601227,
+      "bootstrap_seed": 20260728,
+      "resampling_unit": "UniProt accession"
+    },
+    {
+      "endpoint": "enhancement_specific",
+      "n": 163,
+      "auc": 0.5428802588996764,
+      "nominal_draws": 20000,
+      "retained_draws": 20000,
+      "ci_low": 0.4344321265390728,
+      "ci_high": 0.6477138460583826,
+      "ci_reportable": true,
+      "ci_suppressed_reason": "",
+      "arm": "primary_exclude_annotation_coincident",
+      "proteins": 48,
+      "positives": 60,
+      "negatives": 103,
+      "positive_rate": 0.36809815950920244,
+      "bootstrap_seed": 20260728,
+      "resampling_unit": "UniProt accession"
+    },
+    {
+      "endpoint": "direction_agnostic_published",
+      "n": 166,
+      "auc": 0.5441347270615563,
+      "nominal_draws": 20000,
+      "retained_draws": 20000,
+      "ci_low": 0.43452129948364887,
+      "ci_high": 0.6476594658373781,
+      "ci_reportable": true,
+      "ci_suppressed_reason": "",
+      "arm": "inclusive_sensitivity",
+      "proteins": 50,
+      "positives": 82,
+      "negatives": 84,
+      "positive_rate": 0.4939759036144578,
+      "bootstrap_seed": 20260728,
+      "resampling_unit": "UniProt accession"
+    },
+    {
+      "endpoint": "defect_specific",
+      "n": 166,
+      "auc": 0.5262214253697893,
+      "nominal_draws": 20000,
+      "retained_draws": 20000,
+      "ci_low": 0.4183077030468355,
+      "ci_high": 0.6273125575265667,
+      "ci_reportable": true,
+      "ci_suppressed_reason": "",
+      "arm": "inclusive_sensitivity",
+      "proteins": 50,
+      "positives": 69,
+      "negatives": 97,
+      "positive_rate": 0.41566265060240964,
+      "bootstrap_seed": 20260728,
+      "resampling_unit": "UniProt accession"
+    },
+    {
+      "endpoint": "enhancement_specific",
+      "n": 166,
+      "auc": 0.5275157232704403,
+      "nominal_draws": 20000,
+      "retained_draws": 20000,
+      "ci_low": 0.41694256215595576,
+      "ci_high": 0.6326467107873702,
+      "ci_reportable": true,
+      "ci_suppressed_reason": "",
+      "arm": "inclusive_sensitivity",
+      "proteins": 50,
+      "positives": 60,
+      "negatives": 106,
+      "positive_rate": 0.3614457831325301,
+      "bootstrap_seed": 20260728,
+      "resampling_unit": "UniProt accession"
+    }
+  ],
+  "primary_positive_dominance": {
+    "n_positives": 79,
+    "counts": {
+      "defect_dominant": 46,
+      "enhancement_dominant": 25,
+      "tied": 8
+    },
+    "pure_and_mixed": {
+      "defect_only": 19,
+      "enhancement_only": 13,
+      "mixed_both_directions": 47
+    },
+    "r3_profile_extreme_rule": {
+      "definition": "sscore_max > -sscore_min over all 102 conditions, called or not",
+      "counts": {
+        "defect": 61,
+        "enhancement": 18
+      },
+      "cross_tabulation_vs_called_condition_dominance": {
+        "defect": {
+          "defect_dominant": 42,
+          "enhancement_dominant": 12,
+          "tied": 7
+        },
+        "enhancement": {
+          "defect_dominant": 4,
+          "enhancement_dominant": 13,
+          "tied": 1
+        }
+      }
+    }
+  },
+  "label_cross_tabulation": {
+    "primary_exclude_annotation_coincident": {
+      "defect_pos_enhance_pos": 47,
+      "defect_pos_enhance_neg": 19,
+      "defect_neg_enhance_pos": 13,
+      "defect_neg_enhance_neg": 84
+    },
+    "inclusive_sensitivity": {
+      "defect_pos_enhance_pos": 47,
+      "defect_pos_enhance_neg": 22,
+      "defect_neg_enhance_pos": 13,
+      "defect_neg_enhance_neg": 84
+    }
+  }
+}

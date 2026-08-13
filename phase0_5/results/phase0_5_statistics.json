@@ -1,0 +1,1153 @@
+{
+  "seed": 20260728,
+  "n_primary_bootstrap": 200000,
+  "n_sensitivity_bootstrap": 20000,
+  "n_correlation_bootstrap": 4000,
+  "n_wild_cluster": 9999,
+  "distance_transform": "log10(distance_A + 1)",
+  "primary_cohort": "exclude_annotation_coincident",
+  "inclusive_sensitivity_cohort": "include_annotation_coincident",
+  "n_sites": 163,
+  "n_proteins": 48,
+  "n_positive": 79,
+  "cohort_counts": {
+    "exclude_annotation_coincident": {
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79
+    },
+    "include_annotation_coincident": {
+      "n_sites": 166,
+      "n_proteins": 50,
+      "n_positive": 82
+    }
+  },
+  "primary_auc": {
+    "site_bootstrap": {
+      "estimate": 0.5268233875828813,
+      "ci_low": 0.43673469387755104,
+      "ci_high": 0.6173687782887222,
+      "draws": 200000
+    },
+    "protein_cluster_bootstrap": {
+      "estimate": 0.5268233875828813,
+      "ci_low": 0.41674431974078835,
+      "ci_high": 0.6315393408472534,
+      "draws": 200000
+    }
+  },
+  "inclusive_sensitivity_auc": {
+    "site_bootstrap": {
+      "estimate": 0.5441347270615563,
+      "ci_low": 0.4553844562647754,
+      "ci_high": 0.632703488372093,
+      "draws": 200000
+    },
+    "protein_cluster_bootstrap": {
+      "estimate": 0.5441347270615563,
+      "ci_low": 0.43575552928798883,
+      "ci_high": 0.6487455197132617,
+      "draws": 200000
+    }
+  },
+  "cohort_arm_cutoffs": [
+    {
+      "cohort": "exclude_annotation_coincident",
+      "cutoff_A": 5,
+      "n_within": 10,
+      "n_positive_within": 4,
+      "rate_within": 0.4,
+      "n_beyond": 153,
+      "n_positive_beyond": 75,
+      "rate_beyond": 0.49019607843137253,
+      "odds_ratio_descriptive": 0.6933333333333334
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "cutoff_A": 8,
+      "n_within": 20,
+      "n_positive_within": 12,
+      "rate_within": 0.6,
+      "n_beyond": 143,
+      "n_positive_beyond": 67,
+      "rate_beyond": 0.46853146853146854,
+      "odds_ratio_descriptive": 1.7014925373134329
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "cutoff_A": 10,
+      "n_within": 30,
+      "n_positive_within": 17,
+      "rate_within": 0.5666666666666667,
+      "n_beyond": 133,
+      "n_positive_beyond": 62,
+      "rate_beyond": 0.46616541353383456,
+      "odds_ratio_descriptive": 1.4975186104218363
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "cutoff_A": 15,
+      "n_within": 43,
+      "n_positive_within": 24,
+      "rate_within": 0.5581395348837209,
+      "n_beyond": 120,
+      "n_positive_beyond": 55,
+      "rate_beyond": 0.4583333333333333,
+      "odds_ratio_descriptive": 1.492822966507177
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "cutoff_A": 5,
+      "n_within": 13,
+      "n_positive_within": 7,
+      "rate_within": 0.5384615384615384,
+      "n_beyond": 153,
+      "n_positive_beyond": 75,
+      "rate_beyond": 0.49019607843137253,
+      "odds_ratio_descriptive": 1.2133333333333334
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "cutoff_A": 8,
+      "n_within": 23,
+      "n_positive_within": 15,
+      "rate_within": 0.6521739130434783,
+      "n_beyond": 143,
+      "n_positive_beyond": 67,
+      "rate_beyond": 0.46853146853146854,
+      "odds_ratio_descriptive": 2.126865671641791
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "cutoff_A": 10,
+      "n_within": 33,
+      "n_positive_within": 20,
+      "rate_within": 0.6060606060606061,
+      "n_beyond": 133,
+      "n_positive_beyond": 62,
+      "rate_beyond": 0.46616541353383456,
+      "odds_ratio_descriptive": 1.7617866004962779
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "cutoff_A": 15,
+      "n_within": 46,
+      "n_positive_within": 27,
+      "rate_within": 0.5869565217391305,
+      "n_beyond": 120,
+      "n_positive_beyond": 55,
+      "rate_beyond": 0.4583333333333333,
+      "odds_ratio_descriptive": 1.6794258373205742
+    }
+  ],
+  "cohort_arm_descriptives": [
+    {
+      "cohort": "exclude_annotation_coincident",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "positive_rate": 0.48466257668711654,
+      "median_distance_positive": 26.23292350769043,
+      "median_distance_negative": 31.827170372009277,
+      "median_distance": 28.930192947387695,
+      "median_plddt": 46.5,
+      "median_rsa": 0.5705321159845074,
+      "serine_n": 107,
+      "threonine_n": 40,
+      "tyrosine_n": 16,
+      "corr_logdistance_plddt": -0.5407849478745596
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "n_sites": 166,
+      "n_proteins": 50,
+      "n_positive": 82,
+      "positive_rate": 0.4939759036144578,
+      "median_distance_positive": 25.756680488586426,
+      "median_distance_negative": 31.827170372009277,
+      "median_distance": 28.520400047302246,
+      "median_plddt": 49.44,
+      "median_rsa": 0.5693254710186213,
+      "serine_n": 109,
+      "threonine_n": 41,
+      "tyrosine_n": 16,
+      "corr_logdistance_plddt": -0.5615604303158876
+    }
+  ],
+  "within_protein_discrimination": {
+    "informative_proteins": 23,
+    "informative_sites": 112,
+    "within_protein_positive_negative_pairs": 176,
+    "all_positive_proteins": 12,
+    "all_negative_proteins": 13,
+    "pair_weighted_auc": 0.5284090909090909,
+    "pair_weighted_ci_low": 0.3684210526315789,
+    "pair_weighted_ci_high": 0.7089971139971137,
+    "equal_protein_weight_auc": 0.49722222222222223,
+    "equal_protein_weight_ci_low": 0.3507246376811594,
+    "equal_protein_weight_ci_high": 0.6421497584541063
+  },
+  "within_protein_distance_percentile_auc": {
+    "estimate": 0.5110006027727547,
+    "ci_low": 0.4116068447007203,
+    "ci_high": 0.6115175147694613,
+    "draws": 20000
+  },
+  "regression_models": [
+    {
+      "cohort": "exclude_annotation_coincident",
+      "formula": "y ~ logd",
+      "or_per_10x_distance_plus_1A": 0.7671419246922336,
+      "ci_low": 0.2736887712210966,
+      "ci_high": 2.1502772291125005,
+      "cluster_p": 0.6141926967940623
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa",
+      "or_per_10x_distance_plus_1A": 1.3133829603311213,
+      "ci_low": 0.3826764129365062,
+      "ci_high": 4.507659061741932,
+      "cluster_p": 0.6648116367417689
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa + pae_pair_max",
+      "or_per_10x_distance_plus_1A": 1.8216959675351851,
+      "ci_low": 0.44617318823109575,
+      "ci_high": 7.4378655770213955,
+      "cluster_p": 0.40337610289069137
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa + C(pmt_aa_wt)",
+      "or_per_10x_distance_plus_1A": 1.4735816443446161,
+      "ci_low": 0.4008738676783322,
+      "ci_high": 5.416773298607193,
+      "cluster_p": 0.5594114110721192
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa + log_n_annot + log_protein_length + C(pmt_aa_wt)",
+      "or_per_10x_distance_plus_1A": 1.3438978712289518,
+      "ci_low": 0.3823553136075338,
+      "ci_high": 4.7235161223561,
+      "cluster_p": 0.6448795919887764
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "formula": "y ~ logd",
+      "or_per_10x_distance_plus_1A": 0.5869031574839212,
+      "ci_low": 0.2345569194748815,
+      "ci_high": 1.468536153338609,
+      "cluster_p": 0.25478134142679965
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa",
+      "or_per_10x_distance_plus_1A": 0.9522732209239113,
+      "ci_low": 0.30564356287472844,
+      "ci_high": 2.9669340285123984,
+      "cluster_p": 0.9327834955149372
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa + pae_pair_max",
+      "or_per_10x_distance_plus_1A": 1.1208216434848806,
+      "ci_low": 0.3184656188101771,
+      "ci_high": 3.9446680655751933,
+      "cluster_p": 0.8589828231292077
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa + C(pmt_aa_wt)",
+      "or_per_10x_distance_plus_1A": 0.9911737163167433,
+      "ci_low": 0.29587210699729793,
+      "ci_high": 3.3204391785607412,
+      "cluster_p": 0.9885324692555653
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "formula": "y ~ logd + plddt + rsa + log_n_annot + log_protein_length + C(pmt_aa_wt)",
+      "or_per_10x_distance_plus_1A": 0.8865555755712671,
+      "ci_low": 0.27213197170028236,
+      "ci_high": 2.8882339096934753,
+      "cluster_p": 0.8416162432038128
+    }
+  ],
+  "sift_sequence_constraint_diagnostic": {
+    "timing": "post-result diagnostic",
+    "cohorts": {
+      "exclude_annotation_coincident": {
+        "n_sites": 152,
+        "n_proteins": 48,
+        "n_positive": 71,
+        "sift_auc": {
+          "estimate": 0.6061554512258738,
+          "ci_low": 0.5221801425943358,
+          "ci_high": 0.6901504243488439,
+          "draws": 20000
+        },
+        "distance_auc": {
+          "estimate": 0.5317336115458181,
+          "ci_low": 0.41801405993683133,
+          "ci_high": 0.646577625570776,
+          "draws": 20000
+        },
+        "sift_minus_distance_auc": {
+          "estimate": 0.07442183968005567,
+          "ci_low": -0.036886844864257466,
+          "ci_high": 0.1915291204090428,
+          "draws": 20000
+        },
+        "correlation_log10_distance_plus_1A_vs_sift": {
+          "rho": -0.41545275363032247,
+          "ci_low": -0.5677079793469408,
+          "ci_high": -0.2425070786943635
+        }
+      },
+      "include_annotation_coincident": {
+        "n_sites": 155,
+        "n_proteins": 50,
+        "n_positive": 74,
+        "sift_auc": {
+          "estimate": 0.6191191191191191,
+          "ci_low": 0.5352042210750075,
+          "ci_high": 0.7037277586722487,
+          "draws": 20000
+        },
+        "distance_auc": {
+          "estimate": 0.5507173840507174,
+          "ci_low": 0.440277021872606,
+          "ci_high": 0.6643458036264531,
+          "draws": 20000
+        },
+        "sift_minus_distance_auc": {
+          "estimate": 0.06840173506840175,
+          "ci_low": -0.03841374701735857,
+          "ci_high": 0.1792606783900658,
+          "draws": 20000
+        },
+        "correlation_log10_distance_plus_1A_vs_sift": {
+          "rho": -0.44171376856711225,
+          "ci_low": -0.5895567311577908,
+          "ci_high": -0.26873399173811435
+        }
+      },
+      "legacy_158": {
+        "n_sites": 152,
+        "n_proteins": 48,
+        "n_positive": 71,
+        "sift_auc": {
+          "estimate": 0.6061554512258738,
+          "ci_low": 0.5208031426242774,
+          "ci_high": 0.6902992040452336,
+          "draws": 20000
+        },
+        "distance_auc": {
+          "estimate": 0.5317336115458181,
+          "ci_low": 0.41930363254951336,
+          "ci_high": 0.6465740983893558,
+          "draws": 20000
+        },
+        "sift_minus_distance_auc": {
+          "estimate": 0.07442183968005567,
+          "ci_low": -0.03564264308815654,
+          "ci_high": 0.1917312879039604,
+          "draws": 20000
+        },
+        "correlation_log10_distance_plus_1A_vs_sift": {
+          "rho": -0.41545275363032247,
+          "ci_low": -0.5669108430218808,
+          "ci_high": -0.23730735475496884
+        }
+      }
+    },
+    "n_sites": 152,
+    "n_proteins": 48,
+    "n_positive": 71,
+    "sift_auc": {
+      "estimate": 0.6061554512258738,
+      "ci_low": 0.5221801425943358,
+      "ci_high": 0.6901504243488439,
+      "draws": 20000
+    },
+    "distance_auc": {
+      "estimate": 0.5317336115458181,
+      "ci_low": 0.41801405993683133,
+      "ci_high": 0.646577625570776,
+      "draws": 20000
+    },
+    "sift_minus_distance_auc": {
+      "estimate": 0.07442183968005567,
+      "ci_low": -0.036886844864257466,
+      "ci_high": 0.1915291204090428,
+      "draws": 20000
+    },
+    "correlation_log10_distance_plus_1A_vs_sift": {
+      "rho": -0.41545275363032247,
+      "ci_low": -0.5677079793469408,
+      "ci_high": -0.2425070786943635
+    }
+  },
+  "confidence_strata": {
+    "exclude_annotation_coincident": [
+      {
+        "stratum": "all",
+        "n_sites": 163,
+        "n_proteins": 48,
+        "n_positive": 79,
+        "estimate": 0.5268233875828813,
+        "ci_low": 0.41674431974078835,
+        "ci_high": 0.6315393408472534,
+        "draws": 200000
+      },
+      {
+        "stratum": "site_plddt_ge_50",
+        "n_sites": 79,
+        "n_proteins": 31,
+        "n_positive": 43,
+        "estimate": 0.48901808785529716,
+        "ci_low": 0.3464621212121212,
+        "ci_high": 0.6339956011730206,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_plddt_ge_70",
+        "n_sites": 60,
+        "n_proteins": 24,
+        "n_positive": 31,
+        "estimate": 0.4593993325917686,
+        "ci_low": 0.30267448512585815,
+        "ci_high": 0.6181344118844116,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_and_target_plddt_ge_70",
+        "n_sites": 58,
+        "n_proteins": 23,
+        "n_positive": 30,
+        "estimate": 0.45,
+        "ci_low": 0.28757965686274506,
+        "ci_high": 0.6063114774666264,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_plddt_ge_90",
+        "n_sites": 35,
+        "n_proteins": 16,
+        "n_positive": 22,
+        "estimate": 0.5699300699300699,
+        "ci_low": 0.37074235288521007,
+        "ci_high": 0.7464123376623376,
+        "draws": 19999
+      },
+      {
+        "stratum": "site_and_target_plddt_ge_90",
+        "n_sites": 28,
+        "n_proteins": 13,
+        "n_positive": 16,
+        "estimate": 0.640625,
+        "ci_low": 0.4642857142857143,
+        "ci_high": 0.7894736842105263,
+        "draws": 20000
+      },
+      {
+        "stratum": "pair_pae_max_le_5",
+        "n_sites": 37,
+        "n_proteins": 20,
+        "n_positive": 20,
+        "estimate": 0.48823529411764705,
+        "ci_low": 0.2608695652173913,
+        "ci_high": 0.665775752884886,
+        "draws": 20000
+      },
+      {
+        "stratum": "pair_pae_max_le_10",
+        "n_sites": 44,
+        "n_proteins": 21,
+        "n_positive": 25,
+        "estimate": 0.4357894736842105,
+        "ci_low": 0.20833027859237538,
+        "ci_high": 0.6330077250335868,
+        "draws": 20000
+      },
+      {
+        "stratum": "pair_pae_max_le_15",
+        "n_sites": 55,
+        "n_proteins": 23,
+        "n_positive": 30,
+        "estimate": 0.52,
+        "ci_low": 0.32142857142857145,
+        "ci_high": 0.6789781495510662,
+        "draws": 20000
+      },
+      {
+        "stratum": "high_confidence_joint",
+        "n_sites": 41,
+        "n_proteins": 20,
+        "n_positive": 22,
+        "estimate": 0.41626794258373206,
+        "ci_low": 0.19166666666666668,
+        "ci_high": 0.6166666666666667,
+        "draws": 20000
+      },
+      {
+        "stratum": "very_high_confidence_joint",
+        "n_sites": 27,
+        "n_proteins": 13,
+        "n_positive": 15,
+        "estimate": 0.6833333333333333,
+        "ci_low": 0.4807692307692308,
+        "ci_high": 0.8640098765432097,
+        "draws": 19999
+      }
+    ],
+    "include_annotation_coincident": [
+      {
+        "stratum": "all",
+        "n_sites": 166,
+        "n_proteins": 50,
+        "n_positive": 82,
+        "estimate": 0.5441347270615563,
+        "ci_low": 0.43575552928798883,
+        "ci_high": 0.6487455197132617,
+        "draws": 200000
+      },
+      {
+        "stratum": "site_plddt_ge_50",
+        "n_sites": 82,
+        "n_proteins": 33,
+        "n_positive": 46,
+        "estimate": 0.5223429951690821,
+        "ci_low": 0.38008474431551353,
+        "ci_high": 0.6649435446418205,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_plddt_ge_70",
+        "n_sites": 63,
+        "n_proteins": 26,
+        "n_positive": 34,
+        "estimate": 0.5070993914807302,
+        "ci_low": 0.35064935064935066,
+        "ci_high": 0.6630002923976608,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_and_target_plddt_ge_70",
+        "n_sites": 61,
+        "n_proteins": 25,
+        "n_positive": 33,
+        "estimate": 0.5,
+        "ci_low": 0.33653513824884795,
+        "ci_high": 0.6578947368421053,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_plddt_ge_90",
+        "n_sites": 38,
+        "n_proteins": 18,
+        "n_positive": 25,
+        "estimate": 0.6215384615384615,
+        "ci_low": 0.43478260869565216,
+        "ci_high": 0.790914141414141,
+        "draws": 20000
+      },
+      {
+        "stratum": "site_and_target_plddt_ge_90",
+        "n_sites": 31,
+        "n_proteins": 15,
+        "n_positive": 19,
+        "estimate": 0.6973684210526315,
+        "ci_low": 0.5357142857142857,
+        "ci_high": 0.8421052631578947,
+        "draws": 19997
+      },
+      {
+        "stratum": "pair_pae_max_le_5",
+        "n_sites": 40,
+        "n_proteins": 22,
+        "n_positive": 23,
+        "estimate": 0.5549872122762148,
+        "ci_low": 0.33222419028340083,
+        "ci_high": 0.7296296296296296,
+        "draws": 20000
+      },
+      {
+        "stratum": "pair_pae_max_le_10",
+        "n_sites": 47,
+        "n_proteins": 23,
+        "n_positive": 28,
+        "estimate": 0.49624060150375937,
+        "ci_low": 0.2769598416289593,
+        "ci_high": 0.692310167310167,
+        "draws": 20000
+      },
+      {
+        "stratum": "pair_pae_max_le_15",
+        "n_sites": 58,
+        "n_proteins": 25,
+        "n_positive": 33,
+        "estimate": 0.5636363636363636,
+        "ci_low": 0.37666043083900225,
+        "ci_high": 0.7142857142857143,
+        "draws": 20000
+      },
+      {
+        "stratum": "high_confidence_joint",
+        "n_sites": 44,
+        "n_proteins": 22,
+        "n_positive": 25,
+        "estimate": 0.4863157894736842,
+        "ci_low": 0.2708333333333333,
+        "ci_high": 0.6837967121810994,
+        "draws": 20000
+      },
+      {
+        "stratum": "very_high_confidence_joint",
+        "n_sites": 30,
+        "n_proteins": 15,
+        "n_positive": 18,
+        "estimate": 0.7361111111111112,
+        "ci_low": 0.553030303030303,
+        "ci_high": 0.9027777777777778,
+        "draws": 19999
+      }
+    ]
+  },
+  "pae_column_sensitivity_at_10A": [
+    {
+      "cohort": "exclude_annotation_coincident",
+      "pae_column": "pae_pair_max",
+      "definition": "maximum of both directed entries",
+      "threshold_A": 10,
+      "n_sites": 44,
+      "n_proteins": 21,
+      "n_positive": 25,
+      "auc": 0.4357894736842105
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "pae_column": "pae_site_to_target",
+      "definition": "site to target",
+      "threshold_A": 10,
+      "n_sites": 48,
+      "n_proteins": 22,
+      "n_positive": 27,
+      "auc": 0.4585537918871252
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "pae_column": "pae_pair_mean",
+      "definition": "mean of both directed entries",
+      "threshold_A": 10,
+      "n_sites": 51,
+      "n_proteins": 22,
+      "n_positive": 28,
+      "auc": 0.4891304347826087
+    },
+    {
+      "cohort": "exclude_annotation_coincident",
+      "pae_column": "pae_target_to_site",
+      "definition": "target to site",
+      "threshold_A": 10,
+      "n_sites": 57,
+      "n_proteins": 26,
+      "n_positive": 30,
+      "auc": 0.5209876543209877
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "pae_column": "pae_pair_max",
+      "definition": "maximum of both directed entries",
+      "threshold_A": 10,
+      "n_sites": 47,
+      "n_proteins": 23,
+      "n_positive": 28,
+      "auc": 0.49624060150375937
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "pae_column": "pae_site_to_target",
+      "definition": "site to target",
+      "threshold_A": 10,
+      "n_sites": 51,
+      "n_proteins": 24,
+      "n_positive": 30,
+      "auc": 0.5126984126984127
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "pae_column": "pae_pair_mean",
+      "definition": "mean of both directed entries",
+      "threshold_A": 10,
+      "n_sites": 54,
+      "n_proteins": 24,
+      "n_positive": 31,
+      "auc": 0.5385694249649369
+    },
+    {
+      "cohort": "include_annotation_coincident",
+      "pae_column": "pae_target_to_site",
+      "definition": "target to site",
+      "threshold_A": 10,
+      "n_sites": 60,
+      "n_proteins": 28,
+      "n_positive": 33,
+      "auc": 0.5645342312008979
+    },
+    {
+      "cohort": "legacy_158",
+      "pae_column": "pae_pair_max",
+      "definition": "maximum of both directed entries",
+      "threshold_A": 10,
+      "n_sites": 42,
+      "n_proteins": 21,
+      "n_positive": 23,
+      "auc": 0.4233409610983982
+    },
+    {
+      "cohort": "legacy_158",
+      "pae_column": "pae_site_to_target",
+      "definition": "site to target",
+      "threshold_A": 10,
+      "n_sites": 46,
+      "n_proteins": 22,
+      "n_positive": 25,
+      "auc": 0.44571428571428573
+    },
+    {
+      "cohort": "legacy_158",
+      "pae_column": "pae_pair_mean",
+      "definition": "mean of both directed entries",
+      "threshold_A": 10,
+      "n_sites": 49,
+      "n_proteins": 22,
+      "n_positive": 26,
+      "auc": 0.4765886287625418
+    },
+    {
+      "cohort": "legacy_158",
+      "pae_column": "pae_target_to_site",
+      "definition": "target to site",
+      "threshold_A": 10,
+      "n_sites": 54,
+      "n_proteins": 25,
+      "n_positive": 27,
+      "auc": 0.50480109739369
+    }
+  ],
+  "pae_filter_grid": {
+    "exclude_annotation_coincident": {
+      "n_cells": 72,
+      "auc_min": 0.41626794258373206,
+      "auc_max": 0.5694444444444444,
+      "minimum_cell": {
+        "cohort": "exclude_annotation_coincident",
+        "pae_column": "pae_pair_max",
+        "pae_threshold_A": 10,
+        "site_plddt_floor": 70,
+        "n_sites": 41,
+        "n_proteins": 20,
+        "n_positive": 22,
+        "auc": 0.41626794258373206,
+        "auc_rank_low_to_high_within_cohort": 1.0
+      },
+      "maximum_cell": {
+        "cohort": "exclude_annotation_coincident",
+        "pae_column": "pae_target_to_site",
+        "pae_threshold_A": 15,
+        "site_plddt_floor": 0,
+        "n_sites": 74,
+        "n_proteins": 31,
+        "n_positive": 38,
+        "auc": 0.5694444444444444,
+        "auc_rank_low_to_high_within_cohort": 72.0
+      }
+    },
+    "include_annotation_coincident": {
+      "n_cells": 72,
+      "auc_min": 0.4863157894736842,
+      "auc_max": 0.6009485094850948,
+      "minimum_cell": {
+        "cohort": "include_annotation_coincident",
+        "pae_column": "pae_pair_max",
+        "pae_threshold_A": 10,
+        "site_plddt_floor": 70,
+        "n_sites": 44,
+        "n_proteins": 22,
+        "n_positive": 25,
+        "auc": 0.4863157894736842,
+        "auc_rank_low_to_high_within_cohort": 1.0
+      },
+      "maximum_cell": {
+        "cohort": "include_annotation_coincident",
+        "pae_column": "pae_target_to_site",
+        "pae_threshold_A": 15,
+        "site_plddt_floor": 0,
+        "n_sites": 77,
+        "n_proteins": 33,
+        "n_positive": 41,
+        "auc": 0.6009485094850948,
+        "auc_rank_low_to_high_within_cohort": 72.0
+      }
+    },
+    "legacy_158": {
+      "n_cells": 72,
+      "auc_min": 0.40601503759398494,
+      "auc_max": 0.553968253968254,
+      "minimum_cell": {
+        "cohort": "legacy_158",
+        "pae_column": "pae_pair_max",
+        "pae_threshold_A": 10,
+        "site_plddt_floor": 70,
+        "n_sites": 40,
+        "n_proteins": 19,
+        "n_positive": 21,
+        "auc": 0.40601503759398494,
+        "auc_rank_low_to_high_within_cohort": 1.0
+      },
+      "maximum_cell": {
+        "cohort": "legacy_158",
+        "pae_column": "pae_target_to_site",
+        "pae_threshold_A": 15,
+        "site_plddt_floor": 0,
+        "n_sites": 71,
+        "n_proteins": 30,
+        "n_positive": 35,
+        "auc": 0.553968253968254,
+        "auc_rank_low_to_high_within_cohort": 72.0
+      }
+    }
+  },
+  "feature_definition_sensitivity": [
+    {
+      "distance_definition": "dist_act_site_A",
+      "n_sites": 107,
+      "n_proteins": 31,
+      "n_positive": 54,
+      "estimate": 0.570230607966457,
+      "ci_low": 0.45279545454545456,
+      "ci_high": 0.6772504177109439,
+      "draws": 20000
+    },
+    {
+      "distance_definition": "dist_binding_A",
+      "n_sites": 155,
+      "n_proteins": 46,
+      "n_positive": 77,
+      "estimate": 0.5251415251415251,
+      "ci_low": 0.4147021593447506,
+      "ci_high": 0.6315623270367294,
+      "draws": 20000
+    },
+    {
+      "distance_definition": "dist_core_A",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "estimate": 0.5268233875828813,
+      "ci_low": 0.41674431974078835,
+      "ci_high": 0.6315393408472534,
+      "draws": 200000
+    },
+    {
+      "distance_definition": "dist_core_plus_site_A",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "estimate": 0.5260699216395419,
+      "ci_low": 0.41446464815044287,
+      "ci_high": 0.6330457621205234,
+      "draws": 20000
+    },
+    {
+      "distance_definition": "dist_all_with_dna_bind_A",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "estimate": 0.5250150693188668,
+      "ci_low": 0.4138662397617275,
+      "ci_high": 0.6303594855908099,
+      "draws": 20000
+    }
+  ],
+  "cohort_sensitivity": [
+    {
+      "cohort": "primary_excluding_annotation_coincident",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "estimate": 0.5268233875828813,
+      "ci_low": 0.41674431974078835,
+      "ci_high": 0.6315393408472534,
+      "draws": 200000
+    },
+    {
+      "cohort": "inclusive_exact_overlaps_at_0A",
+      "n_sites": 166,
+      "n_proteins": 50,
+      "n_positive": 82,
+      "estimate": 0.5441347270615563,
+      "ci_low": 0.43575552928798883,
+      "ci_high": 0.6487455197132617,
+      "draws": 200000
+    },
+    {
+      "cohort": "inclusive_exclude_hog1_pby107_position_resolution",
+      "n_sites": 165,
+      "n_proteins": 50,
+      "n_positive": 81,
+      "estimate": 0.5404174015285126,
+      "ci_low": 0.4334074240491651,
+      "ci_high": 0.6450329666042447,
+      "draws": 20000
+    },
+    {
+      "cohort": "legacy_phase0_supp6_selected_excluding_overlaps",
+      "n_sites": 158,
+      "n_proteins": 48,
+      "n_positive": 74,
+      "estimate": 0.5220398970398971,
+      "ci_low": 0.4075690685351206,
+      "ci_high": 0.6316990939091454,
+      "draws": 20000
+    },
+    {
+      "cohort": "primary_serine_threonine_only",
+      "n_sites": 147,
+      "n_proteins": 48,
+      "n_positive": 67,
+      "estimate": 0.49906716417910446,
+      "ci_low": 0.38915498357064626,
+      "ci_high": 0.6054819824050592,
+      "draws": 20000
+    },
+    {
+      "cohort": "primary_tyrosine_only",
+      "n_sites": 16,
+      "n_proteins": 12,
+      "n_positive": 12,
+      "estimate": 0.6041666666666666,
+      "ci_low": 0.2718831168831169,
+      "ci_high": 1.0,
+      "draws": 19335
+    },
+    {
+      "cohort": "inclusive_exclude_prm15_s158_phosphointermediate",
+      "n_sites": 165,
+      "n_proteins": 49,
+      "n_positive": 81,
+      "estimate": 0.538506760728983,
+      "ci_low": 0.4287111426223594,
+      "ci_high": 0.6409485361987408,
+      "draws": 20000
+    }
+  ],
+  "residue_class_sensitivity": [
+    {
+      "residue": "S",
+      "n_sites": 107,
+      "n_proteins": 40,
+      "n_positive": 51,
+      "estimate": 0.49369747899159666,
+      "ci_low": 0.3810426881381854,
+      "ci_high": 0.6022168856048166,
+      "draws": 20000
+    },
+    {
+      "residue": "T",
+      "n_sites": 40,
+      "n_proteins": 28,
+      "n_positive": 16,
+      "estimate": 0.5026041666666666,
+      "ci_low": 0.2950307584303087,
+      "ci_high": 0.7142857142857143,
+      "draws": 20000
+    },
+    {
+      "residue": "Y",
+      "n_sites": 16,
+      "n_proteins": 12,
+      "n_positive": 12,
+      "estimate": 0.6041666666666666,
+      "ci_low": 0.26666666666666666,
+      "ci_high": 1.0,
+      "draws": 19404
+    }
+  ],
+  "continuous_outcomes": [
+    {
+      "outcome": "phenotypes",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "rho": -0.099085815734,
+      "ci_low": -0.273904422126,
+      "ci_high": 0.083528640981,
+      "adjusted_log_outcome_beta_per_10x_distance_plus_1A": -0.258177629418,
+      "adjusted_ci_low": -0.938413832874,
+      "adjusted_ci_high": 0.422058574037,
+      "adjusted_cluster_p": 0.456936582338
+    },
+    {
+      "outcome": "neglog10_min_raw_q",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "rho": -0.092928010995,
+      "ci_low": -0.263851392763,
+      "ci_high": 0.088768114136,
+      "adjusted_log_outcome_beta_per_10x_distance_plus_1A": -0.254877368693,
+      "adjusted_ci_low": -0.986177286954,
+      "adjusted_ci_high": 0.476422549569,
+      "adjusted_cluster_p": 0.494536165831
+    },
+    {
+      "outcome": "sscore_rms",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "rho": -0.094332773594,
+      "ci_low": -0.274033400346,
+      "ci_high": 0.086527064086,
+      "adjusted_log_outcome_beta_per_10x_distance_plus_1A": -0.109086983225,
+      "adjusted_ci_low": -0.289455140598,
+      "adjusted_ci_high": 0.071281174149,
+      "adjusted_cluster_p": 0.23585478893
+    },
+    {
+      "outcome": "sscore_mean_abs",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "rho": -0.114746648489,
+      "ci_low": -0.282782090077,
+      "ci_high": 0.056438794644,
+      "adjusted_log_outcome_beta_per_10x_distance_plus_1A": -0.091442751323,
+      "adjusted_ci_low": -0.235253090631,
+      "adjusted_ci_high": 0.052367587985,
+      "adjusted_cluster_p": 0.212662018613
+    },
+    {
+      "outcome": "sscore_max_abs",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "rho": -0.07616617066,
+      "ci_low": -0.246223339036,
+      "ci_high": 0.086302728016,
+      "adjusted_log_outcome_beta_per_10x_distance_plus_1A": -0.129959976661,
+      "adjusted_ci_low": -0.395797470199,
+      "adjusted_ci_high": 0.135877516877,
+      "adjusted_cluster_p": 0.337969374392
+    }
+  ],
+  "predictor_benchmark": [
+    {
+      "model": "constant_prevalence",
+      "features": "none",
+      "estimate": 0.5,
+      "split_low": 0.5,
+      "split_high": 0.5,
+      "pooled_oof_auc": 0.5,
+      "brier": 0.24976476344612142
+    },
+    {
+      "model": "distance_only",
+      "features": "logd",
+      "estimate": 0.483676694194521,
+      "split_low": 0.4127008752537201,
+      "split_high": 0.5267466119493138,
+      "pooled_oof_auc": 0.3925557564798071,
+      "brier": 0.2583952943656099
+    },
+    {
+      "model": "structural",
+      "features": "logd;plddt;rsa;pae_pair_max;log_n_annot",
+      "estimate": 0.5579874728059712,
+      "split_low": 0.5185344009650704,
+      "split_high": 0.6066437347484296,
+      "pooled_oof_auc": 0.5230560578661845,
+      "brier": 0.25889194860959397
+    },
+    {
+      "model": "published_annotations",
+      "features": "supp_is_disopred;age_ordinal;has_uniprot_domain;sift_ala_score_inv;PWM_nkinTop01",
+      "estimate": 0.5896358604696592,
+      "split_low": 0.5558254359273878,
+      "split_high": 0.6398948737175367,
+      "pooled_oof_auc": 0.5732368896925859,
+      "brier": 0.25249378935322414
+    },
+    {
+      "model": "combined",
+      "features": "logd;plddt;rsa;pae_pair_max;log_n_annot;supp_is_disopred;age_ordinal;has_uniprot_domain;sift_ala_score_inv;PWM_nkinTop01",
+      "estimate": 0.5869982933996968,
+      "split_low": 0.5321894180819378,
+      "split_high": 0.6241394351860644,
+      "pooled_oof_auc": 0.5688667872212176,
+      "brier": 0.25924201709527217
+    }
+  ],
+  "incremental_structural_value_over_published_annotations": {
+    "mean_auc_difference": -0.0026375670699624763,
+    "split_low": -0.03901838441312121,
+    "split_high": 0.033958585601881607,
+    "repeat_differences": [
+      -0.004887218045112829,
+      0.014738393515106973,
+      0.021339220014716664,
+      -0.003107734806629847,
+      -0.04146730462519932,
+      0.037622272385252065,
+      -0.01487252124645888,
+      0.006445047489823663,
+      -0.011602610587382212,
+      -0.030583214793741043
+    ]
+  },
+  "wild_cluster_lpm": {
+    "model": "linear probability: y ~ log10(distance_A + 1) + pLDDT + RSA",
+    "coefficient_log10_distance_plus_1A": 0.0663846777799461,
+    "cluster_robust_se": 0.15269414084343003,
+    "t_observed": 0.4347558944518756,
+    "wild_cluster_p": 0.6753,
+    "bootstrap_draws": 9999,
+    "weight": "Rademacher",
+    "clusters": 48
+  },
+  "confidence_correlations": {
+    "spearman_distance_vs_pair_pae": {
+      "rho": 0.7530127362828364,
+      "ci_low": 0.6606291954202752,
+      "ci_high": 0.8266452345537996
+    },
+    "spearman_site_plddt_vs_pair_pae": {
+      "rho": -0.7947378983655871,
+      "ci_low": -0.8521142092083485,
+      "ci_high": -0.6879523811127375
+    }
+  },
+  "qc": {
+    "pae_complete_primary": 163,
+    "pae_complete_inclusive": 166,
+    "raw_s_scores_complete_primary": 163,
+    "raw_s_scores_complete_inclusive": 166,
+    "wgs_flags_in_primary": 0,
+    "wgs_flags_in_inclusive": 0,
+    "scar_control_correlation_flags_in_primary": 0,
+    "scar_control_correlation_flags_in_inclusive": 0,
+    "substitutions_with_replicate_strains_inclusive": 2,
+    "exact_annotation_overlaps_primary": 0,
+    "exact_annotation_overlaps_inclusive": 3,
+    "max_core_distance_recompute_delta_A": 1.4210854715202004e-14,
+    "alphafold_versions": [
+      6
+    ]
+  },
+  "environment": {
+    "python": "3.12.4",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.13.1",
+    "scikit_learn": "1.4.2",
+    "statsmodels": "0.14.2"
+  }
+}

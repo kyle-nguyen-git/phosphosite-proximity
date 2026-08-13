@@ -1,0 +1,285 @@
+{
+ "conventions": {
+  "experimental_definition": "evidence code set intersects {ECO:0000269, ECO:0007744}",
+  "non_experimental": "ECO:0000255, ECO:0000250, ECO:0000305, or no evidence code",
+  "core_feature_types": [
+   "Active site",
+   "Binding site"
+  ],
+  "bootstrap": "protein-cluster, n=20000 nominal draws, seed=20260728",
+  "score": "-min_dist_A (shorter distance scored toward screen-positive)"
+ },
+ "recomputation_check": {
+  "max_abs_distance_diff_A": 1.4210854715202004e-14,
+  "nearest_feat_pos_agreements": 163,
+  "n": 163
+ },
+ "item1_nearest_target_evidence_substitution_level": {
+  "n_substitutions": 163,
+  "code_set_counts": {
+   "ECO:0000255": 101,
+   "ECO:0000250": 33,
+   "ECO:0000269;ECO:0007744": 12,
+   "ECO:0000305": 8,
+   "ECO:0000269": 4,
+   "ECO:0000305;ECO:0007744": 3,
+   "(none)": 1,
+   "ECO:0000250;ECO:0000269;ECO:0007744": 1
+  },
+  "experimental": 20,
+  "non_experimental": 143,
+  "substitutions_whose_nearest_residue_is_covered_by_more_than_one_record": 1,
+  "max_covering_records": 3
+ },
+ "item2_expanded_residue_level": {
+  "n_target_residues_48_proteins": 533,
+  "n_proteins": 48,
+  "code_set_counts": {
+   "ECO:0000255": 313,
+   "ECO:0000250": 120,
+   "ECO:0000269;ECO:0007744": 55,
+   "ECO:0000269": 15,
+   "ECO:0000305;ECO:0007744": 15,
+   "ECO:0000250;ECO:0000269;ECO:0007744": 7,
+   "ECO:0000305": 5,
+   "ECO:0000250;ECO:0000255": 2,
+   "(none)": 1
+  },
+  "experimental": 92,
+  "non_experimental": 441,
+  "residues_covered_by_more_than_one_record": 21
+ },
+ "item3_ligand_of_nearest_target": {
+  "n_substitutions": 163,
+  "distribution": {
+   "ATP": 86,
+   "(none)": 40,
+   "Zn(2+)": 10,
+   "NADP(+)": 5,
+   "NAD(+)": 4,
+   "substrate": 3,
+   "GTP": 3,
+   "a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol 4-phosphate)": 3,
+   "ADP": 2,
+   "thiamine diphosphate": 2,
+   "CoA": 1,
+   "ADP;AMP;ATP": 1,
+   "Mn(2+)": 1,
+   "acetyl-CoA": 1,
+   "Mg(2+)": 1
+  },
+  "ATP": 86,
+  "ATP_containing": 87
+ },
+ "item3_ligand_over_expanded_binding_residues": {
+  "ATP": 315,
+  "NAD(+)": 33,
+  "NADP(+)": 28,
+  "CoA": 24,
+  "Zn(2+)": 24,
+  "substrate": 21,
+  "ADP": 16,
+  "Mg(2+)": 15,
+  "GTP": 15,
+  "acetyl-CoA": 14,
+  "pyruvate": 11,
+  "thiamine diphosphate": 9,
+  "AMP": 8,
+  "D-glyceraldehyde 3-phosphate": 7,
+  "Mn(2+)": 6,
+  "a 1,2-diacyl-sn-glycero-3-phospho-(1D-myo-inositol 4-phosphate)": 4,
+  "arsenite": 3
+ },
+ "item4_binding_interval_widths": {
+  "n_binding_records_all_57_proteins": 221,
+  "n_binding_records": 221,
+  "width_counts": {
+   "1": 156,
+   "2": 11,
+   "3": 9,
+   "4": 8,
+   "6": 1,
+   "7": 3,
+   "8": 8,
+   "9": 25
+  },
+  "sum_of_widths_all_binding_records": 553,
+  "records_width_ge_8": 33,
+  "residues_from_records_width_ge_8": 289,
+  "median_width": 1.0,
+  "max_width": 9
+ },
+ "item4_binding_interval_widths_48_proteins": {
+  "n_binding_records": 199,
+  "sum_of_widths": 524,
+  "records_width_ge_8": 33,
+  "residues_from_records_width_ge_8": 289
+ },
+ "item4_dedup_eligible_residues_from_wide_records": {
+  "n_eligible_residues": 533,
+  "from_records_width_ge_8": 289
+ },
+ "item5_kinases": {
+  "n_proteins": 48,
+  "name_contains_kinase": 24,
+  "protein_kinase_by_name_regex": 21,
+  "kinase_named_entries": [
+   {
+    "acc": "P06244",
+    "gene": "TPK1",
+    "pname": "cAMP-dependent protein kinase type 1 (PKA 1) (EC 2.7.11.11) (CDC25-suppressing protein kinase) (PK-25)"
+   },
+   {
+    "acc": "P06782",
+    "gene": "SNF1",
+    "pname": "Carbon catabolite-derepressing protein kinase (EC 2.7.11.1) (Sucrose nonfermentating protein 1)"
+   },
+   {
+    "acc": "P08018",
+    "gene": "PBS2",
+    "pname": "MAP kinase kinase PBS2 (EC 2.7.12.2) (Polymyxin B resistance protein 2) (Suppressor of fluoride sensitivity 4)"
+   },
+   {
+    "acc": "P11792",
+    "gene": "SCH9",
+    "pname": "Serine/threonine-protein kinase SCH9 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P12688",
+    "gene": "YPK1",
+    "pname": "Serine/threonine-protein kinase YPK1 (EC 2.7.11.1) (Sphingosine-like immunosuppressant resistant protein 2) (Yeast protein kinase 1)"
+   },
+   {
+    "acc": "P12904",
+    "gene": "SNF4",
+    "pname": "5'-AMP-activated protein kinase subunit gamma (AMPK gamma) (AMPK subunit gamma) (Regulatory protein CAT3) (Sucrose non-fermenting protein 4)"
+   },
+   {
+    "acc": "P13185",
+    "gene": "KIN1",
+    "pname": "Serine/threonine protein kinase KIN1 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P21965",
+    "gene": "MCK1",
+    "pname": "Protein kinase MCK1 (EC 2.7.12.1) (Meiosis and centromere regulatory kinase)"
+   },
+   {
+    "acc": "P22204",
+    "gene": "DBF2",
+    "pname": "Cell cycle protein kinase DBF2 (EC 2.7.11.1) (Dumbbell forming protein 2)"
+   },
+   {
+    "acc": "P23561",
+    "gene": "STE11",
+    "pname": "Serine/threonine-protein kinase STE11 (EC 2.7.11.25)"
+   },
+   {
+    "acc": "P25333",
+    "gene": "SAT4",
+    "pname": "Serine/threonine-protein kinase HAL4/SAT4 (EC 2.7.11.1) (Halotolerance protein 4)"
+   },
+   {
+    "acc": "P32328",
+    "gene": "DBF20",
+    "pname": "Serine/threonine-protein kinase DBF20 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P32485",
+    "gene": "HOG1",
+    "pname": "Mitogen-activated protein kinase HOG1 (MAP kinase HOG1) (EC 2.7.11.24) (High osmolarity glycerol response protein 1)"
+   },
+   {
+    "acc": "P32490",
+    "gene": "MKK1",
+    "pname": "MAP kinase kinase MKK1/SSP32 (EC 2.7.12.2)"
+   },
+   {
+    "acc": "P32801",
+    "gene": "ELM1",
+    "pname": "Serine/threonine-protein kinase ELM1 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P43565",
+    "gene": "RIM15",
+    "pname": "Serine/threonine-protein kinase RIM15 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P47116",
+    "gene": "PTK2",
+    "pname": "Serine/threonine-protein kinase PTK2/STK2 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P53599",
+    "gene": "SSK2",
+    "pname": "MAP kinase kinase kinase SSK2 (EC 2.7.11.25) (Suppressor of sensor kinase 2)"
+   },
+   {
+    "acc": "Q00772",
+    "gene": "SLT2",
+    "pname": "Mitogen-activated protein kinase SLT2/MPK1 (MAP kinase MPK1) (EC 2.7.11.24)"
+   },
+   {
+    "acc": "Q03497",
+    "gene": "STE20",
+    "pname": "Serine/threonine-protein kinase STE20 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "Q03533",
+    "gene": "TDA1",
+    "pname": "Serine/threonine-protein kinase TDA1 (Topoisomerase I damage affected protein 1) (EC 2.7.11.1)"
+   },
+   {
+    "acc": "Q03656",
+    "gene": "SKY1",
+    "pname": "Serine/threonine-protein kinase SKY1 (SRPK) (EC 2.7.11.1)"
+   },
+   {
+    "acc": "Q12222",
+    "gene": "YGK3",
+    "pname": "Glycogen synthase kinase-3 homolog YGK3 (EC 2.7.11.1)"
+   },
+   {
+    "acc": "P50873",
+    "gene": "MRK1",
+    "pname": "Serine/threonine-protein kinase MRK1 (EC 2.7.11.1)"
+   }
+  ]
+ },
+ "item6_experimental_only_restriction": {
+  "n_substitutions_total": 163,
+  "n_retaining_an_experimental_target": 24,
+  "n_losing_all_targets": 139,
+  "n_proteins_total": 48,
+  "n_proteins_with_experimental_target": 7,
+  "n_positive_retained": 11,
+  "n_negative_retained": 13,
+  "any_zero_distance_after_restriction": 0,
+  "median_dist_exp_positive": 20.191083908081055,
+  "median_dist_exp_negative": 21.811134338378906,
+  "auc_experimental_only_targets": {
+   "estimate": 0.4195804195804196,
+   "ci_low": 0.24358974358974358,
+   "ci_high": 0.7083333333333334,
+   "draws": 19991,
+   "nominal_draws": 20000,
+   "seed": 20260728
+  },
+  "auc_same_subset_full_annotation_distance": {
+   "estimate": 0.4405594405594406,
+   "ci_low": 0.22839506172839505,
+   "ci_high": 0.7666666666666667,
+   "draws": 19991,
+   "nominal_draws": 20000,
+   "seed": 20260728
+  },
+  "paired_difference_exp_minus_full_on_retained_subset": {
+   "estimate": -0.02097902097902099,
+   "ci_low": -0.16666666666666669,
+   "ci_high": 0.049586776859504134,
+   "draws": 19991,
+   "nominal_draws": 20000,
+   "seed": 20260728
+  }
+ }
+}

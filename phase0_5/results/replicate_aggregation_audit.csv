@@ -1,0 +1,3 @@
+acc,pos,member_strains,n_strains,n_positive_strains,n_negative_strains,per_strain_q05_counts,mean_q05_count,any_positive,unanimous_positive,replicate_discordant
+P32324,566,PBY662;PBY663,2,2,0,12;3,7.5,True,True,False
+P43565,1764,PBY77;PBY78;PBY79,3,2,1,16;0;8,8.0,True,False,True

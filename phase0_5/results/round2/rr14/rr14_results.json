@@ -1,0 +1,216 @@
+{
+  "item": "RR-14",
+  "seed_base": 20260728,
+  "n_bootstrap_nominal": 20000,
+  "resampling_unit": "UniProt accession (acc); all substitutions of a sampled protein retained",
+  "scoring_orientation": "shorter distance scored toward screen-positive (score = -dist_core_A); sift_ala_score_inv already oriented so higher = more screen-positive",
+  "missingness": [
+    {
+      "group": "sift_observed",
+      "n": 152,
+      "n_proteins": 48,
+      "n_positive": 71,
+      "outcome_rate": 0.46710526315789475,
+      "dist_median_A": 28.520400047302246,
+      "dist_q1_A": 13.894179105758667,
+      "dist_q3_A": 42.56787872314453,
+      "dist_iqr_A": 28.673699617385864,
+      "dist_min_A": 1.3296478986740112,
+      "dist_max_A": 90.7554168701172
+    },
+    {
+      "group": "sift_missing",
+      "n": 11,
+      "n_proteins": 6,
+      "n_positive": 8,
+      "outcome_rate": 0.7272727272727273,
+      "dist_median_A": 51.7973747253418,
+      "dist_q1_A": 19.099620819091797,
+      "dist_q3_A": 61.11960029602051,
+      "dist_iqr_A": 42.01997947692871,
+      "dist_min_A": 6.122025012969971,
+      "dist_max_A": 73.8664321899414
+    },
+    {
+      "group": "all_primary",
+      "n": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "outcome_rate": 0.48466257668711654,
+      "dist_median_A": 28.930192947387695,
+      "dist_q1_A": 13.744385242462158,
+      "dist_q3_A": 43.44036674499512,
+      "dist_iqr_A": 29.69598150253296,
+      "dist_min_A": 1.3296478986740112,
+      "dist_max_A": 90.7554168701172
+    }
+  ],
+  "missing_records": [
+    {
+      "acc": "P06782",
+      "pmt_aa_wt": "T",
+      "pos": 210,
+      "dist_core_A": 9.079323768615724,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P06782",
+      "pmt_aa_wt": "Y",
+      "pos": 217,
+      "dist_core_A": 6.122025012969971,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P06782",
+      "pmt_aa_wt": "S",
+      "pos": 487,
+      "dist_core_A": 67.48636627197266,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P16140",
+      "pmt_aa_wt": "T",
+      "pos": 501,
+      "dist_core_A": 51.7973747253418,
+      "y": 0,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P16140",
+      "pmt_aa_wt": "S",
+      "pos": 503,
+      "dist_core_A": 58.4520378112793,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P16140",
+      "pmt_aa_wt": "S",
+      "pos": 511,
+      "dist_core_A": 73.8664321899414,
+      "y": 0,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P32485",
+      "pmt_aa_wt": "T",
+      "pos": 174,
+      "dist_core_A": 10.915719985961914,
+      "y": 1,
+      "position_resolution": "resolved HOG1 T178A workbook label to T174A from source article and Supplementary Data 8"
+    },
+    {
+      "acc": "P32561",
+      "pmt_aa_wt": "T",
+      "pos": 6,
+      "dist_core_A": 27.28352165222168,
+      "y": 0,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P32561",
+      "pmt_aa_wt": "S",
+      "pos": 418,
+      "dist_core_A": 37.47762680053711,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "P47116",
+      "pmt_aa_wt": "T",
+      "pos": 737,
+      "dist_core_A": 63.78716278076172,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    },
+    {
+      "acc": "Q04439",
+      "pmt_aa_wt": "S",
+      "pos": 1205,
+      "dist_core_A": 53.57682418823242,
+      "y": 1,
+      "position_resolution": "source workbook coordinate"
+    }
+  ],
+  "distance_rank_auc_missing_vs_observed": 0.6543062200956937,
+  "bounds": {
+    "least": {
+      "imputation": "missing positives at the lowest rank, missing negatives at the highest",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "sift_auc": {
+        "estimate": 0.5253164556962026,
+        "ci_low": 0.44845106254428585,
+        "ci_high": 0.6050732031943211,
+        "draws": 20000
+      },
+      "sift_minus_distance_auc": {
+        "estimate": -0.0015069318866787196,
+        "ci_low": -0.11935317460317457,
+        "ci_high": 0.125049169600256,
+        "draws": 20000
+      },
+      "seed": 20260728,
+      "draws_nominal": 20000,
+      "draws_retained_sift_auc": 20000,
+      "draws_retained_difference": 20000
+    },
+    "most": {
+      "imputation": "missing positives at the highest rank, missing negatives at the lowest",
+      "n_sites": 163,
+      "n_proteins": 48,
+      "n_positive": 79,
+      "sift_auc": {
+        "estimate": 0.6586799276672695,
+        "ci_low": 0.5619260141308581,
+        "ci_high": 0.7486131670016195,
+        "draws": 20000
+      },
+      "sift_minus_distance_auc": {
+        "estimate": 0.13185654008438819,
+        "ci_low": 0.024375526072497974,
+        "ci_high": 0.2477263487541264,
+        "draws": 20000
+      },
+      "seed": 20260728,
+      "draws_nominal": 20000,
+      "draws_retained_sift_auc": 20000,
+      "draws_retained_difference": 20000
+    }
+  },
+  "distance_auc_full_163": {
+    "estimate": 0.5268233875828813,
+    "ci_low": 0.4161064593848292,
+    "ci_high": 0.6305511618234994,
+    "draws": 20000,
+    "draws_nominal": 20000,
+    "seed": 20260728
+  },
+  "published_common_support": {
+    "n_sites": 152,
+    "n_proteins": 48,
+    "n_positive": 71,
+    "sift_auc": {
+      "estimate": 0.6061554512258738,
+      "ci_low": 0.5221801425943358,
+      "ci_high": 0.6901504243488439,
+      "draws": 20000
+    },
+    "distance_auc": {
+      "estimate": 0.5317336115458181,
+      "ci_low": 0.41801405993683133,
+      "ci_high": 0.646577625570776,
+      "draws": 20000
+    },
+    "sift_minus_distance_auc": {
+      "estimate": 0.07442183968005567,
+      "ci_low": -0.036886844864257466,
+      "ci_high": 0.1915291204090428,
+      "draws": 20000
+    }
+  }
+}

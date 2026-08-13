@@ -1,0 +1,11 @@
+feat_type,geometry,evidence_class,feature_records,unique_accessions,expanded_residue_rows
+Active site,point,includes_experimental_ECO_0000269,2,1,2
+Active site,point,includes_sequence_similarity_ECO_0000250,9,5,9
+Active site,point,missing,1,1,1
+Active site,point,other_or_mixed,29,28,29
+Binding site,interval,includes_experimental_ECO_0000269,7,3,24
+Binding site,interval,includes_sequence_similarity_ECO_0000250,26,8,103
+Binding site,interval,other_or_mixed,32,29,270
+Binding site,point,includes_experimental_ECO_0000269,61,6,61
+Binding site,point,includes_sequence_similarity_ECO_0000250,52,7,52
+Binding site,point,other_or_mixed,43,27,43

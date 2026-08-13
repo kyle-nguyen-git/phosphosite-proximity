@@ -1,0 +1,35 @@
+{
+  "metadata_status": "provisional_not_for_upload",
+  "upload_type": "software",
+  "title": "Phase 0.5: structural-distance calibration against yeast phosphomutant growth-screen phenotypes",
+  "creators": [
+    {
+      "name": "Nguyen, Kyle",
+      "affiliation": "AUTHOR MUST CONFIRM",
+      "orcid": "AUTHOR MUST CONFIRM OR REMOVE"
+    },
+    {
+      "name": "Marchenko, Arkady",
+      "affiliation": "AUTHOR MUST CONFIRM",
+      "orcid": "AUTHOR MUST CONFIRM OR REMOVE"
+    }
+  ],
+  "description": "Reproducible research compendium for an exploratory secondary analysis of a public yeast phosphomutant screen. Replace this provisional text only after author and independent-review sign-off.",
+  "version": "0.5.0",
+  "access_right": "open",
+  "license": "AUTHOR MUST SELECT FOR MIXED-LICENSE ARCHIVE",
+  "keywords": [
+    "phosphorylation",
+    "AlphaFold",
+    "yeast",
+    "structural bioinformatics",
+    "reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1038/s41587-021-01051-x",
+      "relation": "isDerivedFrom",
+      "resource_type": "publication-article"
+    }
+  ]
+}

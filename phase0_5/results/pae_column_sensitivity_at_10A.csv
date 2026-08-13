@@ -1,0 +1,13 @@
+cohort,pae_column,definition,threshold_A,n_sites,n_proteins,n_positive,auc
+exclude_annotation_coincident,pae_pair_max,maximum of both directed entries,10,44,21,25,0.4357894736842105
+exclude_annotation_coincident,pae_site_to_target,site to target,10,48,22,27,0.4585537918871252
+exclude_annotation_coincident,pae_pair_mean,mean of both directed entries,10,51,22,28,0.4891304347826087
+exclude_annotation_coincident,pae_target_to_site,target to site,10,57,26,30,0.5209876543209877
+include_annotation_coincident,pae_pair_max,maximum of both directed entries,10,47,23,28,0.49624060150375937
+include_annotation_coincident,pae_site_to_target,site to target,10,51,24,30,0.5126984126984127
+include_annotation_coincident,pae_pair_mean,mean of both directed entries,10,54,24,31,0.5385694249649369
+include_annotation_coincident,pae_target_to_site,target to site,10,60,28,33,0.5645342312008979
+legacy_158,pae_pair_max,maximum of both directed entries,10,42,21,23,0.4233409610983982
+legacy_158,pae_site_to_target,site to target,10,46,22,25,0.44571428571428573
+legacy_158,pae_pair_mean,mean of both directed entries,10,49,22,26,0.4765886287625418
+legacy_158,pae_target_to_site,target to site,10,54,25,27,0.50480109739369
