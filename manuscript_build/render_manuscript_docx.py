@@ -90,11 +90,17 @@ def add_runs(par, text: str, size: float = BODY_SIZE, bold_all: bool = False,
             rfonts.set(qn(attr), MONO if mono else SERIF)
 
 
+DOUBLE_SPACED = False
+
+
 def style_paragraph(par, space_after: float = PARA_SPACE) -> None:
     pf = par.paragraph_format
     pf.space_before = Pt(0)
     pf.space_after = Pt(space_after)
-    pf.line_spacing = Pt(BODY_LEADING)
+    if DOUBLE_SPACED:
+        pf.line_spacing = 2.0
+    else:
+        pf.line_spacing = Pt(BODY_LEADING)
     pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
 
@@ -136,7 +142,34 @@ def is_separator(cells: list[str]) -> bool:
     return bool(cells) and all(re.fullmatch(r":?-{2,}:?", c.replace(" ", "")) for c in cells)
 
 
-def build(source: Path, output: Path) -> None:
+def add_line_numbers(section) -> None:
+    """Continuous line numbers that do not restart per page, which PLOS requires for review."""
+    sectPr = section._sectPr
+    ln = OxmlElement("w:lnNumType")
+    ln.set(qn("w:countBy"), "1")
+    ln.set(qn("w:restart"), "continuous")
+    ln.set(qn("w:distance"), "360")
+    sectPr.append(ln)
+
+
+def add_page_numbers(section) -> None:
+    par = section.footer.paragraphs[0]
+    par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = par.add_run()
+    for el, attrs, text in (("w:fldChar", {"w:fldCharType": "begin"}, None),
+                            ("w:instrText", {"xml:space": "preserve"}, " PAGE "),
+                            ("w:fldChar", {"w:fldCharType": "end"}, None)):
+        e = OxmlElement(el)
+        for k, v in attrs.items():
+            e.set(qn(k), v)
+        if text:
+            e.text = text
+        run._element.append(e)
+    run.font.name = SERIF
+    run.font.size = Pt(BODY_SIZE)
+
+
+def build(source: Path, output: Path, submission: bool = False) -> None:
     doc = Document()
     sec = doc.sections[0]
     sec.page_width, sec.page_height = Inches(8.5), Inches(11)      # US Letter
@@ -148,7 +181,15 @@ def build(source: Path, output: Path) -> None:
     normal.font.size = Pt(BODY_SIZE)
     normal.font.color.rgb = BLACK
 
-    lines = source.read_text().splitlines()
+    if submission:
+        add_line_numbers(sec)
+        add_page_numbers(sec)
+
+    text = source.read_text()
+    if submission:
+        # PLOS uploads figures as separate files; the manuscript carries captions only.
+        text = re.sub(r"^!\[[^\]]*\]\([^)]*\)\n\n?", "", text, flags=re.M)
+    lines = text.splitlines()
     i = 0
     while i < len(lines):
         line = lines[i].rstrip()
@@ -244,7 +285,12 @@ def build(source: Path, output: Path) -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    argv = [a for a in sys.argv[1:] if a != "--submission"]
+    if len(argv) != 2:
         raise SystemExit(__doc__)
-    build(Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve())
-    print(f"wrote {sys.argv[2]}")
+    sub = "--submission" in sys.argv
+    if sub:
+        DOUBLE_SPACED = True
+        globals()["DOUBLE_SPACED"] = True
+    build(Path(argv[0]).resolve(), Path(argv[1]).resolve(), submission=sub)
+    print(f"wrote {argv[1]}" + (" (submission format)" if sub else ""))
