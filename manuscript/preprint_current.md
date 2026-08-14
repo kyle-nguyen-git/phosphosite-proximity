@@ -1,5 +1,7 @@
 # Distance to the nearest annotated active or binding residue: what it measures, and how it ranks sites in yeast and human phosphosite-mutant screens
 
+**Short title:** Phosphosite distance to annotated residues in yeast and human screens
+
 **Kyle Nguyen**^1^, **Arkady Marchenko**^2^
 
 ^1^ Human Biology, College of Natural Sciences, The University of Texas at Austin, Austin, Texas, USA
@@ -14,7 +16,7 @@ Work that ranks which protein modification sites are worth following up often le
 
 The predictor is the shortest distance between any non-hydrogen atom of the modified residue and any non-hydrogen atom of the nearest annotated residue, in an AlphaFold DB version 6 monomer model. It was measured on 163 alanine substitutions in 48 yeast proteins, and on 1,475 base-edited sites in 793 human proteins. The cohorts share the distance definition and the estimator, not a builder.
 
-In yeast, distance ranked sites at an area under the ROC curve of 0.527 (95% confidence interval 0.417–0.632, resampling whole proteins), where 0.5 is uninformative; a second cohort version keeping the three self-annotated sites gives 0.544 (0.436–0.649) on 166 sites. The human experiment reports two screens with different readouts, analysed separately: 0.559 (0.476–0.641) on a fitness screen and 0.487 (0.421–0.554) on an NFAT reporter screen. Six further endpoint definitions, three using no p-value, all give intervals containing 0.5.
+In yeast, distance ranked sites at an area under the receiver-operating-characteristic curve of 0.527 (95% confidence interval 0.417–0.632, resampling whole proteins), where 0.5 is uninformative; a second cohort version keeping the three self-annotated sites gives 0.544 (0.436–0.649) on 166 sites. The human experiment reports two screens with different readouts, analysed separately: 0.559 (0.476–0.641) on a fitness screen and 0.487 (0.421–0.554) on an NFAT reporter screen. Six further endpoint definitions, three using no p-value, all give intervals containing 0.5.
 
 What the statistic rests on is mostly not experimental and mostly not within a protein. Of 163 yeast nearest-target assignments, 143 were not experimentally established; half the sites within 5 Å are the next residue along the chain; and 2.65% of yeast and 0.10% and 0.16% of human ranked pairs compare two sites in one protein. Two post hoc results survive, neither adjusted for multiplicity: burial has an interval above 0.5 in the fitness screen, and sequence separation has a paired difference above distance of +0.071 (+0.005 to +0.137) in the reporter screen though its own interval contains 0.5.
 
@@ -34,13 +36,13 @@ Similar distance figures elsewhere in the field are cut-offs for deciding that t
 
 Beltrao et al. [8] prioritized modification sites by evolutionary and structural context across eleven eukaryotes, with validation in yeast. Phosphosites are enriched at interfaces in heterooligomers and in weak transient homooligomers [9], which is narrower than a claim about protein contact surfaces in general. A model of a protein on its own — a monomer model, which is what is used here — contains no such surface, because the partner is absent. Complexes can be obtained experimentally, by homology, by docking, or by prediction methods including AlphaFold-Multimer [10]; none is used here.
 
-Two studies sit closer to this one than the rest, in different ways. Correa Marrero et al. [22] measure distance from a phosphosite to the nearest functional site directly, in paired phosphorylated and unphosphorylated structures, and relate it to mechanical strain; they report co-straining for about 5% of phosphosite–functional-site pairs. That is an analogous phosphosite-to-functional-site relation rather than the same measurement: they work from paired experimental structures over a broader set of functional-site categories, and this paper works from AlphaFold monomers, restricted to `ACT_SITE` and `BINDING`, using the closest pair of non-hydrogen atoms. The evaluation differs too — theirs against structural response, this against a phenotype. StructureMap [4] is the closer relative on method rather than on quantity: it also works from AlphaFold monomer coordinates, binning distances at 1 Å up to 35 Å in 5 Å steps, with co-localization bins starting at 0 Å and no minimum separation along the sequence. Its headline structural variable is side-chain exposure, computed within a 12 Å radius and a 70° angle, and it reports no discrimination statistic for distance taken on its own. The 59-feature functional score of Ochoa et al. [3] names "1D structural properties, phosphorylation structural hotspots, structural stability and interfaces and protein topology annotations". Its Supplementary Table 2 does report a mean AUC for each feature before training, in a `feature_relevance` sheet, and that same workbook supplies the twelve comparators used in §2.7.1. Those per-feature values are computed against that study's own curated labels and validation design, so they are not a like-for-like comparator for a mutant-screen estimate, and none of the features it lists is a distance to the nearest annotated active or binding residue.
+Two studies sit closer to this one than the rest, in different ways. Correa Marrero et al. [21] measure distance from a phosphosite to the nearest functional site directly, in paired phosphorylated and unphosphorylated structures, and relate it to mechanical strain; they report co-straining for about 5% of phosphosite–functional-site pairs. That is an analogous phosphosite-to-functional-site relation rather than the same measurement: they work from paired experimental structures over a broader set of functional-site categories, and this paper works from AlphaFold monomers, restricted to `ACT_SITE` and `BINDING`, using the closest pair of non-hydrogen atoms. The evaluation differs too — theirs against structural response, this against a phenotype. StructureMap [4] is the closer relative on method rather than on quantity: it also works from AlphaFold monomer coordinates, binning distances at 1 Å up to 35 Å in 5 Å steps, with co-localization bins starting at 0 Å and no minimum separation along the sequence. Its headline structural variable is side-chain exposure, computed within a 12 Å radius and a 70° angle, and it reports no discrimination statistic for distance taken on its own. The 59-feature functional score of Ochoa et al. [3] names "1D structural properties, phosphorylation structural hotspots, structural stability and interfaces and protein topology annotations". Its Supplementary Table 2 does report a mean AUC for each feature before training, in a `feature_relevance` sheet, and that same workbook supplies the twelve comparators used in §2.7.1. Those per-feature values are computed against that study's own curated labels and validation design, so they are not a like-for-like comparator for a mutant-screen estimate, and none of the features it lists is a distance to the nearest annotated active or binding residue.
 
 Figure 2d of Viéitez et al. [1] reports areas under the ROC curve for sorting sites into loss-of-function or gain-of-function against unchanged, using categories of evidence that include "position on protein structure". The area under the ROC curve, written AUC below, is the chance that a randomly chosen site with a growth change is ranked ahead of a randomly chosen site without one, where 0.5 is what an uninformative measurement gives. The values behind those categories are distributed in their Supplementary Data 6.
 
 What that figure measures and what this paper measures are three different things. The outcome here is a single yes-or-no label: did the source report a growth change at this site in at least one condition, in either direction. It is not a loss-versus-gain call against unchanged. The predictor here is one continuous number declared in advance: the shortest distance between any non-hydrogen atom of the replaced residue and any non-hydrogen atom of the nearest residue that UniProt annotates as an active site (`ACT_SITE`) or a binding site (`BINDING`), with records that span several residues expanded to every residue they span. This is the minimum heavy-atom distance, called the distance below. And the cohort here is rebuilt from the condition-by-condition screening data to 163 replaced sites in 48 proteins; Supplementary Data 6 supplies annotations only and takes no part in deciding which sites are eligible or in the outcome. We did not retrieve the numeric values plotted in Figure 2d and make no comparison against them.
 
-To our knowledge, based on searches of Europe PMC, publisher full texts, and tool documentation as of 11 August 2026, no earlier study tests minimum heavy-atom distance from an observed phosphosite to the nearest annotated active or binding residue, in a monomer model, against a phenotype measured in a mutant screen, with uncertainty computed over proteins. That statement is bounded by those databases, that search date, that model type, that target definition, that endpoint and that inferential unit; it is not a claim that proximity to functional sites is unstudied, and [22] measures the same distance against a structural rather than a phenotypic outcome. The nearest published work otherwise measures a different relation between residues. Huang et al. [11] found structural distance to be the single most discriminating feature for cross-talk between two modifications on the same protein, at an AUC of 0.815; that figure rests on 50 positive cross-talk pairs against 1,821 controls, and structural distance had the highest missing rate of the features they compared.
+To our knowledge, based on searches of Europe PMC, publisher full texts, and tool documentation as of 11 August 2026, no earlier study tests minimum heavy-atom distance from an observed phosphosite to the nearest annotated active or binding residue, in a monomer model, against a phenotype measured in a mutant screen, with uncertainty computed over proteins. That statement is bounded by those databases, that search date, that model type, that target definition, that endpoint and that inferential unit; it is not a claim that proximity to functional sites is unstudied, and [21] measures the same distance against a structural rather than a phenotypic outcome. 
 
 This paper asks four things about one measurement. First, what the cohort of sites and the set of annotated target residues are actually made of. Second, whether distance separates the sites the screen reported a growth change at from the rest. That is tested against a permutation null, meaning the outcome labels shuffled at random many times to show what the measurement returns when there is nothing to find; against other predictors computed on exactly the same sites; and under stricter and direction-specific definitions of what counts as an affected site. Third, what distance stands in for, both at very short range and when sites in different proteins are compared. Fourth, what a study of this size, with this outcome and this annotation, can settle at all.
 
@@ -68,7 +70,24 @@ The analysis is exploratory. The main quantity to be estimated was fixed after t
 
 Supplementary Data 1 of the source screen [1] contains 497 point-mutant strain records, covering 490 replaced sites as numbered in the source, in 116 UniProt entries. After one provisional coordinate resolution, 487 records matched the reviewed sequence (479 replaced sites, 113 proteins). Of those, 465 carried a growth profile across conditions (458, 111). Two strain-level quality-control filters then left 447 (443, 110) and 427 (423, 107). Requiring both an annotated active or binding residue and an AlphaFold model left 169 strain records in 50 proteins, which collapse to 166 distinct replaced sites once repeat strains are averaged (Table 1, Figure 1A).
 
+**Table 1. Cohort reconstruction.**
+
+| Stage | Strain records | Substitutions | Proteins | Role or exclusion |
+|---|---:|---:|---:|---|
+| Point-mutant source rows | 497 | 490 source-coordinate | 116 | Supplementary Data 1 constructs |
+| Sequence matched after PBY107 resolution | 487 | 479 resolved-coordinate | 113 | 10 unresolved mismatches excluded |
+| With a condition-level profile | 465 | 458 | 111 | 22 lacked a Supplementary Data 3 profile |
+| After sequencing exclusion | 447 | 443 | 110 | 18 excluded; all 18 affected |
+| After scar-correlation exclusion | 427 | 423 | 107 | 20 excluded, 16 affected; filter defined on phenotype similarity to a marker control |
+| Annotation and structure eligible | 169 | 166 | 50 | Annotated active or binding residue, AlphaFold model, repeat strains averaged |
+| Primary cohort | — | 163 | 48 | 79 affected, 84 unaffected |
+| Inclusive 0 Å sensitivity cohort | — | 166 | 50 | 82 affected; three 0 Å sites retained |
+
+Of the 427 retained records 169 (39.6%) are affected, against 34 of the 38 excluded (89.5%).
+
 ![Figure 1. Cohort reconstruction and the primary distance estimate.](figure1.png)
+
+**Figure 1. Cohort reconstruction and the primary distance estimate.** (A) The cohort cascade, counting strain records separately from distinct replaced sites. Stage one counts sites as numbered in the source, and later stages count them after coordinates are resolved, which is why 490 becomes 479 rather than 480 once PBY107 is resolved onto a position PBY131 already occupies. All six declared stages are shown and the panel matches Table 1 row for row. Supplementary Data 1 supplied the constructs, Data 3 the outcomes and Data 8 the quality-control flags; Data 6 contributed annotations only and did not determine eligibility. (B) ROC curves for both cohorts, with shorter distance scored toward an affected label; the dashed diagonal is chance. The band is the 2.5th-to-97.5th percentile envelope, at each false-positive rate, of 2,000 protein-cluster bootstrap curves. It is wider than the confidence interval on the AUC by construction and is not that interval; no resamples were discarded at the committed data and seed. The predictor is the shortest heavy-atom distance from the replaced residue to the nearest UniProt-annotated active or binding residue, annotations expanded to every residue they cover, in an AlphaFold DB version 6 model of the protein on its own. A site counts as affected when the source reports a q-value below 0.05 in at least one condition it was measured in. Primary AUC 0.527 (protein-cluster bootstrap 95% confidence interval, 0.417–0.632); inclusive 0.544 (0.436–0.649).
 
 A site counts as affected when the source reports a q-value below 0.05 — a p-value adjusted so that, among all the calls made, the expected share of false ones is controlled — in at least one condition it was measured in, whatever the sign of the effect. The primary cohort drops the three sites that are themselves an annotated residue: 163 replaced sites in 48 proteins, 79 affected and 84 unaffected. A second version of the cohort, called the inclusive arm below, keeps those three at their distance to themselves of 0 Å: 166 replaced sites in 50 proteins, 82 affected.
 
@@ -80,7 +99,7 @@ Among the records that passed quality control, the 169 that were annotation-elig
 
 Sequencing covered 244 of the 497 point-mutant records and 88 of the 169 eligible strain records. Among those 88, 46 carry a coding variant in some other gene, 4 carry one in the gene being tested, and 3 are flagged for copy-number change; none carries any text in the free-text quality-control note. That note is the only field the exclusion rule reads, so all 88 were kept. The number of conditions behind each site is not the same for every site. `raw_conditions`, the count of conditions with a measured value, takes five values in the primary cohort — 96, 98, 100, 101 and 102, with 155 replaced sites at 102 — and 7 of the 8 sites below 102 are affected.
 
-What follows about the target set was worked out after the primary result, and is post hoc. The eligible annotations are 262 UniProt records — 41 `ACT_SITE`, 221 `BINDING` — drawn from 278 after setting aside 8 `Site` and 8 `DNA binding` records, and they define a target set of **560 distinct residues**. Supplementary Note S1 gives the record-to-residue expansion, the duplicate-removal rules that give 565 and 566 rows, the source of the excess over 560, and the earlier expanded row count that does not reproduce and is withdrawn.
+What follows about the target set was worked out after the primary result, and is post hoc. The eligible annotations are 262 UniProt records — 41 `ACT_SITE`, 221 `BINDING` — drawn from 278 after setting aside 8 `Site` and 8 `DNA binding` records, and they define a target set of **560 distinct residues**. S1 Appendix gives the record-to-residue expansion, the duplicate-removal rules that give 565 and 566 rows, the source of the excess over 560, and the earlier expanded row count that does not reproduce and is withdrawn.
 
 UniProt tags each annotation with an ECO evidence code recording how it was established. Of the 163 nearest targets actually used, 101 carry ECO:0000255, meaning a curated automated rule, and 33 carry ECO:0000250, meaning inferred from a similar protein. Taking the union of evidence codes across every record covering a residue, 20 of 163 (12.3%) rest on experimental evidence, ECO:0000269 or ECO:0007744, and 143 of 163 (87.7%) do not. The count is 19 if the single residue covered by three records is assigned instead to its ECO:0000250 record; that is the only ambiguous row of the 163, so the count travels with the rule used to settle it. Counting residues rather than sites, the 48 proteins carry 533 eligible target residues, 92 of them experimental (17.3%). ATP is the bound molecule at the nearest target for 86 of 163 replaced sites (52.8%), and 24 of the 48 proteins (50%) are protein kinases or subunits of protein-kinase complexes. `BINDING` records span a median of 1 residue and at most 9, and the 33 records spanning 8 or more supply 289 of the 533 residues (54.2%).
 
@@ -110,6 +129,10 @@ Across the cohort, |Δposition| is 1 for 5 sites, 2 for 1 site and 3 or more for
 
 Sites inside the 5 Å cut-off are affected less often than sites beyond it, 40.0% against 49.0%, a descriptive odds ratio of 0.693 on 10 sites; the two distance distributions are drawn in Figure 2A. That inversion comes entirely from the peptide-bond neighbours. With those removed the cut-off holds 4 sites, 2 of them affected, an odds ratio of 1.040; on a bin of four sites only the count is reported. The declared predictor is not redefined. `min_dist_A`, the distance on all 163 rows, remains the primary quantity.
 
+![Figure 2. Model confidence and the declared sensitivity families.](figure2.png)
+
+**Figure 2. Model confidence and the declared sensitivity families.** (A) Cumulative distance distributions in the primary cohort, drawn separately for affected and unaffected sites. The marked maximum vertical gap between them is the two-sample Kolmogorov–Smirnov statistic, 0.137 on 79 affected and 84 unaffected sites; it is descriptive and no p-value is reported. The rug at 0 Å marks the three sites that coincide with an annotated residue, which enter only the inclusive cohort. (B) `pae_pair_max`, the larger of the two directed site–target predicted-aligned-error values, against distance, coloured by site pLDDT. (C) Protein-cluster AUC intervals for all 11 confidence strata in both cohort versions. The primary-cohort family minimum (0.416, n = 41) and maximum (0.683, n = 27) are labelled as extremes of the family; tightening the PAE threshold moves the value up and down in both versions. Marker area is proportional to the number of sites in the stratum, which falls from 163 to 27. (D) The cohort, residue-class and feature-definition checks and the SIFT comparator, on the AUC scale of (C). The tyrosine subset appears as a point estimate with no interval, its bootstrap upper endpoint having reached 1, the highest value an AUC can take. In (C) and (D) the dashed vertical line marks AUC 0.5; labels carry n as primary/inclusive in (C) and a single n in (D).
+
 ### 2.4 No alternative predictor is distinguishable from distance on the same sites
 
 Seven other predictors were computed on the same 163 replaced sites of the primary cohort and compared with `min_dist_A`, the declared distance. Each comparison is a paired difference: both predictors are scored on the same sites inside the same protein resamples, so the variation the two share cancels and the interval reflects only how they differ. All of this was done after the primary result. All eight predictors have a value on all 163 rows.
@@ -133,7 +156,7 @@ No comparator's interval excludes 0.5 except the bookkeeping negative control, a
 
 #### 2.4.1 SIFT scores are missing disproportionately at long distances and affected sites
 
-SIFT [12] predicts from sequence conservation whether replacing one amino acid with another will damage the protein; a lower score means more damaging, so the score is inverted here to point the same way as the other predictors. It was available for 152 of the 163 replaced sites, 71 of them affected. On those 152 sites SIFT gave 0.606 (0.522–0.690) against 0.532 (0.418–0.647) for distance, and the paired difference, SIFT minus distance, was 0.074 (−0.037 to 0.192). SIFT was computed after the primary result. Its interval does not contain 0.5, which is what a positive control for this outcome requires; §3.2 sets out what that does and does not license.
+SIFT [11] predicts from sequence conservation whether replacing one amino acid with another will damage the protein; a lower score means more damaging, so the score is inverted here to point the same way as the other predictors. It was available for 152 of the 163 replaced sites, 71 of them affected. On those 152 sites SIFT gave 0.606 (0.522–0.690) against 0.532 (0.418–0.647) for distance, and the paired difference, SIFT minus distance, was 0.074 (−0.037 to 0.192). SIFT was computed after the primary result. Its interval does not contain 0.5, which is what a positive control for this outcome requires; §3.2 sets out what that does and does not license.
 
 The 11 sites with no SIFT score come from 6 proteins, and whether a score is missing is related to both the outcome and the distance. Eight of the 11 are affected, 72.7% against 46.7% among the scored sites, and their median distance is 51.80 Å against 28.52 Å. Dropping to the sites both predictors cover moves the distance AUC from 0.527 to 0.532, slightly in distance's favour.
 
@@ -175,7 +198,7 @@ Among the 79 affected sites of the primary cohort, counting only the conditions 
 
 Median site pLDDT in the primary cohort is 46.50; 84 of the 163 replaced residues sit below 50 and 103 of 163 below 70. The Spearman rank correlation between log10(distance + 1 Å) and site pLDDT is −0.541 (Figure 2B). Distance correlates with `pae_pair_max` at 0.753 (0.661–0.827), and site pLDDT with `pae_pair_max` at −0.795 (−0.852 to −0.688). The long distances here are measured where AlphaFold is least sure how the two residues sit relative to one another, so distance and model confidence are largely the same variable on this cohort.
 
-The full eleven-stratum family, for both cohort versions, is Supplementary Table S2 and Figure 2C. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
+The full eleven-stratum family, for both cohort versions, is S1 Table and Figure 2C. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
 The rise where both the site and its target are above pLDDT 90 appears in both cohort versions, 0.641 on 28 primary sites and 0.697 on 31 inclusive. This design cannot separate an effect in well-folded regions from what picking out a stratum of 28 sites can produce on its own.
 
 Tyrosine sites alone give an AUC of 0.604 (16 sites in 12 proteins; 12 affected, 4 unaffected). Figure 2D places this and the other cohort, residue-class and feature-definition checks on one scale. No interval is reported: the upper end of the protein-cluster bootstrap reaches 1, the highest value an AUC can take, and 3.3% (665 / 20,000) of resamples were discarded because every site in them had the same outcome.
@@ -183,11 +206,9 @@ Tyrosine sites alone give an AUC of 0.604 (16 sites in 12 proteins; 12 affected,
 The four PAE summaries at 10 Å and the 72-cell grids are in the supplement; its 72 primary-cohort cells run from 0.416 to 0.569.
 
 
-![Figure 2. Model confidence and the declared sensitivity families.](figure2.png)
-
 ### 2.7 The same measurement in an independent human experiment, on two screens that disagree
 
-The yeast cohort holds 48 proteins, and its interval is wider than the spread of feature estimates it would have to separate. That objection cannot be answered inside the cohort, so the same measurement was made on a second, independent experiment: Kennedy et al. [21] edited phosphosites in human Jurkat and HEK293 cells with base editors. The predictor, the annotation source, the structure source and the estimator are the ones declared above. The cohort holds **1,475 edited sites in 793 proteins**, against 163 sites in 48 proteins in yeast.
+The yeast cohort holds 48 proteins, and its interval is wider than the spread of feature estimates it would have to separate. That objection cannot be answered inside the cohort, so the same measurement was made on a second, independent experiment: Kennedy et al. [20] edited phosphosites in human Jurkat and HEK293 cells with base editors. The predictor, the annotation source, the structure source and the estimator are the ones declared above. The cohort holds **1,475 edited sites in 793 proteins**, against 163 sites in 48 proteins in yeast.
 
 That experiment reports two screens with different readouts, and they are kept apart here. Supplementary Table 3 compares sgRNA abundance before and after introduction of the ABE8e editor, a fitness readout. Supplementary Table 4 compares abundance between GFP-high and GFP-low bins, which reports NFAT reporter activity. They are not two measurements of one thing: at a direction-corrected 5% they call **65 sites in the fitness screen only, 74 in the reporter only, and 6 in both**, and their log fold changes correlate at a Spearman coefficient of 0.12. Pooling them was the first version of this analysis and is withdrawn.
 
@@ -197,9 +218,9 @@ Distance gave **0.559 (0.476–0.641)** on the fitness screen, where 71 sites ar
 
 #### 2.7.1 The reading does not depend on which endpoint is chosen
 
-The endpoint was declared after it was clear that no candidate separated the classes, which makes the choice post hoc. The defence available is to report every candidate, so all of them are in Table 3.
+The endpoint was declared after it was clear that no candidate separated the classes, which makes the choice post hoc. The defence available is to report every candidate, so all of them are in Table 2.
 
-**Table 3. Distance under every human endpoint considered.**
+**Table 2. Distance under every human endpoint considered.**
 
 | Endpoint | Affected | AUC | 95% interval |
 |---|---:|---:|---:|
@@ -228,9 +249,9 @@ The comparison remains almost entirely between proteins. Within-protein pairs ar
 
 The pooled AUC is therefore a mostly across-protein quantity. It can track protein length, annotation density, typical fold geometry and anything else that varies between proteins, and resampling proteins fixes the dependence without changing what the statistic averages. That is a different question from the one a user of this shortcut usually asks, which is which site inside a given protein to follow up.
 
-That question can be asked directly, on the proteins carrying both classes, and the answer is Table 4. No aggregation in either cohort puts the declared predictor above chance within a protein.
+That question can be asked directly, on the proteins carrying both classes, and the answer is Table 3. No aggregation in either cohort puts the declared predictor above chance within a protein.
 
-**Table 4. Discrimination using only comparisons inside one protein.**
+**Table 3. Discrimination using only comparisons inside one protein.**
 
 | Cohort | Informative proteins | Pairs | Pair-weighted AUC | Equal-protein-weight AUC |
 |---|---:|---:|---:|---:|
@@ -252,7 +273,7 @@ The short end is again sequence position. **37** sites lie within 5 Å of their 
 
 Twelve features from the human phosphoproteome annotation of Ochoa et al. [3] were tested on the same sites with the same estimator. On the fitness screen SIFT, which scores how damaging a substitution is expected to be from sequence conservation, gives **0.646 (0.565–0.723)** on the 997 sites carrying a score. On the reporter screen the same feature gives 0.565 (0.486–0.643), an interval that contains 0.5.
 
-So the fitness endpoint can support discrimination by a general substitution-effect predictor, and endpoint blindness alone does not explain its near-chance distance estimate. The same argument is not available for the reporter screen. Neither result shows that either endpoint resolves loss of phosphorylation: SIFT scores intolerance to substitution, and the substitutions here are mostly serine to proline (33.0%) and serine to glycine (22.3%), with threonine to alanine — the clean removal of a phosphoacceptor — reaching only 9.5%. Restricted to those 39 threonine-to-alanine sites the AUC is 0.470 (0.212–0.733), an interval too wide to carry any reading. Restricting instead to the 425 sites edited by a guide that made only one change, so no bystander edit is present, gives 0.516 (0.392–0.641) on the fitness screen and 0.527 (0.415–0.639) on the reporter screen. Li et al. [23], profiling 584,337 serine, threonine and tyrosine positions with 817,089 guides, report that serine-to-proline substitution disrupts domain structure broadly, which is the confound this arm cannot separate from loss of the phosphoacceptor.
+So the fitness endpoint can support discrimination by a general substitution-effect predictor, and endpoint blindness alone does not explain its near-chance distance estimate. The same argument is not available for the reporter screen. Neither result shows that either endpoint resolves loss of phosphorylation: SIFT scores intolerance to substitution, and the substitutions here are mostly serine to proline (33.0%) and serine to glycine (22.3%), with threonine to alanine — the clean removal of a phosphoacceptor — reaching only 9.5%. Restricted to those 39 threonine-to-alanine sites the AUC is 0.470 (0.212–0.733), an interval too wide to carry any reading. Restricting instead to the 425 sites edited by a guide that made only one change, so no bystander edit is present, gives 0.516 (0.392–0.641) on the fitness screen and 0.527 (0.415–0.639) on the reporter screen. Li et al. [22], profiling 584,337 serine, threonine and tyrosine positions with 817,089 guides, report that serine-to-proline substitution disrupts domain structure broadly, which is the confound this arm cannot separate from loss of the phosphoacceptor.
 
 #### 2.7.6 What the two cohorts do not share
 
@@ -296,11 +317,40 @@ Every point mutant in the source screen replaces the residue with alanine, and t
 
 **Reproducibility of the outcome.** Only two sites kept more than one strain, and one of those two disagrees across its strains under the yes-or-no rule, which cannot characterize how reproducible the outcome is. Two rules for combining repeat strains are reported, along with one difference between figure versions in how the cohort cascade is drawn, and the withdrawn expanded row count of §2.1.
 
-**The review behind this revision.** Revisions to this manuscript responded in part to simulated reviews in which every reviewer was an AI agent running on one model family. That is not peer review, and agreement among those reviewers is not independent replication. Supplementary Note S3 records what was run and when.
+**The review behind this revision.** Revisions to this manuscript responded in part to simulated reviews in which every reviewer was an AI agent running on one model family. That is not peer review, and agreement among those reviewers is not independent replication. S2 Appendix records what was run and when.
 
 ### 3.4 What the analysis supports, and what a usable design would need
 
-What this analysis supports is specific to these two cohorts. In yeast, on 163 replaced sites in 48 proteins, the shortest heavy-atom distance to the nearest annotated active- or binding-site residue gave an AUC of 0.527 (0.417–0.632), which is 0.59 standard deviations from the centre of a null built by shuffling the labels 20,000 times (two-sided p = 0.55). The smallest gap in sequence position to an eligible annotated residue, computed on the same rows with no structure used at all, gave 0.550 (0.434–0.653); the paired difference was +0.023 (−0.049 to +0.090).
+
+**Table 4. Selected results from both cohorts.** Values are AUCs — the chance an affected site ranks ahead of an unaffected one — unless the row names another quantity. Declared quantities are marked; everything else is post hoc.
+
+| Analysis | Cohort | n | Value | 95% interval | Timing |
+|---|---|---|---:|---:|---|
+| Distance, primary | Yeast | 163 sites, 48 proteins | 0.527 | 0.417–0.632 | Cohort version fixed after outcome inspection |
+| Distance, inclusive 0 Å | Yeast | 166, 50 proteins | 0.544 | 0.436–0.649 | Reported alongside as a check |
+| **Distance, declared primary** | Human, fitness | 1,475 sites, 793 proteins; 71 affected | 0.559 | 0.476–0.641 | Endpoint declared after all candidates were known |
+| **Distance, declared primary** | Human, reporter | 1,475, 793; 80 affected | 0.487 | 0.421–0.554 | Endpoint declared after all candidates were known |
+| Within-protein, pair-weighted | Yeast | 112 sites, 23 proteins, 176 pairs | 0.528 | 0.368–0.709 | Declared within-protein estimand |
+| Within-protein, pair-weighted | Human, fitness | 132 sites, 39 proteins, 102 pairs | 0.627 | 0.452–0.768 | Post hoc |
+| Within-protein, pair-weighted | Human, reporter | 210 sites, 48 proteins, 180 pairs | 0.422 | 0.322–0.521 | Post hoc |
+| Within-protein, equal-protein weight | Human, reporter | 48 proteins | 0.384 | 0.272–0.498 | Post hoc; the only interval here excluding 0.5 from below |
+| Minimum sequence separation | Yeast | 163 | 0.550 | 0.434–0.653 | Post hoc comparator |
+| Minimum sequence separation | Human, reporter | 1,475 | 0.558 | 0.492–0.624 | Post hoc comparator |
+| **Difference in AUC**, sequence separation minus distance, paired | Human, reporter | 1,475 | +0.071 | +0.005 to +0.137 | Post hoc; the only paired difference excluding zero |
+| Inverse relative solvent accessibility | Yeast | 163 | 0.587 | 0.489–0.672 | Post hoc comparator |
+| Inverse relative solvent accessibility | Human, fitness | 1,475 | 0.604 | 0.528–0.675 | Post hoc comparator |
+| SIFT, common support | Yeast | 152 | 0.606 | 0.522–0.690 | Post hoc comparator |
+| SIFT, common support | Human, fitness | 997 | 0.646 | 0.565–0.723 | Post hoc comparator |
+| SIFT, common support | Human, reporter | 997 | 0.565 | 0.486–0.643 | Post hoc comparator |
+| **Odds ratio** per ten-fold increase in distance + 1 Å | Yeast | 163 | 0.77 | 0.27–2.21 | Cluster covariance, t(47) |
+| **Odds ratio** adjusted for pLDDT and solvent accessibility | Yeast | 163 | 1.31 | 0.37–4.66 | Cluster covariance, t(47) |
+| Experimentally-evidenced targets only | Yeast | 24 sites, 7 proteins | 0.420 | 0.244–0.708 | Descriptive range on 7 proteins |
+| Experimentally-evidenced targets only | Human, fitness | 512 sites, 287 proteins | 0.575 | 0.446–0.699 | Post hoc |
+| Experimentally-evidenced targets only | Human, reporter | 512, 287 | 0.491 | 0.391–0.590 | Post hoc |
+
+The two yeast cohort intervals use 200,000 protein-cluster resamples at seed 20260729; every other bootstrap interval here uses 20,000 at seed 20260728, and all draws were retained.
+
+Table 4 collects the quantities this paper reports for both cohorts on one scale. What this analysis supports is specific to these two cohorts. In yeast, on 163 replaced sites in 48 proteins, the shortest heavy-atom distance to the nearest annotated active- or binding-site residue gave an AUC of 0.527 (0.417–0.632), which is 0.59 standard deviations from the centre of a null built by shuffling the labels 20,000 times (two-sided p = 0.55). The smallest gap in sequence position to an eligible annotated residue, computed on the same rows with no structure used at all, gave 0.550 (0.434–0.653); the paired difference was +0.023 (−0.049 to +0.090).
 
 Keeping only sites where the model is confident produced no steady improvement. The eleven strata of the primary cohort run from a low of 0.416 on 41 sites to a high of 0.683 on 27, and tightening the PAE threshold moves the value up and down in both cohort versions. Keeping only targets with experimental evidence behind them left 24 of the 163 sites in 7 of the 48 proteins, so whether better annotation would change the picture cannot be asked of this design.
 
@@ -324,7 +374,7 @@ A later methods review identified five defects in the first cohort build: Supple
 
 Four supplementary workbooks from Viéitez et al. [1] were obtained from Europe PMC record PMC7612524. Supplementary Data 1 defines the point-mutant constructs. Supplementary Data 3 gives the S-scores and q-values condition by condition, where the S-score measures how much better or worse a strain grew than expected. Supplementary Data 8 holds the sequencing quality-control notes and the phosphomutant records reported to correlate with scar controls. Supplementary Data 6 was used only for annotations: SIFT, disorder, domain membership, evolutionary age and phenotype-group labels.
 
-Point-mutant rows were matched from yeast systematic gene names to reviewed budding-yeast (*S. cerevisiae*) UniProt entries by ordered-locus name, and the wild-type residue stated in the workbook had to match the reviewed sequence. Two records carry a HOG1 label. PBY107 is labelled T178A in Supplementary Data 1; the source article names T174A as the regulatory control and T174 matches the reviewed sequence, so it is analysed at T174, with a named check that drops it. S178 and T179 were compatible alternatives and were not adopted. PBY131 carries the T174A label in Supplementary Data 8 and was removed by the sequencing-note exclusion, so no analysed record carries that label. No other mismatch was shifted.
+Point-mutant rows were matched from yeast systematic gene names to reviewed budding-yeast (*Saccharomyces cerevisiae*) UniProt entries by ordered-locus name, and the wild-type residue stated in the workbook had to match the reviewed sequence. Two records carry a HOG1 label. PBY107 is labelled T178A in Supplementary Data 1; the source article names T174A as the regulatory control and T174 matches the reviewed sequence, so it is analysed at T174, with a named check that drops it. S178 and T179 were compatible alternatives and were not adopted. PBY131 carries the T174A label in Supplementary Data 8 and was removed by the sequencing-note exclusion, so no analysed record carries that label. No other mismatch was shifted.
 
 A record had to have a growth profile in Supplementary Data 3, and was excluded if it carried any text in the Supplementary Data 8 sequencing note or appeared exactly in that file's scar-correlation table. As implemented, the rule reads the free-text note only. The numeric columns recording secondary variants and the copy-number flag were not used, and no eligible strain record carries any text in the note (§2.1).
 
@@ -340,11 +390,11 @@ Two stricter definitions require at least 2 and at least 3 called conditions; ra
 
 ### 4.4 Annotations and structures
 
-The reviewed yeast proteome and its UniProt annotations were retrieved through the UniProt REST API on 29 July 2026; the response reported release 2026_02, dated 10 June 2026 [13]. The target set is the Active site (`ACT_SITE`) and Binding site (`BINDING`) records of reviewed entries, with `Site` and `DNA binding` records excluded (§2.1). That release documents the merge of the former `NP_BIND`, `METAL` and `CA_BIND` types into `BINDING`, so one `BINDING` record may describe a nucleotide, a metal or a calcium interaction [13]. Evidence codes were kept but were not used to decide eligibility, so an entry being reviewed does not mean any particular annotation on it has experimental support. Records covering several residues were expanded to one row per covered residue. `ACT_SITE` covers a single residue everywhere in this data, so the expansion affects `BINDING` only; the resulting counts are in §2.1.
+The reviewed yeast proteome and its UniProt annotations were retrieved through the UniProt REST API on 29 July 2026; the response reported release 2026_02, dated 10 June 2026 [12]. The target set is the Active site (`ACT_SITE`) and Binding site (`BINDING`) records of reviewed entries, with `Site` and `DNA binding` records excluded (§2.1). That release documents the merge of the former `NP_BIND`, `METAL` and `CA_BIND` types into `BINDING`, so one `BINDING` record may describe a nucleotide, a metal or a calcium interaction [12]. Evidence codes were kept but were not used to decide eligibility, so an entry being reviewed does not mean any particular annotation on it has experimental support. Records covering several residues were expanded to one row per covered residue. `ACT_SITE` covers a single residue everywhere in this data, so the expansion affects `BINDING` only; the resulting counts are in §2.1.
 
-Structures were AlphaFold DB entry version 6, which are AlphaFold2 predictions of each protein on its own (monomer v2.0) [14,15], cached with model metadata, predicted-aligned-error files, source URLs and SHA-256 hashes. Automated checks compared sequences, residue numbering, version fields and predicted-aligned-error matrix dimensions across the UniProt, AlphaFold and mmCIF records before any distance was measured, and stopped the analysis on any mismatch.
+Structures were AlphaFold DB entry version 6, which are AlphaFold2 predictions of each protein on its own (monomer v2.0) [13,14], cached with model metadata, predicted-aligned-error files, source URLs and SHA-256 hashes. Automated checks compared sequences, residue numbering, version fields and predicted-aligned-error matrix dimensions across the UniProt, AlphaFold and mmCIF records before any distance was measured, and stopped the analysis on any mismatch.
 
-pLDDT for the site and for its nearest target is the mean atom B factor stored in the mmCIF, read as the model's local confidence and not as a measurement of disorder, though regions of low pLDDT are frequently intrinsically disordered [16,17]. Relative solvent accessibility was computed on the protein alone as Shrake–Rupley solvent-accessible surface area [18] divided by the per-residue maxima of Tien et al. [19]. Both directions of the predicted aligned error were kept for the nearest site–target pair. Following the AlphaFold DB definition, the entry at row *i*, column *j* is the expected positional error at residue *j* when the prediction is aligned on residue *i*; `pae_site_to_target` therefore takes *i* = site, *j* = target, as the supplementary PAE table header states. `pae_pair_max`, used for the declared PAE strata, is the larger of the two.
+pLDDT for the site and for its nearest target is the mean atom B factor stored in the mmCIF, read as the model's local confidence and not as a measurement of disorder, though regions of low pLDDT are frequently intrinsically disordered [15,16]. Relative solvent accessibility was computed on the protein alone as Shrake–Rupley solvent-accessible surface area [17] divided by the per-residue maxima of Tien et al. [18]. Both directions of the predicted aligned error were kept for the nearest site–target pair. Following the AlphaFold DB definition, the entry at row *i*, column *j* is the expected positional error at residue *j* when the prediction is aligned on residue *i*; `pae_site_to_target` therefore takes *i* = site, *j* = target, as the supplementary PAE table header states. `pae_pair_max`, used for the declared PAE strata, is the larger of the two.
 
 ### 4.5 Predictor and statistical analysis
 
@@ -360,7 +410,7 @@ Logistic models used log10(distance + 1), with standard errors that allow sites 
 
 The eight round-2 analyses were run outside the frozen analysis tree. Each one checks the three frozen input hashes before computing anything, imports the frozen estimators from `phase0_5/src/02_phase0_5_analysis.py` rather than reimplementing them, and writes nothing into the frozen tree. Every value they produce is post hoc.
 
-The frozen software environment was CPython 3.12.4 with NumPy 1.26.4, pandas 2.2.2, SciPy 1.13.1, scikit-learn 1.4.2 [20], statsmodels 0.14.2 and Biopython 1.85, with the full set of dependencies pinned in `requirements-lock.txt`. Automated checks verified how the cohort was built, that the outcome could be rebuilt from the condition-level data, that structures and predicted-aligned-error files were complete, that the distances were computed as specified, that outputs had the expected dimensions, and that the numerical outputs, figures and text agree. All passed before the manuscript was prepared.
+The frozen software environment was CPython 3.12.4 with NumPy 1.26.4, pandas 2.2.2, SciPy 1.13.1, scikit-learn 1.4.2 [19], statsmodels 0.14.2 and Biopython 1.85, with the full set of dependencies pinned in `requirements-lock.txt`. Automated checks verified how the cohort was built, that the outcome could be rebuilt from the condition-level data, that structures and predicted-aligned-error files were complete, that the distances were computed as specified, that outputs had the expected dimensions, and that the numerical outputs, figures and text agree. All passed before the manuscript was prepared.
 
 A rerun in a clean environment by the same authors confirmed that the computations reproduce. That is not independent replication and not independent review.
 
@@ -368,7 +418,7 @@ A rerun in a clean environment by the same authors confirmed that the computatio
 
 ### 4.7 The human replication cohort
 
-Sites, guide assignments and per-site screen statistics come from the Supplementary Tables of Kennedy et al. [21], retrieved from the publisher and verified against Europe PMC record PMC11804830. UniProt `ACT_SITE` and `BINDING` features were expanded over their recorded ranges and AlphaFold DB v6 monomer models retrieved, following the same procedure as the yeast cohort but through a separate builder; distance is the same minimum heavy-atom separation, with the substituted residue excluded from its own target set — which is not the yeast rule, where a site coinciding with a target is removed instead. The human builder does not carry the yeast builder's sequence and model-version checks, and the table it starts from has no generator in the deposited materials, so this cohort cannot at present be rebuilt end to end from source. Sites were kept when the model reproduced the reviewed sequence at that position and the protein carried at least one eligible annotated residue, leaving 1,475 sites in 793 proteins.
+Sites, guide assignments and per-site screen statistics come from the Supplementary Tables of Kennedy et al. [20], retrieved from the publisher and verified against Europe PMC record PMC11804830. UniProt `ACT_SITE` and `BINDING` features were expanded over their recorded ranges and AlphaFold DB v6 monomer models retrieved, following the same procedure as the yeast cohort but through a separate builder; distance is the same minimum heavy-atom separation, with the substituted residue excluded from its own target set — which is not the yeast rule, where a site coinciding with a target is removed instead. The human builder does not carry the yeast builder's sequence and model-version checks, and the table it starts from has no generator in the deposited materials, so this cohort cannot at present be rebuilt end to end from source. Sites were kept when the model reproduced the reviewed sequence at that position and the protein carried at least one eligible annotated residue, leaving 1,475 sites in 793 proteins.
 
 The cohort cascade runs 7,425 rows in the source phosphosite table, to 6,968 with a parsable serine, threonine or tyrosine position, to 6,950 mapping to a reviewed UniProt entry, to 6,148 whose residue matches the canonical sequence at that position, to 1,595 sites in 818 proteins carrying at least one eligible annotated residue, to **1,475 sites in 793 proteins** with a distance. Guides are aggregated to the site they target: a site enters once, and where several guides name the same site the screen's own per-site summary is used rather than a guide-level average. Sites edited by more than one guide, and guides producing bystander edits at neighbouring residues, are retained in the primary cohorts and separated in the single-edit arm of §2.7.5. Editor identity, ABE8e or BE4, is recorded per guide and used only in the substitution-class arms; it does not enter the primary.
 
@@ -376,119 +426,57 @@ The two screens are analysed separately and each supplies its own declared outco
 
 Intervals use the same protein-cluster percentile bootstrap at 20,000 resamples and seed 20260728, with the estimator imported from the yeast analysis module rather than reimplemented, so the two cohorts share an estimator even though they do not share a cohort builder. Every interval reported for this cohort retained all 20,000 resamples.
 
-## Data and code availability
-
-The source screen is available with Viéitez et al. [1] through Europe PMC record PMC7612524. The four workbooks are not redistributed; the workflow retrieves them and verifies their inner-file hashes. The materials prepared for deposition are the derived cohort-disposition table, an output of this work, the analysis and round-2 code, the supplementary workbook, manifests, and versions and SHA-256 hashes for the UniProt and AlphaFold DB inputs. `NUMBERS.md` is deposited with them and is the numerical authority for every value reported here. Stored cohort intervals were reused in every reader-facing table and figure rather than recomputed at build time. The code and derived data are at https://github.com/kyle-nguyen-git/phosphosite-proximity. No archive DOI has been minted yet, so cite the repository and commit rather than a DOI.
-
-The human cohort draws on Supplementary Tables 3 and 4 of Kennedy et al. [21] — the `Phosphosites` and `MAGeCK gene_summary` sheets of each — and on the `annotated_phosphoproteome` and `known_regulatory_PSP` sheets of the Ochoa et al. [3] Supplementary Table 2, from which twelve named feature columns were read. Neither workbook is redistributed. The derived human cohort table, the scripts that build and analyse it, and the result files are deposited with the analysis materials. One limit is recorded rather than worked around: the table the human build starts from has no generator in the deposited materials, and the human builder does not carry the sequence and model-version checks the yeast builder applies, so that cohort cannot at present be rebuilt from source end to end.
-## Ethics statement
+### 4.8 Ethics
 
 This secondary computational analysis used public data only: a yeast growth screen and two published human cell-line screens in Jurkat and HEK293 lines. No participant-level data and no human specimens were analysed, and no human-participant or animal-subject approval was required.
 
-## Funding
-
-No specific funding supported this secondary analysis.
-
-## Competing interests
-
-The authors report no competing interests.
-
-## Author contributions
-
-Kyle Nguyen: conceptualization, data curation, formal analysis, investigation, methodology, software, validation, visualization, writing—original draft, writing—review and editing.
-
-Arkady Marchenko: conceptualization, writing—review and editing.
-
-Both authors have read and approved this version.
-
-## Acknowledgements
-
-The authors thank Viéitez and colleagues for making the yeast phosphomutant screen and its supplementary data available, and Kennedy and colleagues for the human base-editor screens and their supplementary tables.
-
-## AI disclosure statement
+### 4.9 Use of AI tools
 
 We disclose that data exploration, data analysis, and manuscript writing were supported by AI-based tools.
 The authors take full responsibility for the data, code, analyses, conclusions, and writing.
 
-## Tables
+The tools were large language models used through Anthropic's Claude Code interface between 2026-07 and 2026-08. Their outputs were used for prose drafting, code drafting, literature search and adversarial review of the authors' own claims. Every number reported in this manuscript was recomputed from the deposited code and checked against the numerical authority before it was written, and several claims produced with that assistance were retracted on recomputation; those retractions are recorded in the analysis materials. The authors take responsibility for the accuracy of all content, and the interpretations and conclusions are their own.
 
-### Table 1. Cohort reconstruction
+## Data and code availability
 
-| Stage | Strain records | Substitutions | Proteins | Role or exclusion |
-|---|---:|---:|---:|---|
-| Point-mutant source rows | 497 | 490 source-coordinate | 116 | Supplementary Data 1 constructs |
-| Sequence matched after PBY107 resolution | 487 | 479 resolved-coordinate | 113 | 10 unresolved mismatches excluded |
-| With a condition-level profile | 465 | 458 | 111 | 22 lacked a Supplementary Data 3 profile |
-| After sequencing exclusion | 447 | 443 | 110 | 18 excluded; all 18 affected |
-| After scar-correlation exclusion | 427 | 423 | 107 | 20 excluded, 16 affected; filter defined on phenotype similarity to a marker control |
-| Annotation and structure eligible | 169 | 166 | 50 | Annotated active or binding residue, AlphaFold model, repeat strains averaged |
-| Primary cohort | — | 163 | 48 | 79 affected, 84 unaffected |
-| Inclusive 0 Å sensitivity cohort | — | 166 | 50 | 82 affected; three 0 Å sites retained |
+The source screen is available with Viéitez et al. [1] through Europe PMC record PMC7612524. The four workbooks are not redistributed; the workflow retrieves them and verifies their inner-file hashes. The materials prepared for deposition are the derived cohort-disposition table, an output of this work, the analysis and round-2 code, the supplementary workbook, manifests, and versions and SHA-256 hashes for the UniProt and AlphaFold DB inputs. `NUMBERS.md` is deposited with them and is the numerical authority for every value reported here. Stored cohort intervals were reused in every reader-facing table and figure rather than recomputed at build time. The code and derived data are at https://github.com/kyle-nguyen-git/phosphosite-proximity. No archive DOI has been minted yet, so cite the repository and commit rather than a DOI.
 
-Of the 427 retained records 169 (39.6%) are affected, against 34 of the 38 excluded (89.5%).
+The human cohort draws on Supplementary Tables 3 and 4 of Kennedy et al. [20] — the `Phosphosites` and `MAGeCK gene_summary` sheets of each — and on the `annotated_phosphoproteome` and `known_regulatory_PSP` sheets of the Ochoa et al. [3] Supplementary Table 2, from which twelve named feature columns were read. Neither workbook is redistributed. The derived human cohort table, the scripts that build and analyse it, and the result files are deposited with the analysis materials. One limit is recorded rather than worked around: the table the human build starts from has no generator in the deposited materials, and the human builder does not carry the sequence and model-version checks the yeast builder applies, so that cohort cannot at present be rebuilt from source end to end.
+## Acknowledgements
 
-### Table 2. Selected results
-
-Values are AUCs — the chance an affected site ranks ahead of an unaffected one — unless the row names another quantity.
-
-| Analysis | n | Value | 95% interval | Timing |
-|---|---|---:|---:|---|
-| Distance, primary cohort | 163 replaced sites, 48 proteins | 0.527 | 0.417–0.632 | Cohort version fixed after outcome inspection |
-| Distance, inclusive 0 Å cohort | 166, 50 proteins | 0.544 | 0.436–0.649 | Reported alongside as a check |
-| Within-protein, pair-weighted | 112 replaced sites, 23 proteins, 176 pairs | 0.528 | 0.368–0.709 | Designated within-protein quantity; post hoc |
-| Within-protein, equal-protein weight | 23 proteins | 0.497 | 0.351–0.642 | Post hoc |
-| Minimum sequence separation to an eligible target | 163 | 0.550 | 0.434–0.653 | Post hoc comparator |
-| Inverse relative solvent accessibility | 163 | 0.587 | 0.489–0.672 | Post hoc comparator |
-| Label shuffling across the whole cohort, two-sided *p* | 163; 20,000 permutations | 0.55 | — | Post hoc null |
-| SIFT, primary common support | 152 | 0.606 | 0.522–0.690 | Post hoc comparator |
-| **Difference in AUC**, SIFT minus distance, paired | 152 | 0.074 | −0.037 to 0.192 | Post hoc |
-| **Odds ratio** per ten-fold increase in distance + 1 Å | 163 | 0.77 | 0.27–2.21 | Cluster covariance, t(47) |
-| **Odds ratio** adjusted for site pLDDT and relative solvent accessibility | 163 | 1.31 | 0.37–4.66 | Cluster covariance, t(47) |
-| Confidence-strata family minimum: both pLDDT ≥70, `pae_pair_max` ≤10 Å | 41 | 0.416 | 0.192–0.617 | Labelled extreme of an 11-stratum family; post hoc |
-| Confidence-strata family maximum: both pLDDT ≥90, `pae_pair_max` ≤10 Å | 27 | 0.683 | 0.481–0.864 | Labelled extreme of the same family; post hoc |
-| Experimentally-evidenced targets only | 24 replaced sites, 7 proteins | 0.420 | 0.244–0.708 | Descriptive range on 7 proteins; post hoc |
-
-The first two intervals use 200,000 protein-cluster resamples at seed 20260729; every other bootstrap interval uses 20,000 resamples at seed 20260728, so the endpoints for one point estimate differ in the third decimal between the two conventions. All 11 strata of the confidence family, in both cohort versions, are in the supplement and in Figure 2C.
-
-## Figure legends
-
-**Figure 1. Cohort reconstruction and the primary distance estimate.** (A) The cohort cascade, counting strain records separately from distinct replaced sites. Stage one counts sites as numbered in the source, and later stages count them after coordinates are resolved, which is why 490 becomes 479 rather than 480 once PBY107 is resolved onto a position PBY131 already occupies. All six declared stages are shown and the panel matches Table 1 row for row. Supplementary Data 1 supplied the constructs, Data 3 the outcomes and Data 8 the quality-control flags; Data 6 contributed annotations only and did not determine eligibility. (B) ROC curves for both cohorts, with shorter distance scored toward an affected label; the dashed diagonal is chance. The band is the 2.5th-to-97.5th percentile envelope, at each false-positive rate, of 2,000 protein-cluster bootstrap curves. It is wider than the confidence interval on the AUC by construction and is not that interval; no resamples were discarded at the committed data and seed. The predictor is the shortest heavy-atom distance from the replaced residue to the nearest UniProt-annotated active or binding residue, annotations expanded to every residue they cover, in an AlphaFold DB version 6 model of the protein on its own. A site counts as affected when the source reports a q-value below 0.05 in at least one condition it was measured in. Primary AUC 0.527 (protein-cluster bootstrap 95% confidence interval, 0.417–0.632); inclusive 0.544 (0.436–0.649).
-
-**Figure 2. Model confidence and the declared sensitivity families.** (A) Cumulative distance distributions in the primary cohort, drawn separately for affected and unaffected sites. The marked maximum vertical gap between them is the two-sample Kolmogorov–Smirnov statistic, 0.137 on 79 affected and 84 unaffected sites; it is descriptive and no p-value is reported. The rug at 0 Å marks the three sites that coincide with an annotated residue, which enter only the inclusive cohort. (B) `pae_pair_max`, the larger of the two directed site–target predicted-aligned-error values, against distance, coloured by site pLDDT. (C) Protein-cluster AUC intervals for all 11 confidence strata in both cohort versions. The primary-cohort family minimum (0.416, n = 41) and maximum (0.683, n = 27) are labelled as extremes of the family; tightening the PAE threshold moves the value up and down in both versions. Marker area is proportional to the number of sites in the stratum, which falls from 163 to 27. (D) The cohort, residue-class and feature-definition checks and the SIFT comparator, on the AUC scale of (C). The tyrosine subset appears as a point estimate with no interval, its bootstrap upper endpoint having reached 1, the highest value an AUC can take. In (C) and (D) the dashed vertical line marks AUC 0.5; labels carry n as primary/inclusive in (C) and a single n in (D).
+The authors thank Viéitez and colleagues for making the yeast phosphomutant screen and its supplementary data available, and Kennedy and colleagues for the human base-editor screens and their supplementary tables.
 
 ## References
 
-1. Viéitez C, Busby BP, Ochoa D, et al. High-throughput functional characterization of protein phosphorylation sites in yeast. *Nature Biotechnology*. 2022;40:382–390. doi:[10.1038/s41587-021-01051-x](https://doi.org/10.1038/s41587-021-01051-x).
-2. Strumillo MJ, Oplová M, Viéitez C, et al. Conserved phosphorylation hotspots in eukaryotic protein domain families. *Nature Communications*. 2019;10:1977. doi:[10.1038/s41467-019-09952-x](https://doi.org/10.1038/s41467-019-09952-x).
-3. Ochoa D, Jarnuczak AF, Viéitez C, et al. The functional landscape of the human phosphoproteome. *Nature Biotechnology*. 2020;38:365–373. doi:[10.1038/s41587-019-0344-3](https://doi.org/10.1038/s41587-019-0344-3).
-4. Bludau I, Willems S, Zeng W-F, et al. The structural context of posttranslational modifications at a proteome-wide scale. *PLoS Biology*. 2022;20:e3001636. doi:[10.1371/journal.pbio.3001636](https://doi.org/10.1371/journal.pbio.3001636).
-5. Minguez P, Letunic I, Parca L, et al. PTMcode v2: a resource for functional associations of post-translational modifications within and between proteins. *Nucleic Acids Research*. 2015;43:D494–D502. doi:[10.1093/nar/gku1081](https://doi.org/10.1093/nar/gku1081).
-6. Stephenson JD, Totoo P, Burke DF, Jänes J, Beltrao P, Martin MJ. ProtVar: mapping and contextualizing human missense variation. *Nucleic Acids Research*. 2024;52:W140–W147. doi:[10.1093/nar/gkae413](https://doi.org/10.1093/nar/gkae413).
-7. Niu B, Scott AD, Sengupta S, et al. Protein-structure-guided discovery of functional mutations across 19 cancer types. *Nature Genetics*. 2016;48:827–837. doi:[10.1038/ng.3586](https://doi.org/10.1038/ng.3586).
-8. Beltrao P, Albanèse V, Kenner LR, et al. Systematic functional prioritization of protein posttranslational modifications. *Cell*. 2012;150:413–425. doi:[10.1016/j.cell.2012.05.036](https://doi.org/10.1016/j.cell.2012.05.036).
-9. Nishi H, Hashimoto K, Panchenko AR. Phosphorylation in protein-protein binding: effect on stability and function. *Structure*. 2011;19:1807–1815. doi:[10.1016/j.str.2011.09.021](https://doi.org/10.1016/j.str.2011.09.021).
-10. Evans R, O'Neill M, Pritzel A, et al. Protein complex prediction with AlphaFold-Multimer. *bioRxiv*. 2022. doi:[10.1101/2021.10.04.463034](https://doi.org/10.1101/2021.10.04.463034).
-11. Huang Y, Xu B, Zhou X, et al. Systematic characterization and prediction of post-translational modification cross-talk. *Molecular & Cellular Proteomics*. 2015;14:761–770. doi:[10.1074/mcp.M114.037994](https://doi.org/10.1074/mcp.M114.037994).
-12. Ng PC, Henikoff S. SIFT: predicting amino acid changes that affect protein function. *Nucleic Acids Research*. 2003;31:3812–3814. doi:[10.1093/nar/gkg509](https://doi.org/10.1093/nar/gkg509).
-13. The UniProt Consortium. UniProt: the Universal Protein Knowledgebase in 2023. *Nucleic Acids Research*. 2023;51:D523–D531. doi:[10.1093/nar/gkac1052](https://doi.org/10.1093/nar/gkac1052).
-14. Jumper J, Evans R, Pritzel A, et al. Highly accurate protein structure prediction with AlphaFold. *Nature*. 2021;596:583–589. doi:[10.1038/s41586-021-03819-2](https://doi.org/10.1038/s41586-021-03819-2).
-15. Varadi M, Bertoni D, Magana P, et al. AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences. *Nucleic Acids Research*. 2024;52:D368–D375. doi:[10.1093/nar/gkad1011](https://doi.org/10.1093/nar/gkad1011).
-16. Akdel M, Pires DEV, Pardo EP, et al. A structural biology community assessment of AlphaFold2 applications. *Nature Structural & Molecular Biology*. 2022;29:1056–1067. doi:[10.1038/s41594-022-00849-w](https://doi.org/10.1038/s41594-022-00849-w).
-17. Ruff KM, Pappu RV. AlphaFold and implications for intrinsically disordered proteins. *Journal of Molecular Biology*. 2021;433:167208. doi:[10.1016/j.jmb.2021.167208](https://doi.org/10.1016/j.jmb.2021.167208).
-18. Shrake A, Rupley JA. Environment and exposure to solvent of protein atoms: lysozyme and insulin. *Journal of Molecular Biology*. 1973;79:351–371. doi:[10.1016/0022-2836(73)90011-9](https://doi.org/10.1016/0022-2836%2873%2990011-9).
-19. Tien MZ, Meyer AG, Sydykova DK, Spielman SJ, Wilke CO. Maximum allowed solvent accessibilities of residues in proteins. *PLoS ONE*. 2013;8:e80635. doi:[10.1371/journal.pone.0080635](https://doi.org/10.1371/journal.pone.0080635).
-20. Pedregosa F, Varoquaux G, Gramfort A, et al. Scikit-learn: machine learning in Python. *Journal of Machine Learning Research*. 2011;12:2825–2830.
-21. Kennedy PH, Alborzian Deh Sheikh A, Balakar M, et al. Post-translational modification-centric base editor screens to assess phosphorylation site functionality in high throughput. *Nature Methods*. 2024;21:1033–1043. doi:[10.1038/s41592-024-02256-z](https://doi.org/10.1038/s41592-024-02256-z).
-22. Correa Marrero M, Mello VH, Sartori P, Beltrao P. Global comparative structural analysis of responses to protein phosphorylation. *Nature Communications*. 2025;16:9407. doi:[10.1038/s41467-025-64116-4](https://doi.org/10.1038/s41467-025-64116-4).
-23. Li Y, Xu T, Ma H, et al. Functional profiling of serine, threonine and tyrosine sites. *Nature Chemical Biology*. 2025;21:532–543. doi:[10.1038/s41589-024-01731-0](https://doi.org/10.1038/s41589-024-01731-0).
+1. Viéitez C, Busby BP, Ochoa D, Mateus A, Memon D, Galardini M, et al. High-throughput functional characterization of protein phosphorylation sites in yeast. Nat Biotechnol. 2022;40: 382-390. doi: 10.1038/s41587-021-01051-x
+2. Strumillo MJ, Oplová M, Viéitez C, Ochoa D, Shahraz M, Busby BP, et al. Conserved phosphorylation hotspots in eukaryotic protein domain families. Nat Commun. 2019;10: 1977. doi: 10.1038/s41467-019-09952-x
+3. Ochoa D, Jarnuczak AF, Viéitez C, Gehre M, Soucheray M, Mateus A, et al. The functional landscape of the human phosphoproteome. Nat Biotechnol. 2020;38: 365-373. doi: 10.1038/s41587-019-0344-3
+4. Bludau I, Willems S, Zeng WF, Strauss MT, Hansen FM, Tanzer MC, et al. The structural context of posttranslational modifications at a proteome-wide scale. PLoS Biol. 2022;20: e3001636. doi: 10.1371/journal.pbio.3001636
+5. Minguez P, Letunic I, Parca L, Garcia-Alonso L, Dopazo J, Huerta-Cepas J, et al. PTMcode v2: a resource for functional associations of post-translational modifications within and between proteins. Nucleic Acids Res. 2015;43: D494–D502. doi: 10.1093/nar/gku1081
+6. Stephenson JD, Totoo P, Burke DF, Jänes J, Beltrao P, Martin MJ. ProtVar: mapping and contextualizing human missense variation. Nucleic Acids Res. 2024;52: W140–W147. doi: 10.1093/nar/gkae413
+7. Niu B, Scott AD, Sengupta S, Bailey MH, Batra P, Ning J, et al. Protein-structure-guided discovery of functional mutations across 19 cancer types. Nat Genet. 2016;48: 827–837. doi: 10.1038/ng.3586
+8. Beltrao P, Albanèse V, Kenner LR, Swaney DL, Burlingame A, Villén J, et al. Systematic functional prioritization of protein posttranslational modifications. Cell. 2012;150: 413–425. doi: 10.1016/j.cell.2012.05.036
+9. Nishi H, Hashimoto K, Panchenko AR. Phosphorylation in protein-protein binding: effect on stability and function. Structure. 2011;19: 1807–1815. doi: 10.1016/j.str.2011.09.021
+10. Evans R, O'Neill M, Pritzel A, Antropova N, Senior A, Green T, et al. Protein complex prediction with AlphaFold-Multimer. bioRxiv 463034 [Preprint]. 2021 Oct 4 [revised 2022 Mar 10; cited 2026 Aug 14]. Available from: https://doi.org/10.1101/2021.10.04.463034
+11. Ng PC, Henikoff S. SIFT: predicting amino acid changes that affect protein function. Nucleic Acids Res. 2003;31: 3812–3814. doi: 10.1093/nar/gkg509
+12. UniProt Consortium. UniProt: the Universal Protein Knowledgebase in 2023. Nucleic Acids Res. 2023;51: D523–D531. doi: 10.1093/nar/gkac1052
+13. Jumper J, Evans R, Pritzel A, Green T, Figurnov M, Ronneberger O, et al. Highly accurate protein structure prediction with AlphaFold. Nature. 2021;596: 583–589. doi: 10.1038/s41586-021-03819-2
+14. Varadi M, Bertoni D, Magana P, Paramval U, Pidruchna I, Radhakrishnan M, et al. AlphaFold Protein Structure Database in 2024: providing structure coverage for over 214 million protein sequences. Nucleic Acids Res. 2024;52: D368–D375. doi: 10.1093/nar/gkad1011
+15. Terwilliger TC, Liebschner D, Croll TI, Williams CJ, McCoy AJ, Poon BK, et al. AlphaFold predictions are valuable hypotheses and accelerate but do not replace experimental structure determination. Nat Methods. 2024;21: 110–116. doi: 10.1038/s41592-023-02087-4
+16. Ruff KM, Pappu RV. AlphaFold and implications for intrinsically disordered proteins. J Mol Biol. 2021;433: 167208. doi: 10.1016/j.jmb.2021.167208
+17. Shrake A, Rupley JA. Environment and exposure to solvent of protein atoms. Lysozyme and insulin. J Mol Biol. 1973;79: 351–371. doi: 10.1016/0022-2836(73)90011-9
+18. Tien MZ, Meyer AG, Sydykova DK, Spielman SJ, Wilke CO. Maximum allowed solvent accessibilities of residues in proteins. PLoS One. 2013;8: e80635. doi: 10.1371/journal.pone.0080635
+19. Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B, Grisel O, et al. Scikit-learn: machine learning in Python. J Mach Learn Res. 2011;12: 2825–2830.
+20. Kennedy PH, Alborzian Deh Sheikh A, Balakar M, Jones AC, Olive ME, Hegde M, et al. Post-translational modification-centric base editor screens to assess phosphorylation site functionality in high throughput. Nat Methods. 2024;21: 1033–1043. doi: 10.1038/s41592-024-02256-z
+21. Correa Marrero M, Mello VH, Sartori P, Beltrao P. Global comparative structural analysis of responses to protein phosphorylation. Nat Commun. 2025;16: 9407. doi: 10.1038/s41467-025-64116-4
+22. Li Y, Xu T, Ma H, Yue D, Lamao Q, Liu Y, et al. Functional profiling of serine, threonine and tyrosine sites. Nat Chem Biol. 2025;21: 532–543. doi: 10.1038/s41589-024-01731-0
 
-
-## Supplementary information
+## Supporting information
 
 Material moved out of the main narrative. Nothing here is withdrawn; it is placed where a reader who
 wants it can find it and a reader following the argument is not detained by it.
 
-### Supplementary Note S1. Annotation records, residue expansion, and a withdrawn count
+### S1 Appendix. Annotation records, residue expansion, and a withdrawn count
 
 Every `ACT_SITE` record covers a single residue. Expanding all 262 eligible records to one row per
 covered residue gives 594 rows: 565 after removing duplicates on (accession, start, end) and 566 on
@@ -501,7 +489,7 @@ is **withdrawn**. It is named here rather than deleted because it appeared in an
 this manuscript. No figure, table or claim in the present text depends on it; the numerical authority
 bars citing it.
 
-### Supplementary Table S2. The eleven-stratum confidence family
+### S1 Table. The eleven-stratum confidence family
 
 | Stratum | Primary AUC | 95% interval | n | Inclusive AUC | 95% interval | n |
 |---|---:|---:|---:|---:|---:|---:|
@@ -520,7 +508,7 @@ bars citing it.
 All eleven strata are post hoc and are shown here and in Figure 2C for both cohort versions. The number of sites falls from 163 to 27 across the primary family, whose lowest and highest values are 0.416 and 0.683. Four strata kept fewer than their nominal 20,000 resamples: 19,999 for the two primary high-confidence rows, and 19,997 and 19,999 for their inclusive counterparts. Tightening the PAE threshold does not move the AUC steadily in either direction, in either cohort version.
 
 
-### Supplementary Note S3. The simulated reviews
+### S2 Appendix. The simulated reviews
 
 Two rounds of simulated review were run against this manuscript, in which every reviewer was an AI agent
 running on one model family, together with an automated reference audit. They produced the revisions
@@ -530,7 +518,7 @@ screens, and corrections to several literature summaries. None of it is peer rev
 those reviewers is not independent replication, and no finding in this manuscript rests on their
 agreement rather than on a recomputation.
 
-### Supplementary Table S4. The 72-cell confidence-by-PAE grids
+### S2 Table. The 72-cell confidence-by-PAE grids
 
 The four predicted-aligned-error summaries at 10 Å and the 72-cell grids are deposited with the analysis
 materials. The 72 primary-cohort cells run from 0.416 to 0.569.

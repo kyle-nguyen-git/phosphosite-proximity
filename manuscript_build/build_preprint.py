@@ -1,7 +1,7 @@
 """Rebuild the PDF and Word versions of the current preprint from its Markdown source.
 
-The Markdown at `manuscript/preprint_current.md` is the source of record. The PDF and .docx beside it
-are build products and must never be edited directly.
+The Markdown at `outputs/fulbright/research/phosphosite_proximity_preprint.md` is the source of
+record. The PDF and .docx beside it are build products and must never be edited directly.
 
 The PDF renderer is the one frozen inside the release tree
 (`phase0_calibration/manuscript/src/build_preprint_pdf.py`). That file is hash-bound and is not
@@ -31,10 +31,10 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 RESEARCH = HERE.parent
-STEM = "preprint_current"
-SOURCE = RESEARCH / "manuscript" / f"{STEM}.md"
-PDF = RESEARCH / "manuscript" / f"{STEM}.pdf"
-DOCX = RESEARCH / "manuscript" / f"{STEM}.docx"
+STEM = "phosphosite_proximity_preprint"
+SOURCE = RESEARCH / f"{STEM}.md"
+PDF = RESEARCH / f"{STEM}.pdf"
+DOCX = RESEARCH / f"{STEM}.docx"
 PDF_RENDERER = HERE / "render_manuscript_pdf.py"
 DOCX_RENDERER = HERE / "render_manuscript_docx.py"
 
@@ -62,6 +62,11 @@ def source_metadata() -> dict:
 def build_pdf() -> None:
     subprocess.run([sys.executable, str(PDF_RENDERER), str(SOURCE), str(PDF)], check=True)
     stamp_pdf_metadata()
+
+
+def strip_images(text: str) -> str:
+    """Remove embedded figures for the PLOS build, which uploads them as separate files."""
+    return re.sub(r"^!\[[^\]]*\]\([^)]*\)\n\n?", "", text, flags=re.M)
 
 
 def stamp_pdf_metadata() -> None:
