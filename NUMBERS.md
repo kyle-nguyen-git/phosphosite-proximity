@@ -1491,8 +1491,8 @@ and never rounded to "near chance" without it.**
 | C3 top decile \|log2 FC\|, larger of the two | 148 | 0.516716 | 0.462815–0.570750 |
 | D MAGeCK FDR < 0.25 either | 19 | 0.613939 | 0.432767–0.781183 |
 
-**Every one contains 0.5.** C1 and C2 use no p-value, so they do not inherit the unreproduced-column
-problem of Section 22.2.
+**Every one contains 0.5.** C1, C2 and C3 — **three** rows, not two — use no p-value, so they do not
+inherit the unreproduced-column problem of Section 22.2.
 
 ### 23.4 Dependent quantities, recomputed
 
@@ -1517,14 +1517,16 @@ in the 1.30–1.35 Å band, median distance 41.7549 Å, median site pLDDT 37.19.
 
 ### 23.5 Two results that the union concealed
 
-**Inverse relative solvent accessibility separates the classes in the fitness screen**: 0.603648
-[0.527526, 0.675313], an interval that excludes 0.5. Burial, not distance, is the structural quantity
-that tracks this outcome.
+**Inverse relative solvent accessibility has an interval above 0.5 in the fitness screen**: 0.603648
+[0.527526, 0.675313]. Its **paired difference against distance is +0.044330 [−0.024533, +0.115051] and
+contains zero**, so burial is not shown to outperform distance. Reporting it as "burial, not distance"
+was the interval-comparison error again and is retired.
 
-**A structure-free feature beats the declared predictor in the reporter screen, and this is the first
-paired difference anywhere in this project to exclude zero.** Minimum sequence separation minus
-distance is **+0.071008 [+0.004800, +0.136900]**. Every other paired difference in both screens contains
-zero.
+**A structure-free feature outranks the declared predictor in the reporter screen on the paired
+comparison, and this is the first paired difference anywhere in this project to exclude zero.** Minimum
+sequence separation minus distance is **+0.071008 [+0.004800, +0.136900]**. Its own marginal interval,
+0.557881 [0.492038, 0.624173], **contains 0.5**, so it does not separate the classes on its own account.
+Every other paired difference in both screens contains zero.
 
 ### 23.6 The positive control is screen-dependent
 
@@ -1552,4 +1554,13 @@ Not allowed:
 - "No feature separates the classes." Inverse RSA does in the fitness screen, and sequence separation
   beats distance there by a paired difference excluding zero (23.5).
 - Citing SIFT as a positive control for the reporter screen (23.6).
+- "Burial, not distance" or any claim that inverse RSA outperforms distance: the paired difference
+  +0.044330 [−0.024533, +0.115051] contains zero (23.5).
+- Describing sequence separation as separating the classes in the reporter screen. Its marginal
+  interval contains 0.5; only the paired difference against distance excludes zero (23.5).
+- Reporting either 23.5 result without stating that both are post hoc and unadjusted for the number of
+  features and endpoints examined.
+- "The same code computed both cohorts." Only the distance definition and the estimator are shared;
+  the human cohort has its own builder, lacks the yeast builder's sequence and model-version checks,
+  and starts from a table whose generator is not deposited (22.4–22.5).
 - Describing the two screens as one phenotype, or their union as a replication endpoint (23.1).
