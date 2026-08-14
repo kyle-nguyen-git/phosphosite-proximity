@@ -10,15 +10,13 @@
 
 ## Abstract
 
-Studies that rank which protein modification sites are worth following up often lean on a structural shortcut: how close a site sits to a residue already annotated as part of an active site or a binding site. This paper asks what that measurement is actually made of.
+Studies that rank which protein modification sites are worth following up often lean on a structural shortcut: how close a site sits to a residue already annotated as part of an active site or a binding site. This paper asks what that measurement is made of, and how well it separates sites whose mutation changed a phenotype from sites whose mutation did not.
 
-The data are a published screen in budding yeast (*Saccharomyces cerevisiae*), in which serine, threonine and tyrosine sites were each replaced by alanine and the resulting strains grown across a panel of up to 102 growth conditions. For every replaced site we measured the shortest distance between any non-hydrogen atom of that residue and any non-hydrogen atom of the nearest annotated residue, in an AlphaFold DB version 6 model of the protein on its own, and called a site affected when the original study reported a growth change in at least one condition, in either direction.
+The predictor is the shortest distance between any non-hydrogen atom of the modified residue and any non-hydrogen atom of the nearest annotated residue, in an AlphaFold DB version 6 model of the protein on its own. It was computed twice by the same code: on 163 alanine substitutions in 48 yeast proteins from a growth screen, and on 1,475 base-edited sites in 793 human proteins.
 
-What the measurement rests on is mostly not experimental, and mostly not within a protein. Among 163 sites in 48 proteins, 79 of them affected, 143 of the 163 nearest annotated residues (87.7%) were not established experimentally, most of them assigned by automated rules and the rest inferred from similar proteins or by curators, ATP is the bound molecule at 86 of them (52.8%), and 24 of the 48 proteins are kinases. Five of the ten sites lying within 5 Å of their nearest target are simply the next residue along the chain, 1.33–1.34 Å away, which is the length of the bond joining one residue to the next. The ranking statistic compares 6,636 affected/unaffected site pairs, and only 176 of them (2.65%) are two sites in the same protein.
+In yeast, distance ranked sites at an area under the ROC curve of 0.527, where 0.5 is what an uninformative measurement gives (95% confidence interval 0.417–0.632, resampling whole proteins). The human experiment reports two screens with different readouts, analysed separately: 0.559 (0.476–0.641) on a fitness screen and 0.487 (0.421–0.554) on an NFAT reporter screen, on opposite sides of 0.5. Six further endpoint definitions, two of which use no p-value, all give intervals containing 0.5.
 
-Measured on that composite, distance ranked sites with an area under the ROC curve of 0.527, where 0.5 is what an uninformative measurement gives (95% confidence interval 0.417–0.632, resampling whole proteins); a second version of the cohort, which also keeps the three sites that are themselves annotated residues and so sit at zero distance, gave 0.544 on 166 sites (0.436–0.649). Shuffling the outcome labels 20,000 times centres at 0.500 with a standard deviation of 0.045, putting the observed value 0.59 standard deviations out (p = 0.55), and for each of seven alternative predictors measured on the same 163 sites, the interval on its difference from distance includes zero. One further comparator, sequence conservation, does separate affected from unaffected sites on the 152 sites it covers (0.606, 0.522–0.690), so the outcome is not one that nothing predicts; its difference from distance also includes zero. Keeping only annotations confirmed by experiment leaves 24 of the 163 sites, in 7 proteins, so this design cannot be asked whether better annotation would change the answer. Everything here is specific to this cohort, this definition of an affected site, and models of single proteins.
-
-The same measurement was made on an independent human base-editor experiment covering 1,475 phosphosites in 793 proteins. That experiment reports two screens with different readouts — sgRNA abundance before against after editing, a fitness readout, and abundance in GFP-high against GFP-low bins, which reports NFAT reporter activity — and they are kept apart, because at a direction-corrected 5% they call 65 sites, 74 sites, and 6 sites in common. Distance gave 0.559 (0.476–0.641) on the fitness screen and 0.487 (0.421–0.554) on the reporter screen, on opposite sides of 0.5 from the same predictor on the same sites. Both intervals contain 0.5, as do six further endpoint definitions, two of which use no p-value; the fitness value sits 1.68 standard deviations from a shuffled-label null, at p = 0.09. Keeping the screens apart made two things visible that pooling them hid: how deeply a residue is buried separates the classes in the fitness screen (0.604, 0.528–0.675), and in the reporter screen the smallest gap in sequence position beats the structural distance by a paired difference of +0.071 (+0.005 to +0.137), the only such difference in either cohort that excludes zero. In the human cohort only 102 of 99,684 and 180 of 111,600 ranked pairs compare two sites in the same protein, so the comparison is more between proteins than in yeast, not less.
+What the statistic rests on is mostly not experimental and mostly not within a protein. Of 163 yeast target residues, 143 were not established experimentally; half the sites lying within 5 Å of their target are the next residue along the chain; and 2.65% of yeast and 0.16% of human ranked pairs compare two sites in one protein. Two features do separate the classes: how deeply a residue is buried, in the fitness screen, and sequence separation, which outperforms the structural distance in the reporter screen.
 
 **Keywords:** phosphorylation; AlphaFold; yeast; mutational phenotype; structural bioinformatics; exploratory analysis
 
@@ -78,7 +76,7 @@ Among the records that passed quality control, the 169 that were annotation-elig
 
 Sequencing covered 244 of the 497 point-mutant records and 88 of the 169 eligible strain records. Among those 88, 46 carry a coding variant in some other gene, 4 carry one in the gene being tested, and 3 are flagged for copy-number change; none carries any text in the free-text quality-control note. That note is the only field the exclusion rule reads, so all 88 were kept. The number of conditions behind each site is not the same for every site. `raw_conditions`, the count of conditions with a measured value, takes five values in the primary cohort — 96, 98, 100, 101 and 102, with 155 replaced sites at 102 — and 7 of the 8 sites below 102 are affected.
 
-What follows about the target set was worked out after the primary result, and is post hoc. The eligible annotations are 262 UniProt records — 41 `ACT_SITE`, 221 `BINDING` — drawn from 278 after setting aside 8 `Site` and 8 `DNA binding` records. Every `ACT_SITE` record covers a single residue. Expanding all 262 to one row per covered residue gives 594 rows: 565 after removing duplicates on (accession, start, end) and 566 on (accession, start, end, feature type). The target set itself is 560 distinct residues, and that count reproduces exactly. An earlier expanded row count kept in the analysis records does not reproduce under any simple rule and is withdrawn. The excess over 560 comes from P12904, whose two binding intervals are recorded once for each ligand.
+What follows about the target set was worked out after the primary result, and is post hoc. The eligible annotations are 262 UniProt records — 41 `ACT_SITE`, 221 `BINDING` — drawn from 278 after setting aside 8 `Site` and 8 `DNA binding` records, and they define a target set of **560 distinct residues**. Supplementary Note S1 gives the record-to-residue expansion, the duplicate-removal rules that give 565 and 566 rows, the source of the excess over 560, and the earlier expanded row count that does not reproduce and is withdrawn.
 
 UniProt tags each annotation with an ECO evidence code recording how it was established. Of the 163 nearest targets actually used, 101 carry ECO:0000255, meaning a curated automated rule, and 33 carry ECO:0000250, meaning inferred from a similar protein. Taking the union of evidence codes across every record covering a residue, 20 of 163 (12.3%) rest on experimental evidence, ECO:0000269 or ECO:0007744, and 143 of 163 (87.7%) do not. The count is 19 if the single residue covered by three records is assigned instead to its ECO:0000250 record; that is the only ambiguous row of the 163, so the count travels with the rule used to settle it. Counting residues rather than sites, the 48 proteins carry 533 eligible target residues, 92 of them experimental (17.3%). ATP is the bound molecule at the nearest target for 86 of 163 replaced sites (52.8%), and 24 of the 48 proteins (50%) are protein kinases or subunits of protein-kinase complexes. `BINDING` records span a median of 1 residue and at most 9, and the 33 records spanning 8 or more supply 289 of the 533 residues (54.2%).
 
@@ -169,22 +167,7 @@ Among the 79 affected sites of the primary cohort, counting only the conditions 
 
 Median site pLDDT in the primary cohort is 46.50; 84 of the 163 replaced residues sit below 50 and 103 of 163 below 70. The Spearman rank correlation between log10(distance + 1 Å) and site pLDDT is −0.541 (Figure 2B). Distance correlates with `pae_pair_max` at 0.753 (0.661–0.827), and site pLDDT with `pae_pair_max` at −0.795 (−0.852 to −0.688). The long distances here are measured where AlphaFold is least sure how the two residues sit relative to one another, so distance and model confidence are largely the same variable on this cohort.
 
-| Stratum | Primary AUC | 95% interval | n | Inclusive AUC | 95% interval | n |
-|---|---:|---:|---:|---:|---:|---:|
-| All | 0.527 | 0.417–0.632 | 163 | 0.544 | 0.436–0.649 | 166 |
-| Site pLDDT ≥50 | 0.489 | 0.347–0.634 | 79 | 0.522 | 0.380–0.665 | 82 |
-| Site pLDDT ≥70 | 0.459 | 0.303–0.618 | 60 | 0.507 | 0.351–0.663 | 63 |
-| Site and target pLDDT ≥70 | 0.450 | 0.288–0.606 | 58 | 0.500 | 0.337–0.658 | 61 |
-| Site pLDDT ≥90 | 0.570 | 0.371–0.746 | 35 | 0.622 | 0.435–0.791 | 38 |
-| Site and target pLDDT ≥90 | 0.641 | 0.464–0.789 | 28 | 0.697 | 0.536–0.842 | 31 |
-| `pae_pair_max` ≤5 Å | 0.488 | 0.261–0.666 | 37 | 0.555 | 0.332–0.730 | 40 |
-| `pae_pair_max` ≤10 Å | 0.436 | 0.208–0.633 | 44 | 0.496 | 0.277–0.692 | 47 |
-| `pae_pair_max` ≤15 Å | 0.520 | 0.321–0.679 | 55 | 0.564 | 0.377–0.714 | 58 |
-| Both-residue pLDDT ≥70 and `pae_pair_max` ≤10 Å | 0.416 (family minimum) | 0.192–0.617 | 41 | 0.486 | 0.271–0.684 | 44 |
-| Both-residue pLDDT ≥90 and `pae_pair_max` ≤10 Å | 0.683 (family maximum) | 0.481–0.864 | 27 | 0.736 | 0.553–0.903 | 30 |
-
-All eleven strata are post hoc and are shown here and in Figure 2C for both cohort versions. The number of sites falls from 163 to 27 across the primary family, whose lowest and highest values are 0.416 and 0.683. Four strata kept fewer than their nominal 20,000 resamples: 19,999 for the two primary high-confidence rows, and 19,997 and 19,999 for their inclusive counterparts. Tightening the PAE threshold does not move the AUC steadily in either direction, in either cohort version.
-
+The full eleven-stratum family, for both cohort versions, is Supplementary Table S2 and Figure 2C. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
 The rise where both the site and its target are above pLDDT 90 appears in both cohort versions, 0.641 on 28 primary sites and 0.697 on 31 inclusive. This design cannot separate an effect in well-folded regions from what picking out a stratum of 28 sites can produce on its own.
 
 Tyrosine sites alone give an AUC of 0.604 (16 sites in 12 proteins; 12 affected, 4 unaffected). Figure 2D places this and the other cohort, residue-class and feature-definition checks on one scale. No interval is reported: the upper end of the protein-cluster bootstrap reaches 1, the highest value an AUC can take, and 3.3% (665 / 20,000) of resamples were discarded because every site in them had the same outcome.
@@ -287,7 +270,7 @@ Every point mutant in the source screen replaces the residue with alanine, and t
 
 **Reproducibility of the outcome.** Only two sites kept more than one strain, and one of those two disagrees across its strains under the yes-or-no rule, which cannot characterize how reproducible the outcome is. Two rules for combining repeat strains are reported, along with one difference between figure versions in how the cohort cascade is drawn, and the withdrawn expanded row count of §2.1.
 
-**The review behind this revision.** The revision responds to a simulated review in which every reviewer was an AI agent running on one model family. It is not peer review, and agreement among those reviewers is not independent replication.
+**The review behind this revision.** Revisions to this manuscript responded in part to simulated reviews in which every reviewer was an AI agent running on one model family. That is not peer review, and agreement among those reviewers is not independent replication. Supplementary Note S3 records what was run and when.
 
 ### 3.4 What the analysis supports, and what a usable design would need
 
@@ -469,3 +452,60 @@ The first two intervals use 200,000 protein-cluster resamples at seed 20260729; 
 21. Kennedy PH, Alborzian Deh Sheikh A, Balakar M, et al. Post-translational modification-centric base editor screens to assess phosphorylation site functionality in high throughput. *Nature Methods*. 2024;21:1033–1043. doi:[10.1038/s41592-024-02256-z](https://doi.org/10.1038/s41592-024-02256-z).
 22. Correa Marrero M, Mello VH, Sartori P, Beltrao P. Global comparative structural analysis of responses to protein phosphorylation. *Nature Communications*. 2025;16:9407. doi:[10.1038/s41467-025-64116-4](https://doi.org/10.1038/s41467-025-64116-4).
 23. Li Y, Xu T, Ma H, et al. Functional profiling of serine, threonine and tyrosine sites. *Nature Chemical Biology*. 2025;21:532–543. doi:[10.1038/s41589-024-01731-0](https://doi.org/10.1038/s41589-024-01731-0).
+
+
+## Supplementary information
+
+Material moved out of the main narrative. Nothing here is withdrawn; it is placed where a reader who
+wants it can find it and a reader following the argument is not detained by it.
+
+### Supplementary Note S1. Annotation records, residue expansion, and a withdrawn count
+
+Every `ACT_SITE` record covers a single residue. Expanding all 262 eligible records to one row per
+covered residue gives 594 rows: 565 after removing duplicates on (accession, start, end) and 566 on
+(accession, start, end, feature type). The target set itself is **560 distinct residues**, and that
+count reproduces exactly. The excess over 560 arises from P12904, whose intervals are recorded once per
+ligand, so the same residue appears under more than one record.
+
+An earlier expanded row count kept in the analysis records does not reproduce under any simple rule and
+is **withdrawn**. It is named here rather than deleted because it appeared in an earlier version of
+this manuscript. No figure, table or claim in the present text depends on it; the numerical authority
+bars citing it.
+
+### Supplementary Table S2. The eleven-stratum confidence family
+
+| Stratum | Primary AUC | 95% interval | n | Inclusive AUC | 95% interval | n |
+|---|---:|---:|---:|---:|---:|---:|
+| All | 0.527 | 0.417–0.632 | 163 | 0.544 | 0.436–0.649 | 166 |
+| Site pLDDT ≥50 | 0.489 | 0.347–0.634 | 79 | 0.522 | 0.380–0.665 | 82 |
+| Site pLDDT ≥70 | 0.459 | 0.303–0.618 | 60 | 0.507 | 0.351–0.663 | 63 |
+| Site and target pLDDT ≥70 | 0.450 | 0.288–0.606 | 58 | 0.500 | 0.337–0.658 | 61 |
+| Site pLDDT ≥90 | 0.570 | 0.371–0.746 | 35 | 0.622 | 0.435–0.791 | 38 |
+| Site and target pLDDT ≥90 | 0.641 | 0.464–0.789 | 28 | 0.697 | 0.536–0.842 | 31 |
+| `pae_pair_max` ≤5 Å | 0.488 | 0.261–0.666 | 37 | 0.555 | 0.332–0.730 | 40 |
+| `pae_pair_max` ≤10 Å | 0.436 | 0.208–0.633 | 44 | 0.496 | 0.277–0.692 | 47 |
+| `pae_pair_max` ≤15 Å | 0.520 | 0.321–0.679 | 55 | 0.564 | 0.377–0.714 | 58 |
+| Both-residue pLDDT ≥70 and `pae_pair_max` ≤10 Å | 0.416 (family minimum) | 0.192–0.617 | 41 | 0.486 | 0.271–0.684 | 44 |
+| Both-residue pLDDT ≥90 and `pae_pair_max` ≤10 Å | 0.683 (family maximum) | 0.481–0.864 | 27 | 0.736 | 0.553–0.903 | 30 |
+
+All eleven strata are post hoc and are shown here and in Figure 2C for both cohort versions. The number of sites falls from 163 to 27 across the primary family, whose lowest and highest values are 0.416 and 0.683. Four strata kept fewer than their nominal 20,000 resamples: 19,999 for the two primary high-confidence rows, and 19,997 and 19,999 for their inclusive counterparts. Tightening the PAE threshold does not move the AUC steadily in either direction, in either cohort version.
+
+All eleven strata are post hoc. The number of sites falls from 163 to 27 across the primary family. The
+rise where both the site and its target are above pLDDT 90 appears in both cohort versions, 0.641 on 28
+primary sites and 0.697 on 31 inclusive. This design cannot separate an effect in well-folded regions
+from what selecting on confidence does to the cohort.
+
+### Supplementary Note S3. The simulated reviews
+
+Two rounds of simulated review were run against this manuscript, in which every reviewer was an AI agent
+running on one model family, together with an automated reference audit. They produced the revisions
+recorded in the analysis materials, including the retirement of an exclusion claim about the interval
+endpoint, the retirement of a claim that no positive control existed, the separation of the two human
+screens, and corrections to several literature summaries. None of it is peer review. Agreement among
+those reviewers is not independent replication, and no finding in this manuscript rests on their
+agreement rather than on a recomputation.
+
+### Supplementary Table S4. The 72-cell confidence-by-PAE grids
+
+The four predicted-aligned-error summaries at 10 Å and the 72-cell grids are deposited with the analysis
+materials. The 72 primary-cohort cells run from 0.416 to 0.569.
