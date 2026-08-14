@@ -104,6 +104,18 @@ def style_paragraph(par, space_after: float = PARA_SPACE) -> None:
     pf.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
 
+def repeat_header_row(row) -> None:
+    """Mark a table's first row as a header so Word repeats it on every continuation page.
+
+    Long tables legitimately span pages at PLOS, but a continuation fragment with no header is
+    unreadable. This sets w:tblHeader, which the earlier builds did not.
+    """
+    trPr = row._tr.get_or_add_trPr()
+    el = OxmlElement("w:tblHeader")
+    el.set(qn("w:val"), "true")
+    trPr.append(el)
+
+
 def set_cell_border_bottom(cell, size: int = 6) -> None:
     tcpr = cell._tc.get_or_add_tcPr()
     borders = OxmlElement("w:tcBorders")
@@ -240,6 +252,8 @@ def build(source: Path, output: Path, submission: bool = False) -> None:
                     add_runs(par, cell_text, size=TABLE_SIZE, bold_all=(ri == 0))
                     if ri == 0:
                         set_cell_border_bottom(cell)
+            if table.rows:
+                repeat_header_row(table.rows[0])
             style_paragraph(doc.add_paragraph(), space_after=PARA_SPACE)
             continue
 

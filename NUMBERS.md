@@ -1625,3 +1625,85 @@ Not allowed:
 - Any claim that the within-protein question is resolved. Every interval here is wide, and the two
   aggregations disagree in both screens.
 - Citing §20.6's single-edit arm, which rests on the withdrawn union endpoint; use 24.1.
+
+## 25. Human Endpoints Rebuilt From Source Directions `[DECLARED]`
+
+Author decision 2026-08-14, after an exact-package review found the reporter endpoint stale. Code
+`kennedy_replication/rebuild_endpoints.py`, output `rebuilt_endpoints.json`. **This section supersedes
+Sections 23.2–23.6 and 24 for the reporter screen.** The fitness screen does not move.
+
+### 25.1 What changed and why
+
+Sections 23 and 24 doubled each screen's **released** per-site column. Section 22.2 records that the
+released column reproduces `min(neg|p-value, pos|p-value)` on 1,428 of 1,475 rows for fitness and 1,372
+of 1,475 for the reporter, so a doubled released column is not a doubled reconstruction from the two
+directions. The endpoint is now defined once, from the source `MAGeCK gene_summary` columns.
+
+| Screen | Positives, released column | Positives, reconstructed | Sites changing |
+|---|---:|---:|---|
+| Fitness | 71 | **71** | none — no mismatched row crosses the threshold |
+| Reporter | 80 | **83** | TBKBP1_S335, PDE4A_S13, BRSK2_S367 |
+
+### 25.2 Declared primaries, rebuilt
+
+| Screen | n | Positives | AUC | 95% interval | Permutation *p* |
+|---|---:|---:|---:|---:|---:|
+| Fitness | 1,475 | 71 | **0.559317** | 0.475714–0.640813 | 0.0920 |
+| Reporter | 1,475 | **83** | **0.486100** | 0.421537–0.552153 | 0.6664 |
+
+### 25.3 Every reporter-dependent value, rebuilt
+
+| Quantity | Superseded (23/24) | **Rebuilt** |
+|---|---:|---:|
+| Experimentally-evidenced targets, 512 sites | 0.491016 [0.390608, 0.589686], 34 pos | **0.485415 [0.387567, 0.582436], 35 pos** |
+| Ranked pairs | 111,600 | **115,536** |
+| Within-protein pairs | 180 (0.1613%) | **185 (0.1601%)** |
+| Informative proteins | 48 | **50** |
+| Within-protein, pair-weighted | 0.422222 [0.322403, 0.520548] | **0.416216 [0.316770, 0.515627]** |
+| Within-protein, equal-protein weight | 0.383805 [0.271626, 0.498044] | **0.388452 [0.278904, 0.501814]** |
+| Within-protein informative sites | 210 | **217** |
+| Minimum sequence separation | 0.557881 [0.492038, 0.624173] | **0.550880 [0.486354, 0.615531]** |
+| Site pLDDT | 0.547652 [0.483932, 0.612270] | **0.548162 [0.485547, 0.611391]** |
+| Inverse relative solvent accessibility | 0.524185 [0.458971, 0.589920] | **0.521206 [0.456165, 0.585652]** |
+| Annotated target count | 0.444857 [0.382744, 0.508410] | **0.441282 [0.381015, 0.502983]** |
+| SIFT minimum score, 997 sites | 0.564520 [0.486261, 0.642506] | **0.574228 [0.497254, 0.651030]** |
+| SIFT alanine score, 997 sites | 0.548015 [0.470713, 0.623808] | **0.557898 [0.482233, 0.632537]** |
+| Single-edit, no bystander | 0.526800 [0.415405, 0.638762] | **0.512146 [0.401635, 0.624320], 26 pos** |
+
+Fitness-screen values are unchanged from Sections 23.4 and 24 and are not restated here.
+
+### 25.4 Two results do not survive the rebuild
+
+**The only paired difference in the project that excluded zero no longer does.** Sequence separation
+minus distance in the reporter screen was **+0.071008 [+0.004800, +0.136900]**. Rebuilt it is
+**+0.064781 [−0.000591, +0.130482]**, which contains zero. **No paired difference in either cohort now
+excludes zero** — the full rebuilt set is in `rebuilt_endpoints.json`.
+
+**The only interval that excluded 0.5 from below no longer does.** The reporter's equal-protein
+within-protein estimate was 0.383805 [0.271626, **0.498044**]. Rebuilt it is 0.388452 [0.278904,
+**0.501814**]. **No within-protein interval in either cohort excludes 0.5 in either direction.**
+
+What survives from Section 23.5 is the fitness screen's inverse relative solvent accessibility,
+0.603648 [0.527526, 0.675313], whose paired difference against distance is +0.044330 [−0.024533,
++0.115051] and contains zero, and the fitness SIFT control at 0.646354 [0.564566, 0.722769]. Both are
+fitness-screen quantities and neither moved.
+
+### 25.5 Claim rules
+
+Allowed:
+
+- The endpoint is a doubled reconstruction from the two MAGeCK directional columns, defined once from
+  source. Both screens' declared primaries contain 0.5.
+- No paired difference in either cohort excludes zero, and no within-protein interval in either cohort
+  excludes 0.5.
+
+Not allowed:
+
+- **Any use of the superseded reporter values in Sections 23.2–23.6 or 24**, which rest on the released
+  column. Section 25.3 is the authority for every reporter-dependent quantity.
+- **"Sequence separation beats distance in the reporter screen", or any claim that a paired difference
+  excludes zero.** Retired 2026-08-14 (25.4). This was reported in the abstract, Results §2.7.2, Table 4
+  and §23.5, and every instance is withdrawn.
+- **"The only interval excluding 0.5 from below."** Retired 2026-08-14 (25.4).
+- Calling either endpoint "direction-corrected" without stating that it is reconstructed from the two
+  directional columns rather than doubled from the released one.

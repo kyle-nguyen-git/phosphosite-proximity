@@ -83,7 +83,7 @@ def stamp_pdf_metadata() -> None:
     doc.set_metadata({
         "title": meta["title"],
         "author": meta["author"],
-        "subject": "Exploratory secondary analysis of a published phosphosite-mutant screen",
+        "subject": "Exploratory secondary analysis of two published phosphosite-mutant screens, in yeast and human",
         "keywords": meta["keywords"],
         "creator": "phosphosite-proximity manuscript pipeline",
         "producer": "",
