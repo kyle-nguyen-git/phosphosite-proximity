@@ -26,6 +26,10 @@ import sys
 import tempfile
 from pathlib import Path
 
+
+def pathlib_exists(p):
+    return Path(p).exists()
+
 HERE = Path(__file__).resolve().parent
 RESEARCH = HERE.parent
 PANELS = RESEARCH / "phase0_calibration" / "manuscript" / "panels"
@@ -105,28 +109,69 @@ def main() -> None:
             raise SystemExit(f"panel {name} failed")
         print(f"  {name}")
 
-    r = subprocess.run([sys.executable, str(work / "compose.py")], cwd=work, env=env,
-                       capture_output=True, text=True)
-    if r.returncode:
-        print(r.stdout[-3000:], r.stderr[-3000:])
-        raise SystemExit("compose failed")
-    print(r.stdout.strip())
+    # Compose our own layout rather than the release compose.py. The second format review found
+    # Figure 2 overloaded: an ECDF, a confidence scatter and two long sensitivity forests in one
+    # near-maximum-height figure, doing two unrelated jobs. Panels C and D become supporting figures,
+    # Figure 2 keeps the measurement audit, and Figure 3 carries the estimand comparison.
+    import pymupdf as _fitz
+    PT = 72 / 25.4
+    LAYOUTS = {
+        "Fig1": dict(size=(183, 74), panels=[("p1a_cohort_flow", 3, 5), ("p1b_roc", 108, 5)]),
+        "Fig2": dict(size=(183, 70), panels=[("p2a_ecdf", 3, 4), ("p2b_pae_scatter", 93, 4)]),
+        "S1_Fig": dict(size=(183, 70), panels=[("p2c_confidence_forest", 3, 4)]),
+        "S2_Fig": dict(size=(183, 82), panels=[("p2d_sensitivity_forest", 3, 4)]),
+    }
+    panel_dir = work / "out"
+    composed = {}
+    for name, spec in LAYOUTS.items():
+        w_mm, h_mm = spec["size"]
+        doc = _fitz.open()
+        page = doc.new_page(width=w_mm * PT, height=h_mm * PT)
+        for panel, x, y in spec["panels"]:
+            src_pdf = panel_dir / f"{panel}.pdf"
+            if not src_pdf.exists():
+                raise SystemExit(f"missing panel {src_pdf}")
+            src = _fitz.open(src_pdf)
+            rect = _fitz.Rect(x * PT, y * PT,
+                              x * PT + src[0].rect.width, y * PT + src[0].rect.height)
+            page.show_pdf_page(rect, src, 0)          # native size, never scaled
+        out_pdf = work.parent / f"{name}.pdf"
+        doc.save(out_pdf, no_new_id=1)
+        composed[name] = out_pdf
+        print(f"  composed {name}: {w_mm} x {h_mm} mm from {len(spec['panels'])} panel(s)")
+
+    # Figure 3 is drawn here, not in the release tree, and reads its numbers from committed files.
+    fig3_src = HERE / "figures" / "p3_estimands.py"
+    if fig3_src.exists():
+        shim = (work / "src" / "_fig3_shim.py")
+        shim.write_text(SHIM.format(font=a.font, size=a.size).replace(
+            "import _style  # noqa: F401  — sets the release rcParams first", ""))
+        r3 = subprocess.run(
+            [sys.executable, "-c",
+             f"exec(open({str(shim)!r}).read());"
+             f"import importlib.util,sys;"
+             f"spec=importlib.util.spec_from_file_location('p3',{str(fig3_src)!r});"
+             f"m=importlib.util.module_from_spec(spec);sys.modules['p3']=m;"
+             f"spec.loader.exec_module(m);m.main()"],
+            cwd=work, env=env, capture_output=True, text=True)
+        if r3.returncode:
+            print(r3.stdout[-2000:], r3.stderr[-2000:])
+            raise SystemExit("figure 3 failed")
+        print("  " + r3.stdout.strip())
+        composed["Fig3"] = HERE / "figures" / "out" / "figure3.pdf"
 
     import pymupdf
     from PIL import Image
-    dest = work / "out"
     made = []
-    for n in (1, 2):
-        pdf = next((p for p in [work.parent / f"figure{n}.pdf", dest / f"figure{n}.pdf"]
-                    if p.exists()), None)
-        if pdf is None:
-            print(f"  figure{n}: no composed PDF found")
+    for name, pdf in composed.items():
+        if not pathlib_exists(pdf):
+            print(f"  {name}: no composed PDF found")
             continue
         pix = pymupdf.open(pdf)[0].get_pixmap(dpi=a.dpi)
-        png = OUT / f"_fig{n}.png"
+        png = OUT / f"_{name}.png"
         pix.save(png)
         img = Image.open(png).convert("RGB")
-        tif = OUT / f"Fig{n}.tif"
+        tif = OUT / f"{name}.tif"
         img.save(tif, format="TIFF", compression="tiff_lzw", dpi=(a.dpi, a.dpi))
         png.unlink()
         w, h = img.size

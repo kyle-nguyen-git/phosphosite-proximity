@@ -131,9 +131,9 @@ Across the cohort, |Δposition| is 1 for 5 sites, 2 for 1 site and 3 or more for
 
 Sites inside the 5 Å cut-off are affected less often than sites beyond it, 40.0% against 49.0%, a descriptive odds ratio of 0.693 on 10 sites; the two distance distributions are drawn in Fig 2A. That inversion comes entirely from the peptide-bond neighbours. With those removed the cut-off holds 4 sites, 2 of them affected, an odds ratio of 1.040; on a bin of four sites only the count is reported. The declared predictor is not redefined. `min_dist_A`, the distance on all 163 rows, remains the primary quantity.
 
-![Fig 2. Model confidence and the declared sensitivity families.](figure2.png)
+![Fig 2. Model confidence and the declared sensitivity families.](phase0_calibration/manuscript/figure2.png)
 
-**Fig 2. Model confidence and the declared sensitivity families.** (A) Cumulative distance distributions in the primary cohort, drawn separately for affected and unaffected sites. The marked maximum vertical gap between them is the two-sample Kolmogorov–Smirnov statistic, 0.137 on 79 affected and 84 unaffected sites; it is descriptive and no p-value is reported. The rug at 0 Å marks the three sites that coincide with an annotated residue, which enter only the inclusive cohort. (B) `pae_pair_max`, the larger of the two directed site–target predicted-aligned-error values, against distance, coloured by site pLDDT. (C) Protein-cluster AUC intervals for all 11 confidence strata in both cohort versions. The primary-cohort family minimum (0.416, n = 41) and maximum (0.683, n = 27) are labelled as extremes of the family; tightening the PAE threshold moves the value up and down in both versions. Marker area is proportional to the number of sites in the stratum, which falls from 163 to 27. (D) The cohort, residue-class and feature-definition checks and the SIFT comparator, on the AUC scale of (C). The tyrosine subset appears as a point estimate with no interval, its bootstrap upper endpoint having reached 1, the highest value an AUC can take. In (C) and (D) the dashed vertical line marks AUC 0.5; labels carry n as primary/inclusive in (C) and a single n in (D).
+**Fig 2. What the distance measurement contains.** (A) Cumulative distance distributions in the primary cohort, drawn separately for screen-negative and screen-positive sites, with the three inclusive-only sites at 0 Å marked. (B) Maximum directional predicted aligned error for each site–target pair against the distance between them, with each point coloured by the confidence the model assigns the site. Longer distances co-occur with lower site confidence and higher pair error, so distance and model confidence are not separable in this cohort. The eleven-stratum confidence family and the cohort, residue-class and feature-definition checks that earlier occupied this figure are S1 Fig and S2 Fig.
 
 ### 2.4 No alternative predictor is distinguishable from distance on the same sites
 
@@ -200,10 +200,10 @@ Among the 79 affected sites of the primary cohort, counting only the conditions 
 
 Median site pLDDT in the primary cohort is 46.50; 84 of the 163 replaced residues sit below 50 and 103 of 163 below 70. The Spearman rank correlation between log10(distance + 1 Å) and site pLDDT is −0.541 (Fig 2B). Distance correlates with `pae_pair_max` at 0.753 (0.661–0.827), and site pLDDT with `pae_pair_max` at −0.795 (−0.852 to −0.688). The long distances here are measured where AlphaFold is least sure how the two residues sit relative to one another, so distance and model confidence are largely the same variable on this cohort.
 
-The full eleven-stratum family, for both cohort versions, is S1 Table and Fig 2C. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
+The full eleven-stratum family, for both cohort versions, is S1 Table and S1 Fig. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
 The rise where both the site and its target are above pLDDT 90 appears in both cohort versions, 0.641 on 28 primary sites and 0.697 on 31 inclusive. This design cannot separate an effect in well-folded regions from what picking out a stratum of 28 sites can produce on its own.
 
-Tyrosine sites alone give an AUC of 0.604 (16 sites in 12 proteins; 12 affected, 4 unaffected). Fig 2D places this and the other cohort, residue-class and feature-definition checks on one scale. No interval is reported: the upper end of the protein-cluster bootstrap reaches 1, the highest value an AUC can take, and 3.3% (665 / 20,000) of resamples were discarded because every site in them had the same outcome.
+Tyrosine sites alone give an AUC of 0.604 (16 sites in 12 proteins; 12 affected, 4 unaffected). S2 Fig places this and the other cohort, residue-class and feature-definition checks on one scale. No interval is reported: the upper end of the protein-cluster bootstrap reaches 1, the highest value an AUC can take, and 3.3% (665 / 20,000) of resamples were discarded because every site in them had the same outcome.
 
 The four PAE summaries at 10 Å and the 72-cell grids are in the supplement; its 72 primary-cohort cells run from 0.416 to 0.569.
 
@@ -251,7 +251,11 @@ The comparison remains almost entirely between proteins. Within-protein pairs ar
 
 The pooled AUC is therefore a mostly across-protein quantity. It can track protein length, annotation density, typical fold geometry and anything else that varies between proteins, and resampling proteins fixes the dependence without changing what the statistic averages. That is a different question from the one a user of this shortcut usually asks, which is which site inside a given protein to follow up.
 
-That question can be asked directly, on the proteins carrying both classes, and the answer is Table 3. No aggregation in either cohort puts the declared predictor above chance within a protein.
+That question can be asked directly, on the proteins carrying both classes. Table 3 gives the numbers and Fig 3 puts them on one scale beside the pooled estimate for all three cohorts. No aggregation in either cohort puts the declared predictor above chance within a protein.
+
+![Fig 3. What the statistic estimates, in both organisms.](Fig3.png)
+
+**Fig 3. What the statistic estimates, in both organisms.** Pooled and within-protein estimates for the yeast cohort and for each human screen, on one axis, with the number of sites and informative proteins behind each. The pooled estimate is a mostly across-protein quantity; the two within-protein aggregations weight each protein by the affected/unaffected pairs it contributes and equally. Bars are 95% protein-cluster bootstrap intervals and the dashed line is chance. Every interval crosses it. Estimand is distinguished by colour, marker and line style together, so the panel survives grayscale.
 
 **Table 3. Discrimination using only comparisons inside one protein.**
 
@@ -507,7 +511,7 @@ bars citing it.
 | Both-residue pLDDT ≥70 and `pae_pair_max` ≤10 Å | 0.416 (family minimum) | 0.192–0.617 | 41 | 0.486 | 0.271–0.684 | 44 |
 | Both-residue pLDDT ≥90 and `pae_pair_max` ≤10 Å | 0.683 (family maximum) | 0.481–0.864 | 27 | 0.736 | 0.553–0.903 | 30 |
 
-All eleven strata are post hoc and are shown here and in Fig 2C for both cohort versions. The number of sites falls from 163 to 27 across the primary family, whose lowest and highest values are 0.416 and 0.683. Four strata kept fewer than their nominal 20,000 resamples: 19,999 for the two primary high-confidence rows, and 19,997 and 19,999 for their inclusive counterparts. Tightening the PAE threshold does not move the AUC steadily in either direction, in either cohort version.
+All eleven strata are post hoc and are shown here and in S1 Fig for both cohort versions. The number of sites falls from 163 to 27 across the primary family, whose lowest and highest values are 0.416 and 0.683. Four strata kept fewer than their nominal 20,000 resamples: 19,999 for the two primary high-confidence rows, and 19,997 and 19,999 for their inclusive counterparts. Tightening the PAE threshold does not move the AUC steadily in either direction, in either cohort version.
 
 
 ### S2 Appendix. The simulated reviews
@@ -519,6 +523,14 @@ endpoint, the retirement of a claim that no positive control existed, the separa
 screens, and corrections to several literature summaries. None of it is peer review. Agreement among
 those reviewers is not independent replication, and no finding in this manuscript rests on their
 agreement rather than on a recomputation.
+
+### S1 Fig. The eleven-stratum confidence family
+
+Primary and inclusive arms across eleven model-confidence strata, from 163 sites down to 27. All post hoc. This occupied panel C of Fig 2 in an earlier version.
+
+### S2 Fig. Cohort, residue-class and feature-definition checks
+
+Cohort versions, residue classes, alternative distance-feature definitions, and the post hoc SIFT comparator on common support, on one scale. All post hoc. This occupied panel D of Fig 2 in an earlier version.
 
 ### S2 Table. The 72-cell confidence-by-PAE grids
 
