@@ -1449,3 +1449,107 @@ Not allowed until the audit is resolved:
   harmonizing the annotation-coincident rule;
 - stating that the 69-check verifier or prior clean-room report covers the current humanized paper;
 - stating that the human cohort uses the same construction procedure and code as yeast.
+
+## 23. Declared Human Endpoints — the union is withdrawn `[DECLARED]`
+
+Author decision, 2026-08-13. Section 20's union `p3 < 0.05 or p4 < 0.05` is **withdrawn as the human
+primary**. It pools two different phenotypes and leaves two multiplicity layers uncorrected. Code:
+`kennedy_replication/endpoint_options.py` and `primary_recompute.py`; outputs `endpoint_options.json`
+and `primary_recompute.json`. The choice was made after seeing that every candidate primary contains
+0.5, and every candidate is reported below, which is the only defence available for a post-hoc
+endpoint decision.
+
+### 23.1 Why the union was withdrawn
+
+At a direction-corrected 5%, the two screens call almost disjoint site sets: **65 in the fitness screen
+only, 74 in the reporter only, 6 in both**, of 1,475. Jaccard **0.0414**; Spearman between the two log
+fold changes **0.1224**. A union across assays that agree on six sites is not one endpoint.
+
+### 23.2 The declared primaries
+
+Two primaries, because these are two experiments.
+
+| Declared | Definition | Positives | AUC | 95% interval | Half-width |
+|---|---|---:|---:|---:|---:|
+| **A1, fitness** (Supp. Table 3) | `2 × p3 < 0.05` | **71** | **0.559317** | 0.475714–0.640813 | 0.082549 |
+| **A2, NFAT reporter** (Supp. Table 4) | `2 × p4 < 0.05` | **80** | **0.486873** | 0.420572–0.554196 | 0.066812 |
+
+Both contain 0.5, on opposite sides. Permutation nulls: A1 observed 0.559317, **p = 0.0920**, 1.677 SD
+from centre; A2 observed 0.486873, **p = 0.6836**, 0.408 SD. **A1's p = 0.0920 must be reported plainly
+and never rounded to "near chance" without it.**
+
+### 23.3 Full endpoint family, all reported
+
+| Arm | Positives | AUC | 95% interval |
+|---|---:|---:|---:|
+| Withdrawn union, `p3<0.05 or p4<0.05` | 293 | 0.505573 | 0.465509–0.545511 |
+| **A1 fitness, direction-corrected** | 71 | 0.559317 | 0.475714–0.640813 |
+| **A2 reporter, direction-corrected** | 80 | 0.486873 | 0.420572–0.554196 |
+| B union corrected 4 ways, `2p < 0.025` | 85 | 0.540796 | 0.464247–0.616524 |
+| C1 top decile \|log2 FC\|, fitness | 148 | 0.507057 | 0.454537–0.560195 |
+| C2 top decile \|log2 FC\|, reporter | 148 | 0.508763 | 0.456513–0.560710 |
+| C3 top decile \|log2 FC\|, larger of the two | 148 | 0.516716 | 0.462815–0.570750 |
+| D MAGeCK FDR < 0.25 either | 19 | 0.613939 | 0.432767–0.781183 |
+
+**Every one contains 0.5.** C1 and C2 use no p-value, so they do not inherit the unreproduced-column
+problem of Section 22.2.
+
+### 23.4 Dependent quantities, recomputed
+
+Everything that depends on which sites are positive moved with the primary. Section 20's values for
+these are superseded.
+
+| Quantity | A1 fitness | A2 reporter |
+|---|---:|---:|
+| Experimentally-evidenced targets only (512 sites) | 0.574927 [0.446209, 0.699308], 29 pos | 0.491016 [0.390608, 0.589686], 34 pos |
+| Ranked pairs | 99,684 | 111,600 |
+| Within-protein pairs | **102 (0.1023%)** | **180 (0.1613%)** |
+| Informative proteins | 39 | 48 |
+| Minimum sequence separation | 0.537644 [0.460435, 0.610878] | 0.557881 [0.492038, 0.624173] |
+| Site pLDDT | 0.510709 [0.431314, 0.588473] | 0.547652 [0.483932, 0.612270] |
+| Inverse relative solvent accessibility | **0.603648 [0.527526, 0.675313]** | 0.524185 [0.458971, 0.589920] |
+| Annotated target count | 0.466584 [0.398333, 0.534749] | 0.444857 [0.382744, 0.508410] |
+| SIFT minimum score (997 sites) | **0.646354 [0.564566, 0.722769]** | 0.564520 [0.486261, 0.642506] |
+| SIFT alanine score (997 sites) | **0.630042 [0.544713, 0.708286]** | 0.548015 [0.470713, 0.623808] |
+
+Predictor-only quantities do not move and were checked: 37 sites within 5 Å, 16 sequence-adjacent, 13
+in the 1.30–1.35 Å band, median distance 41.7549 Å, median site pLDDT 37.19.
+
+### 23.5 Two results that the union concealed
+
+**Inverse relative solvent accessibility separates the classes in the fitness screen**: 0.603648
+[0.527526, 0.675313], an interval that excludes 0.5. Burial, not distance, is the structural quantity
+that tracks this outcome.
+
+**A structure-free feature beats the declared predictor in the reporter screen, and this is the first
+paired difference anywhere in this project to exclude zero.** Minimum sequence separation minus
+distance is **+0.071008 [+0.004800, +0.136900]**. Every other paired difference in both screens contains
+zero.
+
+### 23.6 The positive control is screen-dependent
+
+SIFT excludes 0.5 in the fitness screen (0.646354 [0.564566, 0.722769]) and **contains 0.5 in the
+reporter screen** (0.564520 [0.486261, 0.642506]). The endpoint-not-blind argument therefore holds for
+A1 and is not established for A2.
+
+### 23.7 Additions to the claim rules
+
+Allowed:
+
+- Both declared primaries contain 0.5, as do all six alternative endpoint definitions, including two
+  that use no p-value.
+- The across-protein architecture is more extreme under the declared primaries than under the union:
+  99.90% and 99.84% of ranked pairs.
+
+Not allowed:
+
+- Any use of the withdrawn union 0.505573 as the human primary, or of its dependent Section 20 values
+  for the experimental-evidence arm, comparators, paired differences, permutation null, pair
+  decomposition, or positive control (23.4 supersedes them).
+- **Any precision claim comparing the human and yeast intervals.** Half-widths are 0.0825 and 0.0668
+  against yeast's 0.1074, so the ratios are 1.30x and 1.61x; the 1.9x and 2.7x figures are retired.
+- Reporting A1 as "near chance" without its permutation **p = 0.0920** (23.2).
+- "No feature separates the classes." Inverse RSA does in the fitness screen, and sequence separation
+  beats distance there by a paired difference excluding zero (23.5).
+- Citing SIFT as a positive control for the reporter screen (23.6).
+- Describing the two screens as one phenotype, or their union as a replication endpoint (23.1).
