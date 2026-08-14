@@ -49,8 +49,32 @@ RETIRED = [
     ("2.7 times the precision", "precision ratio, retired 20.10"),
     ("a real negative", "retired 2026-08-13"),
     ("Burial, not distance", "interval-comparison error, retired 23.5"),
+    ("0.559317", "superseded fitness primary, deposited cohort, retired 26.2"),
+    ("0.486100", "superseded reporter primary, deposited cohort, retired 26.2"),
+    # Matched as bare tokens, not as one phrasing. The literal string "1,475 sites, 793 proteins"
+    # missed "1,475 edited sites in 793 proteins" and "leaving 1,475 sites in 793 proteins".
+    ("1,475", "superseded human cohort site count, retired 26.1"),
+    ("793 proteins", "superseded human cohort protein count, retired 26.1"),
+    ("1,595 rows", "superseded candidate-table size unless stated as the earlier build"),
+    ("185 of 115,536", "superseded reporter pair decomposition, retired 26.3"),
+    ("50 informative proteins", "superseded reporter informative count, retired 26.3"),
+    ("phase0_calibration/manuscript/figure2.png", "obsolete four-panel Figure 2, retired 2026-08-14"),
 ]
-RETRACTION_MARKERS = ("earlier version", "retired", "withdrawn", "superseded", "An earlier")
+RETRACTION_MARKERS = ("earlier version", "earlier build", "retired", "withdrawn", "superseded",
+                      "An earlier")
+
+
+def sentences(text: str):
+    """Split into sentences, because a markdown paragraph is one line.
+
+    The retraction exemption is granted per sentence. Matching on lines let a paragraph that retracts
+    one value elsewhere in itself exempt every other claim in the same paragraph — a negative control
+    on 2026-08-14 showed an asserted within-protein exclusion passing for exactly that reason.
+    """
+    for line in text.split("\n"):
+        for sent in re.split(r"(?<=[.!?])\s+", line):
+            if sent.strip():
+                yield sent
 
 results: list[tuple[bool, str, str]] = []
 
@@ -121,6 +145,52 @@ def main() -> int:
               f"{n_hdr} headers / {n_tbl} tables")
         check("<w:drawing>" not in doc, "no figures embedded in the submission DOCX")
 
+        # Document properties ship to the journal inside the file. python-docx's template leaves a
+        # 2013 date, blank keywords and, until 2026-08-14, a subject naming one screen when there are
+        # two.
+        from docx import Document as _Doc
+        cp = _Doc(SUB).core_properties
+        check("two published" in (cp.subject or ""), "DOCX subject names both screens", cp.subject or "")
+        check(bool((cp.keywords or "").strip()), "DOCX keywords set", cp.keywords or "(blank)")
+        check(cp.created is not None and cp.created.year >= 2026, "DOCX creation date is not template residue",
+              str(cp.created))
+
+    # ---- build products came from this Markdown -----------------------------
+    # Every other check reads the Markdown. Without this, a stale PDF or DOCX beside a current source
+    # passes the whole suite — the same failure that let a superseded Figure 1 and Figure 2 ship.
+    md_mtime = MD.stat().st_mtime
+    for f in (PDF, SUB, RESEARCH / "phosphosite_proximity_preprint.docx"):
+        if f.exists():
+            check(f.stat().st_mtime >= md_mtime - 1, f"{f.name} is not older than the Markdown",
+                  f"{(md_mtime - f.stat().st_mtime):.0f}s older" if f.stat().st_mtime < md_mtime else "")
+    try:
+        import pymupdf
+        pdf_text = "".join(pg.get_text() for pg in pymupdf.open(PDF)) if PDF.exists() else ""
+        for tok in ("0.558", "0.483", "1,471", "788 proteins"):
+            check(tok in pdf_text, f"rendered PDF carries the corrected value: {tok}")
+        for tok, why in (("0.559317", "superseded fitness"), ("0.486100", "superseded reporter")):
+            check(tok not in pdf_text, f"rendered PDF free of {why}: {tok}")
+    except ImportError:
+        check(False, "pymupdf available to read the rendered PDF")
+
+    # ---- embedded figures come from the submission build --------------------
+    # The reader PDF and the uploaded TIFFs must be the same picture. Pointing an embed at the frozen
+    # release tree is how a superseded Figure 1 and Figure 2 survived into the 2026-08-14 build.
+    embeds = re.findall(r"^!\[[^\]]*\]\(([^)]+)\)", md, re.M)
+    check(bool(embeds), "manuscript embeds figures", str(len(embeds)))
+    for src in embeds:
+        under = src.startswith("manuscript_build/submission_figures/")
+        check(under, f"figure embed comes from the submission build: {src}")
+        check((RESEARCH / src).exists(), f"embedded figure file exists: {src}")
+    for name in ("Fig1", "Fig2", "Fig3"):
+        png, tif = FIGS / f"{name}.png", FIGS / f"{name}.tif"
+        if png.exists() and tif.exists():
+            check(abs(png.stat().st_mtime - tif.stat().st_mtime) < 300,
+                  f"{name} PNG and TIFF are from the same build",
+                  f"{abs(png.stat().st_mtime - tif.stat().st_mtime):.0f}s apart")
+        else:
+            check(False, f"{name} has both a PNG and a TIFF")
+
     # ---- structural -------------------------------------------------------
     order = [m.group(1) for m in re.finditer(r"^## (.+)$", md, re.M)]
     def pos(name):
@@ -149,16 +219,41 @@ def main() -> int:
     check("|" not in si_section, "supporting-information section carries captions only, no tables")
 
     # ---- numerical --------------------------------------------------------
+    sents = list(sentences(md))
     for value, why in RETIRED:
-        hits = [ln for ln in md.split("\n") if value in ln]
-        bad = [ln for ln in hits if not any(mk in ln for mk in RETRACTION_MARKERS)]
-        check(not bad, f"retired value absent outside a retraction: {value}", why)
+        bad = [x for x in sents if value in x and not any(mk in x for mk in RETRACTION_MARKERS)]
+        check(not bad, f"retired value absent outside a retraction: {value}",
+              why + (f" | {bad[0][:60]}" if bad else ""))
 
-    for headline in ("0.559", "0.486", "0.527", "0.544"):
+    for headline in ("0.558", "0.483", "0.527", "0.544"):
         check(headline in md, f"headline value present: {headline}")
     if numbers:
-        for headline in ("0.559317", "0.486100", "0.526823"):
+        for headline in ("0.557829", "0.483301", "0.526823"):
             check(headline in numbers, f"headline traced to NUMBERS.md: {headline}")
+
+    # ---- endpoint invariants ---------------------------------------------
+    # The corrected cohort's counts, so a partial edit that updates an AUC but not its support fails.
+    for tok, what in (("1,471 sites in 788 proteins", "corrected human cohort size"),
+                      ("72 sites are affected", "fitness positives"),
+                      ("82 are", "reporter positives"),
+                      ("102 of 100,728", "fitness pair decomposition"),
+                      ("184 of 113,898", "reporter pair decomposition")):
+        check(tok in md, f"corrected value present: {what}", tok)
+
+    # No within-protein interval may be asserted as excluding 0.5 (26.4).
+    for phrase in ("excludes 0.5 from below", "excluding 0.5 from below",
+                   "below chance within a protein"):
+        bad = [x for x in sents
+               if phrase in x and not any(mk in x for mk in RETRACTION_MARKERS)]
+        check(not bad, f"no within-protein exclusion asserted: {phrase}",
+              bad[0][:80] if bad else "")
+
+    # NUMBERS.md must carry Section 26 and mark it as superseding the earlier human sections.
+    if numbers:
+        check("## 26." in numbers, "NUMBERS.md carries Section 26")
+        check("supersedes Sections 22" in numbers or "supersedes \u00a7\u00a722" in numbers
+              or "supersedes Sections 22\u201325" in numbers,
+              "Section 26 declares what it supersedes")
 
     ok = report()
     if a.write_manifest:

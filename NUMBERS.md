@@ -11,7 +11,7 @@ The frozen numerical outputs and their hashes are unchanged.
 
 Extended again on **2026-08-12** with Section 17 (figure provenance, 2026-08-03) and Section 18
 (round-2 authorized analyses). Section 18 values are `[POST-HOC]`, not `[REPO]`: they come from scripts
-under `robustness/results/round2/` that verify the three frozen hashes below before computing, import the
+under `phase0_5/results/round2/` that verify the three frozen hashes below before computing, import the
 frozen estimators without reimplementation, and write nothing into the frozen tree. The frozen numerical
 outputs and their hashes are unchanged by either extension.
 
@@ -19,7 +19,7 @@ Frozen source hashes (SHA-256):
 
 - `results/statistics.json` — `57d02d5b4eae6a7d5f18b78b20ffebe491cc4e5f6e23e49710aba71d448a0401`
 - `results/analysis_final.csv` — `e666827da317fd963074e91613748ba449fb7005c207bdf0b389bd8451ac4dd4`
-- `robustness/results/robustness_statistics.json` — `3ea01c7b0a8b8f80304e574753d24c07ee7d542975e4f4603443b07bf050d02b`
+- `phase0_5/results/phase0_5_statistics.json` — `3ea01c7b0a8b8f80304e574753d24c07ee7d542975e4f4603443b07bf050d02b`
 
 The pre-repair audit baseline was independently hash-verified before the rerun: `73398b41…566e`, `a42f8d18…bceb`, and `e82b7e11…8434`, respectively. `[REPO]` means the value is emitted by the current seeded repository pipeline. Manuscripts, tables, figures, and release checks must take numerical claims from this file and reconcile them to the frozen outputs above.
 
@@ -56,11 +56,11 @@ The named switch is now implemented as `exclude_annotation_coincident` and `incl
 - `results/cohort_arm_cutoffs.csv`
 - `results/cohort_arm_logistic.csv`
 - `results/cohort_arm_descriptives.csv`
-- `robustness/results/confidence_strata.csv`
-- `robustness/results/cohort_arm_primary_estimates.csv`
-- `robustness/results/cohort_arm_cutoffs.csv`
-- `robustness/results/regression_models.csv`
-- `robustness/results/cohort_arm_descriptives.csv`
+- `phase0_5/results/confidence_strata.csv`
+- `phase0_5/results/cohort_arm_primary_estimates.csv`
+- `phase0_5/results/cohort_arm_cutoffs.csv`
+- `phase0_5/results/regression_models.csv`
+- `phase0_5/results/cohort_arm_descriptives.csv`
 
 The primary analysis files contain 163 substitutions and no annotation-coincident rows. The inclusive files contain 166 substitutions and all three 0 Å rows.
 
@@ -305,7 +305,7 @@ Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
   The count rose from 66 on **2026-08-03** with three checks binding the panel-composed figures: their
   hashes against Section 17, the presence of the figure-provenance declaration, and agreement between the
   Figure 1B ROC-envelope contract and `manuscript/panels/src/p1b_roc.py`. Internal review records under
-  `robustness/reviews/` still quote 66/66 and are dated artifacts, not current state.
+  `phase0_5/reviews/` still quote 66/66 and are dated artifacts, not current state.
 - The rebuilt review PDF contains **11 pages**. Its SHA-256 is `ba484a32af7322843d0378fd2078b0a0689849d9edf8ec29459e25bf3e729574`.
 - `manuscript/rendered/render_manifest.json` binds **11 rendered pages** and the contact sheet to that PDF hash, with no extra rendered pages.
 - The corrected supplementary workbook contains **22 sheets**, including separate primary and inclusive data, estimates, cutoffs, descriptives, confidence strata, models, fit diagnostics, feature-evidence and replicate audits, PAE tables, and SIFT results.
@@ -322,7 +322,7 @@ Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
 - Continuous clustered-OLS sensitivity fields are serialized after rounding to **12 decimal places**.
   This is below manuscript reporting precision and removes BLAS-dependent last-bit drift without changing
   any reported value.
-- Base the robustness analysis random seed: **20260728**. Canonical arm intervals use **200,000**
+- Base Phase 0.5 random seed: **20260728**. Canonical arm intervals use **200,000**
   protein-cluster draws and seed **20260729**; substitution-level dependence intervals also use
   **200,000** draws.
 - Post-result AUC sensitivity intervals use **20,000** draws. Continuous-outcome Spearman intervals use
@@ -340,7 +340,7 @@ Allowed, added 2026-08-12 on the strength of Sections 18.1–18.9:
   screen-positive strains with per-strain called-condition counts **12 and 3**. P43565 position 1764 has
   **2/3** screen-positive strains with counts **16, 0, and 8**. Thus **one of two** replicated
   substitutions is discordant under the binary endpoint. The file
-  `robustness/results/replicate_aggregation_audit.csv` exposes the strain-level audit; no post-result
+  `phase0_5/results/replicate_aggregation_audit.csv` exposes the strain-level audit; no post-result
   replicate-unanimity outcome is promoted as a replacement endpoint.
 
 ## 16. Source and Method Metadata for the Manuscript `[REPO]`
@@ -377,7 +377,7 @@ Added **2026-08-03**. Two figure lineages exist and they are not interchangeable
 | Figure set | Files | Builder | Used by |
 |---|---|---|---|
 | Panel-composed (current, reader-facing) | `manuscript/figure1.{png,pdf}`, `manuscript/figure2.{png,pdf}` | `manuscript/panels/src/p*.py` → `manuscript/panels/compose.py`, driven by `manuscript/panels/build_all.sh` | the editable manuscript Markdown and the current Word build |
-| Legacy (frozen review PDF) | `manuscript/figure1_cohort_estimand_primary.{png,pdf}`, `robustness/results/robustness_summary.{png,pdf}` | `manuscript/src/build_figure1.py`, `robustness/src/03_robustness_figure.py` | `manuscript/preprint_draft_v1.{md,pdf}`, whose SHA-256 is frozen in Section 14 |
+| Legacy (frozen review PDF) | `manuscript/figure1_cohort_estimand_primary.{png,pdf}`, `phase0_5/results/phase0_5_robustness_summary.{png,pdf}` | `manuscript/src/build_figure1.py`, `phase0_5/src/03_phase0_5_figure.py` | `manuscript/preprint_draft_v1.{md,pdf}`, whose SHA-256 is frozen in Section 14 |
 
 The legacy Figure 1 compresses the cascade into five boxes, merging the whole-genome-sequencing
 and scar-correlation stages into one "427 records after source QC" step. Section 4 declares six
@@ -386,7 +386,7 @@ Do not describe the two as the same figure.
 
 Panel inputs, all committed pipeline outputs: `results/cohort_disposition.csv`,
 `results/analysis_final.csv`, `results/analysis_inclusive_sensitivity.csv`,
-`robustness/results/robustness_analysis.csv`, `confidence_strata.csv`, `cohort_sensitivity.csv`,
+`phase0_5/results/phase0_5_analysis.csv`, `confidence_strata.csv`, `cohort_sensitivity.csv`,
 `residue_class_sensitivity.csv`, `feature_definition_sensitivity.csv`, and
 `sift_comparator_sensitivity.csv`. The cohort counts a panel asserts against are parsed from
 Sections 1 and 4 of this file at build time; no count is typed into panel source.
@@ -422,7 +422,7 @@ Added **2026-08-12**. These values are **not** `[REPO]`: they are produced by sc
 `rr43_stricter_endpoints/`, `rr44_direction_specific/`, `notes/rr30_rr58/`, `rr16_permutation_null/`,
 `rr14/`, `rr29_sequence_adjacency/`, `audit_rr13_rr59/`, and `rr28/`, each of which verifies the three
 frozen hashes in the header of this file, imports `auc_from_ranks`, `bootstrap_auc`, and
-`paired_auc_difference` from `robustness/src/02_robustness_analysis.py` without reimplementation, and
+`paired_auc_difference` from `phase0_5/src/02_phase0_5_analysis.py` without reimplementation, and
 writes nothing into the frozen tree. Every value here is post hoc and none was preregistered.
 
 **Declared convention for this section.** All intervals are 95% protein-cluster percentile intervals
@@ -681,7 +681,7 @@ identical 157-row cohort, so the result is robust within that window, but the th
 
 ### 18.7 Bootstrap draw retention (RR-13)
 
-217 stored interval records across `results/` and `robustness/results/`: 167 from a resampling
+217 stored interval records across `results/` and `phase0_5/results/`: 167 from a resampling
 estimator, 50 analytic logistic (Wald / cluster-robust) intervals involving no draws.
 
 **Both canonical 200,000-draw arm intervals retained all 200,000 draws — zero discarded.**
@@ -694,7 +694,7 @@ estimator, 50 analytic logistic (Wald / cluster-robust) intervals involving no d
 | Inclusive, naive site | site | 0.5441347271 | 0.4553844563–0.6327034884 | 200,000 | 200,000 | 0 |
 
 **Table S-RR13a. Six sensitivity intervals retained fewer than their nominal 20,000.** These are six
-distinct quantities, each stored twice (once in `robustness_statistics.json`, once in the matching CSV).
+distinct quantities, each stored twice (once in `phase0_5_statistics.json`, once in the matching CSV).
 
 | Quantity | n sites / proteins / positive | AUC | 95% interval | Nominal | Retained | Shortfall | Discarded | Endpoint at 1 |
 |---|---|---:|---:|---:|---:|---:|---:|---|
@@ -722,22 +722,22 @@ Not allowed: printing 0.604 [0.267, 1.000] or 0.604 [0.272, 1.000]. Not allowed:
 tyrosine-only cohort AUC and the residue-class-Y AUC as two results; they are one quantity computed
 twice.
 
-**Provenance rule for the `draws` field.** `robustness/src/02_robustness_analysis.py::bootstrap_auc` and
+**Provenance rule for the `draws` field.** `phase0_5/src/02_phase0_5_analysis.py::bootstrap_auc` and
 `paired_auc_difference` return `"draws": len(draws)`, the count *after* discarding single-class
-resamples, so every `draws` value under `robustness/results/` is a measured retained count.
+resamples, so every `draws` value under `phase0_5/results/` is a measured retained count.
 `src/03_analysis.py::boot_auc` returns only `(point, lo, hi)`, and `results/statistics.json` then
 writes `"draws"` and `"naive_site_draws"` as the literal constant `N_PRIMARY_BOOT`; those 200,000
 entries, and the same literals in `results/cohort_arm_primary_estimates.csv`, are **nominal, not
 measured**. They are correct — the phase-0.5 recomputation of the identical quantity at the same seed
 offset gives the same estimate and endpoints to full precision with a true retained count of
-200,000 — but cite `robustness_statistics.json`, not `results/statistics.json`, for any retention claim.
+200,000 — but cite `phase0_5_statistics.json`, not `results/statistics.json`, for any retention claim.
 
 Three undocumented-retention gaps, none of which changes a number: 16 records in
 `results/statistics.json` (`auc_other_predictors` for pLDDT, RSA and `n_annot_residues`, plus
 `sift_comparator`, across four duplicated cohort blocks) store an interval with no draw count at all,
 nominal 20,000 by the `boot_auc` default and retention unrecoverable without a rerun;
-`robustness/results/sift_comparator_sensitivity.csv` has no `draws` column, though the same nine
-intervals in `robustness_statistics.json` carry 20,000 with zero shortfall; and 11
+`phase0_5/results/sift_comparator_sensitivity.csv` has no `draws` column, though the same nine
+intervals in `phase0_5_statistics.json` carry 20,000 with zero shortfall; and 11
 `cluster_boot_spearman` records (`continuous_outcomes`, `confidence_correlations`) at a nominal 4,000
 draws store no retained count and silently drop non-finite ρ. If the supplement quotes those
 correlation intervals, their retention is undocumented.
@@ -746,7 +746,7 @@ correlation intervals, their retention is undocumented.
 
 10 repeated stratified group 5-fold splits, n = 163, 79 positive. The pooled column was independently
 re-derived from the stored out-of-fold predictions in
-`robustness_analysis_with_oof_predictions.csv` using the frozen `auc_from_ranks`; all five agree to
+`phase0_5_analysis_with_oof_predictions.csv` using the frozen `auc_from_ranks`; all five agree to
 every printed digit.
 
 | Model | Features | Split-averaged AUC | 2.5–97.5 pct over 10 repeats | Pooled OOF AUC | Pooled − split | Brier |
@@ -1004,10 +1004,10 @@ Not allowed, added:
 ## 20. Independent Human Replication — Kennedy 2024 `[REPLICATION]`
 
 A second cohort, computed by the same estimators. Not part of the frozen yeast tree and not covered by
-the three frozen content hashes. Working directory `kennedy_replication/`;
+the three frozen content hashes. Working directory `outputs/fulbright/research/kennedy_replication/`;
 results in `kennedy_results.json`, `perturbation_arms.json`, `positive_control.json`. Every interval is
 a protein-clustered percentile bootstrap, 20,000 draws, seed 20260728, **20,000 retained on every
-estimate reported here**. Estimators are imported from `robustness/src/02_robustness_analysis.py` rather
+estimate reported here**. Estimators are imported from `phase0_5/src/02_phase0_5_analysis.py` rather
 than reimplemented.
 
 ### 20.1 Source
@@ -1289,7 +1289,7 @@ Not allowed:
 ## 21. Post-Review Robustness Arms `[POST-HOC]`
 
 Run 2026-08-13 to close two objections the round-1 dossier and the journal assessment both raised.
-Code in `robustness_arms/`. Both scripts import the frozen estimators and
+Code in `outputs/fulbright/research/robustness_arms/`. Both scripts import the frozen estimators and
 the frozen distance definition rather than reimplementing them.
 
 ### 21.1 QC-inclusive arm — the exclusions were not holding the null up
@@ -1707,3 +1707,171 @@ Not allowed:
 - **"The only interval excluding 0.5 from below."** Retired 2026-08-14 (25.4).
 - Calling either endpoint "direction-corrected" without stating that it is reconstructed from the two
   directional columns rather than doubled from the released one.
+
+## 26. Human Cohort Rebuilt From Source, And Its Corrected Endpoints `[DECLARED]`
+
+Author decision 2026-08-14, after a final-gap review found the human cohort had no deposited generator.
+Code `kennedy_replication/build_candidate_table.py` (candidate table) and `build_cohort.py --cohort`
+(distances), outputs `kennedy2024_cohort_candidate.rebuilt.csv`, `kennedy_analysis_corrected.csv` and
+`rebuilt_endpoints_corrected.json`. **This section supersedes Sections 22–25 for every human quantity.**
+
+### 26.1 The generator, and what it found
+
+The cascade, against the one recorded in 22.4:
+
+| Stage | 22.4 | Rebuild |
+|---|---:|---:|
+| Rows in the source phosphosite table | 7,425 | 7,425 |
+| Parsable S/T/Y position | 6,968 | 6,968 |
+| Gene symbol maps to one reviewed human entry | 6,950 | **6,907** |
+| Residue matches the canonical sequence | 6,148 | **6,113** |
+| In a protein with an eligible annotation | 1,595 in 818 | **1,590 in 812** |
+
+**1,587 of the 1,595 deposited rows reproduce exactly.** The eight differences all arise from gene
+symbols that map to more than one reviewed human entry. The generator's rule is that a site enters only
+when its symbol matches exactly one reviewed entry, preferring a primary-name match and accepting a
+unique synonym match; an ambiguous symbol is dropped rather than guessed.
+
+**One deposited row is a mismapping.** `TKT_S308` was assigned to `Q16832`, which is DDR2, not
+transketolase. Both carry a serine at 308, so the residue check did not catch it. Its distance of
+34.26 Å was measured on the wrong protein. The site is unaffected in both screens.
+
+Corrected cohort after the distance stage: **1,471 sites in 788 proteins**, against 1,475 in 793.
+Every one of the 1,472 sites common to both cohorts has an identical distance to six decimal places.
+
+### 26.2 Declared primaries, corrected cohort
+
+| Screen | n | Positives | AUC | 95% interval | Permutation *p* (diagnostic) |
+|---|---:|---:|---:|---:|---:|
+| Fitness | 1,471 | 72 | **0.557829** | 0.473557–0.636888 | 0.0985 |
+| Reporter | 1,471 | **82** | **0.483301** | 0.418057–0.549886 | 0.6234 |
+
+Superseded values, 25.2: fitness 0.559317 [0.475714, 0.640813] on 71 positives; reporter 0.486100
+[0.421537, 0.552153] on 83. **Both intervals still contain 0.5, and both moved by less than 0.003.**
+
+Reporter sites changing classification between the released column and the reconstruction, on the
+corrected cohort: BRSK2_S367, DDX47_S9, NR1D1_S280, PDE4A_S13, TBKBP1_S335 (81 → 82).
+
+### 26.3 Every dependent quantity, corrected
+
+| Quantity | Fitness | Reporter |
+|---|---:|---:|
+| Experimentally-evidenced targets, 512 sites | 0.575569 [0.448808, 0.702799], 29 pos | 0.477972 [0.375991, 0.577000], 34 pos |
+| Ranked pairs | 100,728 | 113,898 |
+| Within-protein pairs | 102 (0.1013%) | 184 (0.1615%) |
+| Across-protein share | 99.8987% | 99.8385% |
+| Informative proteins | 39 | 49 |
+| Within-protein, pair-weighted | 0.627451 [0.452044, 0.767677] | 0.413043 [0.312500, 0.510490] |
+| Within-protein, equal-protein weight | 0.510684 [0.373932, 0.645299] | 0.375972 [0.266300, **0.489213**] |
+| Single-edit guides only | 0.515900 [0.391680, 0.640514], n=425 | 0.512146 [0.401635, 0.624320], n=425 |
+| SIFT minimum score (positive control) | 0.646934 [0.564873, 0.723475] | 0.574725 [0.496691, 0.650868] |
+| SIFT alanine score (positive control) | 0.629982 [0.544857, 0.707810] | 0.557941 [0.481626, 0.632690] |
+
+Comparators and their paired differences against distance, corrected cohort:
+
+| Comparator | Fitness AUC | Paired difference | Reporter AUC | Paired difference |
+|---|---:|---:|---:|---:|
+| Minimum sequence separation | 0.542183 [0.465347, 0.614078] | −0.015646 [−0.089474, +0.059088] | 0.548824 [0.484557, 0.612993] | +0.065524 [−0.001087, +0.130542] |
+| Site pLDDT | 0.512330 [0.433425, 0.588918] | −0.045499 [−0.121255, +0.032181] | 0.545348 [0.482242, 0.608598] | +0.062047 [−0.005566, +0.130271] |
+| Inverse relative solvent accessibility | 0.606981 [0.530278, 0.677533] | +0.049152 [−0.018584, +0.119612] | 0.518806 [0.455161, 0.583671] | +0.035505 [−0.026693, +0.096394] |
+| Annotated target count | 0.460736 [0.393114, 0.528528] | −0.097093 [−0.191701, +0.005550] | 0.444701 [0.384016, 0.506025] | −0.038600 [−0.116311, +0.037641] |
+
+**No paired difference in either screen excludes zero.** The fitness screen's inverse relative solvent
+accessibility interval lies above 0.5, as a post hoc comparator.
+
+### 26.4 The reporter within-protein exclusion is one protein carrying one pair `[RETIRED]`
+
+The reporter's equal-protein-weight within-protein interval takes three values across three defensible
+constructions of the same quantity:
+
+| Construction | Estimate | Interval | Excludes 0.5 below |
+|---|---:|---:|:--:|
+| Released column, deposited cohort (23.5, retired) | 0.383805 | 0.271626–0.498044 | yes |
+| Reconstructed endpoint, deposited cohort (25.4) | 0.388452 | 0.278904–0.501814 | no |
+| Reconstructed endpoint, corrected cohort (26.3) | 0.375972 | 0.266300–0.489213 | yes |
+
+Three independent adversarial checks were run against the third row on 2026-08-14 and all three refuted
+it. The mechanism was then verified directly.
+
+**The whole difference is one protein contributing one pair.** The deposited cohort has 50 informative
+proteins and the corrected cohort 49. The single protein in the deposited set and not the corrected one
+is Q9HB75 (PIDD1), which carries exactly two sites: S299, positive, at 24.909126 Å, and S304, negative,
+at 32.818466 Å. That is one positive–negative pair and a per-protein AUC of exactly 1.0. No protein
+shared by the two cohorts changed its within-protein AUC. PIDD1 was dropped by the generator's mapping
+rule, not by evidence: `cache/genemap.json` records `PIDD1 -> None` because the symbol matches more than
+one reviewed human entry. Restoring it returns the estimate to the deposited value and the interval
+across 0.5.
+
+**The estimator has 49 units, and most are coin flips.** Of the 49 informative proteins, 47 carry
+exactly one positive site and 14 contribute exactly one positive–negative pair, so their per-protein AUC
+is forced to 0 or 1. Thirty-two of the 49 per-protein AUCs are degenerate at exactly 0 or exactly 1. The
+49 values have standard deviation 0.401247 and standard error 0.057321; a one-sample *t* against 0.5
+gives *t*(48) = 2.164, *p* = 0.0355, and a within-protein permutation null over 50,000 draws gives
+*z* = −2.134, two-sided *p* = 0.0324. The 184 within-protein pairs are 0.1615% of the screen's 113,898
+ranked pairs.
+
+**It is marginal on its own terms.** The interval is 0.222913 wide and its upper bound sits 0.010787
+below 0.5, which is 4.8% of the width. Flipping any single one of the 14 forced coin flips from 0 to 1
+puts the upper bound at 0.510060. Leave-one-protein-out over all 49 never crosses 0.5, but the closest
+removal reaches 0.499976. The exclusion is not a Monte Carlo artefact — across 40 bootstrap seeds the
+97.5th percentile ranges 0.486544 to 0.490914 — which makes it sampling fragility rather than noise.
+
+**The same data under the sibling aggregation shows nothing.** The identical 49 proteins and 184 pairs
+pair-weighted give 0.413043 [0.312500, 0.510490]. The reporter primary over all 113,898 pairs is
+0.483301 [0.418057, 0.549886] with a diagnostic permutation *p* of 0.6234. The fitness screen's
+equal-protein weight is 0.510684 [0.373932, 0.645299]. One of four constructions of this quantity
+excludes 0.5.
+
+This is the sixth positive finding in this project to fail on rebuild. It is retired on the day it
+appeared and must not be reported as a result.
+
+### 26.6 Candidate endpoint family, corrected cohort
+
+Code `kennedy_replication/endpoint_options.py --cohort kennedy_analysis_corrected.csv`, output
+`endpoint_options_corrected.json`. These supersede 23.3 for every arm.
+
+| Arm | Positives | AUC | 95% interval |
+|---|---:|---:|---:|
+| Fitness alone, reconstructed and doubled (declared) | 72 | 0.557829 | 0.473557–0.636888 |
+| Reporter alone, reconstructed and doubled (declared) | 82 | 0.483301 | 0.418057–0.549886 |
+| Union of both screens, uncorrected (withdrawn) | 296 | 0.504733 | 0.464532–0.544839 |
+| Union, 0.05 split over two directions and two screens | 86 | 0.541860 | 0.465780–0.615698 |
+| Top decile of \|log2 fold change\|, fitness | 148 | 0.508611 | 0.454726–0.561404 |
+| Top decile of \|log2 fold change\|, reporter | 148 | 0.505909 | 0.454088–0.558178 |
+| Top decile of \|log2 fold change\|, larger of the two | 148 | 0.510597 | 0.456129–0.564164 |
+| MAGeCK FDR below 0.25 in either screen | 19 | 0.614325 | 0.427322–0.777787 |
+
+Reporter alone on the **released** column, corrected cohort, for comparison only: 81 positives,
+0.484501 [0.419490, 0.550190]. The declared reporter arm is the reconstruction, 82 and 0.483301.
+
+Screen agreement on the corrected cohort: 66 fitness-only, 76 reporter-only, 6 both, Jaccard 0.0408,
+Spearman of the two log fold changes 0.1193.
+
+**Every arm's interval contains 0.5.**
+
+### 26.7 Yeast multiplicity family support range
+
+The 255-estimate yeast family's per-estimate support runs from **16 to 166 sites**, taken from
+`phase0_5/results/` — PAE grid 34–166, confidence strata 27–166, cohort sensitivity 16–166, feature
+definitions 107–163, continuous outcomes 163. An earlier draft gave this range as "27 to 1,475"; 1,475
+was the human cohort size and no human estimate is in the yeast family.
+
+### 26.5 Claim rules
+
+Allowed:
+
+- The human cohort rebuilds from the Kennedy supplement and UniProt, reproducing 1,587 of 1,595 rows.
+- One deposited site was assigned to the wrong protein and is corrected.
+- Both declared primaries contain 0.5 on the corrected cohort, and neither moved by more than 0.003.
+- The reporter within-protein equal-protein interval reverses across constructions because one protein
+  carrying one pair enters or leaves the cohort (26.4). No within-protein interval is reported as
+  excluding 0.5.
+
+Not allowed:
+
+- **Any human number from Sections 22–25 in a reader-facing document.** 26.2 and 26.3 are the authority.
+- **"The reporter ranks affected sites farther from targets within a protein", or any statement that a
+  within-protein interval excludes 0.5.** Retired 2026-08-14 (26.4); three independent adversarial
+  checks refuted it and the mechanism is a single protein with a single pair.
+- Any claim that the corrected cohort changes a conclusion. It does not.
+- Citing 1,475 sites or 793 proteins for the human cohort; it is 1,471 in 788.

@@ -40,7 +40,7 @@ INK = "#1A1A1A"
 def load():
     with open(os.path.join(CAL, "phase0_5", "results", "phase0_5_statistics.json")) as fh:
         y = json.load(fh)
-    with open(os.path.join(KEN, "rebuilt_endpoints.json")) as fh:
+    with open(os.path.join(KEN, "rebuilt_endpoints_corrected.json")) as fh:
         h = json.load(fh)
     w = y["within_protein_discrimination"]
 

@@ -52,7 +52,12 @@ def interval(y, score, groups, label, note=""):
 
 
 def main():
-    d = pd.read_csv(os.path.join(HERE, "kennedy_analysis.csv"))
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--cohort", default=os.path.join(HERE, "kennedy_analysis.csv"))
+    ap.add_argument("--out", default=os.path.join(HERE, "endpoint_options.json"))
+    opts = ap.parse_args()
+    d = pd.read_csv(opts.cohort)
     d = d[d.min_dist_A.notna()].copy()
     score, groups = -d.min_dist_A, d.acc
     rows = []
@@ -107,7 +112,7 @@ def main():
 
     out = {"cohort_sites": int(len(d)), "proteins": int(d.acc.nunique()),
            "arms": rows, "screen_agreement": agreement}
-    with open(os.path.join(HERE, "endpoint_options.json"), "w") as fh:
+    with open(opts.out, "w") as fh:
         json.dump(out, fh, indent=2)
 
     print(pd.DataFrame(rows)[["label", "positive", "positive_rate", "auc",

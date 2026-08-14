@@ -168,12 +168,15 @@ def main() -> None:
             print(f"  {name}: no composed PDF found")
             continue
         pix = pymupdf.open(pdf)[0].get_pixmap(dpi=a.dpi)
-        png = OUT / f"_{name}.png"
+        # The PNG is kept, not deleted. PLOS takes the TIFF, but the reader PDF embeds a raster too,
+        # and when the two came from different builds the reader saw a superseded figure: on
+        # 2026-08-14 the manuscript still embedded a four-panel Figure 2 and a pre-Arial Figure 1
+        # from the 08-12 release tree while the submission TIFFs were current. One source, both uses.
+        png = OUT / f"{name}.png"
         pix.save(png)
         img = Image.open(png).convert("RGB")
         tif = OUT / f"{name}.tif"
         img.save(tif, format="TIFF", compression="tiff_lzw", dpi=(a.dpi, a.dpi))
-        png.unlink()
         w, h = img.size
         mb = tif.stat().st_size / 1e6
         ok_w = 789 <= w <= 2250

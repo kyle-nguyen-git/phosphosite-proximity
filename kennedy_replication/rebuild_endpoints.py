@@ -19,6 +19,7 @@ downstream is left describing the old label.
 Outputs `rebuilt_endpoints.json`. Nothing here may enter a manuscript, wiki page or email until it is
 registered in `NUMBERS.md`.
 """
+import argparse
 import json
 import os
 import sys
@@ -55,11 +56,21 @@ def interval(y, score, groups, label):
             "draws_retained": int(r["draws"])}
 
 
+def _gene_summary(sheet):
+    """The MAGeCK gene_summary sheet, cached as CSV; the source workbook takes ~40 s to open."""
+    cache = os.path.join(HERE, "cache", "gs_" + sheet.replace(" ", "_") + ".csv")
+    if os.path.exists(cache):
+        return pd.read_csv(cache)
+    g = pd.read_excel(XL, sheet_name=sheet)
+    g.to_csv(cache, index=False)
+    return g
+
+
 def reconstruct(coh):
     """Directional minimum per site, taken from the source gene_summary sheets."""
     out = {}
     for sheet, tag in SHEETS:
-        g = pd.read_excel(XL, sheet_name=sheet)
+        g = _gene_summary(sheet)
         key = g.set_index(g["id"].astype(str))
         vals, missing = [], 0
         for r in coh.itertuples():
@@ -77,7 +88,11 @@ def reconstruct(coh):
 
 
 def main():
-    coh = pd.read_csv(os.path.join(HERE, "kennedy_analysis.csv"))
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--cohort", default=os.path.join(HERE, "kennedy_analysis.csv"))
+    ap.add_argument("--out", default=os.path.join(HERE, "rebuilt_endpoints.json"))
+    args = ap.parse_args()
+    coh = pd.read_csv(args.cohort)
     coh = coh[coh.min_dist_A.notna()].reset_index(drop=True)
     rec = reconstruct(coh)
     out = {"cohort_sites": int(len(coh)), "proteins": int(coh.acc.nunique()), "screens": {}}
@@ -184,9 +199,9 @@ def main():
               f"[{wp['equal_protein_weight_ci_low']}, {wp['equal_protein_weight_ci_high']}]"
               f"  excludes 0.5 below: {wp['equal_protein_excludes_half_below']}", flush=True)
 
-    with open(os.path.join(HERE, "rebuilt_endpoints.json"), "w") as fh:
+    with open(args.out, "w") as fh:
         json.dump(out, fh, indent=2)
-    print("\nwrote rebuilt_endpoints.json")
+    print(f"\nwrote {os.path.basename(args.out)}")
 
 
 if __name__ == "__main__":

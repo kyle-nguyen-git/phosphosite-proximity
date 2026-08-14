@@ -15,6 +15,7 @@ Usage:
 """
 from __future__ import annotations
 
+import pathlib
 import re
 import sys
 from pathlib import Path
@@ -293,8 +294,23 @@ def build(source: Path, output: Path, submission: bool = False) -> None:
     doc.core_properties.author = ", ".join(
         re.findall(r"\*\*([^*]+)\*\*",
                    next((l for l in lines if l.startswith("**") and "^1^" in l), "")))
-    doc.core_properties.subject = "Exploratory secondary analysis of a published phosphosite-mutant screen"
+    doc.core_properties.subject = ("Exploratory secondary analysis of two published phosphosite-mutant "
+                                   "screens, in yeast and human")
     doc.core_properties.comments = ""
+    # python-docx's default template stamps 2013-12-23 and leaves keywords blank. Both ship to the
+    # journal inside the file's properties, so they are set from the Markdown rather than left as
+    # template residue. The timestamp is the source's own modification time, so a rebuild of an
+    # unchanged source produces an unchanged property.
+    kw = next((ln[len("**Keywords:**"):].replace(";", ",").strip()
+               for ln in text.splitlines() if ln.startswith("**Keywords:**")), "")
+    if kw:
+        doc.core_properties.keywords = kw
+    import datetime
+    stamp = datetime.datetime.fromtimestamp(
+        Path(source).stat().st_mtime, datetime.timezone.utc).replace(tzinfo=None)
+    doc.core_properties.created = stamp
+    doc.core_properties.modified = stamp
+    doc.core_properties.last_modified_by = doc.core_properties.author
     doc.save(str(output))
 
 

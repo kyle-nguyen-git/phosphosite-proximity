@@ -6,6 +6,7 @@ the definition used in phase0_calibration/src/02_structures.py and it is not re-
 
 Resumable: UniProt features and AlphaFold models are cached on disk and skipped if present.
 """
+import argparse
 import json
 import os
 import sys
@@ -84,7 +85,28 @@ def main():
     from Bio.PDB import MMCIFParser, ShrakeRupley
     from Bio.Data.IUPACData import protein_letters_3to1_extended as three_to_one
 
-    cohort = pd.read_csv(COHORT)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--cohort", default=COHORT, help="candidate table to build from")
+    ap.add_argument("--out", default=os.path.join(HERE, "kennedy_analysis.csv"))
+    ap.add_argument("--targets-out", default=os.path.join(HERE, "uniprot_targets.csv"))
+    ap.add_argument("--deadline", type=int, default=0,
+                    help="stop after N seconds and checkpoint; rerun to continue")
+    args = ap.parse_args()
+    started = time.time()
+
+    # Per-protein results are appended to a checkpoint so a run that stops partway can be resumed.
+    # The Shrake-Rupley pass over 800 structures does not fit in one short session.
+    ckpt = args.out + ".partial.jsonl"
+    done_accs = set()
+    if os.path.exists(ckpt):
+        for line in open(ckpt):
+            try:
+                done_accs.add(json.loads(line)["acc"])
+            except Exception:
+                pass
+        print(f"resuming: {len(done_accs)} proteins already done", flush=True)
+
+    cohort = pd.read_csv(args.cohort)
     accs = sorted(cohort.acc.unique())
     print(f"cohort: {len(cohort)} sites, {len(accs)} proteins", flush=True)
 
@@ -101,7 +123,7 @@ def main():
         if i % 100 == 0:
             print(f"  uniprot {i}/{len(accs)}", flush=True)
     feat = pd.DataFrame([r for v in targets.values() for r in v])
-    feat.to_csv(os.path.join(HERE, "uniprot_targets.csv"), index=False)
+    feat.to_csv(args.targets_out, index=False)
     print(f"target residues: {len(feat)} over {feat.acc.nunique()} proteins", flush=True)
 
     # ---- AlphaFold models -------------------------------------------------
@@ -123,16 +145,28 @@ def main():
     }
     out = []
     by_acc = {a: g for a, g in cohort.groupby("acc")}
+    ck = open(ckpt, "a")
     for i, (acc, sites) in enumerate(by_acc.items(), 1):
+        if acc in done_accs:
+            continue
+        if args.deadline and time.time() - started > args.deadline:
+            print(f"deadline reached at protein {i}/{len(by_acc)}; rerun to continue", flush=True)
+            break
         path = os.path.join(AF, f"{acc}.cif")
         tgt = sorted({r["res"] for r in targets.get(acc, [])})
         exp_tgt = sorted({r["res"] for r in targets.get(acc, [])
                           if "ECO:0000269" in r["evidence"] or "ECO:0007744" in r["evidence"]})
+        # A protein with no model or no annotated target contributes no rows, but it still has to be
+        # marked done or a resumed run will retry it forever and never reach the end.
         if not os.path.exists(path) or not tgt:
+            ck.write(json.dumps({"acc": acc, "_skipped": "no_model_or_no_target"}) + "\n")
+            ck.flush(); done_accs.add(acc)
             continue
         try:
             structure = parser.get_structure(acc, path)
         except Exception:
+            ck.write(json.dumps({"acc": acc, "_skipped": "unparsable_model"}) + "\n")
+            ck.flush(); done_accs.add(acc)
             continue
         res = {}
         for r in structure[0].get_residues():
@@ -185,14 +219,40 @@ def main():
                 "l3": row.l3, "p3": row.p3, "f3": row.f3,
                 "l4": row.l4, "p4": row.p4, "f4": row.f4,
             })
+        produced = [r for r in out if r["acc"] == acc]
+        if not produced:
+            # Structure parsed and targets exist, but every site failed the model-numbering or
+            # residue-identity check. Still a completed protein.
+            ck.write(json.dumps({"acc": acc, "_skipped": "no_site_matched_model"}) + "\n")
+            ck.flush(); done_accs.add(acc)
+            continue
+        for rec in produced:
+            # numpy scalars from Bio.PDB do not serialise; the checkpoint stores plain floats
+            clean = {k: (float(v) if isinstance(v, (np.floating, np.integer)) else v)
+                     for k, v in rec.items()}
+            ck.write(json.dumps(clean) + "\n")
+        ck.flush()
+        done_accs.add(acc)
         if i % 50 == 0:
             print(f"  distances {i}/{len(by_acc)} ({len(out)} sites)", flush=True)
+    ck.close()
 
-    df = pd.DataFrame(out)
-    df.to_csv(os.path.join(HERE, "kennedy_analysis.csv"), index=False)
-    print(f"\nwrote kennedy_analysis.csv: {len(df)} sites, {df.acc.nunique()} proteins", flush=True)
+    recs = [json.loads(l) for l in open(ckpt)] if os.path.exists(ckpt) else []
+    seen = {r["acc"] for r in recs}
+    skipped = sorted({r["acc"] for r in recs if r.get("_skipped")})
+    rows = [r for r in recs if not r.get("_skipped")]
+    df = pd.DataFrame(rows).drop_duplicates(subset=["acc", "pos"])
+    remaining = set(by_acc) - seen
+    if skipped:
+        print(f"{len(skipped)} proteins contributed no rows (no model or no annotated target)", flush=True)
+    if remaining:
+        print(f"INCOMPLETE: {len(remaining)} proteins still to do; rerun", flush=True)
+        return 1
+    df = df.sort_values(["gene", "pos"]).reset_index(drop=True)
+    df.to_csv(args.out, index=False)
+    print(f"\nwrote {os.path.basename(args.out)}: {len(df)} sites, {df.acc.nunique()} proteins", flush=True)
     print(df[["min_dist_A", "plddt", "rsa"]].describe().round(2).to_string(), flush=True)
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)
