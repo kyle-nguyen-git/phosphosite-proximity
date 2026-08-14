@@ -200,7 +200,7 @@ Among the 79 affected sites of the primary cohort, counting only the conditions 
 
 Median site pLDDT in the primary cohort is 46.50; 84 of the 163 replaced residues sit below 50 and 103 of 163 below 70. The Spearman rank correlation between log10(distance + 1 Å) and site pLDDT is −0.541 (Fig 2B). Distance correlates with `pae_pair_max` at 0.753 (0.661–0.827), and site pLDDT with `pae_pair_max` at −0.795 (−0.852 to −0.688). The long distances here are measured where AlphaFold is least sure how the two residues sit relative to one another, so distance and model confidence are largely the same variable on this cohort.
 
-The full eleven-stratum family, for both cohort versions, is S1 Table and S1 Fig. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
+The full eleven-stratum family, for both cohort versions, is S1 Table and S1 Fig. The four predicted-aligned-error summaries at 10 Å and the 72-cell grids are S2 Table. Its primary-cohort values run from 0.416 on 41 sites to 0.683 on 27, and the number of sites falls from 163 to 27 across the family.
 The rise where both the site and its target are above pLDDT 90 appears in both cohort versions, 0.641 on 28 primary sites and 0.697 on 31 inclusive. This design cannot separate an effect in well-folded regions from what picking out a stratum of 28 sites can produce on its own.
 
 Tyrosine sites alone give an AUC of 0.604 (16 sites in 12 proteins; 12 affected, 4 unaffected). S2 Fig places this and the other cohort, residue-class and feature-definition checks on one scale. No interval is reported: the upper end of the protein-cluster bootstrap reaches 1, the highest value an AUC can take, and 3.3% (665 / 20,000) of resamples were discarded because every site in them had the same outcome.
@@ -479,60 +479,16 @@ The authors thank Viéitez and colleagues for making the yeast phosphomutant scr
 
 ## Supporting information
 
-Material moved out of the main narrative. Nothing here is withdrawn; it is placed where a reader who
-wants it can find it and a reader following the argument is not detained by it.
+Captions only. Each item is uploaded as its own file, as PLOS ONE requires.
 
-### S1 Appendix. Annotation records, residue expansion, and a withdrawn count
+**S1 Appendix.** Annotation records, residue expansion, and a withdrawn count. The record-to-residue expansion behind the 560-residue target set, the duplicate-removal rules giving 565 and 566 rows, the source of the excess over 560, and an earlier expanded row count that does not reproduce and is withdrawn.
 
-Every `ACT_SITE` record covers a single residue. Expanding all 262 eligible records to one row per
-covered residue gives 594 rows: 565 after removing duplicates on (accession, start, end) and 566 on
-(accession, start, end, feature type). The target set itself is **560 distinct residues**, and that
-count reproduces exactly. The excess over 560 arises from P12904, whose intervals are recorded once per
-ligand, so the same residue appears under more than one record.
+**S1 Fig.** The eleven-stratum confidence family, drawn. Primary and inclusive arms across eleven model-confidence strata, from 163 sites down to 27. All post hoc.
 
-An earlier expanded row count kept in the analysis records does not reproduce under any simple rule and
-is **withdrawn**. It is named here rather than deleted because it appeared in an earlier version of
-this manuscript. No figure, table or claim in the present text depends on it; the numerical authority
-bars citing it.
+**S2 Fig.** Cohort, residue-class and feature-definition checks. Cohort versions, residue classes, alternative distance-feature definitions, and the post hoc SIFT comparator on common support, on one scale. All post hoc.
 
-### S1 Table. The eleven-stratum confidence family
+**S1 Table.** The eleven-stratum confidence family, tabulated. Both cohort versions across every stratum, with sites and intervals. All post hoc.
 
-| Stratum | Primary AUC | 95% interval | n | Inclusive AUC | 95% interval | n |
-|---|---:|---:|---:|---:|---:|---:|
-| All | 0.527 | 0.417–0.632 | 163 | 0.544 | 0.436–0.649 | 166 |
-| Site pLDDT ≥50 | 0.489 | 0.347–0.634 | 79 | 0.522 | 0.380–0.665 | 82 |
-| Site pLDDT ≥70 | 0.459 | 0.303–0.618 | 60 | 0.507 | 0.351–0.663 | 63 |
-| Site and target pLDDT ≥70 | 0.450 | 0.288–0.606 | 58 | 0.500 | 0.337–0.658 | 61 |
-| Site pLDDT ≥90 | 0.570 | 0.371–0.746 | 35 | 0.622 | 0.435–0.791 | 38 |
-| Site and target pLDDT ≥90 | 0.641 | 0.464–0.789 | 28 | 0.697 | 0.536–0.842 | 31 |
-| `pae_pair_max` ≤5 Å | 0.488 | 0.261–0.666 | 37 | 0.555 | 0.332–0.730 | 40 |
-| `pae_pair_max` ≤10 Å | 0.436 | 0.208–0.633 | 44 | 0.496 | 0.277–0.692 | 47 |
-| `pae_pair_max` ≤15 Å | 0.520 | 0.321–0.679 | 55 | 0.564 | 0.377–0.714 | 58 |
-| Both-residue pLDDT ≥70 and `pae_pair_max` ≤10 Å | 0.416 (family minimum) | 0.192–0.617 | 41 | 0.486 | 0.271–0.684 | 44 |
-| Both-residue pLDDT ≥90 and `pae_pair_max` ≤10 Å | 0.683 (family maximum) | 0.481–0.864 | 27 | 0.736 | 0.553–0.903 | 30 |
+**S2 Appendix.** The simulated reviews. What was run, what it produced, and the statement that none of it is peer review.
 
-All eleven strata are post hoc and are shown here and in S1 Fig for both cohort versions. The number of sites falls from 163 to 27 across the primary family, whose lowest and highest values are 0.416 and 0.683. Four strata kept fewer than their nominal 20,000 resamples: 19,999 for the two primary high-confidence rows, and 19,997 and 19,999 for their inclusive counterparts. Tightening the PAE threshold does not move the AUC steadily in either direction, in either cohort version.
-
-
-### S2 Appendix. The simulated reviews
-
-Two rounds of simulated review were run against this manuscript, in which every reviewer was an AI agent
-running on one model family, together with an automated reference audit. They produced the revisions
-recorded in the analysis materials, including the retirement of an exclusion claim about the interval
-endpoint, the retirement of a claim that no positive control existed, the separation of the two human
-screens, and corrections to several literature summaries. None of it is peer review. Agreement among
-those reviewers is not independent replication, and no finding in this manuscript rests on their
-agreement rather than on a recomputation.
-
-### S1 Fig. The eleven-stratum confidence family
-
-Primary and inclusive arms across eleven model-confidence strata, from 163 sites down to 27. All post hoc. This occupied panel C of Fig 2 in an earlier version.
-
-### S2 Fig. Cohort, residue-class and feature-definition checks
-
-Cohort versions, residue classes, alternative distance-feature definitions, and the post hoc SIFT comparator on common support, on one scale. All post hoc. This occupied panel D of Fig 2 in an earlier version.
-
-### S2 Table. The 72-cell confidence-by-PAE grids
-
-The four predicted-aligned-error summaries at 10 Å and the 72-cell grids are deposited with the analysis
-materials. The 72 primary-cohort cells run from 0.416 to 0.569.
+**S2 Table.** The 72-cell confidence-by-predicted-aligned-error grids. Four summaries at 10 Å; the 72 primary-cohort cells run from 0.416 to 0.569.
