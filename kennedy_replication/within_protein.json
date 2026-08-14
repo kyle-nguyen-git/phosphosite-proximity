@@ -1,0 +1,50 @@
+{
+  "cohort_sites": 1475,
+  "proteins": 793,
+  "A1 fitness": {
+    "informative_proteins": 39,
+    "informative_sites": 132,
+    "within_protein_positive_negative_pairs": 102,
+    "all_positive_proteins": 26,
+    "all_negative_proteins": 728,
+    "pair_weighted_auc": 0.627451,
+    "pair_weighted_ci_low": 0.452044,
+    "pair_weighted_ci_high": 0.767677,
+    "equal_protein_weight_auc": 0.510684,
+    "equal_protein_weight_ci_low": 0.373932,
+    "equal_protein_weight_ci_high": 0.645299
+  },
+  "A2 reporter": {
+    "informative_proteins": 48,
+    "informative_sites": 210,
+    "within_protein_positive_negative_pairs": 180,
+    "all_positive_proteins": 28,
+    "all_negative_proteins": 717,
+    "pair_weighted_auc": 0.422222,
+    "pair_weighted_ci_low": 0.322403,
+    "pair_weighted_ci_high": 0.520548,
+    "equal_protein_weight_auc": 0.383805,
+    "equal_protein_weight_ci_low": 0.271626,
+    "equal_protein_weight_ci_high": 0.498044
+  },
+  "single_edit_no_bystander": {
+    "A1 fitness": {
+      "n": 425,
+      "positive": 25,
+      "proteins": 316,
+      "auc": 0.5159,
+      "ci_low": 0.39168,
+      "ci_high": 0.640514,
+      "draws_retained": 20000
+    },
+    "A2 reporter": {
+      "n": 425,
+      "positive": 25,
+      "proteins": 316,
+      "auc": 0.5268,
+      "ci_low": 0.415405,
+      "ci_high": 0.638762,
+      "draws_retained": 20000
+    }
+  }
+}

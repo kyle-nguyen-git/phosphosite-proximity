@@ -1564,3 +1564,64 @@ Not allowed:
   the human cohort has its own builder, lacks the yeast builder's sequence and model-version checks,
   and starts from a table whose generator is not deposited (22.4–22.5).
 - Describing the two screens as one phenotype, or their union as a replication endpoint (23.1).
+
+## 24. Within-Protein Discrimination in the Human Cohort `[POST-HOC]`
+
+Computed 2026-08-13 to answer the second review's central design objection: the pooled AUC is dominated
+by comparisons between proteins, and pair counts state that without estimating the within-protein
+quantity. Code `kennedy_replication/within_protein.py`; estimator is the frozen
+`within_protein_discrimination` imported from the yeast module, so yeast and human are computed the same
+way. 20,000 protein resamples, seed 20260728.
+
+| | A1 fitness | A2 reporter | Yeast (Section 11) |
+|---|---:|---:|---:|
+| Informative proteins | 39 | 48 | 23 |
+| Informative sites | 132 | 210 | 112 |
+| Within-protein pairs | 102 | 180 | 176 |
+| All-positive proteins | 26 | 28 | — |
+| All-negative proteins | 728 | 717 | — |
+| **Pair-weighted AUC** | **0.627451** [0.452044, 0.767677] | **0.422222** [0.322403, 0.520548] | 0.52841 [0.36842, 0.70900] |
+| **Equal-protein-weight AUC** | **0.510684** [0.373932, 0.645299] | **0.383805** [0.271626, 0.498044] | 0.49722 [0.35072, 0.64215] |
+
+**Three of the four human intervals contain 0.5.** The exception is the reporter screen's
+equal-protein-weight estimate, **0.383805 [0.271626, 0.498044]**, whose upper endpoint is below 0.5.
+
+**How that one must be reported.** It points the opposite way to the hypothesis: within a protein,
+greater distance to an annotated residue is associated with being called. It rests on 48 proteins and
+180 pairs; the pair-weighted aggregation on the same data gives 0.422222 with an interval that includes
+0.5 at 0.520548; and the fitness screen's two aggregations point the other way. It is one estimate in a
+post-hoc family and is not adjusted for it. Report it as a single below-chance interval in one of four
+aggregations, not as evidence that proximity is inversely related to function.
+
+**What the table settles.** The within-protein question is now estimated rather than only described, in
+both cohorts, and no aggregation in either shows the declared predictor ranking sites within a protein
+above chance. The two aggregations disagree in both screens, which is what these pair counts support.
+
+### 24.1 Single-edit, no-bystander arm under the declared primaries
+
+`NUMBERS.md` §20.6 carried this arm under the withdrawn union endpoint only.
+
+| Arm | n | Positive | Proteins | AUC | 95% interval |
+|---|---:|---:|---:|---:|---:|
+| Single-edit guides, A1 fitness | 425 | 25 | 316 | 0.515900 | 0.391680–0.640514 |
+| Single-edit guides, A2 reporter | 425 | 25 | 316 | 0.526800 | 0.415405–0.638762 |
+
+Both contain 0.5. 20,000 draws retained on each.
+
+### 24.2 Claim rules
+
+Allowed:
+
+- No aggregation in either cohort shows the declared predictor ranking sites within a protein above
+  chance, and the within-protein question is now estimated rather than inferred from pair counts.
+- The pooled estimate is a mostly across-protein quantity: 97.35% in yeast, 99.90% and 99.84% in the two
+  human screens.
+
+Not allowed:
+
+- Reporting the reporter screen's equal-protein-weight 0.383805 as evidence of an inverse relationship
+  between proximity and function, or without the pair-weighted 0.422222 [0.322403, 0.520548] beside it
+  and the statement that it is one of four aggregations in a post-hoc family (24).
+- Any claim that the within-protein question is resolved. Every interval here is wide, and the two
+  aggregations disagree in both screens.
+- Citing §20.6's single-edit arm, which rests on the withdrawn union endpoint; use 24.1.
