@@ -1,10 +1,23 @@
 # Phosphosite-Proximity Manuscript Version Map
 
-Updated: 2026-08-14 03:21 CDT
+Updated: 2026-08-18 06:40 CDT
 
 This file is the routing authority for reader-facing manuscript versions. It separates the current
 manuscript from superseded author drafts and from verifier-bound legacy artifacts that must remain at
 their historical paths.
+
+## Safety hold — LIFTED
+
+Updated: 2026-08-18 06:40 CDT
+
+**The hold recorded on 2026-08-18 01:54 CDT is lifted.** The exact-canonical AlphaFold audit is complete,
+the endpoint family was recomputed on the corrected 1,470-site/787-protein cohort, and every human
+number is registered in `NUMBERS.md` §27, which supersedes §26 and with it §§22–25. The manuscript,
+tables, Figure 3 and all build products were regenerated from that section. The package passes 125 of
+125 submission checks, which now include the offline human rebuild manifest and its hashes.
+
+One task from `PREPRINT_FIX_PAUSE_2026-08-18.md` remains open and is **not** a build defect: item 7's
+independent review of the exact final hashes below has not been obtained.
 
 ## Current manuscript
 
@@ -12,22 +25,22 @@ Edit only the Markdown source. The PDF and DOCX are build products and should be
 
 | Role | File | Snapshot | SHA-256 | Status |
 |---|---|---|---|---|
-| Source of record | `phosphosite_proximity_preprint.md` | 2026-08-14 02:40:40 CDT; 15,238 whitespace-delimited words | `9e0f3c2640734a3f5b7ceca4f334763985238d1b64bfcf1bb3b2d6aef4dbdddd` | **Current; edit this file** |
-| Reader PDF | `phosphosite_proximity_preprint.pdf` | 2026-08-14 02:40:01 CDT; 27 US-Letter pages | `72a3d37481046e8ea6cac19ab1ad5d1d7da0f3c9bcc077aa2fc7df5f8041c7fc` | **Current reading build; obsolete four-panel Fig 2 remains** |
-| Editable Word build | `phosphosite_proximity_preprint.docx` | 2026-08-14 02:40:01 CDT | `9d84c1f8c125b32946058a9fd0662e00938a7eae148da9053d39f63d3e6de6af` | **Current reading build; do not edit directly** |
-| Journal-submission Word build | `phosphosite_proximity_preprint_SUBMISSION.docx` | 2026-08-14 02:40:02 CDT; rendered to 37 US-Letter pages | `4f53388e06b669e7026277be0393f53fc48059dae84541cf2236d5c3d107c81d` | **Current formatted build; submission blocked by content/reproducibility findings** |
+| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 06:38 CDT; 15,752 whitespace-delimited words | `e7891ad7d6e3d636ea481d79efed4c1b49cf3a88ab281c146b093a4f1fe6220a` | **Current; edit this file** |
+| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `a1bed84f7347eaff13d260bbcfec22e4ee31b4fc244d3c3f9f719f93aa1d9d89` | **Current reading build; UT corresponding-author email present** |
+| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `1ba376a6f957dc8c50206c2f514cef7fa92c4901b7abc55cee23f630821e0848` | **Current reading build; do not edit directly** |
+| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `92ab079a4538a165107e221cca657ca63eb905c63dea7dde8060845d5e79e1c9` | **Current formatted build; UT corresponding-author email present** |
 | Submission Figure 1 | `manuscript_build/submission_figures/Fig1.tif` | 2,162 × 875 px; RGB; 300 dpi | `8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e` | **Technical specification passes; visual revisions recommended** |
 | Submission Figure 2 | `manuscript_build/submission_figures/Fig2.tif` | 2,162 × 827 px; RGB; 300 dpi | `3105cd3f05c7a1674e2bc4376667cc743de1a4bc528c351b9b768a47e2552cff` | **Current two-panel TIFF; technical specification passes** |
-| Submission Figure 3 | `manuscript_build/submission_figures/Fig3.tif` | 2,162 × 922 px; RGB; 300 dpi | `c7f16b91cfca0e9c143235f9f4d02adfd5643ac3f6a0dc63197deef62e4283c0` | **Current; add left white border before submission** |
+| Submission Figure 3 | `manuscript_build/submission_figures/Fig3.tif` | 2,162 × 922 px; RGB; 300 dpi | `8ec1520e9e8a767c528f5d955c6d4cbc0ed67b03a643761465fe4fefc5058a71` | **Current; add left white border before submission** |
 | Supporting Figure 1 | `manuscript_build/submission_figures/S1_Fig.tif` | 2,162 × 827 px; RGB; 300 dpi | `ffcd1ac4eae581ee8190178f0006ea6d103e3093e302859c077bc3d362ba3a97` | **Current; technical specification passes** |
 | Supporting Figure 2 | `manuscript_build/submission_figures/S2_Fig.tif` | 2,162 × 969 px; RGB; 300 dpi | `d3c5d17e2434ec5dfb755600ff3f1dc07a0d884575397debaa9a45f83407a9db` | **Current; technical specification passes** |
 
 The current title is *Distance to the nearest annotated active or binding residue: what it measures,
-and how it ranks sites in yeast and human phosphosite-mutant screens*. A later build invalidates the
-hashes above and requires this table to be updated. `preprint_final_gap_review_2026-08-14.md` is the
-complete methods, reference, figure and package review bound to this exact 02:40 package. The corrected
-reporter endpoint is present, but stale endpoint prose, the old Figure 2 in the reader PDF, an empty S2
-Table and the unverified human source-to-cohort build keep the package from submission.
+and how it ranks sites in yeast and human phosphosite-mutant screens*. The corresponding-author email
+was changed to `ktn965@my.utexas.edu` on 2026-08-18 and all three reader/submission builds were saved.
+The current package passes 125 of 125 submission checks, including the human rebuild manifest and its bound hashes. A later build invalidates the hashes above and
+requires this table to be updated. `preprint_final_gap_review_2026-08-14.md` remains a historical review
+of the 02:40 package, not an independent review of the hashes above.
 
 ## Superseded reader-facing drafts
 
@@ -63,7 +76,7 @@ review instructions referring to one.
 
 ## Snapshot-specific reviews
 
-The following documents are evidence about older snapshots, not reviews of the current 01:12/01:25 CDT
+The following documents are evidence about older snapshots, not reviews of the current 2026-08-18
 build:
 
 - `peer_review_round1/` and `revision_round1/` reviewed the August 3 `humanized_v2` lineage or the
@@ -78,8 +91,8 @@ build:
   and PDF SHA-256 `26bf164807dc14fa11b45c4b4fdd91f170214c811744104ef55e7c80c42d8a0c`.
 - `preprint_journal_format_review_2026-08-14.md` reviews the superseded 01:12/01:25 package and its two
   submission TIFFs. Its historical hashes are recorded inside that review.
-- `preprint_final_gap_review_2026-08-14.md` reviews the current 02:40 package, all five TIFFs and the
-  separate supporting files. It is bound to the current-manuscript hashes above.
+- `preprint_final_gap_review_2026-08-14.md` reviews the historical 02:40 package, all five TIFFs and the
+  separate supporting files. Its bound hashes are recorded inside the review.
 
 Every human quantity is now registered in `NUMBERS.md` §26, which supersedes §§22–25. The human cohort
 was rebuilt from the Kennedy supplement and UniProt by `kennedy_replication/build_candidate_table.py`,
@@ -92,13 +105,15 @@ The reporter's equal-protein within-protein interval ended at 0.489 on the corre
 independent adversarial checks refuted it and it is retired in §26.4: the whole effect is PIDD1, one
 protein contributing one pair, dropped by the ambiguous-symbol rule.
 
-Current build, 2026-08-14 07:05 CDT, 95 of 95 submission checks passing:
+Current build, 2026-08-18 00:28 CDT, 107 of 107 submission checks passing:
 
 | Artifact | SHA-256 |
 |---|---|
-| `phosphosite_proximity_preprint.md` | `cbb3a6a11e5a773723a5c9bae1d8751ef2f73de64eab01968e90d3a9303b4a5f` |
-| `phosphosite_proximity_preprint.pdf` | `178c9e97685d47a027c71d92e740c6bc9041d17b093d52c08e11b671bb6ebff5` |
-| `phosphosite_proximity_preprint_SUBMISSION.docx` | `0b5b1abf355c38884492e87fc3954039624492b396f535e714321436aab291de` |
+| `phosphosite_proximity_paper.md` | `5f2a08c09a3142a7fee82812dc15a3725d70ce95f70f730fe5306c37152bf46f` |
+| `phosphosite_proximity_paper.pdf` | `0c86035d594fe977946700a99e77ce46e35a30a4a7fe0d5a37e409dde20358c8` |
+| `phosphosite_proximity_paper.docx` | `06dd7c1eca4db9b3c6806d3454d657ede7057e9894e5f71ad8379fb6648ab31b` |
+| `phosphosite_proximity_paper_SUBMISSION.docx` | `380fe10a51abdaf5c8acc67403507fee285b9f523931b915d9a85a3d7a937881` |
+| `manuscript_build/submission_manifest.json` | `12a0155ed7034101885e2c74d8cf069261379f605b30656f8d87f003ff086fd2` |
 
 All three earlier reviews on this page are bound to superseded hashes and describe defects that have
 since been repaired. `preprint_final_gap_review_2026-08-14.md` reviewed the 02:40 package; its twelve
@@ -106,8 +121,8 @@ claims were independently verified before action (nine confirmed, three partial)
 
 ## Handling rules
 
-1. Send `phosphosite_proximity_preprint.pdf` for reading and review.
-2. Edit `phosphosite_proximity_preprint.md` only, then rebuild PDF and DOCX together.
+1. Send `phosphosite_proximity_paper.pdf` for reading and review.
+2. Edit `phosphosite_proximity_paper.md` only, then rebuild PDF and DOCX together.
 3. Do not use a filename containing `v1`, `v2`, `v3`, `v4`, `v5`, `draft`, `humanized`, or
    `all_black` as the current manuscript.
 4. Do not move, rename, or delete the verifier-bound `phase0_calibration/manuscript/preprint_draft_v1`

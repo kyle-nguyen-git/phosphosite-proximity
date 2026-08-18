@@ -4,7 +4,9 @@ Distance is the minimum heavy-atom separation between the edited residue and the
 residue UniProt annotates as ACT_SITE or BINDING, in an AlphaFold DB monomer model. That is
 the definition used in phase0_calibration/src/02_structures.py and it is not re-derived here.
 
-Resumable: UniProt features and AlphaFold models are cached on disk and skipped if present.
+Resumable: UniProt features and AlphaFold models are cached on disk and skipped if present. Offline
+mode fails closed on missing UniProt inputs, uses only cached AlphaFold models, and asserts that every
+parsed model sequence and residue number agrees with the cached reviewed UniProt sequence.
 """
 import argparse
 import json
@@ -20,19 +22,22 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, "cache")
 AF = os.path.join(CACHE, "af")
 FEAT = os.path.join(CACHE, "uniprot")
+AF_MANIFEST = os.path.join(CACHE, "af_v6_manifest.csv")
 for d in (CACHE, AF, FEAT):
     os.makedirs(d, exist_ok=True)
 
 COHORT = os.path.join(
-    HERE, "..", "second_dataset_scan", "kennedy2024_cohort_candidate.csv"
+    HERE, "kennedy2024_cohort_candidate.rebuilt.csv"
 )
 FEATURE_TYPES = {"Active site", "Binding site"}
 
 
-def uniprot_features(acc):
+def uniprot_features(acc, offline=False):
     """Expanded ACT_SITE/BINDING residue positions, with evidence codes, for one accession."""
     path = os.path.join(FEAT, f"{acc}.json")
     if not os.path.exists(path):
+        if offline:
+            raise FileNotFoundError(f"offline UniProt cache missing for {acc}")
         url = f"https://rest.uniprot.org/uniprotkb/{acc}.json"
         r = requests.get(url, timeout=60)
         r.raise_for_status()
@@ -56,11 +61,13 @@ def uniprot_features(acc):
     return rows, entry.get("sequence", {}).get("value", "")
 
 
-def alphafold_model(acc):
+def alphafold_model(acc, offline=False):
     """Cache the AlphaFold DB monomer mmCIF for one accession. Returns path or None."""
     dest = os.path.join(AF, f"{acc}.cif")
     if os.path.exists(dest) and os.path.getsize(dest) > 1000:
         return dest
+    if offline:
+        return None
     meta = requests.get(f"https://alphafold.ebi.ac.uk/api/prediction/{acc}", timeout=90)
     if meta.status_code != 200:
         return None
@@ -91,6 +98,8 @@ def main():
     ap.add_argument("--targets-out", default=os.path.join(HERE, "uniprot_targets.csv"))
     ap.add_argument("--deadline", type=int, default=0,
                     help="stop after N seconds and checkpoint; rerun to continue")
+    ap.add_argument("--offline", action="store_true",
+                    help="forbid downloads and rebuild only from the pinned local cache")
     args = ap.parse_args()
     started = time.time()
 
@@ -109,12 +118,16 @@ def main():
     cohort = pd.read_csv(args.cohort)
     accs = sorted(cohort.acc.unique())
     print(f"cohort: {len(cohort)} sites, {len(accs)} proteins", flush=True)
+    if args.offline:
+        af_meta = pd.read_csv(AF_MANIFEST).set_index("accession")
+    else:
+        af_meta = None
 
     # ---- UniProt features -------------------------------------------------
     targets, seqs = {}, {}
     for i, acc in enumerate(accs, 1):
         try:
-            rows, seq = uniprot_features(acc)
+            rows, seq = uniprot_features(acc, args.offline)
         except Exception as exc:  # network or malformed entry
             print(f"  uniprot FAIL {acc}: {exc}", flush=True)
             continue
@@ -129,7 +142,7 @@ def main():
     # ---- AlphaFold models -------------------------------------------------
     have = 0
     for i, acc in enumerate(accs, 1):
-        if alphafold_model(acc):
+        if alphafold_model(acc, args.offline):
             have += 1
         if i % 50 == 0:
             print(f"  alphafold {i}/{len(accs)} (cached {have})", flush=True)
@@ -180,6 +193,18 @@ def main():
             except KeyError:
                 continue
             res[r.id[1]] = (aa1, heavy, float(np.mean([a.get_bfactor() for a in heavy])))
+        positions = sorted(res)
+        if af_meta is None or acc not in af_meta.index:
+            raise RuntimeError(f"AlphaFold provenance metadata missing for {acc}")
+        meta = af_meta.loc[acc]
+        if not bool(meta.exact_canonical_entry) or int(meta.latest_version) != 6:
+            raise RuntimeError(f"AlphaFold canonical/version assertion failed for {acc}")
+        model_reference = str(meta.model_sequence)
+        if positions != list(range(1, len(model_reference) + 1)):
+            raise RuntimeError(f"model numbering/length mismatch for {acc}")
+        model_seq = "".join(res[p][0] for p in positions)
+        if model_seq != model_reference:
+            raise RuntimeError(f"model sequence does not match pinned AFDB metadata for {acc}")
         try:
             sr.compute(structure[0], level="A")
             sasa_ok = True

@@ -1,0 +1,356 @@
+{
+  "cohort_sites": 1470,
+  "proteins": 787,
+  "screens": {
+    "fitness": {
+      "unmatched_ids": 0,
+      "positives_released_column": 72,
+      "positives_reconstructed": 72,
+      "sites_changing_classification": [],
+      "primary": {
+        "label": "fitness: distance, reconstructed primary",
+        "n": 1470,
+        "positive": 72,
+        "proteins": 787,
+        "auc": 0.557632,
+        "ci_low": 0.472659,
+        "ci_high": 0.638588,
+        "half_width": 0.082965,
+        "contains_half": true,
+        "draws_retained": 20000
+      },
+      "experimental_evidence_only": {
+        "label": "fitness: experimentally-evidenced targets only",
+        "n": 512,
+        "positive": 29,
+        "proteins": 286,
+        "auc": 0.575569,
+        "ci_low": 0.448808,
+        "ci_high": 0.702799,
+        "half_width": 0.126996,
+        "contains_half": true,
+        "draws_retained": 20000
+      },
+      "comparators": [
+        {
+          "label": "fitness: minimum sequence separation",
+          "n": 1470,
+          "positive": 72,
+          "proteins": 787,
+          "auc": 0.542024,
+          "ci_low": 0.463942,
+          "ci_high": 0.615126,
+          "half_width": 0.075592,
+          "contains_half": true,
+          "draws_retained": 20000
+        },
+        {
+          "label": "fitness: site pLDDT",
+          "n": 1470,
+          "positive": 72,
+          "proteins": 787,
+          "auc": 0.512011,
+          "ci_low": 0.433458,
+          "ci_high": 0.589407,
+          "half_width": 0.077974,
+          "contains_half": true,
+          "draws_retained": 20000
+        },
+        {
+          "label": "fitness: inverse relative solvent accessibility",
+          "n": 1470,
+          "positive": 72,
+          "proteins": 787,
+          "auc": 0.606829,
+          "ci_low": 0.53135,
+          "ci_high": 0.678545,
+          "half_width": 0.073597,
+          "contains_half": false,
+          "draws_retained": 20000
+        },
+        {
+          "label": "fitness: annotated target count",
+          "n": 1470,
+          "positive": 72,
+          "proteins": 787,
+          "auc": 0.460648,
+          "ci_low": 0.392095,
+          "ci_high": 0.52744,
+          "half_width": 0.067673,
+          "contains_half": true,
+          "draws_retained": 20000
+        }
+      ],
+      "paired_differences_vs_distance": {
+        "minimum sequence separation": {
+          "estimate": -0.015608,
+          "ci_low": -0.089816,
+          "ci_high": 0.060014,
+          "excludes_zero": false
+        },
+        "site pLDDT": {
+          "estimate": -0.045621,
+          "ci_low": -0.121755,
+          "ci_high": 0.033591,
+          "excludes_zero": false
+        },
+        "inverse relative solvent accessibility": {
+          "estimate": 0.049197,
+          "ci_low": -0.018812,
+          "ci_high": 0.119892,
+          "excludes_zero": false
+        },
+        "annotated target count": {
+          "estimate": -0.096984,
+          "ci_low": -0.193458,
+          "ci_high": 0.005646,
+          "excludes_zero": false
+        }
+      },
+      "permutation_null": {
+        "observed": 0.557632,
+        "null_mean": 0.499955,
+        "null_sd": 0.035116,
+        "sd_from_centre": 1.642,
+        "two_sided_p": 0.0991
+      },
+      "pair_decomposition": {
+        "ranked_pairs": 100656,
+        "within_protein": 102,
+        "within_protein_pct": 0.1013,
+        "across_protein_pct": 99.8987,
+        "informative_proteins": 39
+      },
+      "within_protein": {
+        "informative_proteins": 39,
+        "informative_sites": 132,
+        "within_protein_positive_negative_pairs": 102,
+        "all_positive_proteins": 27,
+        "all_negative_proteins": 721,
+        "pair_weighted_auc": 0.627451,
+        "pair_weighted_ci_low": 0.452044,
+        "pair_weighted_ci_high": 0.767677,
+        "equal_protein_weight_auc": 0.510684,
+        "equal_protein_weight_ci_low": 0.373932,
+        "equal_protein_weight_ci_high": 0.645299,
+        "equal_protein_excludes_half_below": false
+      },
+      "positive_control": [
+        {
+          "label": "fitness: SIFT minimum score",
+          "n": 996,
+          "positive": 51,
+          "proteins": 570,
+          "auc": 0.646934,
+          "ci_low": 0.564873,
+          "ci_high": 0.723475,
+          "half_width": 0.079301,
+          "contains_half": false,
+          "draws_retained": 20000
+        },
+        {
+          "label": "fitness: SIFT alanine score",
+          "n": 996,
+          "positive": 51,
+          "proteins": 570,
+          "auc": 0.629982,
+          "ci_low": 0.544857,
+          "ci_high": 0.70781,
+          "half_width": 0.081476,
+          "contains_half": false,
+          "draws_retained": 20000
+        }
+      ],
+      "single_edit_no_bystander": {
+        "label": "fitness: single-edit guides only",
+        "n": 425,
+        "positive": 25,
+        "proteins": 316,
+        "auc": 0.5159,
+        "ci_low": 0.39168,
+        "ci_high": 0.640514,
+        "half_width": 0.124417,
+        "contains_half": true,
+        "draws_retained": 20000
+      }
+    },
+    "reporter": {
+      "unmatched_ids": 0,
+      "positives_released_column": 81,
+      "positives_reconstructed": 82,
+      "sites_changing_classification": [
+        "BRSK2_S367",
+        "DDX47_S9",
+        "NR1D1_S280",
+        "PDE4A_S13",
+        "TBKBP1_S335"
+      ],
+      "primary": {
+        "label": "reporter: distance, reconstructed primary",
+        "n": 1470,
+        "positive": 82,
+        "proteins": 787,
+        "auc": 0.483113,
+        "ci_low": 0.418242,
+        "ci_high": 0.550433,
+        "half_width": 0.066095,
+        "contains_half": true,
+        "draws_retained": 20000
+      },
+      "experimental_evidence_only": {
+        "label": "reporter: experimentally-evidenced targets only",
+        "n": 512,
+        "positive": 34,
+        "proteins": 286,
+        "auc": 0.477972,
+        "ci_low": 0.375991,
+        "ci_high": 0.577,
+        "half_width": 0.100504,
+        "contains_half": true,
+        "draws_retained": 20000
+      },
+      "comparators": [
+        {
+          "label": "reporter: minimum sequence separation",
+          "n": 1470,
+          "positive": 82,
+          "proteins": 787,
+          "auc": 0.548649,
+          "ci_low": 0.484514,
+          "ci_high": 0.613753,
+          "half_width": 0.064619,
+          "contains_half": true,
+          "draws_retained": 20000
+        },
+        {
+          "label": "reporter: site pLDDT",
+          "n": 1470,
+          "positive": 82,
+          "proteins": 787,
+          "auc": 0.545038,
+          "ci_low": 0.481542,
+          "ci_high": 0.608744,
+          "half_width": 0.063601,
+          "contains_half": true,
+          "draws_retained": 20000
+        },
+        {
+          "label": "reporter: inverse relative solvent accessibility",
+          "n": 1470,
+          "positive": 82,
+          "proteins": 787,
+          "auc": 0.518644,
+          "ci_low": 0.454335,
+          "ci_high": 0.585084,
+          "half_width": 0.065375,
+          "contains_half": true,
+          "draws_retained": 20000
+        },
+        {
+          "label": "reporter: annotated target count",
+          "n": 1470,
+          "positive": 82,
+          "proteins": 787,
+          "auc": 0.444665,
+          "ci_low": 0.384382,
+          "ci_high": 0.505258,
+          "half_width": 0.060438,
+          "contains_half": true,
+          "draws_retained": 20000
+        }
+      ],
+      "paired_differences_vs_distance": {
+        "minimum sequence separation": {
+          "estimate": 0.065536,
+          "ci_low": -0.000634,
+          "ci_high": 0.130758,
+          "excludes_zero": false
+        },
+        "site pLDDT": {
+          "estimate": 0.061925,
+          "ci_low": -0.006457,
+          "ci_high": 0.129162,
+          "excludes_zero": false
+        },
+        "inverse relative solvent accessibility": {
+          "estimate": 0.035531,
+          "ci_low": -0.026992,
+          "ci_high": 0.096512,
+          "excludes_zero": false
+        },
+        "annotated target count": {
+          "estimate": -0.038448,
+          "ci_low": -0.117322,
+          "ci_high": 0.038368,
+          "excludes_zero": false
+        }
+      },
+      "permutation_null": {
+        "observed": 0.483113,
+        "null_mean": 0.500337,
+        "null_sd": 0.032777,
+        "sd_from_centre": 0.526,
+        "two_sided_p": 0.6
+      },
+      "pair_decomposition": {
+        "ranked_pairs": 113816,
+        "within_protein": 184,
+        "within_protein_pct": 0.1617,
+        "across_protein_pct": 99.8383,
+        "informative_proteins": 49
+      },
+      "within_protein": {
+        "informative_proteins": 49,
+        "informative_sites": 215,
+        "within_protein_positive_negative_pairs": 184,
+        "all_positive_proteins": 29,
+        "all_negative_proteins": 709,
+        "pair_weighted_auc": 0.413043,
+        "pair_weighted_ci_low": 0.3125,
+        "pair_weighted_ci_high": 0.51049,
+        "equal_protein_weight_auc": 0.375972,
+        "equal_protein_weight_ci_low": 0.2663,
+        "equal_protein_weight_ci_high": 0.489213,
+        "equal_protein_excludes_half_below": true
+      },
+      "positive_control": [
+        {
+          "label": "reporter: SIFT minimum score",
+          "n": 996,
+          "positive": 56,
+          "proteins": 570,
+          "auc": 0.574725,
+          "ci_low": 0.496691,
+          "ci_high": 0.650868,
+          "half_width": 0.077088,
+          "contains_half": true,
+          "draws_retained": 20000
+        },
+        {
+          "label": "reporter: SIFT alanine score",
+          "n": 996,
+          "positive": 56,
+          "proteins": 570,
+          "auc": 0.557941,
+          "ci_low": 0.481626,
+          "ci_high": 0.63269,
+          "half_width": 0.075532,
+          "contains_half": true,
+          "draws_retained": 20000
+        }
+      ],
+      "single_edit_no_bystander": {
+        "label": "reporter: single-edit guides only",
+        "n": 425,
+        "positive": 26,
+        "proteins": 316,
+        "auc": 0.512146,
+        "ci_low": 0.401635,
+        "ci_high": 0.62432,
+        "half_width": 0.111343,
+        "contains_half": true,
+        "draws_retained": 20000
+      }
+    }
+  }
+}

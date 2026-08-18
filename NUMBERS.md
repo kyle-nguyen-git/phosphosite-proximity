@@ -1,5 +1,11 @@
 # NUMBERS.md — Canonical Numbers for the Phosphosite-Distance Calibration Preprint
 
+> **HUMAN-NUMBER HOLD — 2026-08-18 01:54 CDT.** An exact-canonical AlphaFold cache audit removed the
+> wrong-isoform CHD6 S27 row and two independent offline builds now produce 1,470 sites in 787 proteins.
+> Section 26 and every manuscript human number are suspended until the complete dependent family is
+> recomputed and registered in a new section. Do not substitute the partial fitness console result.
+> Full pause record: `outputs/fulbright/research/PREPRINT_FIX_PAUSE_2026-08-18.md`.
+
 Refrozen **2026-07-29 16:33 CDT** after clean-environment reconciliation and deterministic
 serialization of machine-precision continuous-model fields. Cohorts, estimates, intervals, and every
 reported scientific value are unchanged. This file is the sole numerical authority for manuscript and
@@ -1425,7 +1431,7 @@ describe the present files and do not repair the missing upstream candidate-tabl
 
 The **69/69** report binds the older 11-page
 `phase0_calibration/manuscript/preprint_draft_v1.pdf`, not the current 24-page
-`phosphosite_proximity_preprint.pdf`. Section 20 is outside the three frozen yeast hashes. The earlier
+`phosphosite_proximity_paper.pdf`. Section 20 is outside the three frozen yeast hashes. The earlier
 clean-room report also targets the release archive that predates the Kennedy scripts.
 
 The human cohort is not end-to-end rebuildable from the current tree:
@@ -1875,3 +1881,139 @@ Not allowed:
   checks refuted it and the mechanism is a single protein with a single pair.
 - Any claim that the corrected cohort changes a conclusion. It does not.
 - Citing 1,475 sites or 793 proteins for the human cohort; it is 1,471 in 788.
+
+## 27. Human Cohort After The Exact-Canonical AlphaFold Audit `[DECLARED]`
+
+Author decision 2026-08-18, after a model-provenance audit found the AlphaFold downloader had taken the
+first API result rather than the exact canonical entry. **This section supersedes Section 26, and with it
+Sections 22–25, for every human quantity.** Code `kennedy_replication/build_candidate_table.py`
+(candidate table, `--offline`), `build_cohort.py --cohort` (distances), `rebuild_endpoints.py` and
+`endpoint_options.py`. Outputs `kennedy_analysis_corrected.csv`, `rebuilt_endpoints_1470.json` and
+`endpoint_options_1470.json`.
+
+### 27.1 What the audit changed
+
+The original downloader accepted the first entry the AlphaFold API returned, which was an **isoform
+model for 11 accessions**. Three (Q96EY9, Q14669, P24928) were replaced with exact canonical AFDB v6
+models. Eight (O43149, Q8TD26, O94854, Q63HN8, Q5T4S7, O75962, Q9Y4D8, Q9P2D1) had no exact canonical
+entry and were removed. All 11 displaced files are retained under
+`kennedy_replication/cache/af_superseded_wrong_isoform/`.
+
+| Quantity | Section 26 | **Section 27** |
+|---|---:|---:|
+| Candidate sites / proteins | 1,590 / 812 | 1,590 / 812 |
+| Analysed sites / proteins | 1,471 / 788 | **1,470 / 787** |
+| Exact-canonical v6 models | not asserted | **789 of 812 candidate accessions** |
+
+The only previously analysed distance-bearing row removed is **CHD6 S27 (Q8TD26)**. Four TRIO rows
+(O75962) already carried no distance. Two network-disabled source-to-cohort rebuilds with canonical-model,
+model-sequence and residue-number assertions both produced 1,470 sites in 787 proteins.
+
+Bound artifacts, SHA-256:
+
+| File | Hash |
+|---|---|
+| `kennedy_analysis_corrected.csv` | `90d4be92fa92c738ec65f84a77d4c766199000e548cc87efbcd79b3d4417557b` |
+| `cache/af_v6_manifest.csv` | `e9f39d6705fa13f91b40d8e4edd5c45fc23425cb17cc32f0a35fd6d34ac82cc5` |
+| `human_rebuild_manifest.json` | `7b74f039397f0a9269e703ebea3e3ec510f43041499ae8f4e8466c9ce1045248` |
+| `kennedy_analysis_pre_isoform_fix.csv` (superseded) | `660bdfcc41bae4ddd6e33a7686be090c7fda986e8e5cd2917119e560074e0b03` |
+
+### 27.2 Cohort cascade
+
+7,425 rows in the source phosphosite table → 6,968 with a parsable S/T/Y position → 6,907 whose gene
+symbol maps to **exactly one** reviewed human entry → 6,113 whose residue matches the canonical sequence
+→ 1,590 sites in 812 proteins carrying an eligible annotation → **1,470 sites in 787 proteins** with a
+distance on an exact-canonical AFDB v6 model.
+
+Against the superseded 1,595-row candidate table: 1,587 shared, 8 removed as ambiguous symbol mappings,
+3 newly resolved. A symbol matching more than one reviewed human entry is dropped rather than assigned.
+
+### 27.3 Declared primaries
+
+| Screen | n | Positives | AUC | 95% interval | Permutation (diagnostic) |
+|---|---:|---:|---:|---:|---:|
+| Fitness | 1,470 | 72 | **0.557632** | 0.472659–0.638588 | 1.642 SD, *p* 0.0991 |
+| Reporter | 1,470 | **82** | **0.483113** | 0.418242–0.550433 | 0.526 SD, *p* 0.6000 |
+
+Superseded (26.2): fitness 0.557829 [0.473557, 0.636888]; reporter 0.483301 [0.418057, 0.549886].
+**Both intervals contain 0.5 and both moved by less than 0.0003.**
+
+The released per-site column reproduces the reconstructed directional minimum on **1,424 of 1,470** rows
+for fitness and **1,370 of 1,470** for the reporter, so the endpoint is reconstructed from the two
+directional columns. Reporter sites changing classification: BRSK2_S367, DDX47_S9, NR1D1_S280,
+PDE4A_S13, TBKBP1_S335 (81 → 82). Fitness does not move.
+
+Screen agreement: **66 fitness-only, 76 reporter-only, 6 both**, 1,322 neither; Jaccard 0.0405;
+Spearman of the two log fold changes 0.1195.
+
+### 27.4 Every dependent quantity
+
+| Quantity | Fitness | Reporter |
+|---|---:|---:|
+| Experimentally-evidenced targets, 512 sites in 286 proteins | 0.575569 [0.448808, 0.702799], 29 pos | 0.477972 [0.375991, 0.577000], 34 pos |
+| Ranked pairs | 100,656 | 113,816 |
+| Within-protein pairs | 102 (0.1013%) | 184 (0.1617%) |
+| Across-protein share | 99.8987% | 99.8383% |
+| Informative proteins / sites | 39 / 132 | 49 / 215 |
+| Within-protein, pair-weighted | 0.627451 [0.452044, 0.767677] | 0.413043 [0.312500, 0.510490] |
+| Within-protein, equal-protein weight | 0.510684 [0.373932, 0.645299] | 0.375972 [0.266300, **0.489213**] |
+| Single-edit guides only | 0.515900 [0.391680, 0.640514], n=425 | 0.512146 [0.401635, 0.624320], n=425 |
+| SIFT minimum score (positive control) | 0.646934 [0.564873, 0.723475] | 0.574725 [0.496691, 0.650868] |
+| SIFT alanine score (positive control) | 0.629982 [0.544857, 0.707810] | 0.557941 [0.481626, 0.632690] |
+
+Comparators and their paired differences against distance:
+
+| Comparator | Fitness AUC | Paired difference | Reporter AUC | Paired difference |
+|---|---:|---:|---:|---:|
+| Minimum sequence separation | 0.542024 [0.463942, 0.615126] | −0.015608 [−0.089816, +0.060014] | 0.548649 [0.484514, 0.613753] | +0.065536 [−0.000634, +0.130758] |
+| Site pLDDT | 0.512011 [0.433458, 0.589407] | −0.045621 [−0.121755, +0.033591] | 0.545038 [0.481542, 0.608744] | +0.061925 [−0.006457, +0.129162] |
+| Inverse relative solvent accessibility | 0.606829 [0.531350, 0.678545] | +0.049197 [−0.018812, +0.119892] | 0.518644 [0.454335, 0.585084] | +0.035531 [−0.026992, +0.096512] |
+| Annotated target count | 0.460648 [0.392095, 0.527440] | −0.096984 [−0.193458, +0.005646] | 0.444665 [0.384382, 0.505258] | −0.038448 [−0.117322, +0.038368] |
+
+**No paired difference in either screen excludes zero.** The fitness screen's inverse relative solvent
+accessibility interval lies above 0.5 as a post hoc comparator.
+
+### 27.5 Candidate endpoint family
+
+All arms reconstructed from the four source MAGeCK directional columns except the withdrawn uncorrected
+union and the source FDR arm, which use the released columns.
+
+| Arm | Positives | AUC | 95% interval |
+|---|---:|---:|---:|
+| A1 fitness alone, doubled directional minimum (declared) | 72 | 0.557632 | 0.472659–0.638588 |
+| A2 reporter alone, doubled directional minimum (declared) | 82 | 0.483113 | 0.418242–0.550433 |
+| Union of both screens, uncorrected (withdrawn) | 296 | 0.504498 | 0.464445–0.544626 |
+| B union, Bonferroni over four directional p-values | **88** | **0.538819** | 0.462346–0.614406 |
+| C1 top decile of \|log2 fold change\|, fitness | 147 | 0.508266 | 0.454556–0.560941 |
+| C2 top decile of \|log2 fold change\|, reporter | 147 | 0.504024 | 0.451256–0.556691 |
+| C3 top decile of \|log2 fold change\|, larger of the two | 147 | 0.507618 | 0.453568–0.561438 |
+| D MAGeCK FDR below 0.25 in either screen | 19 | 0.614241 | 0.428625–0.781056 |
+
+**Every arm's interval contains 0.5.** Section 26.6's B arm (86 sites, 0.541860) rested on released
+columns and is superseded; the interrupted 1,471-site value (88 sites, 0.539013) is also superseded.
+
+### 27.6 The reporter within-protein exclusion is unchanged and stays retired
+
+The reporter's equal-protein-weight interval is **0.375972 [0.266300, 0.489213]** — numerically identical
+to 26.3, because CHD6 S27 is not in a protein carrying both outcome classes and no informative protein
+changed. Section 26.4's refutation therefore stands without modification: the exclusion is produced by
+PIDD1, one protein contributing one pair, dropped by the ambiguous-symbol rule. It remains **retired** and
+must not be reported as a result.
+
+### 27.7 Claim rules
+
+Allowed:
+
+- The human cohort is **1,470 sites in 787 proteins**, rebuilt offline from source with canonical-model,
+  model-sequence and residue-number assertions.
+- Both declared primaries contain 0.5; every candidate endpoint arm contains 0.5; no paired difference
+  excludes zero.
+- 789 of 812 candidate accessions have an exact-canonical AFDB v6 model; 11 isoform models were displaced.
+
+Not allowed:
+
+- **Any human number from Sections 22–26 in a reader-facing document.** 27.3–27.5 are the authority.
+- Citing 1,471 sites, 788 proteins, 0.557829, 0.483301, or the 86- or 88-site B arm of Section 26.6.
+- Reporting any within-protein interval as excluding 0.5 (27.6, 26.4).
+- Treating `rebuilt_endpoints_corrected.json` or `endpoint_options_source_corrected.json` as current;
+  both are superseded by `rebuilt_endpoints_1470.json` and `endpoint_options_1470.json`.

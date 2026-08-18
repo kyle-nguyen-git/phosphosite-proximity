@@ -2,7 +2,7 @@
 
 Two manuscripts live here and they are not interchangeable.
 
-## `preprint_current.md` / `.pdf` — read this one
+## `paper_current.md` / `.pdf` — read this one
 
 The current manuscript. Two authors, and it makes no exclusion claim: the title reports that no
 structural or sequence proximity feature was distinguishable from chance on this cohort, and the

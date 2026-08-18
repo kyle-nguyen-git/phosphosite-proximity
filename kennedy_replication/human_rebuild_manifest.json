@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "offline_source_to_cohort": {
+    "candidate_rows": 1590,
+    "candidate_sha256": "1e6fdb2f8ec313a0cdab82fd2873f57dc0a65be9dff9dbf36b5d9dcd6b8301aa",
+    "analysis_rows": 1470,
+    "analysis_proteins": 787,
+    "analysis_sha256": "90d4be92fa92c738ec65f84a77d4c766199000e548cc87efbcd79b3d4417557b",
+    "every_row_and_column_matches": true
+  },
+  "pinned_files": {
+    "cache/kennedy_supplement.xlsx": "f4e14be5eb3b0784440147c0976e4b527c2fb0354974fd62eecd7f9626ca73d2",
+    "cache/screens_parsed.csv": "a69ba085508d2ae402b7e51afdce12c49d2dd64a4c897cc8557029ae7e2276d0",
+    "cache/gs_SuppTable_3_MAGeCK_gene_summary.csv": "33cb4d7d33823498ea76cbd120190c6300553f47ffc68b1b1f3c24a298b3d71b",
+    "cache/gs_SuppTable4_MAGeCK_gene_summary.csv": "4086f5912ee78f6c5c3eb2e6ba9a43684fdd80d404eb34bed5083d01f8c9790e",
+    "cache/genemap.json": "e47711f22459b815474911a2841c2274211a7dfa9466d24eebb6f4394631fdd6",
+    "kennedy2024_cohort_candidate.rebuilt.csv": "1e6fdb2f8ec313a0cdab82fd2873f57dc0a65be9dff9dbf36b5d9dcd6b8301aa",
+    "kennedy_analysis_corrected.csv": "90d4be92fa92c738ec65f84a77d4c766199000e548cc87efbcd79b3d4417557b",
+    "build_candidate_table.py": "635f0db80a2f3dd1ca89b0ffed7a85a7493b4c523431fbdb70abaae470bb7c24",
+    "build_cohort.py": "e783ef37c56fa1415129b448eea8fd8145a2a2eddf2d5c93d19ecab3b81d8157",
+    "rebuild_endpoints.py": "183494e2c6a0c82017c11766d587565023614383416de5d40576b82004fbc93f",
+    "endpoint_options.py": "99aa542eff067020c0bb30f06d3e2a2d6a90515854435595abb68aff50ad6f15",
+    "endpoint_options_source_corrected.json": "7166523bc58449d99f58264eb074b32c57015d79b8de7955938c49cbe9273bce",
+    "cache/af_v6_manifest.csv": "e9f39d6705fa13f91b40d8e4edd5c45fc23425cb17cc32f0a35fd6d34ac82cc5"
+  },
+  "cache_aggregates": {
+    "alphafold_cif": {
+      "files": 795,
+      "aggregate_sha256": "ad506e96165c32bc7259137087061993930917209426eb713b4c80b74f666b3b"
+    },
+    "uniprot_primary_json": {
+      "files": 819,
+      "aggregate_sha256": "9c477466ed3281eb02a815616f96576dbf9c1b2954e02dc7a37f18312b1a6905"
+    },
+    "uniprot_annotation_json": {
+      "files": 2420,
+      "aggregate_sha256": "d42fc15dfd7f2f99c90f6a2ca139635d1acea48e16ca6d7b80975359932c6f2a"
+    }
+  }
+}

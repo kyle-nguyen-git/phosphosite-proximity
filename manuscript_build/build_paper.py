@@ -1,6 +1,6 @@
 """Rebuild the PDF and Word versions of the current preprint from its Markdown source.
 
-The Markdown at `outputs/fulbright/research/phosphosite_proximity_preprint.md` is the source of
+The Markdown at `outputs/fulbright/research/phosphosite_proximity_paper.md` is the source of
 record. The PDF and .docx beside it are build products and must never be edited directly.
 
 The PDF renderer is the one frozen inside the release tree
@@ -16,7 +16,7 @@ environment first:
 
 Then:
 
-    .venv/bin/python build_preprint.py
+    .venv/bin/python build_paper.py
 
 matplotlib is not used for drawing here; the frozen renderer reads the DejaVu TTF files that ship
 inside the matplotlib package, so it must be importable.
@@ -31,7 +31,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 RESEARCH = HERE.parent
-STEM = "phosphosite_proximity_preprint"
+STEM = "phosphosite_proximity_paper"
 SOURCE = RESEARCH / f"{STEM}.md"
 PDF = RESEARCH / f"{STEM}.pdf"
 DOCX = RESEARCH / f"{STEM}.docx"

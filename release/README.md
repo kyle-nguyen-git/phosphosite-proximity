@@ -7,10 +7,10 @@ substantially later the same day. The packaged tree therefore does **not** match
 the mismatch is not a defect in the package — a release candidate is a snapshot by definition — but it
 is a trap, because of one filename.
 
-**`build/phosphosite-proximity-v0.5.0-rc1/manuscript/preprint_current.md` is not the current
+**`build/phosphosite-proximity-v0.5.0-rc1/manuscript/paper_current.md` is not the current
 manuscript.** It is the single-cohort version, under the retired title *No structural or sequence
 proximity feature is distinguishable from chance in a yeast phosphosite-mutant screen*. Do not read it,
-cite it, or send it to a reviewer. The current manuscript is `manuscript/preprint_current.{md,pdf}` at
+cite it, or send it to a reviewer. The current manuscript is `manuscript/paper_current.{md,pdf}` at
 the repository root.
 
 What the packaged copy is missing, all added after it was built:

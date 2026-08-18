@@ -2,23 +2,25 @@
 
 Both format reviews found that the human cohort cannot be rebuilt end to end because
 `second_dataset_scan/kennedy2024_cohort_candidate.csv` — the table `build_cohort.py` starts from — had
-no deposited generator. This is that generator.
+no deposited generator. This is that generator. The current output is the corrected candidate table;
+the earlier deposited 1,595-row table is retained only for provenance.
 
 The cascade it implements, with the counts recorded in `NUMBERS.md` Section 22.4:
 
     7,425  rows in Supplementary Table 3's Phosphosites sheet
     6,968  with a parsable serine, threonine or tyrosine position
-    6,950  whose gene symbol maps to one reviewed human UniProt entry
-    6,148  whose residue matches the canonical sequence at that position
-    1,595  in 818 proteins carrying at least one eligible ACT_SITE or BINDING residue
+    6,907  whose gene symbol maps to exactly one reviewed human UniProt entry
+    6,113  whose residue matches the canonical sequence at that position
+    1,590  in 812 proteins carrying at least one eligible ACT_SITE or BINDING residue
 
 Gene-symbol resolution is the step that needs the network: UniProt is queried for the reviewed human
 entry of each symbol, and results are cached under `cache/genemap.json` so a rerun is offline. The
 per-accession entry JSON and the sequence both come from `cache/uniprot/`, which `build_cohort.py`
 already populates.
 
-The script ends by comparing its output against the deposited table and reports any difference. A
-generator that does not reproduce the file it replaces is not a generator.
+The script reports its overlap with the superseded deposited table. Exact reproducibility of the
+current output is enforced by `verify_human_rebuild.py`, which runs this generator offline and compares
+every row and column with the current 1,590-row candidate table.
 
 Usage:
     python build_candidate_table.py [--out kennedy2024_cohort_candidate.rebuilt.csv]
@@ -84,10 +86,12 @@ def parse_sites(df: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def resolve_genes(symbols, max_lookups: int = 0) -> dict:
+def resolve_genes(symbols, max_lookups: int = 0, offline: bool = False) -> dict:
     """Gene symbol -> reviewed human accession. Cached, so a rerun needs no network."""
     cache = json.load(open(GENEMAP)) if os.path.exists(GENEMAP) else {}
     todo = [s for s in symbols if s not in cache]
+    if todo and offline:
+        raise RuntimeError(f"offline cache is incomplete: {len(todo)} gene symbols are unresolved")
     if todo:
         import requests
         print(f"  resolving {len(todo)} gene symbols against UniProt", flush=True)
@@ -148,6 +152,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-lookups", type=int, default=0,
                     help="resolve at most N new gene symbols then continue; 0 means all")
+    ap.add_argument("--offline", action="store_true",
+                    help="forbid network access and fail if a required cache entry is missing")
     ap.add_argument("--out", default=os.path.join(HERE, "kennedy2024_cohort_candidate.rebuilt.csv"))
     a = ap.parse_args()
 
@@ -156,7 +162,7 @@ def main() -> int:
     sites = parse_sites(raw)
     print(f"  {len(sites):>6}  with a parsable S/T/Y position")
 
-    gmap = resolve_genes(sorted(sites.gene.astype(str).unique()), a.max_lookups)
+    gmap = resolve_genes(sorted(sites.gene.astype(str).unique()), a.max_lookups, a.offline)
     unresolved = [g for g in sites.gene.astype(str).unique() if g not in gmap]
     if unresolved:
         print(f"  {len(unresolved)} symbols still unresolved; rerun to continue")
@@ -166,10 +172,12 @@ def main() -> int:
     print(f"  {len(sites):>6}  mapping to one reviewed human entry")
 
     keep, n_all, n_exp = [], [], []
+    missing_entries = set()
     counts = {}
     for r in sites.itertuples():
         e = entry(r.acc)
         if e is None:
+            missing_entries.add(r.acc)
             continue
         seq = e.get("sequence", {}).get("value", "")
         if not (0 < r.pos <= len(seq)) or seq[r.pos - 1] != r.aa:
@@ -178,6 +186,9 @@ def main() -> int:
             counts[r.acc] = eligible_counts(e)
         na, ne = counts[r.acc]
         keep.append(r.Index); n_all.append(na); n_exp.append(ne)
+    if missing_entries:
+        print(f"ERROR: {len(missing_entries)} mapped accessions lack cached UniProt JSON")
+        return 3
     sites = sites.loc[keep].copy()
     sites["n_all"], sites["n_exp"] = n_all, n_exp
     print(f"  {len(sites):>6}  whose residue matches the canonical sequence")
@@ -195,25 +206,14 @@ def main() -> int:
         print("deposited table not found; nothing to compare against")
         return 0
     dep = pd.read_csv(DEPOSITED).sort_values(["gene", "pos"]).reset_index(drop=True)
-    same_rows = len(dep) == len(out)
     key_dep = set(zip(dep.acc, dep.pos))
     key_out = set(zip(out.acc, out.pos))
     print(f"\ncomparison with the deposited table")
-    print(f"  rows        deposited {len(dep)}   rebuilt {len(out)}   {'match' if same_rows else 'DIFFER'}")
+    print(f"  rows        superseded {len(dep)}   current {len(out)}")
     print(f"  sites only in deposited: {len(key_dep - key_out)}")
     print(f"  sites only in rebuilt  : {len(key_out - key_dep)}")
-    if key_dep == key_out:
-        num = [c for c in cols if c not in ("acc", "gene", "aa")]
-        merged = dep.merge(out, on=["acc", "pos"], suffixes=("_dep", "_new"))
-        bad = []
-        for c in num:
-            x, y = merged[f"{c}_dep"], merged[f"{c}_new"]
-            if not np.allclose(pd.to_numeric(x, errors="coerce").fillna(-9),
-                               pd.to_numeric(y, errors="coerce").fillna(-9), atol=1e-9):
-                bad.append(c)
-        print(f"  columns differing: {bad or 'none — the generator reproduces the deposited table'}")
-        return 0 if not bad else 1
-    return 1
+    print(f"  sites shared           : {len(key_dep & key_out)}")
+    return 0
 
 
 if __name__ == "__main__":

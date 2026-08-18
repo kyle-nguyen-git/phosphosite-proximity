@@ -11,3 +11,8 @@ tools/node_modules
 release/build/
 release/dist/
 release/clean_room_workspace/
+
+# Human-replication caches: the AlphaFold mmCIFs and UniProt entry JSONs are hundreds of MB and are
+# retrieved by the scripts. Only the provenance manifest is tracked.
+kennedy_replication/cache/*
+!kennedy_replication/cache/af_v6_manifest.csv

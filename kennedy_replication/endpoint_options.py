@@ -6,17 +6,17 @@ phenotypes: Supplementary Table 3 is a fitness readout, Supplementary Table 4 an
 
 This enumerates the options rather than picking one:
 
-  A  each screen separately, direction-corrected      2*p < 0.05 within a screen
-  B  union across screens, fully corrected            2*p < 0.025, i.e. 0.05 split four ways
+  A  each screen separately, direction-corrected      2*min(p_neg,p_pos) < 0.05
+  B  union across screens, fully corrected            min of four directional p-values < 0.0125
   C  continuous, no p-value at all                    |log2 fold change|, per screen and pooled
   D  the screens' own FDR                             MAGeCK FDR, reported for completeness
 
-Every arm is scored with the same frozen estimator and the same protein-cluster bootstrap. The stored
-columns are used as released; Section 22.2 records that they do not reproduce the directional minimum
-on 47 rows of `p3` and 103 of `p4`, which no choice here repairs.
+Every arm is scored with the same frozen estimator and the same protein-cluster bootstrap. Arms A and
+B are reconstructed from the four source MAGeCK directional columns. The released per-site columns are
+retained only for the explicitly withdrawn uncorrected union and the source FDR arm.
 
-Outputs `endpoint_options.json`. Nothing here may enter a manuscript, wiki page or email until it is
-registered in `NUMBERS.md`.
+Outputs `endpoint_options_source_corrected.json`. Nothing here may enter a manuscript, wiki page or
+email until it is registered in `NUMBERS.md`.
 """
 import json
 import os
@@ -31,6 +31,23 @@ import _paths  # noqa: E402
 
 p05 = _paths.analysis_module()
 DRAWS, SEED = 20000, 20260728
+SHEETS = [("gs_SuppTable_3_MAGeCK_gene_summary.csv", "fitness"),
+          ("gs_SuppTable4_MAGeCK_gene_summary.csv", "reporter")]
+
+
+def directional_minima(d):
+    """Reconstruct each screen from its source MAGeCK negative/positive p-value columns."""
+    out = {}
+    for filename, tag in SHEETS:
+        g = pd.read_csv(os.path.join(HERE, "cache", filename)).set_index("id")
+        vals = []
+        for r in d.itertuples():
+            row = g.loc[f"{r.gene}_{r.aa}{r.pos}"]
+            if isinstance(row, pd.DataFrame):
+                row = row.iloc[0]
+            vals.append(min(float(row["neg|p-value"]), float(row["pos|p-value"])))
+        out[tag] = np.asarray(vals, float)
+    return out
 
 
 def interval(y, score, groups, label, note=""):
@@ -54,13 +71,14 @@ def interval(y, score, groups, label, note=""):
 def main():
     import argparse
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cohort", default=os.path.join(HERE, "kennedy_analysis.csv"))
-    ap.add_argument("--out", default=os.path.join(HERE, "endpoint_options.json"))
+    ap.add_argument("--cohort", default=os.path.join(HERE, "kennedy_analysis_corrected.csv"))
+    ap.add_argument("--out", default=os.path.join(HERE, "endpoint_options_source_corrected.json"))
     opts = ap.parse_args()
     d = pd.read_csv(opts.cohort)
     d = d[d.min_dist_A.notna()].copy()
     score, groups = -d.min_dist_A, d.acc
     rows = []
+    rec = directional_minima(d)
 
     # ---- current, for reference -------------------------------------------
     rows.append(interval((d.p3 < 0.05) | (d.p4 < 0.05), score, groups,
@@ -68,16 +86,16 @@ def main():
                          "two uncorrected layers; unions two phenotypes"))
 
     # ---- A: each screen separately, direction-corrected --------------------
-    rows.append(interval(2 * d.p3 < 0.05, score, groups,
-                         "A1: fitness screen alone, 2*p3 < 0.05",
+    rows.append(interval(2 * rec["fitness"] < 0.05, score, groups,
+                         "A1: fitness screen, 2*min(p_neg,p_pos) < 0.05",
                          "Supplementary Table 3, abundance before vs after ABE8e"))
-    rows.append(interval(2 * d.p4 < 0.05, score, groups,
-                         "A2: NFAT reporter screen alone, 2*p4 < 0.05",
+    rows.append(interval(2 * rec["reporter"] < 0.05, score, groups,
+                         "A2: NFAT reporter, 2*min(p_neg,p_pos) < 0.05",
                          "Supplementary Table 4, GFP-high vs GFP-low"))
 
     # ---- B: union, corrected for direction and screen ----------------------
-    rows.append(interval((2 * d.p3 < 0.025) | (2 * d.p4 < 0.025), score, groups,
-                         "B: union, 0.05 split over 2 directions x 2 screens",
+    rows.append(interval((rec["fitness"] < 0.0125) | (rec["reporter"] < 0.0125), score, groups,
+                         "B: union, Bonferroni over four directional p-values",
                          "declared composite; a site is affected in either phenotype"))
 
     # ---- C: continuous, no p-value ----------------------------------------
@@ -99,8 +117,8 @@ def main():
                          "the screens' own multiplicity control"))
 
     # ---- how much do the two screens even agree? ---------------------------
-    a = (2 * d.p3 < 0.05)
-    b = (2 * d.p4 < 0.05)
+    a = (2 * rec["fitness"] < 0.05)
+    b = (2 * rec["reporter"] < 0.05)
     agreement = {
         "called_in_fitness_only": int((a & ~b).sum()),
         "called_in_reporter_only": int((~a & b).sum()),

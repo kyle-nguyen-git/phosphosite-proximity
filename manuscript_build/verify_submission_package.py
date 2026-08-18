@@ -32,9 +32,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 RESEARCH = HERE.parent
-MD = RESEARCH / "phosphosite_proximity_preprint.md"
-PDF = RESEARCH / "phosphosite_proximity_preprint.pdf"
-SUB = RESEARCH / "phosphosite_proximity_preprint_SUBMISSION.docx"
+MD = RESEARCH / "phosphosite_proximity_paper.md"
+PDF = RESEARCH / "phosphosite_proximity_paper.pdf"
+SUB = RESEARCH / "phosphosite_proximity_paper_SUBMISSION.docx"
 FIGS = HERE / "submission_figures"
 SI = RESEARCH / "supporting_information"
 NUMBERS = RESEARCH / "phase0_calibration" / "NUMBERS.md"
@@ -55,6 +55,12 @@ RETIRED = [
     # missed "1,475 edited sites in 793 proteins" and "leaving 1,475 sites in 793 proteins".
     ("1,475", "superseded human cohort site count, retired 26.1"),
     ("793 proteins", "superseded human cohort protein count, retired 26.1"),
+    ("1,471", "superseded human cohort site count, retired 27.1"),
+    ("788 proteins", "superseded human cohort protein count, retired 27.1"),
+    ("0.557829", "superseded fitness primary, pre-isoform-fix, retired 27.3"),
+    ("0.483301", "superseded reporter primary, pre-isoform-fix, retired 27.3"),
+    ("100,728", "superseded fitness pair count, retired 27.4"),
+    ("113,898", "superseded reporter pair count, retired 27.4"),
     ("1,595 rows", "superseded candidate-table size unless stated as the earlier build"),
     ("185 of 115,536", "superseded reporter pair decomposition, retired 26.3"),
     ("50 informative proteins", "superseded reporter informative count, retired 26.3"),
@@ -114,7 +120,8 @@ def main() -> int:
     n_abs = len(abstract.split()) - 2          # drop the heading tokens
     check(n_abs <= 300, "abstract within 300 words", f"{n_abs}")
     check("Corresponding author" in md, "corresponding author named on the title page")
-    check("@" in md.split("## Abstract")[0], "corresponding-author email present")
+    check("ktn965@my.utexas.edu" in md.split("## Abstract")[0],
+          "current UT corresponding-author email present")
 
     # ---- figures ----------------------------------------------------------
     try:
@@ -159,16 +166,19 @@ def main() -> int:
     # Every other check reads the Markdown. Without this, a stale PDF or DOCX beside a current source
     # passes the whole suite — the same failure that let a superseded Figure 1 and Figure 2 ship.
     md_mtime = MD.stat().st_mtime
-    for f in (PDF, SUB, RESEARCH / "phosphosite_proximity_preprint.docx"):
+    for f in (PDF, SUB, RESEARCH / "phosphosite_proximity_paper.docx"):
         if f.exists():
             check(f.stat().st_mtime >= md_mtime - 1, f"{f.name} is not older than the Markdown",
                   f"{(md_mtime - f.stat().st_mtime):.0f}s older" if f.stat().st_mtime < md_mtime else "")
     try:
         import pymupdf
         pdf_text = "".join(pg.get_text() for pg in pymupdf.open(PDF)) if PDF.exists() else ""
-        for tok in ("0.558", "0.483", "1,471", "788 proteins"):
+        for tok in ("0.558", "0.483", "1,470", "787 proteins"):
             check(tok in pdf_text, f"rendered PDF carries the corrected value: {tok}")
-        for tok, why in (("0.559317", "superseded fitness"), ("0.486100", "superseded reporter")):
+        for tok, why in (("0.559317", "superseded fitness, 26.2"),
+                         ("0.486100", "superseded reporter, 26.2"),
+                         ("1,471", "superseded cohort size, 27.1"),
+                         ("788 proteins", "superseded protein count, 27.1")):
             check(tok not in pdf_text, f"rendered PDF free of {why}: {tok}")
     except ImportError:
         check(False, "pymupdf available to read the rendered PDF")
@@ -228,16 +238,16 @@ def main() -> int:
     for headline in ("0.558", "0.483", "0.527", "0.544"):
         check(headline in md, f"headline value present: {headline}")
     if numbers:
-        for headline in ("0.557829", "0.483301", "0.526823"):
+        for headline in ("0.557632", "0.483113", "0.526823"):
             check(headline in numbers, f"headline traced to NUMBERS.md: {headline}")
 
     # ---- endpoint invariants ---------------------------------------------
     # The corrected cohort's counts, so a partial edit that updates an AUC but not its support fails.
-    for tok, what in (("1,471 sites in 788 proteins", "corrected human cohort size"),
+    for tok, what in (("1,470 sites in 787 proteins", "corrected human cohort size"),
                       ("72 sites are affected", "fitness positives"),
                       ("82 are", "reporter positives"),
-                      ("102 of 100,728", "fitness pair decomposition"),
-                      ("184 of 113,898", "reporter pair decomposition")):
+                      ("102 of 100,656", "fitness pair decomposition"),
+                      ("184 of 113,816", "reporter pair decomposition")):
         check(tok in md, f"corrected value present: {what}", tok)
 
     # No within-protein interval may be asserted as excluding 0.5 (26.4).
@@ -248,12 +258,54 @@ def main() -> int:
         check(not bad, f"no within-protein exclusion asserted: {phrase}",
               bad[0][:80] if bad else "")
 
-    # NUMBERS.md must carry Section 26 and mark it as superseding the earlier human sections.
+    # NUMBERS.md must carry Section 27 and mark it as superseding the earlier human sections.
     if numbers:
-        check("## 26." in numbers, "NUMBERS.md carries Section 26")
-        check("supersedes Sections 22" in numbers or "supersedes \u00a7\u00a722" in numbers
-              or "supersedes Sections 22\u201325" in numbers,
-              "Section 26 declares what it supersedes")
+        check("## 27." in numbers, "NUMBERS.md carries Section 27")
+        check("supersedes Section 26" in numbers, "Section 27 declares what it supersedes")
+
+    # ---- the human rebuild is bound to this package -------------------------
+    # The pause record of 2026-08-18 required the offline rebuild, its manifest and its hashes to be
+    # part of submission clearance. A 107/107 result that does not check them is not a clearance.
+    KEN = RESEARCH / "kennedy_replication"
+    BOUND = {
+        "kennedy_analysis_corrected.csv":
+            "90d4be92fa92c738ec65f84a77d4c766199000e548cc87efbcd79b3d4417557b",
+        "cache/af_v6_manifest.csv":
+            "e9f39d6705fa13f91b40d8e4edd5c45fc23425cb17cc32f0a35fd6d34ac82cc5",
+        "human_rebuild_manifest.json":
+            "7b74f039397f0a9269e703ebea3e3ec510f43041499ae8f4e8466c9ce1045248",
+    }
+    for rel, want in BOUND.items():
+        f = KEN / rel
+        if not f.exists():
+            check(False, f"human rebuild artifact present: {rel}")
+            continue
+        got = sha256(f)
+        check(got == want, f"human rebuild artifact hash matches NUMBERS 27.1: {rel}",
+              got[:16] if got != want else "")
+    man = KEN / "human_rebuild_manifest.json"
+    if man.exists():
+        try:
+            mj = json.loads(man.read_text())
+            blob = json.dumps(mj).upper()
+            check("PASS" in blob, "offline human rebuild manifest reports PASS")
+        except Exception as exc:
+            check(False, "human rebuild manifest is readable JSON", str(exc)[:60])
+    for rel in ("rebuilt_endpoints_1470.json", "endpoint_options_1470.json"):
+        check((KEN / rel).exists(), f"current human result file present: {rel}")
+    for rel in ("rebuilt_endpoints_corrected.json", "endpoint_options_source_corrected.json"):
+        f = KEN / rel
+        if f.exists():
+            check(True, f"superseded result retained for provenance: {rel}")
+    # the cohort the results were computed on must still be 1,470 x 787
+    coh = KEN / "kennedy_analysis_corrected.csv"
+    if coh.exists():
+        rows = coh.read_text().strip().split("\n")
+        hdr = rows[0].split(",")
+        acc_i = hdr.index("acc") if "acc" in hdr else 0
+        accs = {r.split(",")[acc_i] for r in rows[1:]}
+        check(len(rows) - 1 == 1470, "analysed cohort has 1,470 rows", str(len(rows) - 1))
+        check(len(accs) == 787, "analysed cohort has 787 proteins", str(len(accs)))
 
     ok = report()
     if a.write_manifest:

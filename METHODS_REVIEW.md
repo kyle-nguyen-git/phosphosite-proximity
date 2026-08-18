@@ -35,7 +35,7 @@ redesigning the analysis or drafting manuscript text has become an author, and t
 Read:
 
 - `NUMBERS.md` and verify its three frozen hashes before using any project result;
-- `manuscript/preprint_current.md` and `.pdf` — the manuscript that would be posted. Ignore
+- `manuscript/paper_current.md` and `.pdf` — the manuscript that would be posted. Ignore
   `manuscript/preprint_draft_v1.*`: it is a superseded single-author draft kept only because the
   verifier binds to its hash, and it states a claim since retired. `manuscript/README.md` says which is
   which;

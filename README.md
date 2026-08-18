@@ -60,7 +60,7 @@ yeast cohort and both runnable from this repository with no download: restoring 
 quality-control exclusions, and measuring what the reported interval's coverage actually is. Each has a
 README, and `NUMBERS.md` Section 21 is their authority.
 
-**The manuscript.** `manuscript/preprint_current.{md,pdf}` is the current draft — two authors, and it
+**The manuscript.** `manuscript/paper_current.{md,pdf}` is the current draft — two authors, and it
 makes no exclusion claim. `manuscript/preprint_draft_v1.*` is a superseded single-author draft that
 states a claim since retired; it stays only because the verification pipeline binds to its hash and page
 count. `manuscript/README.md` explains the difference. Nothing is posted to a preprint server yet.
@@ -127,14 +127,14 @@ do not drift during a clean-room rerun. See `THIRD_PARTY_NOTICES.md` and
 
 ## Main artifacts
 
-- `manuscript/preprint_current.{md,pdf,docx}` — **the current manuscript**, covering both cohorts.
+- `manuscript/paper_current.{md,pdf,docx}` — **the current manuscript**, covering both cohorts.
   Both authors have approved it. Not posted to a preprint server, and the independent methods read is
   not complete.
 - `manuscript/preprint_draft_v1.{md,pdf}` — superseded single-author draft. **Do not cite it**: it
   states a claim since retired. It stays only because the verification pipeline binds to its SHA-256
   and page count. See `manuscript/README.md`.
 - `manuscript_build/` — the renderers, measured design spec and vendored fonts that rebuild
-  `preprint_current` from its Markdown.
+  `paper_current` from its Markdown.
 - `kennedy_replication/` — the human cohort: scripts, the derived 1,475-site table, and results.
 - `robustness_arms/` — the QC-inclusive arm and the bootstrap coverage simulation.
 - `robustness/results/robustness_supplement.xlsx` — reproducibly generated supplementary workbook.

@@ -9,7 +9,7 @@ Every number is read from a committed results file. Nothing is typed in.
 
   yeast pooled            NUMBERS.md Section 12, via phase0_5/results/phase0_5_statistics.json
   yeast within-protein    the same file's within_protein_discrimination block
-  human, both screens     kennedy_replication/rebuilt_endpoints.json (Section 25)
+  human, both screens     kennedy_replication/rebuilt_endpoints_1470.json (Section 27)
 
 Redundant encoding throughout, because the review found panels relying on colour alone: each estimand
 gets its own marker shape as well as its own colour, and the chance line is drawn once.
@@ -40,7 +40,7 @@ INK = "#1A1A1A"
 def load():
     with open(os.path.join(CAL, "phase0_5", "results", "phase0_5_statistics.json")) as fh:
         y = json.load(fh)
-    with open(os.path.join(KEN, "rebuilt_endpoints_corrected.json")) as fh:
+    with open(os.path.join(KEN, "rebuilt_endpoints_1470.json")) as fh:
         h = json.load(fh)
     w = y["within_protein_discrimination"]
 

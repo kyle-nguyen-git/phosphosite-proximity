@@ -9,7 +9,7 @@ vault. That silently replaced the design: US Letter became A4, Charis SIL became
 became 19, and a red "DRAFT — NOT FOR POSTING" banner and a running header appeared on every page.
 
 Kyle identified the regression by eye. This file records the original design, measured directly from
-`phosphosite_proximity_preprint.pdf` as sent (SHA-256 begins `8e9ea94e83b2b4e7`, 1,550,539 bytes,
+`phosphosite_proximity_paper.pdf` as sent (SHA-256 begins `8e9ea94e83b2b4e7`, 1,550,539 bytes,
 20 pages), so it can be rebuilt without the original script.
 
 ## The two builders, and which one is right
