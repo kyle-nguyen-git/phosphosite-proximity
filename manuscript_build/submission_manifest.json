@@ -1,20 +1,20 @@
 {
   "artifacts": {
     "phosphosite_proximity_paper.md": {
-      "sha256": "0a5dfe79b72aa68e4df90f76e2c95637bde55109ff5c57bcaf8e11c04156516c",
-      "bytes": 106592
+      "sha256": "b5c3d14b1689cedc902f05ed0543f41b600b3040093034745ea3e4b4a14e80c0",
+      "bytes": 108171
     },
     "phosphosite_proximity_paper.pdf": {
-      "sha256": "918ac01ab6cff9bd2210a5a4783213633a959426938542595a6c1640deaafe8b",
-      "bytes": 773509
+      "sha256": "c5066cfe80d2bca9a8a2af1e37b92c964ee3cd3891331ee012c0ea8b25b52c7c",
+      "bytes": 774546
     },
     "phosphosite_proximity_paper_SUBMISSION.docx": {
-      "sha256": "f50979f5d86bbc36dc40e2f4570e31b9c191f5686630ed47182296d24e3e911d",
-      "bytes": 84438
+      "sha256": "38a91cf13625b73c2152b1adf87f227585d5139a046150dbd8d0741b5e995ab1",
+      "bytes": 85034
     },
     "phase0_calibration/NUMBERS.md": {
-      "sha256": "76ba7918a6642f40a988d401e6216840b49d301361f4775c5eef34db3aaafbcd",
-      "bytes": 138536
+      "sha256": "012238b5bb1df7879f7fff8043b0b9540c4c4ef3f7f4c256712481836d91042e",
+      "bytes": 141664
     },
     "manuscript_build/submission_figures/Fig1.tif": {
       "sha256": "8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e",
@@ -29,12 +29,12 @@
       "bytes": 193776
     },
     "manuscript_build/submission_figures/S1_Fig.tif": {
-      "sha256": "ffcd1ac4eae581ee8190178f0006ea6d103e3093e302859c077bc3d362ba3a97",
-      "bytes": 184514
+      "sha256": "e081636b5c64e29f9f0b4d2d77d147dd2f02f54a8bcffa6c289a245e4c9702aa",
+      "bytes": 183622
     },
     "manuscript_build/submission_figures/S2_Fig.tif": {
-      "sha256": "d3c5d17e2434ec5dfb755600ff3f1dc07a0d884575397debaa9a45f83407a9db",
-      "bytes": 188346
+      "sha256": "be99c45c4d08691e60c8192c2bf0652c2020b56ed933e77551ff91183a127fba",
+      "bytes": 190730
     },
     "supporting_information/S1_Appendix.md": {
       "sha256": "f343d96dc27b7978a6b3be7d9a030f4dc13c20838ab0a6bdef70631ded6da671",

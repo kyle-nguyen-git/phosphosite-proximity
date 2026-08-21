@@ -8,16 +8,24 @@ their historical paths.
 
 ## Submission status
 
-Updated: 2026-08-18 08:35 CDT
+Updated: 2026-08-18 09:45 CDT
 
-**No build blocker remains.** David Chang's affiliation was filled in on 2026-08-18 and his agreement to
-this version is recorded in `../admin/author_agreements.md`. The package passes **140 of 140** submission
-checks.
+**An independent hash review was run on 2026-08-18 and returned DO_NOT_SUBMIT on the 08:50 build.** Five
+reviewers with disjoint remits examined 19 hash-pinned artifacts and found eleven blocking defects, four
+of which were wrong numbers in all four reader-facing files. Every one is fixed and the package now
+passes **157 of 157** checks, up from 140, with every new check negative-controlled.
 
-Two author-side items are still open and are not build defects: **Arkady Marchenko's agreement to the
-current version is not recorded**, and item 7 of `PREPRINT_FIX_PAUSE_2026-08-18.md`, an independent review
-of the final hashes, has not been obtained. Every human number is in `NUMBERS.md` §27; the
-reviewer-proposed analyses are in §28, with two positives retired in §28.4.
+What the review found, in brief: a pair decomposition carried over from a superseded 1,469-site run
+(435 of 99,258 for the correct 405 of 100,656); a protein count of 287 where the same paper said 286
+twice; a threonine-to-alanine AUC that exists only under the withdrawn pooled endpoint; a blanket
+"no paired difference excludes zero" that the paper's own §2.4.1 refutes; a figure drawing an interval
+`NUMBERS.md` forbids printing; a figure caption asserting what the figure contradicts; and missing
+Funding and Competing interests sections.
+
+Author actions remain: the deposit identifier is undecided, and `AUTHOR_SIGNOFF.md` is unexecuted. The
+review explicitly does **not** establish that the cohorts rebuild from the source workbooks, that the
+reference list resolves, or that the science is sound — it checked whether the reader-facing numbers
+match the deposited data and the package's own binding rules.
 
 ## Current manuscript
 
@@ -25,15 +33,15 @@ Edit only the Markdown source. The PDF and DOCX are build products and should be
 
 | Role | File | Snapshot | SHA-256 | Status |
 |---|---|---|---|---|
-| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `0a5dfe79b72aa68e4df90f76e2c95637bde55109ff5c57bcaf8e11c04156516c` | **Current; edit this file** |
-| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `918ac01ab6cff9bd2210a5a4783213633a959426938542595a6c1640deaafe8b` | **Current reading build; UT corresponding-author email present** |
-| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `748ac51abf7037e2d95b4ef98d8e02a89806f95671571323ca4de13fee4f990b` | **Current reading build; do not edit directly** |
-| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `f50979f5d86bbc36dc40e2f4570e31b9c191f5686630ed47182296d24e3e911d` | **Current formatted build; UT corresponding-author email present** |
+| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `b5c3d14b1689cedc902f05ed0543f41b600b3040093034745ea3e4b4a14e80c0` | **Current; edit this file** |
+| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `c5066cfe80d2bca9a8a2af1e37b92c964ee3cd3891331ee012c0ea8b25b52c7c` | **Current reading build; UT corresponding-author email present** |
+| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `702b6c6e451b8d8519076da28a182c6e2fd485a2adb3b4ef46af537de68b760d` | **Current reading build; do not edit directly** |
+| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `38a91cf13625b73c2152b1adf87f227585d5139a046150dbd8d0741b5e995ab1` | **Current formatted build; UT corresponding-author email present** |
 | Submission Figure 1 | `manuscript_build/submission_figures/Fig1.tif` | 2,162 × 875 px; RGB; 300 dpi | `8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e` | **Technical specification passes; visual revisions recommended** |
 | Submission Figure 2 | `manuscript_build/submission_figures/Fig2.tif` | 2,162 × 827 px; RGB; 300 dpi | `3105cd3f05c7a1674e2bc4376667cc743de1a4bc528c351b9b768a47e2552cff` | **Current two-panel TIFF; technical specification passes** |
 | Submission Figure 3 | `manuscript_build/submission_figures/Fig3.tif` | 2,162 × 922 px; RGB; 300 dpi | `8ec1520e9e8a767c528f5d955c6d4cbc0ed67b03a643761465fe4fefc5058a71` | **Current; add left white border before submission** |
-| Supporting Figure 1 | `manuscript_build/submission_figures/S1_Fig.tif` | 2,162 × 827 px; RGB; 300 dpi | `ffcd1ac4eae581ee8190178f0006ea6d103e3093e302859c077bc3d362ba3a97` | **Current; technical specification passes** |
-| Supporting Figure 2 | `manuscript_build/submission_figures/S2_Fig.tif` | 2,162 × 969 px; RGB; 300 dpi | `d3c5d17e2434ec5dfb755600ff3f1dc07a0d884575397debaa9a45f83407a9db` | **Current; technical specification passes** |
+| Supporting Figure 1 | `manuscript_build/submission_figures/S1_Fig.tif` | 2,162 × 827 px; RGB; 300 dpi | `e081636b5c64e29f9f0b4d2d77d147dd2f02f54a8bcffa6c289a245e4c9702aa` | **Current; technical specification passes** |
+| Supporting Figure 2 | `manuscript_build/submission_figures/S2_Fig.tif` | 2,162 × 969 px; RGB; 300 dpi | `be99c45c4d08691e60c8192c2bf0652c2020b56ed933e77551ff91183a127fba` | **Current; technical specification passes** |
 
 The current title is *Distance to the nearest annotated active or binding residue: what it measures,
 and how it ranks sites in yeast and human phosphosite-mutant screens*. The corresponding-author email

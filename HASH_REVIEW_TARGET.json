@@ -1,0 +1,106 @@
+{
+  "bound_at": "2026-08-18 09:45 CDT",
+  "note": "Re-cut after the independent hash review of 2026-08-18. Adds the frozen estimator, the yeast primary table and the reviewer-analysis outputs, which the first cut omitted.",
+  "artifacts": {
+    "phosphosite_proximity_paper.md": {
+      "sha256": "b5c3d14b1689cedc902f05ed0543f41b600b3040093034745ea3e4b4a14e80c0",
+      "bytes": 108171
+    },
+    "phosphosite_proximity_paper.pdf": {
+      "sha256": "c5066cfe80d2bca9a8a2af1e37b92c964ee3cd3891331ee012c0ea8b25b52c7c",
+      "bytes": 774546
+    },
+    "phosphosite_proximity_paper.docx": {
+      "sha256": "702b6c6e451b8d8519076da28a182c6e2fd485a2adb3b4ef46af537de68b760d",
+      "bytes": 529475
+    },
+    "phosphosite_proximity_paper_SUBMISSION.docx": {
+      "sha256": "38a91cf13625b73c2152b1adf87f227585d5139a046150dbd8d0741b5e995ab1",
+      "bytes": 85034
+    },
+    "phase0_calibration/NUMBERS.md": {
+      "sha256": "012238b5bb1df7879f7fff8043b0b9540c4c4ef3f7f4c256712481836d91042e",
+      "bytes": 141664
+    },
+    "manuscript_build/submission_figures/Fig1.tif": {
+      "sha256": "8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e",
+      "bytes": 341910
+    },
+    "manuscript_build/submission_figures/Fig2.tif": {
+      "sha256": "3105cd3f05c7a1674e2bc4376667cc743de1a4bc528c351b9b768a47e2552cff",
+      "bytes": 243480
+    },
+    "manuscript_build/submission_figures/Fig3.tif": {
+      "sha256": "8ec1520e9e8a767c528f5d955c6d4cbc0ed67b03a643761465fe4fefc5058a71",
+      "bytes": 193776
+    },
+    "manuscript_build/submission_figures/S1_Fig.tif": {
+      "sha256": "e081636b5c64e29f9f0b4d2d77d147dd2f02f54a8bcffa6c289a245e4c9702aa",
+      "bytes": 183622
+    },
+    "manuscript_build/submission_figures/S2_Fig.tif": {
+      "sha256": "be99c45c4d08691e60c8192c2bf0652c2020b56ed933e77551ff91183a127fba",
+      "bytes": 190730
+    },
+    "supporting_information/S1_Appendix.md": {
+      "sha256": "f343d96dc27b7978a6b3be7d9a030f4dc13c20838ab0a6bdef70631ded6da671",
+      "bytes": 867
+    },
+    "supporting_information/S1_Table.md": {
+      "sha256": "bddda83884292e298589fe352a51ac9642384e8fb792f560be0d3afc999ded09",
+      "bytes": 1656
+    },
+    "supporting_information/S2_Appendix.md": {
+      "sha256": "655be65cc23d4e267aac4ca23cd7951f4373845a85b8cd7f25072b297600aa69",
+      "bytes": 688
+    },
+    "supporting_information/S2_Table.md": {
+      "sha256": "c9f5174d8063058dd55ba8355ecc66d9f19f38aec5e75d0b6e0dd284fd871176",
+      "bytes": 14991
+    },
+    "kennedy_replication/kennedy_analysis_corrected.csv": {
+      "sha256": "90d4be92fa92c738ec65f84a77d4c766199000e548cc87efbcd79b3d4417557b",
+      "bytes": 183696
+    },
+    "kennedy_replication/rebuilt_endpoints_1470.json": {
+      "sha256": "baedbb336a505518acf92d4e2b2d8591611b49311094b2570923cdacd63955f4",
+      "bytes": 10195
+    },
+    "kennedy_replication/endpoint_options_1470.json": {
+      "sha256": "3e532f918b774ac93f890cfeff312b48e4134df92acfd4abfe146009127ca837",
+      "bytes": 3373
+    },
+    "kennedy_replication/human_rebuild_manifest.json": {
+      "sha256": "7b74f039397f0a9269e703ebea3e3ec510f43041499ae8f4e8466c9ce1045248",
+      "bytes": 2247
+    },
+    "kennedy_replication/cache/af_v6_manifest.csv": {
+      "sha256": "e9f39d6705fa13f91b40d8e4edd5c45fc23425cb17cc32f0a35fd6d34ac82cc5",
+      "bytes": 788522
+    },
+    "phase0_calibration/phase0_5/src/02_phase0_5_analysis.py": {
+      "sha256": "cba6d8c7b440c967096c57a66f8c2d419a358e4ba9750ea21bd2c4461c87aa49",
+      "bytes": 43359
+    },
+    "phase0_calibration/phase0_5/results/phase0_5_primary_analysis.csv": {
+      "sha256": "d3717dedca7040afc7368e660a1b87eb6e074688ca7ff86927eb8797356882af",
+      "bytes": 130813
+    },
+    "tip_atom/tip_distance_human.csv": {
+      "sha256": "8dbc9bab42ce533e4c16ef9989e32d53c92a943ffc40c03f74dd93e146521ae0",
+      "bytes": 63466
+    },
+    "tip_atom/tip_distance_yeast.csv": {
+      "sha256": "879ec732cfc8f4b50d4687f54290b9804a1288c593d502866474c1cc2a8a7793",
+      "bytes": 7125
+    },
+    "range_restricted/range_results.json": {
+      "sha256": "00db405dcdadaeb2fd19acd8477636e1d48282139b56c6760d2edfa43664e298",
+      "bytes": 8375
+    },
+    "within_protein_combined/combined_results.json": {
+      "sha256": "f721406177728ec206fe508df458eee3d801e55644cad4cde782f932337218b0",
+      "bytes": 3173
+    }
+  }
+}

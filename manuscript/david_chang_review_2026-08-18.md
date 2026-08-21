@@ -31,6 +31,8 @@ identical, and the AUC is a rank statistic. It does move sites across a fixed cu
 to the threshold and range-restricted analyses of point 2, and it is used there rather than as a
 comparator.
 
-## Verbatim
+## Source
 
-His email is reproduced in `david_chang_review_2026-08-18_verbatim.md`.
+His email is held by Kyle Nguyen. It is not reproduced here: this directory is synced to a public
+repository, and a co-author's private correspondence does not belong in it. The claims above are quoted
+only as far as needed to record what was checked and what was found.

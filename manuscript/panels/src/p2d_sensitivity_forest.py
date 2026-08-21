@@ -60,9 +60,13 @@ def rows():
         assert key in co.index, "missing cohort sensitivity row: %s" % key
         r = co.loc[key]
         out.append((lab, int(r.n_sites), r.estimate, r.ci_low, r.ci_high, col, "o"))
+    # The tyrosine row's interval is 0.604 [0.267, 1.000] and reaches the boundary on 16 sites.
+    # NUMBERS.md forbids printing it ("Not allowed: printing 0.604 [0.267, 1.000]"), and the manuscript
+    # sentence citing this figure says no interval is reported. The point estimate is drawn with the
+    # interval collapsed to it so the panel and the prose agree.
     y = rc.loc["Y"]
-    out.append(("Primary, Tyr", int(y.n_sites), y.estimate, y.ci_low, y.ci_high,
-                BLUE, "o"))
+    out.append(("Primary, Tyr (point estimate only)", int(y.n_sites), y.estimate,
+                y.estimate, y.estimate, BLUE, "o"))
 
     for key, lab, col in FEATURE:
         assert key in fe.index, "missing feature-definition row: %s" % key
@@ -134,7 +138,6 @@ def build():
               frameon=False, loc="lower left", bbox_to_anchor=(-0.004, 1.002), ncol=3,
               handlelength=1.6, handletextpad=0.5, columnspacing=2.0,
               fontsize=6.5, labelcolor=INK2, borderpad=0)
-    letter(fig, "D")
     save(fig, "p2d_sensitivity_forest")
 
 

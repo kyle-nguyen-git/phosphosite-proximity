@@ -1,10 +1,10 @@
 # NUMBERS.md — Canonical Numbers for the Phosphosite-Distance Calibration Preprint
 
-> **HUMAN-NUMBER HOLD — 2026-08-18 01:54 CDT.** An exact-canonical AlphaFold cache audit removed the
-> wrong-isoform CHD6 S27 row and two independent offline builds now produce 1,470 sites in 787 proteins.
-> Section 26 and every manuscript human number are suspended until the complete dependent family is
-> recomputed and registered in a new section. Do not substitute the partial fitness console result.
-> Full pause record: `outputs/fulbright/research/PREPRINT_FIX_PAUSE_2026-08-18.md`.
+> **HUMAN-NUMBER HOLD — DISCHARGED 2026-08-18 06:40 CDT.** The exact-canonical AlphaFold audit removed
+> the wrong-isoform CHD6 S27 row; the cohort is 1,470 sites in 787 proteins and the complete dependent
+> family is registered in **Section 27**, which supersedes 26 and with it 22–25 for every human quantity.
+> Reviewer-proposed analyses are in **Section 28**. Pause record:
+> `outputs/fulbright/research/PREPRINT_FIX_PAUSE_2026-08-18.md`.
 
 Refrozen **2026-07-29 16:33 CDT** after clean-environment reconciliation and deterministic
 serialization of machine-precision continuous-model fields. Cohorts, estimates, intervals, and every
@@ -1700,7 +1700,8 @@ Allowed:
 
 - The endpoint is a doubled reconstruction from the two MAGeCK directional columns, defined once from
   source. Both screens' declared primaries contain 0.5.
-- No paired difference in either cohort excludes zero, and no within-protein interval in either cohort
+- No comparator paired difference in either cohort excludes zero (see 27.7 and 28.4 for the tip-oxygen
+  exception), and no within-protein interval in either cohort
   excludes 0.5.
 
 Not allowed:
@@ -1869,6 +1870,9 @@ Allowed:
 - The human cohort rebuilds from the Kennedy supplement and UniProt, reproducing 1,587 of 1,595 rows.
 - One deposited site was assigned to the wrong protein and is corrected.
 - Both declared primaries contain 0.5 on the corrected cohort, and neither moved by more than 0.003.
+- No **comparator** paired difference excludes zero. The tip-oxygen predictor of 28.1 is not a comparator
+  in this sense and its fitness-screen difference does exclude zero; any blanket statement that no paired
+  difference excludes zero must be scoped to the comparators of 27.4.
 - The reporter within-protein equal-protein interval reverses across constructions because one protein
   carrying one pair enters or leaves the cohort (26.4). No within-protein interval is reported as
   excluding 0.5.
@@ -2006,8 +2010,11 @@ Allowed:
 
 - The human cohort is **1,470 sites in 787 proteins**, rebuilt offline from source with canonical-model,
   model-sequence and residue-number assertions.
-- Both declared primaries contain 0.5; every candidate endpoint arm contains 0.5; no paired difference
-  excludes zero.
+- Both declared primaries contain 0.5 and every candidate endpoint arm contains 0.5.
+- No **comparator** paired difference excludes zero. Scope every blanket statement of this to the four
+  comparators of 27.4: the tip-oxygen predictor of 28.1 has a fitness-screen paired difference of
+  +0.004024 [+0.000120, +0.007827] that does exclude zero, and 28.4 records why it is not a performance
+  claim. An unqualified "no paired difference excludes zero" is now false.
 - 789 of 812 candidate accessions have an exact-canonical AFDB v6 model; 11 isoform models were displaced.
 
 Not allowed:
@@ -2129,8 +2136,10 @@ bootstrap seeds. The reason it fails is confounding and multiplicity, not instab
 
 **The tip-oxygen paired difference in the human fitness screen**, +0.004024 [+0.000120, +0.007827].
 Refuted as a performance claim. Expressed as pairs, the two predictors give the same ordering on
-**98.383% of ranked pairs**; of the 1.617% ordered differently the tip predictor wins a net 435 of
-99,258, which is the +0.004 exactly. An AUC gain of 0.004 from predictors correlating at 0.996 is
+**99,013 of the 100,656 ranked pairs, 98.368%**. Of the 1,643 ordered differently the tip predictor wins
+1,024 and the declared predictor 619, a net **405 of 100,656**, which is +0.004024 exactly. An earlier
+draft of this section gave 435 of 99,258 and 98.383%; those came from the superseded 1,469-site run and
+are retired. An AUC gain of 0.004 from predictors correlating at 0.996 is
 statistically distinguishable from zero and substantively negligible. It is reported as the atom choice
 not mattering to the conclusion, never as the tip predictor outperforming the declared one.
 
@@ -2155,3 +2164,43 @@ Not allowed:
 - **Any claim that the tip-oxygen predictor outperforms the declared one.** Retired 2026-08-18 (28.4).
 - Reporting any 28.2 or 28.3 estimate without stating that it is post hoc and unadjusted.
 - Citing the superseded three-cut-off grid, or any tip-oxygen figure computed on 1,469 sites.
+
+### 28.6 Quantities the manuscript reports that 27 and 28 did not declare `[DECLARED POST HOC]`
+
+The independent hash review of 2026-08-18 found reader-facing values with no entry in the current
+authority. All are recomputed on the deposited 1,470-site cohort and registered here.
+
+| Quantity | Value |
+|---|---|
+| 15 Å threshold decomposition, fitness | 18 affected of 175 inside; 54 of 1,295 outside |
+| Sites with an FDR below 0.05 in either screen | 11 |
+| Sites with an FDR below 0.25 in either screen | 19 |
+| Sites within 5 Å with \|Δposition\| ≤ 2 | 16 of 37 |
+| Sites within 5 Å in the 1.30–1.35 Å band | 13 of 37 |
+| SIFT common support | 997 sites |
+| Experimentally-evidenced arm | 512 sites in **286** proteins |
+| Yeast sites within 5 Å with \|Δposition\| ≤ 2 | 6 of 10 |
+| Yeast sites within 5 Å in the peptide-bond band | 5 of 10 |
+
+### 28.7 The threonine-to-alanine arm is not estimable `[RETIRED]`
+
+An earlier draft reported an AUC of 0.470 [0.211537, 0.732719] on 39 threonine-to-alanine sites. That
+value comes from Section 20.6, which rests on the **withdrawn union endpoint** and the superseded
+1,475-site cohort, and Section 23.7 already bars its dependent values.
+
+Recomputed on the 1,470-site cohort under the declared endpoints, the 39 clean T→A sites carry **1
+affected site under the fitness endpoint and 0 under the reporter endpoint**. No interval is estimable
+in either screen. The arm is retired: report the counts or nothing, never an AUC.
+
+### 28.8 Endpoint sensitivity from the screen's own controls `[DECLARED]`
+
+Required by Section 20.9, which Sections 22–28 do not repeal. The source experiment carries 208
+essential-splice-site controls; **59.62% are detected at a minimum directional *p* below 0.05**
+(`kennedy_replication/endpoint_characterisation.json`, `screen3.essential_splice_controls`). The figure
+is guide-level and unaffected by the cohort rebuilds. The declared endpoint doubles that minimum, so it
+is stricter and the sensitivity under the declared endpoint is lower than 59.62%.
+
+Allowed: stating that fewer than three in five of the screen's own positive controls clear the
+unadjusted threshold, and that the declared endpoint is stricter still.
+
+Not allowed: presenting 59.62% as the sensitivity of the declared endpoint.

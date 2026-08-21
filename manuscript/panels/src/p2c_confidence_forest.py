@@ -97,7 +97,6 @@ def build():
               frameon=False, loc="lower left", bbox_to_anchor=(-0.004, 1.002), ncol=3,
               handlelength=1.6, handletextpad=0.5, columnspacing=2.0,
               fontsize=6.5, labelcolor=INK2, borderpad=0)
-    letter(fig, "C")
     save(fig, "p2c_confidence_forest")
 
 

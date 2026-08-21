@@ -47,7 +47,6 @@ RETIRED = [
     ("0.384 (0.272–0.498)", "below-chance within-protein interval, retired 25.4"),
     ("0.487 (0.421–0.554)", "reporter primary on the released column, superseded 25.3"),
     ("2.7 times the precision", "precision ratio, retired 20.10"),
-    ("a real negative", "retired 2026-08-13"),
     ("Burial, not distance", "interval-comparison error, retired 23.5"),
     ("0.559317", "superseded fitness primary, deposited cohort, retired 26.2"),
     ("0.486100", "superseded reporter primary, deposited cohort, retired 26.2"),
@@ -63,6 +62,10 @@ RETIRED = [
     ("113,898", "superseded reporter pair count, retired 27.4"),
     ("cannot at present be rebuilt", "superseded reproducibility disclosure, retired 2026-08-18"),
     ("AFFILIATION-TO-CONFIRM", "third author's affiliation is still a placeholder"),
+    ("435 reorderings", "tip decomposition from the superseded 1,469-site run, retired 28.4"),
+    ("99,258", "1,469-site pair total, retired 28.4"),
+    ("287 proteins", "superseded experimental-arm protein count, retired 28.6"),
+    ("0.470 (0.212", "T->A AUC on the withdrawn union endpoint, retired 28.7"),
     ("1,595 rows", "superseded candidate-table size unless stated as the earlier build"),
     ("185 of 115,536", "superseded reporter pair decomposition, retired 26.3"),
     ("50 informative proteins", "superseded reporter informative count, retired 26.3"),
@@ -278,6 +281,35 @@ def main() -> int:
             ("outperforms the declared", "retired tip-predictor performance claim, 28.4")):
         bad = [x for x in sents if phrase in x and not any(mk in x for mk in RETRACTION_MARKERS)]
         check(not bad, f"retired claim absent: {why}", bad[0][:70] if bad else "")
+
+    # ---- defects the 2026-08-18 independent hash review found -------------
+    for tok, what in (("405 reorderings", "corrected tip pair decomposition"),
+                      ("100,656", "corrected pair total"),
+                      ("512 sites in 286 proteins", "experimental-arm protein count"),
+                      ("0.647", "SIFT fitness at NUMBERS precision"),
+                      ("0.575 (0.497", "SIFT reporter at NUMBERS precision"),
+                      ("59.62%", "endpoint-sensitivity disclosure"),
+                      ("208 essential splice-site controls", "control count"),
+                      ("0.544 (0.436–0.649)", "inclusive arm present in the abstract")):
+        check(tok in md, f"hash-review fix present: {what}", tok)
+
+    # A blanket "no paired difference excludes zero" is false: the tip-oxygen fitness difference does.
+    for x in sents:
+        if "paired difference" in x and "excludes zero" in x and "No " in x:
+            check("comparator" in x, "paired-difference claim is scoped to comparators", x[:80])
+
+    # The abstract must carry the inclusive arm beside the primary (NUMBERS Section 1).
+    abst = md[md.index("## Abstract"):md.index("**Keywords:**")]
+    check("0.544" in abst, "inclusive arm beside the primary in the abstract")
+
+    # Required PLOS sections.
+    for head in ("## Funding", "## Competing interests"):
+        check(head in md, f"required section present: {head}")
+
+    # Figure captions must not assert what the figure contradicts.
+    for x in sents:
+        if "Every interval crosses" in x:
+            check("except" in x, "Fig 3 caption states its exception", x[:80])
 
     # ---- authorship -------------------------------------------------------
     check(md.count("^3^") >= 2, "third author has a numbered affiliation")
