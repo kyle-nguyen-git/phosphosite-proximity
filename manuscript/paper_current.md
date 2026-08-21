@@ -2,11 +2,13 @@
 
 **Short title:** Phosphosite distance to annotated residues in yeast and human screens
 
-**Kyle Nguyen**^1^\*, **Arkady Marchenko**^2^
+**Kyle Nguyen**^1^\*, **Arkady Marchenko**^2^, **David Chang**^3^
 
 ^1^ Human Biology, College of Natural Sciences, The University of Texas at Austin, Austin, Texas, USA
 
 ^2^ Department of Computer Science, College of Natural Sciences, The University of Texas at Austin, Austin, Texas, USA
+
+^3^ AFFILIATION-TO-CONFIRM
 
 \* Corresponding author. Email: ktn965@my.utexas.edu
 
@@ -14,13 +16,15 @@
 
 ## Abstract
 
-Work that ranks which protein modification sites are worth following up often leans on how close a site sits to a residue already annotated as part of an active or binding site. This paper asks what that measurement contains, and how well it separates sites whose mutation changed a phenotype from those whose mutation did not.
+Work ranking which protein modification sites are worth following up often leans on how close a site sits to a residue already annotated as part of an active or binding site. This paper asks what that measurement contains, and how well it separates sites whose mutation changed a phenotype from those whose mutation did not.
 
-The predictor is the shortest distance between any non-hydrogen atom of the modified residue and any non-hydrogen atom of the nearest annotated residue, in an AlphaFold DB version 6 monomer model. It was measured on 163 alanine substitutions in 48 yeast proteins, and on 1,470 base-edited sites in 787 human proteins. The cohorts share the distance definition and the estimator, not a builder.
+The predictor is the shortest distance between any non-hydrogen atom of the modified residue and any of the nearest annotated residue, in an AlphaFold DB version 6 monomer model, measured on 163 alanine substitutions in 48 yeast proteins and 1,470 base-edited sites in 787 human proteins.
 
-In yeast, distance ranked sites at an area under the receiver-operating-characteristic curve of 0.527 (95% confidence interval 0.417–0.632, resampling whole proteins), where 0.5 is uninformative; a second cohort version keeping the three self-annotated sites gives 0.544 (0.436–0.649) on 166 sites. The human experiment reports two screens with different readouts, analysed separately: 0.558 (0.473–0.639) on a fitness screen and 0.483 (0.418–0.550) on an NFAT reporter screen. Six further endpoint definitions, three using no p-value, all give intervals containing 0.5.
+In yeast it ranked sites at an area under the receiver-operating-characteristic curve of 0.527 (95% confidence interval 0.417–0.632, resampling whole proteins), where 0.5 is uninformative. The human experiment reports two screens, analysed separately: 0.558 (0.473–0.639) on fitness and 0.483 (0.418–0.550) on an NFAT reporter. Six further endpoint definitions all give intervals containing 0.5.
 
-What the statistic rests on is mostly not experimental and mostly not within a protein. Of 163 yeast nearest-target assignments, 143 were not experimentally established; half the sites within 5 Å are the next residue along the chain; and 2.65% of yeast and 0.10% and 0.16% of human ranked pairs compare two sites in one protein. One post hoc result stands out and is not adjusted for multiplicity: how deeply a residue is buried has an interval above 0.5 in the fitness screen, 0.607 (0.531–0.679), although its paired difference against distance contains zero. No paired difference in either cohort excludes zero.
+What the statistic rests on is mostly not experimental and mostly not within a protein. Of 163 yeast nearest-target assignments, 143 were not experimentally established, and 2.65% of yeast and 0.10% and 0.16% of human ranked pairs compare two sites in one protein. The band of sites at 1.33 Å comes from allowing backbone atoms into the measurement; it disappears when distance is taken from the oxygen that accepts the phosphate, and that substitution leaves every interval where it was. Combining within-protein comparisons across both organisms, 278 pairs in 62 proteins, gives 0.504 (0.405–0.604).
+
+The heuristic claims short range, and these cohorts cannot test it there: 10 of 163 yeast and 37 of 1,470 human sites lie within 5 Å of their target, a third to a half sequence-adjacent. Every cut-off-restricted interval contains 0.5 and is wider than the pooled one. No paired difference excludes zero.
 
 **Keywords:** phosphorylation; AlphaFold; yeast; mutational phenotype; structural bioinformatics; exploratory analysis
 
@@ -125,11 +129,31 @@ A logistic model, with standard errors that allow sites in the same protein to b
 
 ### 2.3 Half the sites inside 5 Å are the neighbouring residue in the chain
 
-Ten sites in the primary cohort sit within 5 Å of their nearest target. Five of them — PDA1 S313, YCR087C-A T49, VMA2 S380, INO1 S368 and HSP82 S379 — sit at 1.33–1.34 Å and are the next residue along the chain from their target, |Δposition| = 1, where |Δposition| is the gap in sequence position between the replaced residue and its nearest target. That is the C–N peptide bond joining one residue to the next: for residues *i* and *i*±1 the bonded C–N pair is itself one of the candidate atom pairs, so the shortest heavy-atom distance cannot exceed that fixed backbone contact and the measured value is a constant of the chemistry. Their outcomes are 2 affected and 3 unaffected. A sixth, YCR087C-A S53 at 3.60 Å, has |Δposition| = 2. The remaining four have |Δposition| of 38, 38, 70 and 224, and are 2 affected and 2 unaffected.
+Ten sites in the primary cohort sit within 5 Å of their nearest target. Five of them — PDA1 S313, YCR087C-A T49, VMA2 S380, INO1 S368 and HSP82 S379 — sit at 1.33–1.34 Å and are the next residue along the chain from their target, |Δposition| = 1, where |Δposition| is the gap in sequence position between the replaced residue and its nearest target. That is the C–N peptide bond joining one residue to the next: for residues *i* and *i*±1 the bonded C–N pair is itself one of the candidate atom pairs, so the shortest heavy-atom distance cannot exceed that fixed backbone contact and the measured value is a constant of the chemistry. The band is therefore a property of the atom-selection rule rather than of the data. Measuring instead from the oxygen that accepts the phosphate — OG in serine, OG1 in threonine, OH in tyrosine — removes it completely: these five sites move to 3.44–4.15 Å, no site in either cohort remains in the 1.30–1.35 Å band, and the shortest tip distance becomes 2.65 Å in yeast and 2.56 Å in human. §2.4 reports what that substitution does to the ranking. Their outcomes are 2 affected and 3 unaffected. A sixth, YCR087C-A S53 at 3.60 Å, has |Δposition| = 2. The remaining four have |Δposition| of 38, 38, 70 and 224, and are 2 affected and 2 unaffected.
 
 Across the cohort, |Δposition| is 1 for 5 sites, 2 for 1 site and 3 or more for 157, with nothing between 3 and 37, so any cut-off in that window picks out the same 157 sites. Both the cut-off and the check built on it are post hoc. Dropping the sites with |Δposition| ≤ 2 gives an AUC of 0.541 (0.429–0.648) on 157 replaced sites in 48 proteins, 77 affected and 80 unaffected, with all 20,000 protein-cluster resamples retained at seed 20260728. The three sites that distinguish the two cohort versions are the ones coinciding with an annotated residue, at |Δposition| = 0, so this filter reduces both versions to the same 157 sites. That is one estimate, not two versions agreeing.
 
 Sites inside the 5 Å cut-off are affected less often than sites beyond it, 40.0% against 49.0%, a descriptive odds ratio of 0.693 on 10 sites; the two distance distributions are drawn in Fig 2A. That inversion comes entirely from the peptide-bond neighbours. With those removed the cut-off holds 4 sites, 2 of them affected, an odds ratio of 1.040; on a bin of four sites only the count is reported. The declared predictor is not redefined. `min_dist_A`, the distance on all 163 rows, remains the primary quantity.
+
+The heuristic being audited is local: it says a site a few ångströms from a catalytic residue is worth
+testing before one far away. The pooled AUC instead ranks every affected site against every unaffected
+site at every distance, and in these cohorts most of those pairs are tens of ångströms apart, where no
+claim has been made. Restricting to sites inside each declared cut-off gives, in yeast, 0.531
+(0.311–0.722) on 43 sites within 15 Å, 0.448 (0.224–0.698) on 30 within 10 Å, 0.292 (0.042–0.607) on 20
+within 8 Å and 0.458 (0.111–0.833) on 10 within 5 Å; in the human fitness screen, 0.539 (0.405–0.690),
+0.657 (0.443–0.819), 0.641 (0.442–0.809) and 0.576 (0.114–0.853) on 175, 94, 73 and 37 sites. Every one
+of these intervals contains 0.5, and every one is wider than the pooled interval it is meant to sharpen.
+The reporter screen has two affected sites inside 8 Å and one inside 5 Å, too few for an interval at all.
+
+Twelve threshold contrasts were computed across the four declared cut-offs and three cohorts. One
+excludes zero — the human fitness screen at 15 Å, where the affected rate is 18 of 175 inside against 54
+of 1,295 outside, a difference of +0.061 (+0.009 to +0.119). It is not evidence about proximity. Sites
+inside 15 Å are a structurally distinct subset: mean relative solvent accessibility 0.35 against 0.62 and
+mean pLDDT 75 against 43, so they are buried residues in folded, well-modelled domains while the rest are
+exposed residues in poorly modelled tails. Adjusting for burial alone moves the inside-15 Å coefficient
+from 0.97 to 0.53 and its *p* from 0.0007 to 0.12, and burial is already the comparator with the largest
+estimate in this screen (§2.7.2). One contrast excluding zero out of twelve is also what a null produces
+about half the time. The same 175 sites in the reporter screen give −0.005 (−0.039 to +0.033).
 
 ![Fig 2. What the distance measurement contains.](manuscript_build/submission_figures/Fig2.png)
 
@@ -149,14 +173,39 @@ Seven other predictors were computed on the same 163 replaced sites of the prima
 | `n_annot_residues`, eligible annotated residues in the protein | larger → positive | 0.555 | 0.470–0.649 | +0.029 | −0.082 to +0.152 |
 | `raw_conditions` (bookkeeping negative control) | larger → positive | 0.462 | 0.426–0.496 | −0.065 | −0.183 to +0.057 |
 | `min_dist_A` (declared predictor) | smaller → positive | 0.527 | 0.416–0.631 | reference | — |
+| Distance from the phospho-accepting oxygen | smaller → positive | 0.527 | 0.416–0.633 | −0.000 | −0.007 to +0.008 |
 
 Intervals in the table use 20,000 protein-cluster resamples at seed 20260728, all retained, which is why the row for the declared predictor differs in the third decimal from the headline interval built from 200,000 resamples, 0.417–0.632. For protein length, site pLDDT, `n_annot_residues` and `raw_conditions` there was no prior reason to expect one direction rather than the other; the table prints the direction chosen.
+
+#### 2.4.1 A better-specified version of the same idea
+
+Added after review. The declared predictor takes the shortest separation between any non-hydrogen atoms
+of the two residues, backbone included, and none of the comparators above is a better-specified version
+of the same idea; they are different ideas. The phosphate attaches to the side-chain tip, and that tip
+and the charge it carries are the mechanism the heuristic is about, so the sharper test is to measure
+from the accepting oxygen alone.
+
+It changes almost nothing. In yeast the tip-oxygen predictor gives 0.527 (0.416–0.633) against the
+declared 0.527 (0.416–0.631), a paired difference of −0.000 (−0.007 to +0.008). In the human cohort it
+gives 0.562 (0.477–0.642) on the fitness screen and 0.485 (0.419–0.552) on the reporter screen, against
+0.558 (0.473–0.639) and 0.483 (0.418–0.550). The fitness paired difference, +0.004 (+0.000 to +0.008),
+excludes zero, and expressed as pairs it is a net 435 reorderings out of 99,258: the two predictors give
+the same ordering on 98.4% of ranked pairs. That is distinguishable from zero and negligible in size,
+and it is not reported as one predictor outperforming the other.
+
+What the substitution does change is the peptide-bond band, which disappears entirely (§2.3). The
+conclusion therefore holds in the form of the measurement that best matches the mechanism, which is a
+stronger statement than the declared predictor alone supports. Subtracting a constant for the
+phosphate's reach cannot alter any of these figures, because the AUC is a rank statistic and a constant
+offset leaves every ranking unchanged; it bears only on the cut-offs in §2.3.
+
+All figures in this subsection are post hoc and unadjusted.
 
 No comparator's interval excludes 0.5 except the bookkeeping negative control, and no paired difference against `min_dist_A` excludes zero. The largest point difference is inverse relative solvent accessibility at +0.060. Rows 1 and 2 use sequence position only and need no structure at all: the first takes the smallest sequence gap to any eligible target, the second takes the sequence gap to whichever target is nearest in three dimensions. Their AUCs differ by 0.016.
 
 `raw_conditions` is an artefact of ties, not a predictor that points the wrong way. It takes five values on this cohort and 155 of the 163 sites share the value 102, so almost every pair of sites is tied and contributes exactly 0.5 to the AUC. The point estimate is pinned near 0.5 by construction, and the narrow interval reflects a variable that barely varies, not a precise measurement. Its interval excludes 0.5 on the strength of 8 sites out of 163, that behaviour is stable across seeds, and its paired difference against distance does include zero.
 
-#### 2.4.1 SIFT scores are missing disproportionately at long distances and affected sites
+#### 2.4.2 SIFT scores are missing disproportionately at long distances and affected sites
 
 SIFT [12] predicts from sequence conservation whether replacing one amino acid with another will damage the protein; a lower score means more damaging, so the score is inverted here to point the same way as the other predictors. It was available for 152 of the 163 replaced sites, 71 of them affected. On those 152 sites SIFT gave 0.606 (0.522–0.690) against 0.532 (0.418–0.647) for distance, and the paired difference, SIFT minus distance, was 0.074 (−0.037 to 0.192). SIFT was computed after the primary result. Its interval does not contain 0.5, which is what a positive control for this outcome requires; §3.2 sets out what that does and does not license.
 
@@ -164,7 +213,7 @@ The 11 sites with no SIFT score come from 6 proteins, and whether a score is mis
 
 The AUC depends only on the order of the scores, so filling those 11 missing values in at the most extreme rank each site's outcome allows brackets everything any filling-in could produce. That range is −0.00 to +0.13 on the paired point estimate, read to two decimals because all 11 missing rows come from 6 proteins, and it contains the reported 0.074. It is a bound on what is arithmetically possible, not a range of plausible values, and its upper end is reached only if all 8 unscored affected sites rank above every scored site and all 3 unscored unaffected sites rank below.
 
-#### 2.4.2 Feature combinations are not distinguishable at this sample size
+#### 2.4.3 Feature combinations are not distinguishable at this sample size
 
 Models were fitted and tested on the same 163 replaced sites by five-fold cross-validation: the sites are split into five parts with the affected and unaffected balanced across them, each part is predicted in turn by a model fitted on the other four, and whole proteins are kept together so no protein is split across parts. The split was repeated 10 times, over 10 split seeds, and folds were weighted by the number of affected/unaffected pairs they contain. Two summaries are given for each model. Split-averaged means the AUC is computed inside each fold and then averaged. Pooled out-of-fold means the 163 predictions, each made by a model that never saw that site, are put together and ranked once.
 
@@ -241,7 +290,7 @@ Every interval contains 0.5. The three rows using the size of the fold change us
 
 Keeping the screens apart makes two things visible that the union did not.
 
-How deeply a residue is buried has the largest comparator estimate in the fitness screen. Inverse relative solvent accessibility gives **0.604 (0.528–0.675)**, an interval that does not contain 0.5, against 0.524 (0.459–0.590) in the reporter screen, and in the yeast cohort the same quantity had the largest comparator point estimate at 0.587 without excluding 0.5. Its paired difference against distance on the same fitness sites is +0.044 (−0.025 to +0.115) and contains zero, so burial is not shown to outperform distance; the marginal result is a post hoc hypothesis about burial, not a demonstration that burial rather than distance tracks this outcome.
+How deeply a residue is buried has the largest comparator estimate in the fitness screen. Inverse relative solvent accessibility gives **0.607 (0.531–0.679)**, an interval that does not contain 0.5, against 0.519 (0.454–0.585) in the reporter screen, and in the yeast cohort the same quantity had the largest comparator point estimate at 0.587 without excluding 0.5. Its paired difference against distance on the same fitness sites is +0.049 (−0.019 to +0.120) and contains zero, so burial is not shown to outperform distance; the marginal result is a post hoc hypothesis about burial, not a demonstration that burial rather than distance tracks this outcome.
 
 In the reporter screen the smallest gap in sequence position to an eligible annotated residue gives 0.549 (0.485–0.614), an interval containing 0.5, and its paired difference against distance is +0.066 (−0.001 to +0.131), which also contains zero. An earlier version of this analysis reported that difference as +0.071 (+0.005 to +0.137), excluding zero; that rested on the screen's released per-site column rather than a reconstruction from the two directional columns, and it does not survive the endpoint being rebuilt from source. **No paired difference in either cohort excludes zero.** The burial result above is post hoc and unadjusted for the number of features and endpoints examined; it is the strongest lead here, not a finding.
 
@@ -264,8 +313,25 @@ That question can be asked directly, on the proteins carrying both classes. Tabl
 | Yeast primary | 23 | 176 | 0.528 (0.368–0.709) | 0.497 (0.351–0.642) |
 | Human, fitness screen | 39 | 102 | 0.627 (0.452–0.768) | 0.511 (0.374–0.645) |
 | Human, reporter screen | 49 | 184 | 0.413 (0.313–0.510) | 0.376 (0.266–0.489) |
+| **Combined, yeast + human fitness** | **62** | **278** | — | **0.504 (0.405–0.604)** |
 
 Five of the six intervals contain 0.5. The reporter screen's two aggregations sit below it and the fitness screen's two above, on 39 and 49 informative proteins and 102 and 184 pairs. The exception is the reporter's equal-protein-weight interval, whose upper endpoint is 0.489, and it is not reported here as a result. Its exclusion of 0.5 turns on one protein contributing one pair: PIDD1 carries two sites, one affected at 24.9 Å and one unaffected at 32.8 Å, and its gene symbol matches more than one reviewed UniProt entry, so the cohort rule drops it. Restoring it returns the upper endpoint to 0.502. Of the 49 informative proteins, 47 carry exactly one affected site and 14 contribute exactly one pair, so 32 of the 49 per-protein values are forced to exactly 0 or exactly 1; the 49 values have a standard error of 0.057 and a one-sample *t* against 0.5 gives *p* = 0.04, unadjusted. The same 49 proteins and 184 pairs weighted by pair give 0.413 (0.313–0.510). An earlier version of this analysis reported the same quantity as 0.384 (0.272–0.498) on the released per-site column and as 0.388 (0.279–0.502) on a cohort retaining PIDD1. A quantity that changes which side of 0.5 it falls on when one of 787 proteins enters or leaves is measuring the precision of the estimator, not the predictor.
+
+The three within-protein estimates are of the same quantity and were not combined above. Yeast and the
+human screens are independent of one another — different organism, perturbation chemistry, readout and
+builder — but the two human screens share all 1,470 sites and are not independent of each other, so only
+one enters a combination. Designating the fitness screen, the readout the source experiment leads with,
+an inverse-variance combination gives **0.504 (0.405–0.604)** over **278 within-protein pairs in 62
+proteins**, with Cochran's *Q* = 0.02 on one degree of freedom and *I*² = 0%. Substituting the reporter
+screen gives 0.421 (0.332–0.509) with *I*² = 40%. Both contain 0.5.
+
+A conditional logistic regression stratified on protein estimates the same within-protein effect
+directly, rather than the mixed within-and-between effect the marginal model of §2.2 returns, and uses
+every protein carrying both outcome classes rather than only sites that form pairs. Per 10 Å of distance
+the odds ratios are 0.98 (0.77–1.25) in yeast, 0.90 (0.71–1.16) in the human fitness screen and 1.13
+(0.94–1.35) in the reporter screen, on 23, 39 and 49 strata. All three contain 1. Pooling every
+within-protein comparison available across two organisms does not separate the classes. These estimates
+are post hoc and unadjusted.
 
 What this paper can therefore support is an audit of a mostly cross-protein ranking. It does not evaluate within-protein prioritisation, in the sense of establishing what that ranking is worth; it establishes only that no aggregation tried here separates the classes with an interval excluding 0.5 from above, on pair counts this small.
 
@@ -349,7 +415,7 @@ Every point mutant in the source screen replaces the residue with alanine, and t
 | **Odds ratio** per ten-fold increase in distance + 1 Å | Yeast | 163 | 0.77 | 0.27–2.21 | Cluster covariance, t(47) |
 | **Odds ratio** adjusted for pLDDT and solvent accessibility | Yeast | 163 | 1.31 | 0.37–4.66 | Cluster covariance, t(47) |
 | Experimentally-evidenced targets only | Yeast | 24 sites, 7 proteins | 0.420 | 0.244–0.708 | Descriptive range on 7 proteins |
-| Experimentally-evidenced targets only | Human, fitness | 512 sites, 287 proteins | 0.575 | 0.446–0.699 | Post hoc |
+| Experimentally-evidenced targets only | Human, fitness | 512 sites, 286 proteins | 0.576 | 0.449–0.703 | Post hoc |
 | Experimentally-evidenced targets only | Human, reporter | 512, 286 | 0.478 | 0.376–0.577 | Post hoc |
 
 The two yeast cohort intervals use 200,000 protein-cluster resamples at seed 20260729; every other bootstrap interval here uses 20,000 at seed 20260728. All draws were retained except in the yeast experimental-target interval, which retained 19,991 of 20,000.
@@ -422,7 +488,7 @@ A rerun in a clean environment by the same authors confirmed that the computatio
 
 ### 4.7 The human replication cohort
 
-Sites, guide assignments and per-site screen statistics come from the Supplementary Tables of Kennedy et al. [14], retrieved from the publisher and verified against Europe PMC record PMC11804830. UniProt `ACT_SITE` and `BINDING` features were expanded over their recorded ranges and AlphaFold DB v6 monomer models retrieved, following the same procedure as the yeast cohort but through a separate builder; distance is the same minimum heavy-atom separation, with the substituted residue excluded from its own target set — which is not the yeast rule, where a site coinciding with a target is removed instead. The human builder does not carry the yeast builder's sequence and model-version checks, and the table it starts from has no generator in the deposited materials, so this cohort cannot at present be rebuilt end to end from source. Sites were kept when the model reproduced the reviewed sequence at that position and the protein carried at least one eligible annotated residue, leaving 1,470 sites in 787 proteins.
+Sites, guide assignments and per-site screen statistics come from the Supplementary Tables of Kennedy et al. [14], retrieved from the publisher and verified against Europe PMC record PMC11804830. UniProt `ACT_SITE` and `BINDING` features were expanded over their recorded ranges and AlphaFold DB v6 monomer models retrieved, following the same procedure as the yeast cohort but through a separate builder; distance is the same minimum heavy-atom separation, with the substituted residue excluded from its own target set — which is not the yeast rule, where a site coinciding with a target is removed instead. The candidate table this builder starts from is produced by `build_candidate_table.py`, and the cohort is rebuilt end to end from source with the network disabled: the build fails rather than dropping an accession whose cached record is missing, every structure is asserted to be the exact canonical AlphaFold DB v6 model for its accession, and the model sequence and residue numbering are checked against UniProt before a distance is taken. Reconciling that rebuild against the earlier table moved eight rows, all of them gene symbols matching more than one reviewed human entry, and corrected one site that had been assigned to an entry for a different protein (TKT S308, mapped to DDR2, which also carries a serine at 308). A later provenance audit found the model downloader had accepted the first entry the AlphaFold API returned, an isoform model for eleven accessions; three were replaced with the canonical model, eight had no canonical entry and were removed, and the one previously analysed site lost that way is CHD6 S27. `human_rebuild_manifest.json` records the offline rebuild and the hash of every input and output. Sites were kept when the model reproduced the reviewed sequence at that position and the protein carried at least one eligible annotated residue, leaving 1,470 sites in 787 proteins.
 
 The cohort cascade runs 7,425 rows in the source phosphosite table, to 6,968 with a parsable serine, threonine or tyrosine position, to 6,907 mapping to exactly one reviewed UniProt entry, to 6,113 whose residue matches the canonical sequence at that position, to 1,590 sites in 812 proteins carrying at least one eligible annotated residue, to **1,470 sites in 787 proteins** with a distance on an exact-canonical AlphaFold DB v6 model. A gene symbol matching more than one reviewed human entry is dropped rather than assigned, which removes 8 of the 1,595 sites an earlier build retained; one of those, TKT S308, had been assigned to an entry for a different protein. Guides are aggregated to the site they target: a site enters once, and where several guides name the same site the screen's own per-site summary is used rather than a guide-level average. Sites edited by more than one guide, and guides producing bystander edits at neighbouring residues, are retained in the primary cohorts and separated in the single-edit arm of §2.7.5. Both screens analysed here use the adenine base editor ABE8e. Editor identity is recorded per guide and used only in the substitution-class arms; it does not enter the primary.
 
@@ -446,6 +512,20 @@ The tools were large language models used through Anthropic's Claude Code interf
 The source screen is available with Viéitez et al. [1] through Europe PMC record PMC7612524. The four workbooks are not redistributed; the workflow retrieves them and verifies their inner-file hashes. The materials prepared for deposition are the derived cohort-disposition table, an output of this work, the analysis and round-2 code, the supplementary workbook, manifests, and versions and SHA-256 hashes for the UniProt and AlphaFold DB inputs. `NUMBERS.md` is deposited with them and is the numerical authority for every value reported here. Stored cohort intervals were reused in every reader-facing table and figure rather than recomputed at build time. The code and derived data are at https://github.com/kyle-nguyen-git/phosphosite-proximity. No archive DOI has been minted yet, so cite the repository and commit rather than a DOI.
 
 The human cohort draws on Supplementary Tables 3 and 4 of Kennedy et al. [14] — the `Phosphosites` and `MAGeCK gene_summary` sheets of each — and on the `annotated_phosphoproteome` and `known_regulatory_PSP` sheets of the Ochoa et al. [3] Supplementary Table 2, from which twelve named feature columns were read. Neither workbook is redistributed. The derived human cohort table, the scripts that build and analyse it, and the result files are deposited with the analysis materials. The candidate table the human build starts from is generated by `build_candidate_table.py`, which reads the two `Phosphosites` sheets, resolves each gene symbol against UniProt, checks the residue against the canonical sequence and applies the annotation filter; it reproduces 1,587 of the 1,595 rows of an earlier build, and the eight differences are gene symbols matching more than one reviewed entry. The build runs with the network disabled and fails rather than dropping an accession whose cached record is missing. Every structure is asserted to be the exact canonical AlphaFold DB v6 model for its accession, and the model sequence and residue numbering are checked against UniProt before a distance is taken; 789 of the 812 candidate accessions have such a model. That assertion was added after an audit found the original downloader had accepted the first entry the AlphaFold API returned, which was an isoform model for eleven accessions: three were replaced with the canonical model, eight had no canonical entry and were removed, and all eleven displaced files are retained in the deposited cache. The correction removed one previously analysed site, CHD6 S27. `human_rebuild_manifest.json` records the offline rebuild and the hash of every input and output.
+## Author contributions
+
+Stated using CRediT roles.
+
+**Kyle Nguyen:** Conceptualization; Data curation; Formal analysis; Investigation; Methodology; Software;
+Validation; Visualization; Writing – original draft; Writing – review and editing.
+
+**Arkady Marchenko:** Methodology; Software; Validation; Writing – review and editing.
+
+**David Chang:** Validation; Methodology; Writing – review and editing. Identified the atom-selection
+basis of the peptide-bond artefact, the mismatch between the range over which the statistic is computed
+and the range over which the heuristic is claimed, the internal numerical disagreements between the
+Results text and Table 4, and the absence of a combined within-protein estimate.
+
 ## Acknowledgements
 
 The authors thank Viéitez and colleagues for making the yeast phosphomutant screen and its supplementary data available, and Kennedy and colleagues for the human base-editor screens and their supplementary tables.

@@ -1,0 +1,110 @@
+{
+  "yeast": {
+    "declared": {
+      "label": "yeast: declared minimum heavy-atom distance",
+      "n": 163,
+      "positive": 79,
+      "proteins": 48,
+      "auc": 0.526823,
+      "ci_low": 0.416106,
+      "ci_high": 0.630551,
+      "draws_retained": 20000,
+      "contains_half": true
+    },
+    "tip": {
+      "label": "yeast: distance from the phospho-accepting oxygen",
+      "n": 163,
+      "positive": 79,
+      "proteins": 48,
+      "auc": 0.526673,
+      "ci_low": 0.4156,
+      "ci_high": 0.633201,
+      "draws_retained": 20000,
+      "contains_half": true
+    },
+    "paired_tip_minus_declared": {
+      "estimate": -0.000151,
+      "ci_low": -0.006507,
+      "ci_high": 0.008175,
+      "excludes_zero": false
+    },
+    "spearman_between_predictors": 0.9962,
+    "declared_within_5A": 10,
+    "tip_within_5A": 10,
+    "declared_peptide_band_1_30_1_35": 5,
+    "tip_peptide_band_1_30_1_35": 0,
+    "tip_min_A": 2.6457
+  },
+  "human_fitness": {
+    "declared": {
+      "label": "human_fitness: declared minimum heavy-atom distance",
+      "n": 1470,
+      "positive": 72,
+      "proteins": 787,
+      "auc": 0.557632,
+      "ci_low": 0.472659,
+      "ci_high": 0.638588,
+      "draws_retained": 20000,
+      "contains_half": true
+    },
+    "tip": {
+      "label": "human_fitness: distance from the phospho-accepting oxygen",
+      "n": 1470,
+      "positive": 72,
+      "proteins": 787,
+      "auc": 0.561656,
+      "ci_low": 0.477035,
+      "ci_high": 0.642158,
+      "draws_retained": 20000,
+      "contains_half": true
+    },
+    "paired_tip_minus_declared": {
+      "estimate": 0.004024,
+      "ci_low": 0.00012,
+      "ci_high": 0.007827,
+      "excludes_zero": true
+    },
+    "spearman_between_predictors": 0.9983,
+    "declared_within_5A": 37,
+    "tip_within_5A": 26,
+    "declared_peptide_band_1_30_1_35": 13,
+    "tip_peptide_band_1_30_1_35": 0,
+    "tip_min_A": 2.561
+  },
+  "human_reporter": {
+    "declared": {
+      "label": "human_reporter: declared minimum heavy-atom distance",
+      "n": 1470,
+      "positive": 82,
+      "proteins": 787,
+      "auc": 0.483113,
+      "ci_low": 0.418242,
+      "ci_high": 0.550433,
+      "draws_retained": 20000,
+      "contains_half": true
+    },
+    "tip": {
+      "label": "human_reporter: distance from the phospho-accepting oxygen",
+      "n": 1470,
+      "positive": 82,
+      "proteins": 787,
+      "auc": 0.484589,
+      "ci_low": 0.418935,
+      "ci_high": 0.552177,
+      "draws_retained": 20000,
+      "contains_half": true
+    },
+    "paired_tip_minus_declared": {
+      "estimate": 0.001476,
+      "ci_low": -0.001996,
+      "ci_high": 0.005013,
+      "excludes_zero": false
+    },
+    "spearman_between_predictors": 0.9983,
+    "declared_within_5A": 37,
+    "tip_within_5A": 26,
+    "declared_peptide_band_1_30_1_35": 13,
+    "tip_peptide_band_1_30_1_35": 0,
+    "tip_min_A": 2.561
+  }
+}

@@ -2017,3 +2017,141 @@ Not allowed:
 - Reporting any within-protein interval as excluding 0.5 (27.6, 26.4).
 - Treating `rebuilt_endpoints_corrected.json` or `endpoint_options_source_corrected.json` as current;
   both are superseded by `rebuilt_endpoints_1470.json` and `endpoint_options_1470.json`.
+
+## 28. Reviewer-Proposed Analyses, 2026-08-18 `[DECLARED POST HOC]`
+
+Four analyses proposed by David Chang after all other results were known. Every estimate here is post
+hoc and unadjusted, and none was in any declared family. Code `tip_atom/`, `range_restricted/`,
+`within_protein_combined/`. This section adds to Section 27; it supersedes nothing.
+
+### 28.1 Distance from the phospho-accepting oxygen
+
+The declared predictor takes the shortest heavy-atom separation, backbone included. The phosphate
+attaches to the side-chain tip — OG in serine, OG1 in threonine, OH in tyrosine — and consecutive
+residues are covalently bonded backbone-to-backbone at a fixed distance, so under the declared rule any
+adjacent pair returns that constant. The alternative measures from the tip oxygen to any non-hydrogen
+atom of the target; everything else is unchanged.
+
+| Cohort | Declared | Tip oxygen | Paired difference, tip − declared |
+|---|---:|---:|---:|
+| Yeast, 163 sites | 0.526823 [0.416106, 0.630551] | **0.526673** [0.415600, 0.633201] | −0.000151 [−0.006507, +0.008175] |
+| Human fitness, 1,470 | 0.557632 [0.472659, 0.638588] | **0.561656** [0.477035, 0.642158] | **+0.004024 [+0.000120, +0.007827]** |
+| Human reporter, 1,470 | 0.483113 [0.418242, 0.550433] | **0.484589** [0.418935, 0.552177] | +0.001476 [−0.001996, +0.005013] |
+
+**The peptide-bond band is a property of the atom-selection rule.** Sites in the 1.30–1.35 Å band go
+from 5 to **0** in yeast and from 13 to **0** in human. The shortest tip distance is 2.6457 Å in yeast
+and 2.5610 Å in human. The five yeast sites at 1.33–1.34 Å move to 3.44–4.15 Å. Spearman correlation
+between the two predictors is 0.9962 in yeast.
+
+Subtracting a constant for the phosphate's reach cannot change any of these AUCs: the AUC is a rank
+statistic and a constant offset leaves every ranking identical. It moves sites across a fixed cut-off
+and so bears only on 28.2.
+
+### 28.2 Restricted range and the declared cut-off grid
+
+Methods §4.5 declares four descriptive cut-offs — 5, 8, 10 and 15 Å — and all four are run. An earlier
+version of the script ran only three and dropped 8 Å without comment, which made the reported grid a
+selected subset of an already-declared grid; that version's output is superseded.
+
+AUC restricted to sites inside each cut-off:
+
+| Cut-off | Yeast | Human fitness | Human reporter |
+|---|---:|---:|---:|
+| All range | 0.526823 [0.416106, 0.630551] | 0.557632 [0.472659, 0.638588] | 0.483113 [0.418242, 0.550433] |
+| 15 Å | 0.530702 [0.310923, 0.722222], n=43 | 0.538570 [0.405228, 0.690324], n=175 | 0.406961 [0.242464, 0.581765], n=175 |
+| 10 Å | 0.447964 [0.224484, 0.697537], n=30 | 0.656977 [0.442767, 0.819373], n=94 | 0.399267 [0.057471, 0.722222], n=94 |
+| 8 Å | 0.291667 [0.041667, 0.607143], n=20 | 0.640693 [0.441836, 0.809091], n=73 | n=73, 2 affected; no interval |
+| 5 Å | 0.458333 [0.111111, 0.833333], n=10 | 0.575758 [0.114286, 0.852941], n=37 | n=37, 1 affected; no interval |
+
+**Every restricted interval contains 0.5.** Twelve threshold contrasts were computed; one excludes zero
+(28.4). Expected at 5% across twelve is 0.6, and P(at least one) is 0.46.
+
+Affected-rate contrasts, inside minus outside, protein-cluster interval:
+
+| Cut-off | Yeast | Human fitness | Human reporter |
+|---|---:|---:|---:|
+| 15 Å | +0.100 [−0.109, +0.300] | **+0.061 [+0.009, +0.119]** | −0.005 [−0.039, +0.033] |
+| 10 Å | +0.101 [−0.118, +0.304] | +0.039 [−0.019, +0.104] | −0.025 [−0.059, +0.018] |
+| 8 Å | +0.131 [−0.119, +0.380] | +0.049 [−0.020, +0.130] | −0.030 [−0.063, +0.015] |
+| 5 Å | −0.090 [−0.449, +0.319] | +0.061 [−0.026, +0.171] | −0.029 [−0.066, +0.035] |
+
+### 28.3 Combined within-protein estimate and the conditional model
+
+The two human screens share all 1,470 sites and are not independent, so only one enters the combination.
+**The fitness screen is designated**, being the proliferation and survival readout the source experiment
+leads with; the reporter substitution is a sensitivity arm and is not pooled with it.
+
+| Arm | Equal-protein within-protein AUC | Informative proteins / sites |
+|---|---:|---:|
+| Yeast | 0.497222 [0.351208, 0.643237] | 23 / 112 |
+| Human fitness | 0.510684 [0.373932, 0.645299] | 39 / 132 |
+| Human reporter | 0.375972 [0.266300, 0.489213] | 49 / 215 |
+
+| Combination | Fixed effect | Random effects | Q, df, I² |
+|---|---:|---:|---:|
+| **Yeast + human fitness (designated)** | **0.504446 [0.405051, 0.603841]** | 0.504446 [0.405051, 0.603841] | 0.0175, 1, 0.00% |
+| Yeast + human reporter (sensitivity) | 0.420611 [0.332015, 0.509207] | 0.427045 [0.309707, 0.544384] | 1.6737, 1, 40.25% |
+
+The designated combination rests on **278 within-protein pairs in 62 proteins over 244 sites** (176
+yeast pairs plus 102 human fitness pairs). **Both combinations contain 0.5.**
+
+Conditional logistic regression stratified on protein, distance per 10 Å:
+
+| Cohort | Odds ratio | 95% interval | *p* | Strata / sites |
+|---|---:|---:|---:|---:|
+| Yeast | 0.983341 | 0.772926–1.251036 | 0.8912 | 23 / 112 |
+| Human fitness | 0.904768 | 0.706983–1.157885 | 0.4265 | 39 / 132 |
+| Human reporter | 1.125185 | 0.936080–1.352492 | 0.2090 | 49 / 215 |
+
+**All three contain an odds ratio of 1.**
+
+### 28.4 Two positives, both retired the day they appeared `[RETIRED]`
+
+**The 15 Å cut-off contrast in the human fitness screen**, +0.061 [+0.009, +0.119]. Three independent
+adversarial checks refuted it and the mechanism was verified directly.
+
+It is not distance. Sites inside 15 Å are a structurally distinct subset: mean relative solvent
+accessibility **0.346 against 0.618**, mean pLDDT **74.99 against 42.67**, mean annotated target count
+16.28 against 11.13. They are buried residues in folded, well-modelled domains; the rest are exposed
+residues in poorly modelled tails. Adjusting the contrast for relative solvent accessibility alone moves
+the inside-15 Å coefficient from 0.9688 (*p* = 0.0007) to 0.5304 (*p* = 0.1208). Burial is already
+registered in 27.4 as a comparator with an interval above 0.5, so the covariate was not chosen to
+explain this away.
+
+It also does not survive its own family. Twelve threshold contrasts were computed and this is the only
+one excluding zero; the bootstrap two-sided *p* is 0.0187 and a Šidák correction over the grid gives an
+interval containing zero. The AUC on the same 175 sites is 0.538570 [0.405228, 0.690324] and contains
+0.5, and the same 175 sites in the reporter screen give −0.005 [−0.039, +0.033], the opposite sign.
+
+It is **not** a cut-off artefact, and must not be described as one: it survives leave-one-protein-out at
+all 787 proteins, survives moving the cut-off to 12, 14, 16 and 18 Å, and excludes zero under 20 of 20
+bootstrap seeds. The reason it fails is confounding and multiplicity, not instability.
+
+**The tip-oxygen paired difference in the human fitness screen**, +0.004024 [+0.000120, +0.007827].
+Refuted as a performance claim. Expressed as pairs, the two predictors give the same ordering on
+**98.383% of ranked pairs**; of the 1.617% ordered differently the tip predictor wins a net 435 of
+99,258, which is the +0.004 exactly. An AUC gain of 0.004 from predictors correlating at 0.996 is
+statistically distinguishable from zero and substantively negligible. It is reported as the atom choice
+not mattering to the conclusion, never as the tip predictor outperforming the declared one.
+
+### 28.5 Claim rules
+
+Allowed:
+
+- The peptide-bond band is a consequence of including backbone atoms and disappears entirely under the
+  tip-oxygen definition, in both cohorts.
+- The distance heuristic fails in its most mechanistically faithful form: every tip-oxygen interval
+  contains 0.5 and no restricted interval excludes it.
+- No aggregation of within-protein comparisons across two organisms separates the classes; the
+  designated combination is 0.504446 [0.405051, 0.603841] on 278 pairs in 62 proteins.
+- These cohorts hold too few short-range sites to test the heuristic where it is claimed: 10 of 163 in
+  yeast within 5 Å, of which 5 are peptide-bond neighbours, and 37 of 1,470 in human, of which 13 are.
+
+Not allowed:
+
+- **Any claim that proximity within 15 Å raises the affected rate.** Retired 2026-08-18 (28.4).
+- **Describing the 15 Å contrast as a cut-off artefact or as unstable.** It is confounded with burial and
+  unadjusted for its family; it is not unstable, and saying so would be false.
+- **Any claim that the tip-oxygen predictor outperforms the declared one.** Retired 2026-08-18 (28.4).
+- Reporting any 28.2 or 28.3 estimate without stating that it is post hoc and unadjusted.
+- Citing the superseded three-cut-off grid, or any tip-oxygen figure computed on 1,469 sites.

@@ -61,6 +61,8 @@ RETIRED = [
     ("0.483301", "superseded reporter primary, pre-isoform-fix, retired 27.3"),
     ("100,728", "superseded fitness pair count, retired 27.4"),
     ("113,898", "superseded reporter pair count, retired 27.4"),
+    ("cannot at present be rebuilt", "superseded reproducibility disclosure, retired 2026-08-18"),
+    ("AFFILIATION-TO-CONFIRM", "third author's affiliation is still a placeholder"),
     ("1,595 rows", "superseded candidate-table size unless stated as the earlier build"),
     ("185 of 115,536", "superseded reporter pair decomposition, retired 26.3"),
     ("50 informative proteins", "superseded reporter informative count, retired 26.3"),
@@ -262,6 +264,27 @@ def main() -> int:
     if numbers:
         check("## 27." in numbers, "NUMBERS.md carries Section 27")
         check("supersedes Section 26" in numbers, "Section 27 declares what it supersedes")
+        check("## 28." in numbers, "NUMBERS.md carries Section 28 (reviewer-proposed analyses)")
+
+    # ---- reviewer-proposed analyses: results present, retired claims absent ----
+    for tok, what in (("0.504 (0.405–0.604)", "combined within-protein estimate"),
+                      ("278", "combined within-protein pair count"),
+                      ("phospho-accepting oxygen", "tip-oxygen predictor reported"),
+                      ("2.4.1", "tip-oxygen subsection present")):
+        check(tok in md, f"reviewer-proposed analysis present: {what}", tok)
+    for phrase, why in (
+            ("proximity within 15", "retired 15 A proximity claim, 28.4"),
+            ("cut-off artefact", "the 15 A contrast is confounded, not unstable, 28.4"),
+            ("outperforms the declared", "retired tip-predictor performance claim, 28.4")):
+        bad = [x for x in sents if phrase in x and not any(mk in x for mk in RETRACTION_MARKERS)]
+        check(not bad, f"retired claim absent: {why}", bad[0][:70] if bad else "")
+
+    # ---- authorship -------------------------------------------------------
+    check(md.count("^3^") >= 2, "third author has a numbered affiliation")
+    check("## Author contributions" in md, "Author contributions section present (CRediT)")
+    for name in ("Kyle Nguyen", "Arkady Marchenko", "David Chang"):
+        seg = md[md.index("## Author contributions"):md.index("## Acknowledgements")]
+        check(name in seg, f"author has a contributions statement: {name}")
 
     # ---- the human rebuild is bound to this package -------------------------
     # The pause record of 2026-08-18 required the offline rebuild, its manifest and its hashes to be

@@ -1,0 +1,125 @@
+{
+  "per_cohort": {
+    "yeast": {
+      "cohort": "yeast",
+      "estimate": 0.497222,
+      "ci_low": 0.351208,
+      "ci_high": 0.643237,
+      "se": 0.074499,
+      "informative_proteins": 23,
+      "informative_sites": 112,
+      "pair_weighted": 0.528409
+    },
+    "human_fitness": {
+      "cohort": "human_fitness",
+      "estimate": 0.510684,
+      "ci_low": 0.373932,
+      "ci_high": 0.645299,
+      "se": 0.069228,
+      "informative_proteins": 39,
+      "informative_sites": 132,
+      "pair_weighted": 0.627451
+    },
+    "human_reporter": {
+      "cohort": "human_reporter",
+      "estimate": 0.375972,
+      "ci_low": 0.2663,
+      "ci_high": 0.489213,
+      "se": 0.056867,
+      "informative_proteins": 49,
+      "informative_sites": 215,
+      "pair_weighted": 0.413043
+    }
+  },
+  "conditional_logistic": {
+    "yeast": {
+      "cohort": "yeast",
+      "beta_per_10A": -0.0168,
+      "se": 0.122845,
+      "odds_ratio_per_10A": 0.983341,
+      "or_ci_low": 0.772926,
+      "or_ci_high": 1.251036,
+      "p_value": 0.8912,
+      "informative_strata": 23,
+      "sites_used": 112,
+      "contains_one": true
+    },
+    "human_fitness": {
+      "cohort": "human_fitness",
+      "beta_per_10A": -0.100077,
+      "se": 0.125855,
+      "odds_ratio_per_10A": 0.904768,
+      "or_ci_low": 0.706983,
+      "or_ci_high": 1.157885,
+      "p_value": 0.4265,
+      "informative_strata": 39,
+      "sites_used": 132,
+      "contains_one": true
+    },
+    "human_reporter": {
+      "cohort": "human_reporter",
+      "beta_per_10A": 0.117947,
+      "se": 0.09388,
+      "odds_ratio_per_10A": 1.125185,
+      "or_ci_low": 0.93608,
+      "or_ci_high": 1.352492,
+      "p_value": 0.209,
+      "informative_strata": 49,
+      "sites_used": 215,
+      "contains_one": true
+    }
+  },
+  "combined_designated": {
+    "cohorts": [
+      "yeast",
+      "human_fitness"
+    ],
+    "fixed_effect": {
+      "estimate": 0.504446,
+      "ci_low": 0.405051,
+      "ci_high": 0.603841,
+      "se": 0.050713,
+      "contains_half": true
+    },
+    "random_effects": {
+      "estimate": 0.504446,
+      "ci_low": 0.405051,
+      "ci_high": 0.603841,
+      "se": 0.050713,
+      "tau2": 0.0,
+      "contains_half": true
+    },
+    "Q": 0.0175,
+    "df": 1,
+    "I2_percent": 0.0,
+    "total_informative_proteins": 62,
+    "total_informative_sites": 244
+  },
+  "combined_reporter_substituted_sensitivity": {
+    "cohorts": [
+      "yeast",
+      "human_reporter"
+    ],
+    "fixed_effect": {
+      "estimate": 0.420611,
+      "ci_low": 0.332015,
+      "ci_high": 0.509207,
+      "se": 0.045203,
+      "contains_half": true
+    },
+    "random_effects": {
+      "estimate": 0.427045,
+      "ci_low": 0.309707,
+      "ci_high": 0.544384,
+      "se": 0.059868,
+      "tau2": 0.0029588,
+      "contains_half": true
+    },
+    "Q": 1.6737,
+    "df": 1,
+    "I2_percent": 40.25,
+    "total_informative_proteins": 72,
+    "total_informative_sites": 327
+  },
+  "designation_note": "The two human screens share all 1,470 sites and are not independent, so only one enters the combination. The fitness screen is designated; the reporter substitution is a sensitivity arm and is not pooled with it."
+}

@@ -6,18 +6,18 @@ This file is the routing authority for reader-facing manuscript versions. It sep
 manuscript from superseded author drafts and from verifier-bound legacy artifacts that must remain at
 their historical paths.
 
-## Safety hold — LIFTED
+## Submission blocker
 
-Updated: 2026-08-18 06:40 CDT
+Updated: 2026-08-18 08:10 CDT
 
-**The hold recorded on 2026-08-18 01:54 CDT is lifted.** The exact-canonical AlphaFold audit is complete,
-the endpoint family was recomputed on the corrected 1,470-site/787-protein cohort, and every human
-number is registered in `NUMBERS.md` §27, which supersedes §26 and with it §§22–25. The manuscript,
-tables, Figure 3 and all build products were regenerated from that section. The package passes 125 of
-125 submission checks, which now include the offline human rebuild manifest and its hashes.
+**The paper cannot be submitted yet.** David Chang was added as third author on 2026-08-18 and his
+affiliation is the placeholder `AFFILIATION-TO-CONFIRM`. The package verifier fails on it by design. His
+agreement to the final version is also not recorded, which PLOS requires of every author.
 
-One task from `PREPRINT_FIX_PAUSE_2026-08-18.md` remains open and is **not** a build defect: item 7's
-independent review of the exact final hashes below has not been obtained.
+The 2026-08-18 01:54 CDT AlphaFold hold is lifted; that work is complete and registered in `NUMBERS.md`
+§27. The reviewer-proposed analyses are registered in §28, and two positives from them are retired in
+§28.4. Item 7 of `PREPRINT_FIX_PAUSE_2026-08-18.md`, an independent review of the final hashes, remains
+open.
 
 ## Current manuscript
 
@@ -25,10 +25,10 @@ Edit only the Markdown source. The PDF and DOCX are build products and should be
 
 | Role | File | Snapshot | SHA-256 | Status |
 |---|---|---|---|---|
-| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 06:38 CDT; 15,752 whitespace-delimited words | `e7891ad7d6e3d636ea481d79efed4c1b49cf3a88ab281c146b093a4f1fe6220a` | **Current; edit this file** |
-| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `a1bed84f7347eaff13d260bbcfec22e4ee31b4fc244d3c3f9f719f93aa1d9d89` | **Current reading build; UT corresponding-author email present** |
-| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `1ba376a6f957dc8c50206c2f514cef7fa92c4901b7abc55cee23f630821e0848` | **Current reading build; do not edit directly** |
-| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `92ab079a4538a165107e221cca657ca63eb905c63dea7dde8060845d5e79e1c9` | **Current formatted build; UT corresponding-author email present** |
+| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `03ef8c9ac70008e3ab280b440089f87132d4149072456e26c2834914a7361023` | **Current; edit this file** |
+| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `67b7381c47ebd9cadf798bebadd16c3c7d70c57eab7847b939d3e761a09745a1` | **Current reading build; UT corresponding-author email present** |
+| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `34d401aa41a0e6bcc1b519093ecfc1fde2b762eb9e064539b7c07c1b5117b27c` | **Current reading build; do not edit directly** |
+| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `77626bd9999d8d6e4740882d8e48da2aaea8177d8c2ab487747d575e7ea919a3` | **Current formatted build; UT corresponding-author email present** |
 | Submission Figure 1 | `manuscript_build/submission_figures/Fig1.tif` | 2,162 × 875 px; RGB; 300 dpi | `8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e` | **Technical specification passes; visual revisions recommended** |
 | Submission Figure 2 | `manuscript_build/submission_figures/Fig2.tif` | 2,162 × 827 px; RGB; 300 dpi | `3105cd3f05c7a1674e2bc4376667cc743de1a4bc528c351b9b768a47e2552cff` | **Current two-panel TIFF; technical specification passes** |
 | Submission Figure 3 | `manuscript_build/submission_figures/Fig3.tif` | 2,162 × 922 px; RGB; 300 dpi | `8ec1520e9e8a767c528f5d955c6d4cbc0ed67b03a643761465fe4fefc5058a71` | **Current; add left white border before submission** |
@@ -38,7 +38,7 @@ Edit only the Markdown source. The PDF and DOCX are build products and should be
 The current title is *Distance to the nearest annotated active or binding residue: what it measures,
 and how it ranks sites in yeast and human phosphosite-mutant screens*. The corresponding-author email
 was changed to `ktn965@my.utexas.edu` on 2026-08-18 and all three reader/submission builds were saved.
-The current package passes 125 of 125 submission checks, including the human rebuild manifest and its bound hashes. A later build invalidates the hashes above and
+The current package passes 139 of 140 submission checks. The single failure is deliberate: the third author's affiliation is the placeholder `AFFILIATION-TO-CONFIRM`, and the verifier blocks submission until it is filled in. A later build invalidates the hashes above and
 requires this table to be updated. `preprint_final_gap_review_2026-08-14.md` remains a historical review
 of the 02:40 package, not an independent review of the hashes above.
 
