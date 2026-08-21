@@ -16,3 +16,6 @@ release/clean_room_workspace/
 # retrieved by the scripts. Only the provenance manifest is tracked.
 kennedy_replication/cache/*
 !kennedy_replication/cache/af_v6_manifest.csv
+
+# Internal administrative records stay in the vault, not in the public deposit.
+manuscript/author_agreements.md
