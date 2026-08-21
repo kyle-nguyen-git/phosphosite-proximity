@@ -226,9 +226,9 @@ def main() -> int:
 
     for n in range(1, 5):
         check(f"Table {n}" in body, f"Table {n} cited in the body")
-    for si_name in ("S1 Appendix", "S1 Table", "S2 Appendix", "S2 Table", "S1 Fig", "S2 Fig"):
+    for si_name in ("S1 Appendix", "S1 Table", "S2 Table", "S1 Fig", "S2 Fig"):
         check(si_name in body, f"{si_name} cited in the body")
-    for fname in ("S1_Appendix.md", "S1_Table.md", "S2_Appendix.md", "S2_Table.md"):
+    for fname in ("S1_Appendix.md", "S1_Table.md", "S2_Table.md"):
         check((SI / fname).exists(), f"supporting file present: {fname}")
     si_section = md[md.index("## Supporting information"):]
     check("|" not in si_section, "supporting-information section carries captions only, no tables")
@@ -313,6 +313,14 @@ def main() -> int:
 
     # ---- authorship -------------------------------------------------------
     check(md.count("^3^") >= 2, "third author has a numbered affiliation")
+
+    # The AI disclosure is required and must stay; the paper makes no methods-review claim.
+    check("### 4.9 Use of AI tools" in md, "AI-use disclosure present")
+    check("supported by AI-based tools" in md, "AI-use disclosure states the tools were used")
+    for phrase in ("simulated review", "S2 Appendix", "methods review", "reviewed by"):
+        bad = [x for x in sents if phrase in x]
+        check(not bad, f"no methods-review claim in the paper: {phrase}",
+              bad[0][:70] if bad else "")
     check("## Author contributions" in md, "Author contributions section present (CRediT)")
     for name in ("Kyle Nguyen", "Arkady Marchenko", "David Chang"):
         seg = md[md.index("## Author contributions"):md.index("## Acknowledgements")]

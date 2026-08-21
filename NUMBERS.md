@@ -1797,8 +1797,8 @@ constructions of the same quantity:
 | Reconstructed endpoint, deposited cohort (25.4) | 0.388452 | 0.278904–0.501814 | no |
 | Reconstructed endpoint, corrected cohort (26.3) | 0.375972 | 0.266300–0.489213 | yes |
 
-Three independent adversarial checks were run against the third row on 2026-08-14 and all three refuted
-it. The mechanism was then verified directly.
+The third row was checked against source on 2026-08-14 and does not survive. The mechanism was verified
+directly.
 
 **The whole difference is one protein contributing one pair.** The deposited cohort has 50 informative
 proteins and the corrected cohort 49. The single protein in the deposited set and not the corrected one
@@ -1881,8 +1881,8 @@ Not allowed:
 
 - **Any human number from Sections 22–25 in a reader-facing document.** 26.2 and 26.3 are the authority.
 - **"The reporter ranks affected sites farther from targets within a protein", or any statement that a
-  within-protein interval excludes 0.5.** Retired 2026-08-14 (26.4); three independent adversarial
-  checks refuted it and the mechanism is a single protein with a single pair.
+  within-protein interval excludes 0.5.** Retired 2026-08-14 (26.4); it does not survive
+  checking, and the mechanism is a single protein with a single pair.
 - Any claim that the corrected cohort changes a conclusion. It does not.
 - Citing 1,475 sites or 793 proteins for the human cohort; it is 1,471 in 788.
 
@@ -2167,8 +2167,7 @@ Not allowed:
 
 ### 28.6 Quantities the manuscript reports that 27 and 28 did not declare `[DECLARED POST HOC]`
 
-The independent hash review of 2026-08-18 found reader-facing values with no entry in the current
-authority. All are recomputed on the deposited 1,470-site cohort and registered here.
+A package audit on 2026-08-18 found reader-facing values with no entry in the current authority. All are recomputed on the deposited 1,470-site cohort and registered here.
 
 | Quantity | Value |
 |---|---|

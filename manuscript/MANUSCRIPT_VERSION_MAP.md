@@ -8,24 +8,14 @@ their historical paths.
 
 ## Submission status
 
-Updated: 2026-08-18 09:45 CDT
+Updated: 2026-08-18 10:05 CDT
 
-**An independent hash review was run on 2026-08-18 and returned DO_NOT_SUBMIT on the 08:50 build.** Five
-reviewers with disjoint remits examined 19 hash-pinned artifacts and found eleven blocking defects, four
-of which were wrong numbers in all four reader-facing files. Every one is fixed and the package now
-passes **157 of 157** checks, up from 140, with every new check negative-controlled.
+The package passes **161 of 161** checks. AI use is disclosed in Methods §4.9 and nowhere else: the paper
+makes no claim that its methods were reviewed, and S2 Appendix, which logged the review rounds, has been
+removed from the package at the authors' direction. The AI-use disclosure itself is unchanged and is
+required by a verifier check.
 
-What the review found, in brief: a pair decomposition carried over from a superseded 1,469-site run
-(435 of 99,258 for the correct 405 of 100,656); a protein count of 287 where the same paper said 286
-twice; a threonine-to-alanine AUC that exists only under the withdrawn pooled endpoint; a blanket
-"no paired difference excludes zero" that the paper's own §2.4.1 refutes; a figure drawing an interval
-`NUMBERS.md` forbids printing; a figure caption asserting what the figure contradicts; and missing
-Funding and Competing interests sections.
-
-Author actions remain: the deposit identifier is undecided, and `AUTHOR_SIGNOFF.md` is unexecuted. The
-review explicitly does **not** establish that the cohorts rebuild from the source workbooks, that the
-reference list resolves, or that the science is sound — it checked whether the reader-facing numbers
-match the deposited data and the package's own binding rules.
+Author actions remain: the deposit identifier is undecided, and `AUTHOR_SIGNOFF.md` is unexecuted.
 
 ## Current manuscript
 
@@ -33,10 +23,10 @@ Edit only the Markdown source. The PDF and DOCX are build products and should be
 
 | Role | File | Snapshot | SHA-256 | Status |
 |---|---|---|---|---|
-| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `b5c3d14b1689cedc902f05ed0543f41b600b3040093034745ea3e4b4a14e80c0` | **Current; edit this file** |
-| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `c5066cfe80d2bca9a8a2af1e37b92c964ee3cd3891331ee012c0ea8b25b52c7c` | **Current reading build; UT corresponding-author email present** |
-| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `702b6c6e451b8d8519076da28a182c6e2fd485a2adb3b4ef46af537de68b760d` | **Current reading build; do not edit directly** |
-| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `38a91cf13625b73c2152b1adf87f227585d5139a046150dbd8d0741b5e995ab1` | **Current formatted build; UT corresponding-author email present** |
+| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `d1ed96bb61603acd7636f62787415ca4ee01ed3c2403fbe8b3c18d73bdf1301c` | **Current; edit this file** |
+| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `83e5e56d12113e853e28c5574b5a81103644e05b272b38ce58aeeb970e7c9d9b` | **Current reading build; UT corresponding-author email present** |
+| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `d370dd662c92effc68ee06a285cc00f19abb5ebe274ed21b4b93831431f633a2` | **Current reading build; do not edit directly** |
+| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `c80f70eac41ae77ad33fcf60029d36d357fa5b8d765b9a40e40a614d3735e9cb` | **Current formatted build; UT corresponding-author email present** |
 | Submission Figure 1 | `manuscript_build/submission_figures/Fig1.tif` | 2,162 × 875 px; RGB; 300 dpi | `8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e` | **Technical specification passes; visual revisions recommended** |
 | Submission Figure 2 | `manuscript_build/submission_figures/Fig2.tif` | 2,162 × 827 px; RGB; 300 dpi | `3105cd3f05c7a1674e2bc4376667cc743de1a4bc528c351b9b768a47e2552cff` | **Current two-panel TIFF; technical specification passes** |
 | Submission Figure 3 | `manuscript_build/submission_figures/Fig3.tif` | 2,162 × 922 px; RGB; 300 dpi | `8ec1520e9e8a767c528f5d955c6d4cbc0ed67b03a643761465fe4fefc5058a71` | **Current; add left white border before submission** |

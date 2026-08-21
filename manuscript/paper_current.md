@@ -179,7 +179,7 @@ Intervals in the table use 20,000 protein-cluster resamples at seed 20260728, al
 
 #### 2.4.1 A better-specified version of the same idea
 
-Added after review. The declared predictor takes the shortest separation between any non-hydrogen atoms
+The declared predictor takes the shortest separation between any non-hydrogen atoms
 of the two residues, backbone included, and none of the comparators above is a better-specified version
 of the same idea; they are different ideas. The phosphate attaches to the side-chain tip, and that tip
 and the charge it carries are the mechanism the heuristic is about, so the sharper test is to measure
@@ -440,7 +440,7 @@ The derived cohort table is an output of this work: 163 replaced sites with reso
 
 This is an exploratory reanalysis of data others have published. Nothing was registered in advance and no analysis here is confirmatory. The yes-or-no outcome and the nearest-target distance were both defined before the first AUC was computed. Everything else was specified after that result had been inspected: the protein-cluster intervals, the model-confidence strata, the alternative definitions of the distance feature, the continuous outcomes, the SIFT comparison, the combined models, and the within-protein and residue-class analyses. The declared post hoc families are listed in §2.2, and the round-2 analyses of §4.6 are labelled post hoc wherever their values appear.
 
-Sites whose nearest annotated target is the site itself are excluded from the primary cohort. That decision was made after the outcome had been inspected, so it is post hoc, and the inclusive cohort — which keeps those three sites at their literal distance of 0 Å — is reported alongside the primary rather than only where it would change a reading. An earlier build of this cohort was superseded after a methods review; what changed, and why, is recorded in the deposited materials.
+Sites whose nearest annotated target is the site itself are excluded from the primary cohort. That decision was made after the outcome had been inspected, so it is post hoc, and the inclusive cohort — which keeps those three sites at their literal distance of 0 Å — is reported alongside the primary rather than only where it would change a reading. An earlier build of this cohort was superseded; what changed, and why, is recorded in the deposited materials.
 
 ### 4.2 Source data and cohort construction
 
@@ -507,7 +507,7 @@ This secondary computational analysis used public data only: a yeast growth scre
 We disclose that data exploration, data analysis, and manuscript writing were supported by AI-based tools.
 The authors take full responsibility for the data, code, analyses, conclusions, and writing.
 
-The tools were large language models used through Anthropic's Claude Code interface between 2026-07 and 2026-08. Their outputs were used for prose drafting, code drafting, literature search and adversarial review of the authors' own claims. Every number reported in this manuscript was recomputed from the deposited code and checked against the numerical authority before it was written, and several claims produced with that assistance were retracted on recomputation; those retractions are recorded in the analysis materials. The authors take responsibility for the accuracy of all content, and the interpretations and conclusions are their own. S2 Appendix records the adversarial review rounds that were run, what each produced, and the fact that none of it constitutes peer review.
+The tools were large language models used through Anthropic's Claude Code interface between 2026-07 and 2026-08. Their outputs were used for prose drafting, code drafting, literature search and adversarial review of the authors' own claims. Every number reported in this manuscript was recomputed from the deposited code and checked against the numerical authority before it was written, and several claims produced with that assistance were retracted on recomputation; those retractions are recorded in the analysis materials. The authors take responsibility for the accuracy of all content, and the interpretations and conclusions are their own.
 
 ## Data and code availability
 
@@ -582,6 +582,5 @@ Captions only. Each item is uploaded as its own file, as PLOS ONE requires.
 
 **S1 Table.** The eleven-stratum confidence family, tabulated. Both cohort versions across every stratum, with sites and intervals. All post hoc.
 
-**S2 Appendix.** The simulated reviews. What was run, what it produced, and the statement that none of it is peer review.
 
 **S2 Table.** The 72-cell confidence-by-predicted-aligned-error grids. Four summaries at 10 Å; the 72 primary-cohort cells run from 0.416 to 0.569.
