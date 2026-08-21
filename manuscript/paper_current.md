@@ -8,7 +8,7 @@
 
 ^2^ Department of Computer Science, College of Natural Sciences, The University of Texas at Austin, Austin, Texas, USA
 
-^3^ AFFILIATION-TO-CONFIRM
+^3^ Department of Electrical and Computer Engineering, Cockrell School of Engineering, The University of Texas at Austin, Austin, Texas, USA
 
 \* Corresponding author. Email: ktn965@my.utexas.edu
 

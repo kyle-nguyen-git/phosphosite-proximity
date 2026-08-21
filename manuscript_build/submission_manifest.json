@@ -1,16 +1,16 @@
 {
   "artifacts": {
     "phosphosite_proximity_paper.md": {
-      "sha256": "03ef8c9ac70008e3ab280b440089f87132d4149072456e26c2834914a7361023",
-      "bytes": 106478
+      "sha256": "0a5dfe79b72aa68e4df90f76e2c95637bde55109ff5c57bcaf8e11c04156516c",
+      "bytes": 106592
     },
     "phosphosite_proximity_paper.pdf": {
-      "sha256": "67b7381c47ebd9cadf798bebadd16c3c7d70c57eab7847b939d3e761a09745a1",
-      "bytes": 773504
+      "sha256": "918ac01ab6cff9bd2210a5a4783213633a959426938542595a6c1640deaafe8b",
+      "bytes": 773509
     },
     "phosphosite_proximity_paper_SUBMISSION.docx": {
-      "sha256": "77626bd9999d8d6e4740882d8e48da2aaea8177d8c2ab487747d575e7ea919a3",
-      "bytes": 84430
+      "sha256": "f50979f5d86bbc36dc40e2f4570e31b9c191f5686630ed47182296d24e3e911d",
+      "bytes": 84438
     },
     "phase0_calibration/NUMBERS.md": {
       "sha256": "76ba7918a6642f40a988d401e6216840b49d301361f4775c5eef34db3aaafbcd",
@@ -53,5 +53,5 @@
       "bytes": 14991
     }
   },
-  "checks_passed": false
+  "checks_passed": true
 }

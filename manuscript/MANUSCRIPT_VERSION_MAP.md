@@ -6,18 +6,18 @@ This file is the routing authority for reader-facing manuscript versions. It sep
 manuscript from superseded author drafts and from verifier-bound legacy artifacts that must remain at
 their historical paths.
 
-## Submission blocker
+## Submission status
 
-Updated: 2026-08-18 08:10 CDT
+Updated: 2026-08-18 08:35 CDT
 
-**The paper cannot be submitted yet.** David Chang was added as third author on 2026-08-18 and his
-affiliation is the placeholder `AFFILIATION-TO-CONFIRM`. The package verifier fails on it by design. His
-agreement to the final version is also not recorded, which PLOS requires of every author.
+**No build blocker remains.** David Chang's affiliation was filled in on 2026-08-18 and his agreement to
+this version is recorded in `../admin/author_agreements.md`. The package passes **140 of 140** submission
+checks.
 
-The 2026-08-18 01:54 CDT AlphaFold hold is lifted; that work is complete and registered in `NUMBERS.md`
-§27. The reviewer-proposed analyses are registered in §28, and two positives from them are retired in
-§28.4. Item 7 of `PREPRINT_FIX_PAUSE_2026-08-18.md`, an independent review of the final hashes, remains
-open.
+Two author-side items are still open and are not build defects: **Arkady Marchenko's agreement to the
+current version is not recorded**, and item 7 of `PREPRINT_FIX_PAUSE_2026-08-18.md`, an independent review
+of the final hashes, has not been obtained. Every human number is in `NUMBERS.md` §27; the
+reviewer-proposed analyses are in §28, with two positives retired in §28.4.
 
 ## Current manuscript
 
@@ -25,10 +25,10 @@ Edit only the Markdown source. The PDF and DOCX are build products and should be
 
 | Role | File | Snapshot | SHA-256 | Status |
 |---|---|---|---|---|
-| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `03ef8c9ac70008e3ab280b440089f87132d4149072456e26c2834914a7361023` | **Current; edit this file** |
-| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `67b7381c47ebd9cadf798bebadd16c3c7d70c57eab7847b939d3e761a09745a1` | **Current reading build; UT corresponding-author email present** |
-| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `34d401aa41a0e6bcc1b519093ecfc1fde2b762eb9e064539b7c07c1b5117b27c` | **Current reading build; do not edit directly** |
-| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `77626bd9999d8d6e4740882d8e48da2aaea8177d8c2ab487747d575e7ea919a3` | **Current formatted build; UT corresponding-author email present** |
+| Source of record | `phosphosite_proximity_paper.md` | 2026-08-18 08:10 CDT; 16,905 whitespace-delimited words | `0a5dfe79b72aa68e4df90f76e2c95637bde55109ff5c57bcaf8e11c04156516c` | **Current; edit this file** |
+| Reader PDF | `phosphosite_proximity_paper.pdf` | 2026-08-18 06:38 CDT; 28 US-Letter pages | `918ac01ab6cff9bd2210a5a4783213633a959426938542595a6c1640deaafe8b` | **Current reading build; UT corresponding-author email present** |
+| Editable Word build | `phosphosite_proximity_paper.docx` | 2026-08-18 00:25:36 CDT; rendered to 26 US-Letter pages | `748ac51abf7037e2d95b4ef98d8e02a89806f95671571323ca4de13fee4f990b` | **Current reading build; do not edit directly** |
+| Journal-submission Word build | `phosphosite_proximity_paper_SUBMISSION.docx` | 2026-08-18 00:25:43 CDT; rendered to 37 US-Letter pages | `f50979f5d86bbc36dc40e2f4570e31b9c191f5686630ed47182296d24e3e911d` | **Current formatted build; UT corresponding-author email present** |
 | Submission Figure 1 | `manuscript_build/submission_figures/Fig1.tif` | 2,162 × 875 px; RGB; 300 dpi | `8bbe8c9366ffcffd577f4cc14da6c2942303cf5838f9bda1d928d96476602a9e` | **Technical specification passes; visual revisions recommended** |
 | Submission Figure 2 | `manuscript_build/submission_figures/Fig2.tif` | 2,162 × 827 px; RGB; 300 dpi | `3105cd3f05c7a1674e2bc4376667cc743de1a4bc528c351b9b768a47e2552cff` | **Current two-panel TIFF; technical specification passes** |
 | Submission Figure 3 | `manuscript_build/submission_figures/Fig3.tif` | 2,162 × 922 px; RGB; 300 dpi | `8ec1520e9e8a767c528f5d955c6d4cbc0ed67b03a643761465fe4fefc5058a71` | **Current; add left white border before submission** |
