@@ -1,22 +1,22 @@
 {
-  "bound_at": "2026-08-18 10:05 CDT",
+  "bound_at": "2026-08-18 10:40 CDT",
   "note": "Re-cut after the independent hash review of 2026-08-18. Adds the frozen estimator, the yeast primary table and the reviewer-analysis outputs, which the first cut omitted.",
   "artifacts": {
     "phosphosite_proximity_paper.md": {
-      "sha256": "d1ed96bb61603acd7636f62787415ca4ee01ed3c2403fbe8b3c18d73bdf1301c",
-      "bytes": 107867
+      "sha256": "67ab4b3d65372fe5d9a7ec3af8c29cdf718e117a5de4b01a604a9a1385ee944a",
+      "bytes": 107962
     },
     "phosphosite_proximity_paper.pdf": {
-      "sha256": "83e5e56d12113e853e28c5574b5a81103644e05b272b38ce58aeeb970e7c9d9b",
-      "bytes": 774673
+      "sha256": "740f1fed5f1c1cdfee3738ee116c787dc286e24341105a0067413384252c3ed7",
+      "bytes": 774695
     },
     "phosphosite_proximity_paper.docx": {
-      "sha256": "d370dd662c92effc68ee06a285cc00f19abb5ebe274ed21b4b93831431f633a2",
-      "bytes": 529365
+      "sha256": "f77435dd84af7e5e85794518f249840bff9fa62198b1afe065f3a858c64a002f",
+      "bytes": 529407
     },
     "phosphosite_proximity_paper_SUBMISSION.docx": {
-      "sha256": "c80f70eac41ae77ad33fcf60029d36d357fa5b8d765b9a40e40a614d3735e9cb",
-      "bytes": 84927
+      "sha256": "8f9ad0f8b7e9152b60b463a8641945e73cd9aef99acaee8074b392af6f5bda89",
+      "bytes": 84966
     },
     "phase0_calibration/NUMBERS.md": {
       "sha256": "2a04268b878e587db69da4e5911c5dfd49d5ba96c6351ecee35886f2c1007a30",
@@ -98,5 +98,10 @@
       "sha256": "f721406177728ec206fe508df458eee3d801e55644cad4cde782f932337218b0",
       "bytes": 3173
     }
+  },
+  "deposit": {
+    "concept_doi": "10.5281/zenodo.22052999",
+    "version_doi": "10.5281/zenodo.22053000",
+    "release": "v1.0.0"
   }
 }

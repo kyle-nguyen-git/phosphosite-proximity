@@ -66,6 +66,7 @@ RETIRED = [
     ("99,258", "1,469-site pair total, retired 28.4"),
     ("287 proteins", "superseded experimental-arm protein count, retired 28.6"),
     ("0.470 (0.212", "T->A AUC on the withdrawn union endpoint, retired 28.7"),
+    ("No archive DOI has been minted", "superseded deposit statement; the DOI exists as of 2026-08-18"),
     ("1,595 rows", "superseded candidate-table size unless stated as the earlier build"),
     ("185 of 115,536", "superseded reporter pair decomposition, retired 26.3"),
     ("50 informative proteins", "superseded reporter informative count, retired 26.3"),
@@ -301,6 +302,12 @@ def main() -> int:
     # The abstract must carry the inclusive arm beside the primary (NUMBERS Section 1).
     abst = md[md.index("## Abstract"):md.index("**Keywords:**")]
     check("0.544" in abst, "inclusive arm beside the primary in the abstract")
+
+    # The deposit must carry a persistent identifier, not a bare repository URL.
+    check("10.5281/zenodo.22052999" in md, "Data availability cites the Zenodo concept DOI")
+    da = md[md.index("## Data and code availability"):]
+    da = da[:da.index("\n## ")] if "\n## " in da else da
+    check("doi:" in da, "Data availability states a DOI")
 
     # Required PLOS sections.
     for head in ("## Funding", "## Competing interests"):
