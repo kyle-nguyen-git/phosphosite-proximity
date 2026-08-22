@@ -1,0 +1,18 @@
+{
+  "title": "phosphosite-proximity: code and derived data for distance-to-annotated-residue features in yeast and human phosphosite-mutant screens",
+  "upload_type": "software",
+  "license": "mit",
+  "version": "1.0.0",
+  "creators": [
+    {"name": "Nguyen, Kyle", "affiliation": "Human Biology, College of Natural Sciences, The University of Texas at Austin"},
+    {"name": "Marchenko, Arkady", "affiliation": "Department of Computer Science, College of Natural Sciences, The University of Texas at Austin"},
+    {"name": "Chang, David", "affiliation": "Department of Electrical and Computer Engineering, Cockrell School of Engineering, The University of Texas at Austin"}
+  ],
+  "description": "<p>Code, derived cohorts and the numerical authority for an audit of the distance from a phosphosite to the nearest UniProt-annotated active or binding residue, evaluated against 163 alanine substitutions in 48 yeast proteins and 1,470 base-edited sites in 787 human proteins.</p><p>Contents include the offline source-to-cohort rebuild for the human arm, the frozen estimator and its protein-clustered bootstrap, the submission figure pipeline, a 161-check package verifier, and <code>NUMBERS.md</code> &mdash; the numerical authority, which records every reported value, what supersedes what, and the claims that were retracted during preparation.</p><p>The two source workbooks are not redistributed; the workflow retrieves them and verifies their hashes.</p>",
+  "keywords": ["phosphorylation", "AlphaFold", "yeast", "human", "mutational phenotype", "structural bioinformatics", "reproducibility", "post-translational modification"],
+  "related_identifiers": [
+    {"identifier": "10.1038/s41587-021-01051-x", "relation": "isDerivedFrom", "scheme": "doi"},
+    {"identifier": "10.1038/s41592-024-02256-z", "relation": "isDerivedFrom", "scheme": "doi"}
+  ],
+  "access_right": "open"
+}

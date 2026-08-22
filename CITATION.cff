@@ -1,13 +1,26 @@
 cff-version: 1.2.0
-message: "This is a release candidate. After public archiving, cite the immutable archive and the Viéitez et al. source study."
+message: "If you use this software or its derived data, please cite the archived release and the two source studies below."
 title: "phosphosite-proximity: code and derived data for distance-to-annotated-residue features in yeast and human phosphosite-mutant screens"
 type: software
 authors:
   - family-names: Nguyen
     given-names: Kyle
+    affiliation: "Human Biology, College of Natural Sciences, The University of Texas at Austin"
   - family-names: Marchenko
     given-names: Arkady
-version: 0.5.0-rc.1
+    affiliation: "Department of Computer Science, College of Natural Sciences, The University of Texas at Austin"
+  - family-names: Chang
+    given-names: David
+    affiliation: "Department of Electrical and Computer Engineering, Cockrell School of Engineering, The University of Texas at Austin"
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/kyle-nguyen-git/phosphosite-proximity"
+abstract: >-
+  Code, derived cohorts and the numerical authority for an audit of the distance from a
+  phosphosite to the nearest UniProt-annotated active or binding residue, evaluated against
+  163 alanine substitutions in 48 yeast proteins and 1,470 base-edited sites in 787 human
+  proteins. Includes the offline source-to-cohort rebuild, the frozen estimator, and
+  NUMBERS.md, which records every reported value and the claims that were retracted.
 keywords:
   - phosphorylation
   - AlphaFold
